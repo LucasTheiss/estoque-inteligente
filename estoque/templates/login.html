@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% from 'macros.html' import csrf,input %}
+{% block content %}<section class="login"><h1>Acesso ao inventário</h1><p>Selecione sua loja para continuar.</p>
+<form method="post">{{ csrf() }}<label>Unidade / loja<select name="tenant" required><option value="">Selecione uma loja</option>{% for tenant in tenants %}<option value="{{ tenant.slug }}">{{ tenant.name }}</option>{% endfor %}</select></label>
+<label>Usuário<input name="username" autocomplete="username" required maxlength="120"></label>
+<label>Senha<input name="password" type="password" autocomplete="current-password" required maxlength="200"></label>
+<label>Tema visual<select name="theme"><option value="dark">Índigo escuro</option><option value="light">Claro</option></select></label>
+<button>Entrar na loja</button></form>{% if not tenants %}<p class="notice">Nenhuma loja cadastrada. Solicite a configuração ao administrador.</p>{% endif %}</section>{% endblock %}

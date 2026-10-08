@@ -1,0 +1,5 @@
+*
+!requirements.txt
+!estoque/
+!estoque/**
+**/__pycache__/

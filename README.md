@@ -1,15 +1,34 @@
-# Estoque Inteligente — exemplos de padrões
+# Estoque Inteligente
 
-Protótipo acadêmico limitado à atividade de padrões de projeto; não implementa o sistema de estoque completo.
+Sistema de gestão de estoque físico e sinalização IoT da equipe REUSO, orientado
+pela [especificação fornecida](docs/especificacao.pdf). Backend Flask/Python,
+templates Jinja2, PostgreSQL, MQTT e proxy NGINX. A documentação do produto, e não
+as limitações do antigo exemplo Java, define o escopo de implementação.
 
-- **Singleton (2):** `SistemaConfig` e `ConexaoBanco`.
-- **Template Method (3):** `EntradaEstoque`, `SaidaEstoque` e `AjusteEstoque`, sobre `OperacaoEstoque`.
-- **Strategy (3):** `ReposicaoNoMinimo`, `ReposicaoLoteFixo` e `ReposicaoCobertura`, sobre `PoliticaReposicao`.
+## Padrões de projeto e participantes
 
-O terceiro padrão foi escolhido como Strategy por permitir trocar a regra de reposição sem alterar as operações de estoque. As operações usam interfaces de repositório apenas para demonstrar as etapas do template; persistência concreta e API ficam fora desta atividade. Banco SQLite está preparado para uso pela classe singleton `ConexaoBanco`.
+| Padrão | Classes / componentes | Aplicação |
+| --- | --- | --- |
+| Template Method | `OperacaoEstoque`, `EntradaEstoque`, `SaidaEstoque`, `AjusteEstoque` (`estoque/domain.py`) | O método `executar` aplica os invariantes de saldo; cada operação especializa o cálculo. |
+| Strategy | `QuantidadeInteira`, `QuantidadeFracionada` | Validação conforme a unidade do produto. A mesma transação atende calçados e produtos a granel. |
+| Adapter | `BalancaAdapter`, `MqttAdapter` | Converte peso/tara em quantidade e subtotal precisos; adapta comandos e telemetria ao MQTT. |
+| Service Layer / Unit of Work | `EstoqueService`, contexto transacional `psycopg.Connection` | Grava saldo, histórico e auditoria na mesma transação, com controle concorrente. |
+| Application Factory | `create_app` | Instâncias Flask configuráveis para execução e testes, com módulos separados. |
+| Decorator | `require` | Autenticação, permissões e habilitação de recursos por loja no servidor. |
+| Reúso por composição | `base.html`, `macros.html`, módulo `catalog` | Estrutura visual, formulários, consultas e cadastros compartilhados. |
 
-Requer Java 21 ou superior e Maven. Execute `mvn test` para verificar as estratégias e operações de estoque e `mvn spring-boot:run` para iniciar a aplicação Spring Boot.
+As classes Java originais permanecem em `src/` como exemplos acadêmicos:
+Singleton (`SistemaConfig`, `ConexaoBanco`), Template Method (`OperacaoEstoque` e
+suas três subclasses) e Strategy (`PoliticaReposicao`, `ReposicaoNoMinimo`,
+`ReposicaoLoteFixo`, `ReposicaoCobertura`). O aplicativo web operacional utiliza
+a arquitetura Python/PostgreSQL definida na seção 3.3 do PDF.
 
-As operações compartilham busca, atualização e registro no Template Method. Entrada e saída recebem uma quantidade positiva; ajuste recebe o saldo final não negativo, inclusive zero, e rejeita saldo sem alteração. As implementações concretas definem o cálculo do saldo e o tipo da movimentação. As interfaces atuais não garantem transação entre atualização do produto e registro do histórico.
+## Execução e verificação
 
-As lacunas para evoluir ao sistema completo e as regras que precisam de esclarecimento estão em [Pendências da documentação](docs/PENDENCIAS_DOCUMENTACAO.md).
+Consulte [execução e operação](docs/EXECUCAO.md),
+[rastreabilidade dos requisitos](docs/REQUISITOS.md) e
+[correções necessárias na documentação](docs/PENDENCIAS_DOCUMENTACAO.md).
+
+Testes Python: `python -m pytest tests -q` (configure `TEST_DATABASE_URL` para
+incluir integração e concorrência em PostgreSQL).
+Exemplos Java: `mvn test` com Java 21 ou superior.

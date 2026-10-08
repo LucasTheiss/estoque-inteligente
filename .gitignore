@@ -3,3 +3,9 @@
 /estoque-inteligente.db-journal
 /estoque-inteligente.db-wal
 /estoque-inteligente.db-shm
+/.venv/
+/.env
+__pycache__/
+/.pytest_cache/
+/instance/
+/docs/especificacao.pdf

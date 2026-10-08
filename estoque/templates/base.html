@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="{{ session.get('theme','dark') }}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}"><title>{% block title %}Estoque Inteligente{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='app.css') }}"><script src="{{ url_for('static',filename='app.js') }}" defer></script></head>
+<body><a class="skip" href="#conteudo">Ir para o conteúdo</a>
+<header><a class="brand" href="{{ url_for('web.dashboard') }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5ZM3 7l9 5 9-5M12 12v10M7.5 4.5l9 5"/></svg>Estoque Inteligente</a>
+{% if g.user %}<div class="identity"><span>{{ g.tenant.name }}</span><span>{{ g.user.username }} · {{ roles[g.user.role] }}</span><form method="post" action="{{ url_for('web.logout') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="quiet">Sair</button></form></div>{% endif %}</header>
+{% if g.user %}<nav aria-label="Navegação principal">
+<a href="{{ url_for('web.dashboard') }}">Estoque</a><a href="{{ url_for('web.map_view') }}">Mapa de gavetas</a>
+{% if 'saida' in g.permissions %}<a href="{{ url_for('web.quick') }}">Baixa rápida</a>{% endif %}
+{% if 'cadastros' in g.permissions %}<a href="{{ url_for('web.product_form') }}">Produtos</a><a href="{{ url_for('web.positions') }}">Posições</a><a href="{{ url_for('web.links') }}">Vínculos</a>{% endif %}
+{% if 'historico' in g.permissions %}<a href="{{ url_for('web.history') }}">Histórico</a>{% endif %}
+{% if 'estorno' in g.permissions %}<a href="{{ url_for('web.reversal') }}">Estorno</a>{% endif %}
+{% if g.tenant.iot %}<a href="{{ url_for('integrations.assisted') }}">Busca assistida</a>{% endif %}
+{% if 'usuarios' in g.permissions %}<a href="{{ url_for('web.users') }}">Usuários</a>{% endif %}
+{% if 'iot' in g.permissions and g.tenant.iot %}<a href="{{ url_for('integrations.config') }}">Configuração IoT</a>{% endif %}
+{% if 'relatorios' in g.permissions and g.tenant.enterprise %}<a href="{{ url_for('web.heatmap') }}">Ocupação</a>{% endif %}</nav>{% endif %}
+<main id="conteudo">{% for category,message in get_flashed_messages(with_categories=true) %}<div class="notice {{ category }}" role="status">{{ message }}</div>{% endfor %}
+{% block content %}{% endblock %}</main><div id="live-status" role="status" aria-live="polite"></div>
+<footer>Estoque Inteligente · Equipe REUSO · Gestão de estoque físico e sinalização IoT</footer></body></html>
