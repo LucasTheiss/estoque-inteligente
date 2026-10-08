@@ -17,7 +17,7 @@ de negócio aprovados.
 | --- | --- | --- |
 | Funcionalidades e interface | A aplicação apenas inicia o Spring; não há interface de usuário nem endpoints. | Especificar casos de uso, interface esperada, entradas, saídas e erros. |
 | Persistência e atomicidade | Existem três interfaces de repositório e um provedor de conexões SQLite, sem implementações. Saldo e movimentação são gravados em chamadas separadas. | Definir esquema, transações para saldo/histórico, concorrência, recuperação de falhas e operações de consulta. O protótipo não garante atomicidade. |
-| Ajuste de estoque | `Produto` admite saldo zero, mas a validação comum de operações rejeita zero. O parâmetro de ajuste representa o saldo final. | Documentar saldo final não negativo, permitir zerar o estoque e manter rejeição de ajuste sem alteração. Corrigir a validação e cobrir com teste. |
+| Ajuste de estoque | `Produto` admite saldo zero, mas a validação original das operações rejeitava zero. O parâmetro de ajuste representa o saldo final. | Corrigido no protótipo, documentado no README e coberto por `OperacaoEstoqueTest`: ajuste admite zero e rejeita saldo negativo ou sem alteração. Incorporar esse contrato à especificação completa. |
 | Histórico de ajuste | `Movimentacao` armazena somente magnitude positiva e tipo `AJUSTE`. | Definir como preservar sentido do ajuste e/ou saldos anterior e final; o formato atual não permite reconstruir o saldo pelo histórico. |
 | Gatilho de reposição | As três estratégias disparam apenas quando `quantidade < estoqueMinimo`. | Confirmar limite estrito ou inclusivo e documentar comportamento no mínimo e quando o mínimo é zero. |
 | Cobertura | `ReposicaoCobertura` usa consumo diário × dias, condicionado ao mínimo, e força pedido de pelo menos uma unidade mesmo com cobertura já atendida. | Definir prioridade entre mínimo e cobertura e se deve haver pedido quando o alvo já está atendido. Não alterar a regra sem essa definição. |
@@ -30,7 +30,20 @@ de negócio aprovados.
 - Padrões explicitados no README: dois Singletons, três operações Template Method
   e três estratégias estão presentes. Isso não prova implementação de um sistema
   completo.
-- Reuso: há repetição de busca, construção de produto e registro nas operações;
-  centralizar no template preservando as regras de entrada, saída e ajuste.
+- Reuso: busca, construção de produto, cálculo da diferença e registro estão
+  centralizados no template; as subclasses definem as regras de cada operação.
 - Aceite final: pendente da especificação completa e da implementação/verificação
   dos seus requisitos. Não substituir esse aceite por testes do protótipo.
+
+## Checkpoint verificado em 07/10/2026
+
+`mvn test`: 9 testes, nenhuma falha ou erro, usando JDK 23 com compilação para
+Java 21. O teste de ajuste para zero reproduziu o erro antes da correção.
+`OperacaoEstoqueTest` verifica entrada, saída até zero, ajuste para zero e para
+cima, preservação dos dados do produto, ordem das chamadas aos repositórios,
+validação de entradas, produto inexistente, saldo insuficiente, ajuste sem
+alteração, overflow de entrada e propagação de falha ao salvar o produto.
+`PoliticaReposicaoTest` verifica os exemplos das três estratégias.
+
+Esses testes usam repositórios simulados e não demonstram persistência SQLite,
+atomicidade, concorrência, interface ou atendimento à especificação ausente.
