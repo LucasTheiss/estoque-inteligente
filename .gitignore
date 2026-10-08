@@ -1,0 +1,5 @@
+/target/
+/estoque-inteligente.db
+/estoque-inteligente.db-journal
+/estoque-inteligente.db-wal
+/estoque-inteligente.db-shm
