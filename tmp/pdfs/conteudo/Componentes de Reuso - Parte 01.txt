@@ -1,0 +1,33 @@
+=== PAGINA 1 ===
+Padrões para Reuso
+
+=== PAGINA 2 ===
+Projeto da equipe
+
+01) Você e sua equipe devem aplicar 3 padrões de projetos focados no reuso de software. Não é necessário a modelagem
+do padrão, vocês devem desenvolver e entregar apenas a codificação. Vocês podem escolher a opção 01 ou 02.
+
+Mas antes vocês devem codificar as principais classes (ao menos 10) com métodos e atributos.
+ •  Opção 01
+
+      •   Singleton – Codificar 2 exemplos
+
+      •  Template Method – Codificar 3 exemplos
+
+      •  + um novo design patterns – Codificar 3 exemplos
+
+ •  Opção 02
+
+      •  3 outros padrões de projetos – Codificar 2 exemplos de cada
+
+ 02) Agora você e sua equipe devem começar a desenvolver algumas partes do projeto para que possamos nas próximas aulas
+ aplicar técnicas de acordo com a abordagem de Linha de Produto de Softwares (LPS). Para isso implemente e codifique:
+       •  Mínimo de 2 telas (CRUD) por integrante com a devida conexão com o banco de dados.
+       •   Criar a partir de 3 tabelas no banco
+       •  Desenvolver um exemplo de como planejaram a variabilidade
+
+                                                                                       Autoria própria.
+
+=== PAGINA 3 ===
+Tiago Navarro
+tiago.navarro@pucpr.br

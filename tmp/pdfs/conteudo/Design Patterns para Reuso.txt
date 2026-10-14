@@ -1,0 +1,224 @@
+=== PAGINA 1 ===
+Design Patterns
+(Padrões de Projetos)
+
+=== PAGINA 2 ===
+      Gerenciamento
+       de Produto
+                         Engenharia de
+                                                   Projeto do        Realização do         Teste de
+                           Requisitos do
+                                            Domínio           Domínio           Domínio
+                          DomínioDomínio
+de
+
+
+                                        Artefatos do Domínio incluindo Modelo de VariabilidadeEngenharia
+                            Requisitos           Arquitetura        Componentes          Testes
+
+
+
+
+
+                         Engenharia de
+                                                   Projeto da        Realização da         Teste da
+                            Requisitos da
+                                                Aplicação           Aplicação           Aplicação
+                            AplicaçãoAplicação
+de
+
+                                     Aplicação N – Artefatos incluindo Modelo de Variabilidade
+                                  Aplicação 1 – Artefatos incluindo Modelo de VariabilidadeEngenharia
+
+                           Requisitos          Arquitetura       Componentes         Testes
+
+
+
+
+                         Framework de Engenharia de LPS. Traduzido de Pohl et al. (2005) por Ricardo Theis.
+
+=== PAGINA 3 ===
+Design Patterns
+
+
+
+
+
+                                  Baseado nos estudos de Erich Gamma; Categorização de design patterns por funcionalidade.
+
+=== PAGINA 4 ===
+Strategy
+
+=== PAGINA 5 ===
+Strategy – Estrutura do padrão
+
+
+
+
+
+                          Baseado nos estudos de Padrão Strategy, por Regina Fábia Lopes de Albuquerque, professora PUCPR.
+
+=== PAGINA 6 ===
+Strategy – Sistema controlador de algoritmos
+
+
+
+
+
+                          Baseado nos estudos de Padrão Strategy, por Regina Fábia Lopes de Albuquerque, professora PUCPR.
+
+=== PAGINA 7 ===
+Strategy – Sistema de entrega de produtos
+
+
+
+
+
+                          Baseado nos estudos de Padrão Strategy, por Regina Fábia Lopes de Albuquerque, professora PUCPR.
+
+=== PAGINA 8 ===
+Strategy (não aplicado) – Sistema de entrega de produtos
+
+
+
+
+
+                          Baseado nos estudos de Padrão Strategy, por Regina Fábia Lopes de Albuquerque, professora PUCPR.
+
+=== PAGINA 9 ===
+Strategy – Sistema de estacionamento
+
+
+
+
+
+                Adaptado de Eduardo Fraga, em Design Patterns com Java: Projeto orientado a objetos guiado por padrões, Editora Casa do Código, 2016..
+
+=== PAGINA 10 ===
+Singleton
+
+=== PAGINA 11 ===
+Singleton – Criação do objeto instancia
+
+
+
+
+
+                Adaptado de Eduardo Fraga, em Design Patterns com Java: Projeto orientado a objetos guiado por padrões, Editora Casa do Código, 2016..
+
+=== PAGINA 12 ===
+Singleton – Instância única da classe
+
+
+
+
+
+     Adaptado de Eduardo Fraga, em Design Patterns com Java: Projeto orientado a objetos guiado por padrões, Editora Casa do Código, 2016..
+
+=== PAGINA 13 ===
+Singleton – Características do objeto
+
+
+
+
+
+                       Adaptado de Eduardo Fraga, em Design Patterns com Java: Projeto orientado a objetos guiado por padrões, Editora Casa do Código, 2016..
+
+=== PAGINA 14 ===
+Singleton – DAO (Data Access Object)
+
+
+
+
+
+                       Adaptado de Eduardo Fraga, em Design Patterns com Java: Projeto orientado a objetos guiado por padrões, Editora Casa do Código, 2016..
+
+=== PAGINA 15 ===
+Singleton – Connection Factory
+
+
+
+
+
+                       Adaptado de Eduardo Fraga, em Design Patterns com Java: Projeto orientado a objetos guiado por padrões, Editora Casa do Código, 2016..
+
+=== PAGINA 16 ===
+Template Method
+
+=== PAGINA 17 ===
+Template Method – Exibição
+
+
+
+
+
+                                                                                   Autoria própria.
+
+=== PAGINA 18 ===
+Template Method – Aplicação
+
+
+
+
+
+                                                                                   Autoria própria.
+
+=== PAGINA 19 ===
+Template Method – Classe Pizza
+
+
+
+
+
+                                                                                   Autoria própria.
+
+=== PAGINA 20 ===
+Template Method
+Classe Frango
+
+
+
+
+
+                                                                                    Autoria própria.
+
+=== PAGINA 21 ===
+Template Method
+Classe Bacon
+
+
+
+
+
+                                                                                    Autoria própria.
+
+=== PAGINA 22 ===
+Projeto da equipe
+
+
+Você e sua equipe devem aplicar 3 padrões de projetos focados no reuso de software. Não é necessário a modelagem
+do padrão, vocês devem desenvolver e entregar apenas a codificação. Vocês podem escolher a opção 01 ou 02.
+
+Mas antes vocês devem codificar as principais classes (ao menos 10) com métodos e atributos.
+
+ •  Opção 01
+
+       •   Singleton – Codificar 2 exemplos
+
+       •  Template Method – Codificar 3 exemplos
+
+       •  + um novo design patterns – Codificar 3 exemplos
+
+ •  Opção 02
+
+       •  3 outros padrões de projetos – Codificar 2 exemplos de cada
+
+
+
+
+
+                                                                                     Autoria própria.
+
+=== PAGINA 23 ===
+Tiago Navarro
+tiago.navarro@pucpr.br

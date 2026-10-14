@@ -1,0 +1,457 @@
+=== PAGINA 1 ===
+Tiago Navarro
+
+=== PAGINA 2 ===
+Paraná Software  TE1:Reúsodesenvolvimentode Software:para reúsoConceitose com reúso)(Abordagens de
+do de     TE2: Gestão de ativos reutilizáveis
+     TE3: Processo para gestão de reutilizaçãoCatólica   TE4: Linhas de Produto de Software          Engenharia     TE5: Linhas de Processo de Software
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                            2
+
+=== PAGINA 3 ===
+Paraná Software
+        Uma família de 55 sistemas para
+do de          navios
+      ▪A necessidade de desenvolvedores
+               caiu de 210 para 30Católica        ▪Tempo de trabalho nesse tipo de          Engenharia         sistemas diminuiu
+  em     ▪Teste de milhões de componentes
+             requerem de 1-2 pessoas
+         ▪Mudanças de plataforma levam emUniversidade          média 3 meses.        Pesquisa
+  dePontifícia     Grupo
+
+                                 Adaptado do SEI (Software Engineering Institute).
+       © GPES                                          Tiago Navarro                                             3
+
+=== PAGINA 4 ===
+   O que seria o desenvolvimento para reúso e
+Paraná Software   com reúso?
+do de        ▪Existe diferença?
+     ▪É uma abordagem?Católica
+     ▪Como funciona?          Engenharia
+  em    ▪Ferramentas?
+       ▪Técnicas?Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                   * Usar quadro BB para representar LPS;representar o que é ativos/artefatos
+
+       © GPES                                          Tiago Navarro                                         4
+
+=== PAGINA 5 ===
+Paraná Software Abordagem▪Desenvolverrelacionadasistemas de altaa: qualidade
+do de       ▪Tempo reduzido
+        ▪Menor custo possívelCatólica          Engenharia    ▪Características
+  em      ▪Funcionalidades em comum
+         ▪Compartilhando de ativosUniversidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                             5
+
+=== PAGINA 6 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia      MDD     Grupo
+        (desenvolvimento dirigido a modelos)
+                                                       Autoria própria
+       © GPES                                          Tiago Navarro                                       6
+
+=== PAGINA 7 ===
+Paraná Software  Fase do planejamento para reúso
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                         Adaptado de (SOUZA; SANTOS; MACHADO; ALMEIDA; GOMES, 2016).
+       © GPES                                          Tiago Navarro                                             7
+
+=== PAGINA 8 ===
+Paraná Software  Fase do desenvolvimento com reúso
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                         Adaptado de (SOUZA; SANTOS; MACHADO; ALMEIDA; GOMES, 2016).
+       © GPES                                          Tiago Navarro                                       8
+
+=== PAGINA 9 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                         Adaptado de (SOUZA; SANTOS; MACHADO; ALMEIDA; GOMES, 2016).
+       © GPES                                          Tiago Navarro                                       9
+
+=== PAGINA 10 ===
+                         Gerenciamento
+                         de Produto
+                                             Engenharia de
+                                                                          Projeto do        Realização do         Teste de
+                                                 Requisitos do
+                                                               Domínio           Domínio           Domínio
+                                             Domínio                                                                 DomínioParaná Software
+                   de
+do de
+                                                              Artefatos do Domínio incluindo Modelo de Variabilidade                                                                                             Engenharia
+                                                  Requisitos           Arquitetura        Componentes          TestesCatólica          Engenharia
+  em
+                                             Engenharia de
+                                                                          Projeto da        Realização da         Teste da
+                                                 Requisitos da
+                                                                     Aplicação           Aplicação           Aplicação
+                                                  Aplicação                                                                                    AplicaçãoUniversidade               de        Pesquisa
+                                                          Aplicação N – Artefatos incluindo Modelo de Variabilidade
+  de                                                Aplicação 1 – Artefatos incluindo Modelo de VariabilidadePontifícia                                                                            Engenharia                         Requisitos          Arquitetura       Componentes         Testes     Grupo
+
+                    Framework de Engenharia de LPS. Traduzido de Pohl et al. (2005) por Ricardo Theis.
+       © GPES                                          Tiago Navarro                                          10
+
+=== PAGINA 11 ===
+Paraná Software
+do de
+Católica
+                                                                               Definição de (KRUEGER, 2002 )          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia
+                                                         Definição de (POHL; BÖCKLE; VAN DER LINDEN, 2005)     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                           11
+
+=== PAGINA 12 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                           12
+
+=== PAGINA 13 ===
+     “A variabilidade de software é a capacidade deParaná Software       um sistema, ativo ou ambiente de
+do de
+          desenvolvimento ser configurado,
+     customizado ou alterado para o uso em umCatólica
+        domínio específico de uma forma pré-          Engenharia
+  em                   planejada.”
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                            (ALLIAN, 2016);(Bachmann;Clements, 2005;Capilla;2013;Chen;2009)
+
+       © GPES                                          Tiago Navarro                                            13
+
+=== PAGINA 14 ===
+     GV inicia-se no requisito
+
+       ▪Na escolha da notação e ferramenta;Paraná Software
+do de
+       ▪No que há em comum e variável;
+
+           ▪Especificação da arquitetura;Católica          Engenharia           ▪Identificação de ativos;
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                          14
+
+=== PAGINA 15 ===
+      “O GV tem início na análise de domínio eParaná Software       especificação de requisitos, que tratam da
+do de
+                 identificação dos ativos
+     comuns e variáveis, resultando assim em umCatólica
+    modelo de variabilidade, prosseguindo assim          Engenharia
+  em     com a especificação da arquitetura,
+       implementação, análise e refatoração doUniversidade                       código.”        Pesquisa
+  dePontifícia     Grupo
+
+                                                   (ALLIAN, 2016)
+
+       © GPES                                          Tiago Navarro                                           15
+
+=== PAGINA 16 ===
+Paraná Software  Ponto▪Lugardeondevariaçãoacontecem variações;
+do de     Variabilidade
+         ▪Identificadas por meio de características (features);Católica     ▪São as mudanças possíveis de se fazer no sistema, podem          Engenharia            ser desenvolvidas em modelos, diagramas e com o
+  em        auxílio de ferramentas;
+     VariantesUniversidade      ▪Podem se considerados como um ativo, podendo ser        Pesquisa
+           representados por diagramas, código-fonte, modelos,  de
+           casos de testes, documentos, especificações;Pontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                         16
+
+=== PAGINA 17 ===
+                         Gerenciamento
+                         de Produto
+                                             Engenharia de
+                                                                          Projeto do        Realização do         Teste de
+                                                 Requisitos do
+                                                               Domínio           Domínio           Domínio
+                                             Domínio                                                                 DomínioParaná Software
+                   de
+do de
+                                                              Artefatos do Domínio incluindo Modelo de Variabilidade                                                                                             Engenharia
+                                                  Requisitos           Arquitetura        Componentes          TestesCatólica          Engenharia
+  em
+                                             Engenharia de
+                                                                          Projeto da        Realização da         Teste da
+                                                 Requisitos da
+                                                                     Aplicação           Aplicação           Aplicação
+                                                  Aplicação                                                                                    AplicaçãoUniversidade               de        Pesquisa
+                                                          Aplicação N – Artefatos incluindo Modelo de Variabilidade
+  de                                                Aplicação 1 – Artefatos incluindo Modelo de VariabilidadePontifícia                                                                            Engenharia                         Requisitos          Arquitetura       Componentes         Testes     Grupo
+
+                    Framework de Engenharia de LPS. Traduzido de Pohl et al. (2005) por Ricardo Theis.
+       © GPES                                          Tiago Navarro                                            17
+
+=== PAGINA 18 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                         18
+
+=== PAGINA 19 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                         19
+
+=== PAGINA 20 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  de
+
+
+               *DesenhoPontifícia     Grupo
+                 *Mostrar XFifa
+
+
+       © GPES                                          Tiago Navarro                                           20
+
+=== PAGINA 21 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia
+                *Desenho     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                           21
+
+=== PAGINA 22 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                           22
+
+=== PAGINA 23 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                            23
+
+=== PAGINA 24 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                         24
+
+=== PAGINA 25 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                            25
+
+=== PAGINA 26 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                        26
+
+=== PAGINA 27 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                            27
+
+=== PAGINA 28 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                        28
+
+=== PAGINA 29 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                        29
+
+=== PAGINA 30 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                          30
+
+=== PAGINA 31 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                           31
+
+=== PAGINA 32 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                           32
+
+=== PAGINA 33 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                            33
+
+=== PAGINA 34 ===
+Paraná Software
+do de
+Católica          Engenharia
+  em
+Universidade        Pesquisa
+  dePontifícia     Grupo
+
+                                                        (Autoria própria)
+
+       © GPES                                          Tiago Navarro                                          34
+
+=== PAGINA 35 ===
+    Como seria seu sistema com alta variabilidade?
+         ▪Desenvolva ou atualize a prototipação do seu sistema com 10-13
+               interfaces com alta variação.Paraná Software
+do de        ▪Pode ser por funções em telas, usuários com acessos específicos ou módulos que
+                 somente certos clientes tem acesso.
+      ▪Nem todos os clientes terão a mesma opção.
+              ▪Crie uma função específica para algum cliente, e demonstre no protótipo comoCatólica                     separaria esta função dos demais.          Engenharia           ▪Possibilite uma alta personalização conforme a necessidade.
+  em         ▪Alguns recursos são para todos.
+        ▪Pense “fora da caixa”, mas seja realista.Universidade      ▪Foco no reuso.        Pesquisa         ▪Pesquise e liste uma arquitetura de desenvolvimento que possibilite
+  de               alta personalização e reuso que mais se adequa ao seu projeto.
+             ▪Linguagem de programação, SGBDs, Interfaces, componentes, etc...Pontifícia     Grupo
+
+
+
+       © GPES                                          Tiago Navarro                                           35
+
+=== PAGINA 36 ===
+Tiago Navarro (tiago.navarro@pucpr.br)
