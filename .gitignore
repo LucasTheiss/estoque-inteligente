@@ -8,4 +8,12 @@
 __pycache__/
 /.pytest_cache/
 /instance/
-/docs/especificacao.pdf
+/%SystemDrive%/
+/.cartographer/
+/.impeccable/engine/
+/.impeccable/questions/
+/.impeccable/build/
+/.impeccable/mocks/
+/.impeccable/review/before/
+/.impeccable/review/rendered/
+/.impeccable/review/*.log

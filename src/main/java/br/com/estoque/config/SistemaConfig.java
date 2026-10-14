@@ -2,12 +2,11 @@ package br.com.estoque.config;
 
 import java.util.Map;
 
-/** Singleton: configurações compartilhadas do protótipo. */
+/** Singleton: identidade compartilhada pelas telas da aplicação. */
 public final class SistemaConfig {
     private static final SistemaConfig INSTANCE = new SistemaConfig();
     private final Map<String, String> valores = Map.of(
-            "sistema.nome", "Estoque Inteligente",
-            "estoque.alerta-percentual", "20"
+            "sistema.nome", "Estoque Inteligente"
     );
 
     private SistemaConfig() {}

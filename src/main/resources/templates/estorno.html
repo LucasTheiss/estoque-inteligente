@@ -1,0 +1,8 @@
+<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}"><section>
+<p class="lead">Reverta uma entrada ou saída mantendo o movimento original no histórico.</p>
+<form th:action="@{/estorno}" method="post" class="form-stack operation-form" data-confirm="Confirmar o estorno desta movimentação?">
+<input type="hidden" name="requestKey" th:value="${key}">
+<label>Movimentação<select name="movementId" required><option value="">Selecione o movimento</option><option th:each="r : ${movimentos}" th:value="${r.movimento.id}" th:text="|#${r.movimento.id} · ${r.sku} · ${r.code} · ${r.movimento.kind} · ${r.movimento.delta} · ${r.movimento.createdAt}|"></option></select></label>
+<label>Motivo do estorno<textarea name="reason" required maxlength="1000" rows="4"></textarea></label><button th:disabled="${movimentos.isEmpty()}">Confirmar estorno</button>
+<p th:if="${movimentos.isEmpty()}" class="empty">Nenhuma entrada ou saída disponível para estorno.</p></form>
+</section></html>

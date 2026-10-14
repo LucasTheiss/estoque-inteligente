@@ -1,0 +1,14 @@
+<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: documentHead}"></head>
+<body class="login-page"><main class="login-shell" id="conteudo">
+<div class="login-intro"><a class="brand" th:href="@{/login}"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 12 7v13l-12 7L4 23V10Zm0 14L4 10m12 7 12-7M16 17v13M10 6l12 7"/></svg><span>Estoque<br> Inteligente</span></a><div class="login-message"><h1>Cada produto.<br>No lugar certo.</h1><p>Consulte o estoque, encontre a posição e registre cada movimento.</p></div><div class="login-process"><span>Consulte</span><span>Localize</span><span>Movimente</span></div></div>
+<section class="login-form"><div class="login-tools"><label th:replace="~{layout :: themePicker}"></label></div><h2>Entre na sua loja</h2><p>Use a conta cadastrada pelo administrador.</p>
+<p role="alert" class="error" th:if="${param.error != null}">Não foi possível entrar. Confira a loja, o usuário e a senha. Muitas tentativas bloqueiam o acesso por 15 minutos.</p>
+<p role="status" class="notice" th:if="${param.logout != null}">Você saiu da conta.</p>
+<form th:action="@{/login}" method="post" class="form-stack">
+<label>Loja<select name="loja" required autocomplete="organization"><option value="" disabled selected>Selecione sua loja</option><option th:each="loja : ${lojas}" th:value="${loja.slug}" th:text="${loja.name}"></option><option value="global">Administração global</option></select></label>
+<label>Usuário<input name="username" required maxlength="200" autocomplete="username" autocapitalize="none"></label>
+<label>Senha<input name="password" type="password" required autocomplete="current-password"></label>
+<button type="submit">Entrar</button></form>
+<p class="muted" th:if="${demo}">Ambiente de demonstração. As contas de exemplo estão descritas na documentação de execução.</p>
+</section></main></body></html>

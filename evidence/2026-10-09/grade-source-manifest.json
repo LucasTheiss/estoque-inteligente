@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "path": "src/main/java/br/com/estoque/dto/ProdutoForm.java",
+      "sha256": "e0c11155b9ad65af2cdcbea2850862ba3cbe945ee392328c1c7297061b14178c",
+      "modified": "2026-10-09T19:32:55.203Z"
+    },
+    {
+      "path": "src/main/java/br/com/estoque/service/ProdutoService.java",
+      "sha256": "d48413516bfb49a7b8243d4debd3c7d5bfe74a0a3b82e7e05db989b81e2e379b",
+      "modified": "2026-10-09T19:32:55.207Z"
+    },
+    {
+      "path": "src/main/java/br/com/estoque/controller/web/ProdutoController.java",
+      "sha256": "4360704f9fe8598d764caa3e22c09cb49d9372530dd948c1fbf79d52a427d7e8",
+      "modified": "2026-10-09T19:32:55.211Z"
+    },
+    {
+      "path": "src/main/resources/templates/produtos.html",
+      "sha256": "78ab08049e5835f2f1ac26c15ca36941623be89dfe4797cf7d88cb184a59a358",
+      "modified": "2026-10-09T19:32:55.215Z"
+    },
+    {
+      "path": "src/test/java/br/com/estoque/service/ProdutoServiceTest.java",
+      "sha256": "83a6157fbe75787fb753c0bf2e557f94da11a46726ac65ec1439020c06354da8",
+      "modified": "2026-10-09T19:33:49.359Z"
+    },
+    {
+      "path": "src/test/java/br/com/estoque/AplicacaoTest.java",
+      "sha256": "711489ba55e0929421fb84618517341b5000118bc8b249e9e6e4de6fad436886",
+      "modified": "2026-10-09T19:33:49.362Z"
+    },
+    {
+      "path": "src/test/java/br/com/estoque/TelasTest.java",
+      "sha256": "6a85614db3337a9d6430315259d1a39a2238daed31654cfa6a90cb6e6a53fe7e",
+      "modified": "2026-10-09T19:33:49.367Z"
+    }
+  ],
+  "newTestsExecuted": false,
+  "reason": "testCompile failed with AccessDeniedException; Surefire ran prior test classes."
+}

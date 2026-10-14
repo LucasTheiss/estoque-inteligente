@@ -1,34 +1,54 @@
 # Estoque Inteligente
 
 Sistema de gestão de estoque físico e sinalização IoT da equipe REUSO, orientado
-pela [especificação fornecida](docs/especificacao.pdf). Backend Flask/Python,
-templates Jinja2, PostgreSQL, MQTT e proxy NGINX. A documentação do produto, e não
-as limitações do antigo exemplo Java, define o escopo de implementação.
+pela [especificação fornecida](docs/especificacao.pdf). Aplicação Java 21 com
+Spring Boot MVC, Thymeleaf, PostgreSQL, MQTT e proxy NGINX. A documentação do
+produto define o escopo de implementação; este README descreve a arquitetura,
+os padrões aplicados e seus participantes.
 
 ## Padrões de projeto e participantes
 
 | Padrão | Classes / componentes | Aplicação |
 | --- | --- | --- |
-| Template Method | `OperacaoEstoque`, `EntradaEstoque`, `SaidaEstoque`, `AjusteEstoque` (`estoque/domain.py`) | O método `executar` aplica os invariantes de saldo; cada operação especializa o cálculo. |
-| Strategy | `QuantidadeInteira`, `QuantidadeFracionada` | Validação conforme a unidade do produto. A mesma transação atende calçados e produtos a granel. |
-| Adapter | `BalancaAdapter`, `MqttAdapter` | Converte peso/tara em quantidade e subtotal precisos; adapta comandos e telemetria ao MQTT. |
-| Service Layer / Unit of Work | `EstoqueService`, contexto transacional `psycopg.Connection` | Grava saldo, histórico e auditoria na mesma transação, com controle concorrente. |
-| Application Factory | `create_app` | Instâncias Flask configuráveis para execução e testes, com módulos separados. |
-| Decorator | `require` | Autenticação, permissões e habilitação de recursos por loja no servidor. |
-| Reúso por composição | `base.html`, `macros.html`, módulo `catalog` | Estrutura visual, formulários, consultas e cadastros compartilhados. |
+| Singleton | `SistemaConfig` | Uma instância imutável compartilha a identidade da aplicação com as views. |
+| Template Method | `OperacaoEstoque`, `EntradaEstoque`, `SaidaEstoque`, `AjusteEstoque` | O método final `executar` aplica os invariantes de saldo; cada operação especializa o cálculo. `EstoqueService` coordena a persistência transacional. |
+| Strategy | `Quantidade`, `QuantidadeInteira`, `QuantidadeFracionada` | A validação é selecionada conforme a unidade do produto, com precisão decimal adequada a unidades e quilogramas. |
 
-As classes Java originais permanecem em `src/` como exemplos acadêmicos:
-Singleton (`SistemaConfig`, `ConexaoBanco`), Template Method (`OperacaoEstoque` e
-suas três subclasses) e Strategy (`PoliticaReposicao`, `ReposicaoNoMinimo`,
-`ReposicaoLoteFixo`, `ReposicaoCobertura`). O aplicativo web operacional utiliza
-a arquitetura Python/PostgreSQL definida na seção 3.3 do PDF.
+As responsabilidades seguem MVC. Modelos em `model` representam os conceitos
+persistentes; repositórios em `repository` concentram SQL e mapeamento JDBC.
+Serviços em `service` aplicam regras, autorização e transações. Controladores em
+`controller/web` preparam os modelos das views e selecionam templates; os de
+`controller/api` retornam respostas JSON. DTOs transportam formulários e
+resultados de consulta sem expor a persistência aos controladores.
+
+`Usuario`, `Produto`, `Loja` e `Posicao` possuem repositórios e serviços próprios.
+`ModeloProduto`, `Ocupacao`, `Movimentacao`, `RegistroAuditoria`,
+`PermissaoPerfil` e `TentativaLogin` também possuem representação tipada e
+repositórios; suas regras ficam nos serviços que coordenam cada caso de uso.
+Tabelas internas do Flyway não recebem entidades artificiais.
+
+Templates ficam em `src/main/resources/templates`, com composição por fragmentos
+Thymeleaf. CSS e JavaScript ficam em `src/main/resources/static/assets`.
+`MqttGateway` cuida do transporte; `IoTService` aplica permissões, interpretação
+de peso e confirmação de comandos. `RelatorioService` coordena exportações;
+`RelatorioCsv` e `RelatorioPdf` renderizam os arquivos.
 
 ## Execução e verificação
 
 Consulte [execução e operação](docs/EXECUCAO.md),
-[rastreabilidade dos requisitos](docs/REQUISITOS.md) e
-[correções necessárias na documentação](docs/PENDENCIAS_DOCUMENTACAO.md).
+[rastreabilidade dos requisitos](docs/REQUISITOS.md),
+[correções necessárias na documentação](docs/PENDENCIAS_DOCUMENTACAO.md) e
+[resultados de validação](docs/VALIDACAO.md).
 
-Testes Python: `python -m pytest tests -q` (configure `TEST_DATABASE_URL` para
-incluir integração e concorrência em PostgreSQL).
-Exemplos Java: `mvn test` com Java 21 ou superior.
+Roteiro pronto, dados iniciais e credenciais públicas: [demonstração MVP](docs/DEMONSTRACAO_MVP.md).
+
+Demonstração completa: `docker compose --env-file .env.demo up -d --build --wait`.
+Acesso: `http://localhost:8080/login`.
+
+Desenvolvimento local: inicie `db` e `mqtt` com o Compose e execute
+`mvn spring-boot:run "-Dspring-boot.run.profiles=local"`.
+Acesso: `http://localhost:8081/login`.
+
+Testes Java: `mvn test` com Java 21 ou superior. Configure TEST_DATABASE_URL
+para incluir integração e concorrência em PostgreSQL. Testes ignorados não
+comprovam funcionamento. Alterações textuais estão em [registro de mudanças](docs/alteracoes/2026-10-08.md).

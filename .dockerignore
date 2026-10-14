@@ -1,5 +1,4 @@
 *
-!requirements.txt
-!estoque/
-!estoque/**
-**/__pycache__/
+!pom.xml
+!src/
+!src/**

@@ -1,0 +1,64 @@
+[INFO] Scanning for projects...
+[WARNING] The POM for org.apache.maven.plugins:maven-clean-plugin:jar:3.4.1 is missing, no dependency information available
+[WARNING] The POM for org.apache.maven.plugins:maven-jar-plugin:jar:3.4.2 is missing, no dependency information available
+[INFO] 
+[INFO] -----------------< br.com.estoque:estoque-inteligente >-----------------
+[INFO] Building estoque-inteligente 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-cli) @ estoque-inteligente ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running br.com.estoque.AplicacaoTest
+[WARNING] Tests run: 7, Failures: 0, Errors: 0, Skipped: 7, Time elapsed: 0.025 s -- in br.com.estoque.AplicacaoTest
+[INFO] Running br.com.estoque.integration.MqttGatewayTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.985 s -- in br.com.estoque.integration.MqttGatewayTest
+[INFO] Running br.com.estoque.service.OperacaoEstoqueTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 s -- in br.com.estoque.service.OperacaoEstoqueTest
+[INFO] Running br.com.estoque.TelasTest
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+16:35:28.080 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.estoque.TelasTest]: TelasTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:35:28.696 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.estoque.EstoqueInteligenteApplication for test class br.com.estoque.TelasTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-10-09T16:35:30.331-03:00  INFO 13660 --- [Estoque Inteligente] [           main] br.com.estoque.TelasTest                 : Starting TelasTest using Java 23.0.2 with PID 13660 (started by CodexSandboxOffline in C:\Users\Lucas Theiss\Documents\Projetos\faculdade)
+2026-10-09T16:35:30.336-03:00  INFO 13660 --- [Estoque Inteligente] [           main] br.com.estoque.TelasTest                 : No active profile set, falling back to 1 default profile: "default"
+2026-10-09T16:35:45.663-03:00  INFO 13660 --- [Estoque Inteligente] [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name autenticacao
+2026-10-09T16:35:47.510-03:00  INFO 13660 --- [Estoque Inteligente] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-09T16:35:47.511-03:00  INFO 13660 --- [Estoque Inteligente] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-09T16:35:47.515-03:00  INFO 13660 --- [Estoque Inteligente] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-10-09T16:35:47.613-03:00  INFO 13660 --- [Estoque Inteligente] [           main] br.com.estoque.TelasTest                 : Started TelasTest in 18.639 seconds (process running for 24.134)
+2026-10-09T16:35:49.841-03:00  WARN 13660 --- [Estoque Inteligente] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+[INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.53 s -- in br.com.estoque.TelasTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[WARNING] Tests run: 34, Failures: 0, Errors: 0, Skipped: 7
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  41.298 s
+[INFO] Finished at: 2026-10-09T16:35:52-03:00
+[INFO] ------------------------------------------------------------------------
+
+STDERR
+Acesso negado.
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Lucas Theiss\Documents\Projetos\faculdade\target\m2\net\bytebuddy\byte-buddy-agent\1.17.7\byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended

@@ -1,8 +1,15 @@
-FROM python:3.12-slim
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+FROM maven:3.9.11-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY pom.xml .
+RUN mvn -B dependency:go-offline
+COPY src src
+RUN mvn -B package
+
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt && useradd --create-home app
-COPY estoque estoque
+RUN addgroup -S app && adduser -S -G app app
+COPY --from=build /build/target/estoque-inteligente-*.jar app.jar
 USER app
-CMD ["waitress-serve", "--host=0.0.0.0", "--port=8000", "--threads=2", "--call", "estoque:create_app"]
+ENV JAVA_TOOL_OPTIONS="-Xms24m -Xmx48m -XX:MaxMetaspaceSize=64m -XX:ReservedCodeCacheSize=12m -Xss256k -XX:+UseSerialGC"
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

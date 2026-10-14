@@ -1,0 +1,8 @@
+products|17|d8b0d39049fe05d4d188d0243f7b4e89
+occupancy|13|bf8e58ab90fb97a03b508254f23c0f0b
+movements|21|c4ede286c429b5380f7e0b559ec21424
+NAME                IMAGE                 COMMAND                  SERVICE   CREATED              STATUS                    PORTS
+faculdade-app-1     faculdade-app         "java -jar app.jar"      app       About a minute ago   Up 17 seconds (healthy)   8080/tcp
+faculdade-db-1      postgres:17-alpine    "docker-entrypoint.s…"   db        5 days ago           Up 4 days (healthy)       127.0.0.1:5433->5432/tcp
+faculdade-mqtt-1    eclipse-mosquitto:2   "/docker-entrypoint.…"   mqtt      5 days ago           Up 4 days                 127.0.0.1:1883->1883/tcp
+faculdade-nginx-1   nginx:stable-alpine   "/docker-entrypoint.…"   nginx     5 days ago           Up 4 days                 127.0.0.1:8080->80/tcp

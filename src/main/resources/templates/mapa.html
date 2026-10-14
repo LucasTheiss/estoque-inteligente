@@ -1,0 +1,8 @@
+<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}"><section>
+<p class="lead">Localize os produtos por setor e posição física.</p>
+<div class="position-grid"><article th:each="p : ${positions}" class="drawer" th:classappend="${p.quantidade.signum() == 0} ? 'vacant'"><header><h2 class="location-code" th:text="${p.posicao.code}"></h2><span th:text="${p.posicao.sector}"></span></header><p class="hint" th:text="|Linha ${p.posicao.rowNo} · coluna ${p.posicao.colNo}|"></p>
+<div th:if="${ocupacao}" class="capacity"><label th:for="|capacity-${p.posicao.id}|" th:text="|${p.quantidade.stripTrailingZeros().toPlainString()} / ${p.posicao.capacity.stripTrailingZeros().toPlainString()} ${p.posicao.unit}|"></label><meter th:id="|capacity-${p.posicao.id}|" min="0" th:max="${p.posicao.capacity}" th:value="${p.quantidade}" th:text="${p.quantidade}"></meter><p class="error" th:if="${p.quantidade > p.posicao.capacity}">Acima da capacidade cadastrada</p></div>
+<ul class="drawer-products"><li th:each="v : ${vinculos}" th:if="${v.ocupacao.positionId == p.posicao.id}"><a th:href="@{/(produto=${v.ocupacao.productId})}" th:text="${v.name}"></a><small th:text="|${v.sku} · ${v.ocupacao.quantity.stripTrailingZeros().toPlainString()} ${v.unit}|"></small></li></ul>
+<p class="muted" th:if="${p.quantidade.signum() == 0}">Sem estoque nesta posição</p><button type="button" class="secondary" th:if="${tenant.iot and !#strings.isEmpty(p.posicao.device)}" th:attr="data-signal=${p.posicao.id}">Sinalizar posição</button></article>
+</div><p class="empty" th:if="${positions.isEmpty()}">Cadastre as posições físicas da loja para visualizar o mapa.</p>
+</section></html>

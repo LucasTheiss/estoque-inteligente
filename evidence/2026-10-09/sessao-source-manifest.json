@@ -1,0 +1,13 @@
+{
+  "sources": [
+    {
+      "path": "src/main/java/br/com/estoque/controller/web/ContextoViewAdvice.java",
+      "sha256": "2b5f3a4e370d1ed72903853a2a007a29f1573915d52e53b87dba58f8dcf7702b"
+    },
+    {
+      "path": "src/test/java/br/com/estoque/TelasTest.java",
+      "sha256": "58017bf29bc052947ef0c160e682523aa164eb918d4ec959e502580b724b943f"
+    }
+  ],
+  "testsExecuted": false
+}

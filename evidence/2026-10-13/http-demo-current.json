@@ -1,0 +1,352 @@
+{
+  "date": "2026-10-14T02:28:48.143Z",
+  "requests": [
+    {
+      "loja": "essencial",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/login",
+      "status": 302
+    },
+    {
+      "loja": "essencial",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/produtos",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/posicoes",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/usuarios",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/vinculos",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/movimentar",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/baixa-rapida",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/mapa",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/historico",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/estorno",
+      "status": 200
+    },
+    {
+      "loja": "essencial",
+      "path": "/ocupacao",
+      "status": 403
+    },
+    {
+      "loja": "essencial",
+      "path": "/busca-assistida",
+      "status": 403
+    },
+    {
+      "loja": "essencial",
+      "path": "/iot/configuracao",
+      "status": 403
+    },
+    {
+      "loja": "essencial",
+      "path": "/historico/exportar/csv",
+      "status": 403
+    },
+    {
+      "loja": "essencial",
+      "path": "/historico/exportar/pdf",
+      "status": 403
+    },
+    {
+      "loja": "calcados",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/login",
+      "status": 302
+    },
+    {
+      "loja": "calcados",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/produtos",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/posicoes",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/usuarios",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/vinculos",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/movimentar",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/baixa-rapida",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/mapa",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/historico",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/estorno",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/ocupacao",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/busca-assistida",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/iot/configuracao",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/historico/exportar/csv",
+      "status": 200
+    },
+    {
+      "loja": "calcados",
+      "path": "/historico/exportar/pdf",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/login",
+      "status": 302
+    },
+    {
+      "loja": "granel",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/produtos",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/posicoes",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/usuarios",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/vinculos",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/movimentar",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/baixa-rapida",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/mapa",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/historico",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/estorno",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/ocupacao",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/busca-assistida",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/iot/configuracao",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/historico/exportar/csv",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/historico/exportar/pdf",
+      "status": 200
+    },
+    {
+      "loja": "global",
+      "path": "/login",
+      "status": 200
+    },
+    {
+      "loja": "global",
+      "path": "/login",
+      "status": 302
+    },
+    {
+      "loja": "global",
+      "path": "/global",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/produtos?q=GRANEL-1",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/posicoes",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/status",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/balanca/5/balanca-demo",
+      "status": 400
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/balanca/5/balanca-demo",
+      "status": 400
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/balanca/5/balanca-demo",
+      "status": 400
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/balanca/5/balanca-demo",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/sinalizar/9",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/confirmacao/9",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/confirmacao/9",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/confirmacao/9",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/confirmacao/9",
+      "status": 200
+    },
+    {
+      "loja": "granel",
+      "path": "/api/iot/confirmacao/9",
+      "status": 200
+    }
+  ],
+  "peso": {
+    "subtotal": 42.61,
+    "gross": 1.44,
+    "tare": 0.015,
+    "simulated": true,
+    "quantity": 1.425
+  },
+  "ack": {
+    "confirmed": true,
+    "simulated": true,
+    "state": "ON"
+  }
+}
