@@ -8,9 +8,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemonstracaoConfig implements ApplicationRunner {
     private final DemonstracaoService demonstracao;
-    @Value("${app.demo}") boolean demo;
-    @Value("${app.demo-password}") String senhaDemo;
-    @Value("${app.superadmin-password}") String senhaGlobal;
-    public DemonstracaoConfig(DemonstracaoService demonstracao) { this.demonstracao=demonstracao; }
-    @Override public void run(ApplicationArguments args) { demonstracao.provisionar(demo,senhaDemo,senhaGlobal); }
+
+    @Value("${app.demo}")
+    boolean demo;
+
+    @Value("${app.demo-password}")
+    String senhaDemo;
+
+    @Value("${app.superadmin-password}")
+    String senhaGlobal;
+
+    public DemonstracaoConfig(DemonstracaoService demonstracao) {
+        this.demonstracao = demonstracao;
+    }
+
+    @Override
+    public void run(ApplicationArguments args) {
+        demonstracao.provisionar(demo, senhaDemo, senhaGlobal);
+    }
 }

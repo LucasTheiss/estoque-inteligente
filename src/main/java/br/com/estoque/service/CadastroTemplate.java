@@ -9,17 +9,20 @@ public abstract class CadastroTemplate<F, E> {
     private final String entidade;
 
     protected CadastroTemplate(Acesso acesso, AuditoriaRepository auditoria, String entidade) {
-        this.acesso=acesso; this.auditoria=auditoria; this.entidade=entidade;
+        this.acesso = acesso;
+        this.auditoria = auditoria;
+        this.entidade = entidade;
     }
 
     // O serviço concreto abre a transação antes de chamar este método final.
     protected final void executarCadastro(long loja, F formulario) {
-        acesso.exigir(loja,"cadastros");
-        E entidadeValidada=preparar(loja,formulario);
-        long id=persistir(entidadeValidada);
-        auditoria.registrar(loja,acesso.usuario().id(),entidade+".salvar",Long.toString(id));
+        acesso.exigir(loja, "cadastros");
+        E entidadeValidada = preparar(loja, formulario);
+        long id = persistir(entidadeValidada);
+        auditoria.registrar(loja, acesso.usuario().id(), entidade + ".salvar", Long.toString(id));
     }
 
     protected abstract E preparar(long loja, F formulario);
+
     protected abstract long persistir(E entidade);
 }
