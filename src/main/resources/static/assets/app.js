@@ -62,21 +62,28 @@ document.querySelectorAll('[data-signal]').forEach(button => {
 document.querySelectorAll('[data-movement]').forEach(form => {
   const product = form.querySelector('[data-product]');
   const position = form.querySelector('[data-position]');
-  const quantity = form.querySelector('[data-quantity]');
+  const quantity = form.querySelector('input[data-quantity]');
   const seen = new Set();
   Array.from(product.options).forEach(option => {
     if (option.value && seen.has(option.value)) option.remove();
     else seen.add(option.value);
   });
   const positions = Array.from(position.options).filter(option => option.value).map(option => option.cloneNode(true));
+  const updateQuantity = () => {
+    const fractional = product.selectedOptions[0]?.dataset.unit === 'kg';
+    const adjustment = form.querySelector('[name="kind"]:checked')?.value === 'ajuste';
+    quantity.step = fractional ? '0.001' : '1';
+    quantity.min = adjustment ? '0' : quantity.step;
+    quantity.inputMode = fractional ? 'decimal' : 'numeric';
+  };
   const update = () => {
     position.replaceChildren(new Option('Selecione a posição', ''));
     positions.filter(option => option.dataset.product === product.value).forEach(option => position.add(option.cloneNode(true)));
     if (position.options.length === 2) position.selectedIndex = 1;
-    const unit = product.selectedOptions[0]?.dataset.unit;
-    quantity.step = unit === 'kg' ? '0.001' : '1';
+    updateQuantity();
   };
   product.addEventListener('change', update);
+  form.querySelectorAll('[name="kind"]').forEach(kind => kind.addEventListener('change', updateQuantity));
   const preselected = new URLSearchParams(location.search).get('productId');
   if (preselected && Array.from(product.options).some(option => option.value === preselected)) product.value = preselected;
   update();
@@ -100,7 +107,7 @@ document.querySelector('[data-scan-form]')?.addEventListener('submit', event => 
   product.value = match.value;
   product.dispatchEvent(new Event('change'));
   status.textContent = 'Produto localizado: ' + match.textContent + '. Confira a posição e confirme a saída.';
-  document.querySelector('[data-quantity]').focus();
+  document.querySelector('input[data-quantity]').focus();
 });
 document.querySelector('[data-scale]')?.addEventListener('click', async event => {
   const button = event.currentTarget;
@@ -115,7 +122,7 @@ document.querySelector('[data-scale]')?.addEventListener('click', async event =>
   button.disabled = true;
   try {
     const data = await request('/api/iot/balanca/' + product.value + '/' + encodeURIComponent(device));
-    document.querySelector('[data-quantity]').value = data.quantity;
+    document.querySelector('input[data-quantity]').value = data.quantity;
     output.textContent = (data.simulated ? 'Leitura simulada. ' : '') + 'Peso líquido: ' + data.quantity + ' kg. Subtotal: R$ ' + Number(data.subtotal).toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '. Confira o peso antes de registrar.';
   } catch (error) { output.textContent = error.message; }
   finally { button.disabled = false; }
@@ -145,7 +152,7 @@ if (voice) {
       voice.disabled = true;
       status.textContent = 'Ouvindo… diga o nome, a cor ou o tamanho do produto.';
       recognition.onresult = event => {
-        const text = event.results[0][0].transcript;
+        const text = event.results[0][0].transcript.trim().replace(/[.,;:!?…]+$/u, '').trim();
         document.querySelector('#voice-query').value = text.slice(0, 200);
         status.textContent = 'Reconhecido: ' + text + '. Confira o texto e clique em Buscar.';
       };

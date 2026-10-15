@@ -3,6 +3,7 @@ package br.com.estoque.repository;
 import br.com.estoque.model.*;
 import br.com.estoque.dto.ProdutoResumo;
 import java.sql.*;
+import java.text.Normalizer;
 import java.util.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -30,9 +31,12 @@ public class ProdutoRepository {
             WHERE p.tenant_id=? AND p.active
             """;
         List<Object> args=new ArrayList<>(List.of(loja));
-        for(String termo:busca.strip().split("\\s+")) {
+        String normalizada=Normalizer.normalize(busca,Normalizer.Form.NFD)
+            .replaceAll("\\p{M}+","").toLowerCase(Locale.ROOT)
+            .replaceAll("[.,;:!?…]+(?=\\s|$)"," ").strip();
+        for(String termo:normalizada.split("\\s+")) {
             if(termo.isBlank()) continue;
-            sql+=" AND concat_ws(' ',p.sku,p.barcode,p.color,p.size,p.unit,p.price,p.attributes::text,m.name,m.brand,m.category,(SELECT string_agg(s.code || ' ' || s.sector || ' ' || o.quantity::text,' ') FROM occupancy o JOIN positions s ON s.id=o.position_id AND s.tenant_id=o.tenant_id WHERE o.tenant_id=p.tenant_id AND o.product_id=p.id)) ILIKE ?";
+            sql+=" AND translate(lower(concat_ws(' ',p.sku,p.barcode,p.color,p.size,p.unit,p.price,p.attributes::text,m.name,m.brand,m.category,(SELECT string_agg(s.code || ' ' || s.sector || ' ' || o.quantity::text,' ') FROM occupancy o JOIN positions s ON s.id=o.position_id AND s.tenant_id=o.tenant_id WHERE o.tenant_id=p.tenant_id AND o.product_id=p.id))), 'áàâãäåéèêëíìîïóòôõöúùûüçñýÿ', 'aaaaaaeeeeiiiiooooouuuucnyy') LIKE ?";
             args.add("%"+termo.replace("\\","\\\\").replace("%","\\%").replace("_","\\_")+"%");
         }
         args.add(Math.multiplyExact(pagina,100));

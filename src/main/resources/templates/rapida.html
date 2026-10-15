@@ -5,7 +5,7 @@
 <input name="requestKey" type="hidden" th:value="${key}"><input name="kind" type="hidden" value="saida">
 <label>Produto<select name="productId" required data-product><option value="">Selecione ou leia o código</option><option th:each="v : ${vinculos}" th:value="${v.ocupacao.productId}" th:attr="data-sku=${v.sku},data-barcode=${v.barcode},data-unit=${v.unit}" th:text="|${v.sku} · ${v.name} · ${v.color} ${v.size}|"></option></select></label>
 <label>Posição<select name="positionId" required data-position><option value="">Selecione</option><option th:each="v : ${vinculos}" th:value="${v.ocupacao.positionId}" th:attr="data-product=${v.ocupacao.productId},data-unit=${v.unit}" th:text="|${v.code} · ${v.sku} · saldo ${v.ocupacao.quantity.stripTrailingZeros().toPlainString()} ${v.unit}|"></option></select></label>
-<label>Quantidade<input name="quantity" data-quantity type="number" value="1" min="0.001" step="0.001" required></label>
+<label>Quantidade<input name="quantity" data-quantity type="number" value="1" min="1" step="1" inputmode="numeric" required></label>
 <label>Justificativa<input name="reason" value="Venda no balcão" maxlength="1000" required></label><button th:disabled="${vinculos.isEmpty()}">Confirmar saída</button></form></div>
 <aside class="operation-help"><h2>Uma leitura. Uma conferência.</h2><p>A leitura preenche o produto. A saída só acontece ao confirmar, evitando baixas acidentais.</p><p>Leitores USB que funcionam como teclado podem ser usados no campo de busca.</p></aside></div>
 </section></html>

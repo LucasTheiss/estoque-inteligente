@@ -211,6 +211,47 @@ class AplicacaoTest {
 
 
     @Autowired ProdutoService produtos;
+    @Test void buscaIgnoraAcentosPontuacaoFinalEOrdemSemPerderIsolamento() {
+        var u=usuario("calcados","admin");autenticar(u);
+        String sku="BUSCA-"+UUID.randomUUID()+"-38";
+        long modelo=banco.id("INSERT INTO models(tenant_id,name,brand,category) VALUES(?,'Tênis Café Açúcar','Única','Calçados') RETURNING id",u.lojaId());
+        long produto=banco.id("INSERT INTO products(tenant_id,model_id,sku,color,size,unit,price) VALUES(?,?,?,'Azul','38','un',21.50) RETURNING id",u.lojaId(),modelo,sku);
+        long outra=usuario("granel","admin").lojaId();
+        long modeloOutro=banco.id("INSERT INTO models(tenant_id,name) VALUES(?,'Tênis Café Açúcar') RETURNING id",outra);
+        banco.executar("INSERT INTO products(tenant_id,model_id,sku,unit,price) VALUES(?,?,?,'un',21.50)",outra,modeloOutro,sku);
+        for(String busca:List.of("tenis cafe acucar", "TÊNIS CAFÉ AÇÚCAR.", "cafe, tenis!", "38 azul cafe", "tênis cafe…", "cafe 21.50", sku+".", "cafe calcados unica")) {
+            var encontrados=produtos.pesquisar(u.lojaId(),busca,0);
+            assertEquals(1,encontrados.size(),busca);
+            assertEquals(produto,encontrados.getFirst().produto().id());
+            assertEquals(u.lojaId(),encontrados.getFirst().produto().tenantId());
+        }
+        assertTrue(produtos.pesquisar(u.lojaId(),"cafe vermelho",0).isEmpty());
+        assertTrue(produtos.pesquisar(u.lojaId(),"%",0).isEmpty());
+        assertTrue(produtos.pesquisar(u.lojaId(),"_",0).isEmpty());
+    }
+
+    @Test void baixaAceitaUnidadeInteiraEPesoFracionadoMasRejeitaFracaoDeUnidade() throws Exception {
+        for(String loja:List.of("calcados","granel")) {
+            boolean fracionado=loja.equals("granel");
+            long[] p=saldo(loja,fracionado?"kg":"un","3");
+            var principal=new UsuarioAutenticado(usuario(loja,"admin"));
+            mvc.perform(get("/baixa-rapida").with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(principal)))
+                    .andExpect(status().isOk());
+            mvc.perform(post("/movimentar").with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(principal)).with(csrf())
+                    .param("productId",""+p[1]).param("positionId",""+p[2]).param("kind","saida")
+                    .param("quantity",fracionado?"0.125":"1").param("reason","Baixa rápida").param("requestKey",UUID.randomUUID().toString()))
+                    .andExpect(status().is3xxRedirection());
+            var esperado=new BigDecimal(fracionado?"2.875":"2");
+            assertEquals(0,esperado.compareTo((BigDecimal)banco.um("SELECT quantity FROM occupancy WHERE product_id=? AND position_id=?",p[1],p[2]).get("quantity")));
+            if(!fracionado) {
+                mvc.perform(post("/movimentar").with(org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user(principal)).with(csrf())
+                        .param("productId",""+p[1]).param("positionId",""+p[2]).param("kind","saida")
+                        .param("quantity","1.001").param("reason","Quantidade inválida").param("requestKey",UUID.randomUUID().toString()))
+                        .andExpect(status().isBadRequest());
+                assertEquals(0,esperado.compareTo((BigDecimal)banco.um("SELECT quantity FROM occupancy WHERE product_id=? AND position_id=?",p[1],p[2]).get("quantity")));
+            }
+        }
+    }
     @Test void gradeComSaldoInicialPersisteHistoricoERollbackPreservaAtomicidade() {
         var u=usuario("calcados","admin");autenticar(u);long loja=u.lojaId();
         long destino=banco.id("SELECT id FROM positions WHERE tenant_id=? AND unit='un' LIMIT 1",loja);
