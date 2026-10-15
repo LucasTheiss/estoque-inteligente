@@ -45,6 +45,7 @@ class TelasTest {
     @MockitoBean AutenticacaoService autenticacao;
     @MockitoBean LojaService lojas;
     @MockitoBean ProdutoService produtos;
+    @MockitoBean ModeloProdutoService modelos;
     @MockitoBean PosicaoService posicoes;
     @MockitoBean VinculoService vinculos;
     @MockitoBean EstoqueService estoque;
@@ -73,6 +74,9 @@ class TelasTest {
         when(lojas.editar(1L)).thenReturn(loja);
         when(produtos.pesquisar(eq(1L),anyString(),anyInt())).thenReturn(List.of(resumo));
         when(produtos.buscar(1L,1L)).thenReturn(resumo);
+        when(modelos.listar(1L)).thenReturn(List.of(resumo.modelo()));
+        when(modelos.buscar(1L,1L)).thenReturn(resumo.modelo());
+        when(vinculos.buscar(1L,1L,1L)).thenReturn(new Ocupacao(1L,1L,1L,BigDecimal.ZERO));
         when(posicoes.listar(1L)).thenReturn(List.of(new PosicaoResumo(posicao,new BigDecimal("6"))));
         when(posicoes.buscar(1L,1L)).thenReturn(posicao);
         when(vinculos.listar(1L)).thenReturn(List.of(new VinculoResumo(new Ocupacao(1L,1L,1L,new BigDecimal("6")),"TENIS-38","789123","Tênis de teste","38","areia","A1","Principal","un","esp32-demo",2)));
@@ -95,7 +99,7 @@ class TelasTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings={"/","/produtos","/produtos?id=1","/posicoes","/posicoes?id=1","/vinculos",
+    @ValueSource(strings={"/","/produtos","/produtos?id=1","/posicoes","/posicoes?id=1","/vinculos","/vinculos?productId=1&positionId=1","/modelos","/modelos?id=1",
         "/movimentar","/baixa-rapida","/estorno","/historico","/mapa","/ocupacao","/usuarios",
         "/usuarios?id=1","/busca-assistida","/iot/configuracao","/global","/global?id=1"})
     void telasResolvemTemplatesEModelos(String rota) throws Exception {

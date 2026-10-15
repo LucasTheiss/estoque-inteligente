@@ -13,13 +13,15 @@ public class LojaRepository {
         r.getBoolean("iot"),r.getBoolean("enterprise"),r.getBoolean("fractional"),r.getString("mqtt_host"),
         r.getInt("mqtt_port"),r.getInt("mqtt_qos"),r.getInt("led_seconds"));
     public LojaRepository(JdbcTemplate jdbc) { this.jdbc=jdbc; }
-    public List<Loja> listar() { return jdbc.query("SELECT * FROM tenants ORDER BY name",MAP); }
+    public List<Loja> listar() { return jdbc.query("SELECT * FROM tenants WHERE active ORDER BY name",MAP); }
+    public boolean ativa(long id) { return Boolean.TRUE.equals(jdbc.queryForObject("SELECT EXISTS(SELECT 1 FROM tenants WHERE id=? AND active)",Boolean.class,id)); }
+    public void desativar(long id) { jdbc.update("UPDATE tenants SET active=false WHERE id=?",id); }
     public Optional<Loja> porSlug(String slug) { return jdbc.query("SELECT * FROM tenants WHERE slug=?",MAP,slug).stream().findFirst(); }
     public Loja buscar(long id) { return obter(id,""); }
     public Loja bloquear(long id) { return obter(id," FOR UPDATE"); }
     public Loja compartilhar(long id) { return obter(id," FOR SHARE"); }
     private Loja obter(long id,String lock) {
-        return jdbc.query("SELECT * FROM tenants WHERE id=?"+lock,MAP,id).stream().findFirst()
+        return jdbc.query("SELECT * FROM tenants WHERE id=? AND active"+lock,MAP,id).stream().findFirst()
             .orElseThrow(()->new IllegalArgumentException("Loja não encontrada."));
     }
     public long criar(String slug,String nome,boolean iot,boolean enterprise,boolean fractional) {

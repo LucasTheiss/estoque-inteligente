@@ -1,7 +1,7 @@
 package br.com.estoque.service;
 import java.math.BigDecimal;
 /** Template Method: cálculo especializado, invariantes comuns de saldo. */
-public abstract class OperacaoEstoque {
+public abstract class OperacaoEstoque implements br.com.estoque.strategy.CalculoEstoque {
     public final BigDecimal executar(BigDecimal saldo, BigDecimal quantidade) {
         if (saldo == null || quantidade == null || saldo.signum()<0 || quantidade.signum()<0)
             throw new IllegalArgumentException("Quantidade inválida.");

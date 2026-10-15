@@ -21,4 +21,10 @@ public class LojaController {
     @PostMapping("/global/selecionar") public String selecionar(@RequestParam long id,HttpSession session) {
         session.setAttribute("loja",lojas.selecionar(id));return "redirect:/";
     }
+    @PostMapping("/global/lojas/{id}/excluir") public String excluir(@PathVariable long id,HttpSession session,RedirectAttributes r) {
+        lojas.excluir(id);
+        if(java.util.Objects.equals(session.getAttribute("loja"),id))session.removeAttribute("loja");
+        r.addFlashAttribute("notice","Loja desativada. Dados e histórico preservados.");
+        return "redirect:/global";
+    }
 }

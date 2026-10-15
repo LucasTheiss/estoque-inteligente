@@ -13,7 +13,7 @@ public class UsuarioRepository {
         r.getString("username"),r.getString("password_hash"),r.getString("role"),r.getInt("auth_version"),r.getBoolean("active"));
     public UsuarioRepository(JdbcTemplate jdbc) { this.jdbc=jdbc; }
     public Optional<Usuario> autenticar(String loja,String nome) {
-        return jdbc.query("SELECT u.* FROM users u LEFT JOIN tenants t ON t.id=u.tenant_id WHERE u.username=? AND u.active AND ((?='global' AND u.role='superadmin') OR t.slug=?)",
+        return jdbc.query("SELECT u.* FROM users u LEFT JOIN tenants t ON t.id=u.tenant_id WHERE u.username=? AND u.active AND ((?='global' AND u.role='superadmin') OR (t.slug=? AND t.active))",
             MAP,nome,loja,loja).stream().findFirst();
     }
     public Optional<Usuario> porId(long id) { return jdbc.query("SELECT * FROM users WHERE id=?",MAP,id).stream().findFirst(); }

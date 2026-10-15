@@ -18,7 +18,7 @@ public class EstoqueService {
     private final MovimentacaoRepository movimentos;
     private final AuditoriaRepository auditoria;
     private final Acesso acesso;
-    private static final Map<String,OperacaoEstoque> OPERACOES=Map.of("entrada",new EntradaEstoque(),"saida",new SaidaEstoque(),"ajuste",new AjusteEstoque());
+    private static final Map<String,CalculoEstoque> OPERACOES=Map.of("entrada",new EntradaEstoque(),"saida",new SaidaEstoque(),"ajuste",new AjusteEstoque());
     public EstoqueService(ProdutoRepository produtos,PosicaoRepository posicoes,OcupacaoRepository ocupacoes,MovimentacaoRepository movimentos,AuditoriaRepository auditoria,Acesso acesso) {
         this.produtos=produtos;this.posicoes=posicoes;this.ocupacoes=ocupacoes;this.movimentos=movimentos;this.auditoria=auditoria;this.acesso=acesso;
     }

@@ -11,6 +11,11 @@ import org.springframework.stereotype.Repository;
 public class OcupacaoRepository {
     private final JdbcTemplate jdbc;
     public OcupacaoRepository(JdbcTemplate jdbc) { this.jdbc=jdbc; }
+    public Ocupacao buscar(long loja,long produto,long posicao) {
+        return jdbc.query("SELECT * FROM occupancy WHERE tenant_id=? AND product_id=? AND position_id=?",
+            (r,n)->new Ocupacao(loja,produto,posicao,r.getBigDecimal("quantity")),loja,produto,posicao).stream().findFirst()
+            .orElseThrow(()->new IllegalArgumentException("Vínculo não encontrado nesta loja."));
+    }
     public Ocupacao bloquear(long loja,long produto,long posicao) {
         return jdbc.query("SELECT * FROM occupancy WHERE tenant_id=? AND product_id=? AND position_id=? FOR UPDATE",
             (r,n)->new Ocupacao(loja,produto,posicao,r.getBigDecimal("quantity")),loja,produto,posicao).stream().findFirst()

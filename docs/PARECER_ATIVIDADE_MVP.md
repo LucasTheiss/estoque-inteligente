@@ -1,4 +1,4 @@
-> Atualização posterior: a falha de compilação foi isolada ao sandbox Windows; o build Docker e os testes integrados passaram. Consulte DEMONSTRACAO_MVP.md e VALIDACAO.md. As pendências acadêmicas abaixo continuam distintas da execução da aplicação.
+> Registro histórico de 13/10/2026. Em 14/10/2026, os CRUDs de Lojas, Vínculos e Modelos foram concluídos e a Opção 01 recebeu dois Singletons, três aplicações de Template Method e três de Strategy. A suíte atual aprovou 68 testes Java, sem testes ignorados. Consulte [a entrega atual e seus arquivos](OPCAO_01.md) e o [README](../README.md). As lacunas descritas abaixo documentam a situação anterior.
 
 # Parecer da atividade — MVP acadêmico
 

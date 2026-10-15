@@ -9,7 +9,9 @@ import org.apache.pdfbox.pdmodel.font.*;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RelatorioPdf {
+public class RelatorioPdf extends RelatorioTemplate {
+    public RelatorioPdf() { super("application/pdf","historico.pdf"); }
+    @Override protected byte[] renderizarConteudo(long loja,List<MovimentacaoResumo> registros) throws IOException { return renderizar(loja,registros); }
     public byte[] renderizar(long loja, List<MovimentacaoResumo> registros) throws IOException {
         List<String> linhas = new ArrayList<>();
         linhas.add("Estoque Inteligente — Histórico da loja " + loja);

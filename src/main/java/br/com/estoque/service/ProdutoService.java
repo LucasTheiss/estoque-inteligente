@@ -46,7 +46,8 @@ public class ProdutoService {
         String atributos=f.attributes()==null || f.attributes().isBlank()?"{}":f.attributes();
         try {if(atributos.length()>2000 || !json.readTree(atributos).isObject())throw new IllegalArgumentException();}
         catch(Exception ex){throw new IllegalArgumentException("Características devem ser um objeto JSON com até 2.000 caracteres.");}
-        var preco=Quantidade.decimal(f.price(),2);
+        Quantidade politicaPreco=new br.com.estoque.strategy.QuantidadeMonetaria();
+        var preco=politicaPreco.validar(f.price());
         for(String tamanho:tamanhos) {
             long id=produtos.salvar(new Produto(f.id(),loja,modelo.id(),grade?sku+"-"+tamanho:sku,
             tamanhos.size()>1?"":Campos.texto(f.barcode(),"código de barras",false),Campos.texto(f.color(),"cor",false),tamanho,unidade,preco,atributos,true));

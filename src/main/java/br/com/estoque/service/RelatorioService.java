@@ -11,20 +11,18 @@ public class RelatorioService {
     private final Acesso acesso;
     private final HistoricoService historico;
     private final AuditoriaRepository auditoria;
-    private final RelatorioCsv csv;
-    private final RelatorioPdf pdf;
+    private final java.util.Map<String,br.com.estoque.strategy.FormatoRelatorio> formatos;
     public RelatorioService(Acesso acesso, HistoricoService historico, AuditoriaRepository auditoria,
                             RelatorioCsv csv, RelatorioPdf pdf) {
-        this.acesso=acesso; this.historico=historico; this.auditoria=auditoria; this.csv=csv; this.pdf=pdf;
+        this.acesso=acesso; this.historico=historico; this.auditoria=auditoria;
+        this.formatos=java.util.Map.of("csv",csv,"pdf",pdf);
     }
     public RelatorioArquivo exportar(long loja, String formato, String tipo, String inicio, String fim) throws IOException {
         acesso.exigir(loja,"relatorios"); acesso.recurso(loja,"enterprise");
         var registros=historico.filtrar(loja,tipo,inicio,fim);
-        var arquivo=switch(formato) {
-            case "csv" -> new RelatorioArquivo(csv.renderizar(registros),"text/csv;charset=UTF-8","historico.csv");
-            case "pdf" -> new RelatorioArquivo(pdf.renderizar(loja,registros),"application/pdf","historico.pdf");
-            default -> throw new IllegalArgumentException("Formato inválido. Escolha CSV ou PDF.");
-        };
+        var estrategia=formatos.get(formato);
+        if(estrategia==null)throw new IllegalArgumentException("Formato inválido. Escolha CSV ou PDF.");
+        var arquivo=estrategia.gerar(loja,registros);
         auditoria.registrar(loja,acesso.usuario().id(),"historico.exportar",formato+"; "+registros.size()+" registros");
         return arquivo;
     }

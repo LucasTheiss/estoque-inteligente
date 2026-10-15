@@ -11,16 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Acesso {
-    public static final List<String> PERFIS=List.of("vendedor","estoquista","gerente","admin");
-    public static final Map<String,String> PERMISSOES;
-    static {
-        var p=new LinkedHashMap<String,String>();
-        p.put("consultar","Consultar estoque");p.put("saida","Registrar saídas");p.put("entrada","Registrar entradas");
-        p.put("cadastros","Editar cadastros");p.put("ajuste","Ajustar saldo");p.put("estorno","Estornar");
-        p.put("historico","Consultar histórico");p.put("usuarios","Gerenciar usuários");p.put("iot","Configurar IoT");
-        p.put("relatorios","Relatórios e exportação");p.put("rbac","Alterar permissões");
-        PERMISSOES=Collections.unmodifiableMap(p);
-    }
+    public static final List<String> PERFIS=br.com.estoque.config.CatalogoPermissoes.getInstance().perfis();
+    public static final Map<String,String> PERMISSOES=br.com.estoque.config.CatalogoPermissoes.getInstance().permissoes();
     private final UsuarioRepository usuarios;
     private final PermissaoRepository permissoes;
     private final LojaRepository lojas;
@@ -32,6 +24,7 @@ public class Acesso {
         if(auth==null || !(auth.getPrincipal() instanceof UsuarioAutenticado principal))throw new AccessDeniedException("Entre na sua conta.");
         var atual=usuarios.porId(principal.usuario().id()).orElseThrow(()->new AccessDeniedException("Sessão revogada. Entre novamente."));
         if(!atual.ativo() || atual.versao()!=principal.usuario().versao())throw new AccessDeniedException("Sessão revogada. Entre novamente.");
+        if(!atual.superadmin() && !lojas.ativa(atual.lojaId()))throw new AccessDeniedException("Loja desativada. Entre em outra loja.");
         return atual;
     }
     public long loja(HttpSession session) {
@@ -42,6 +35,7 @@ public class Acesso {
     }
     public Set<String> permissoes(long loja) {
         var usuario=usuario();
+        if(!lojas.ativa(loja))throw new AccessDeniedException("Loja desativada ou inexistente.");
         if(usuario.superadmin())return PERMISSOES.keySet();
         if(!Objects.equals(usuario.lojaId(),loja))throw new AccessDeniedException("Loja não autorizada.");
         return permissoes.doPerfil(loja,usuario.perfil());

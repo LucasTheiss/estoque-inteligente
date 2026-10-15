@@ -22,7 +22,7 @@ public class ContextoViewAdvice {
         if(request.getRequestURI().equals(request.getContextPath()+"/login"))return;
         if(auth!=null && auth.getPrincipal() instanceof UsuarioAutenticado) {
             var user=acesso.usuario();model.addAttribute("user",user);
-            if(!user.superadmin() || session.getAttribute("loja")!=null) {
+            if(!user.superadmin() || (session.getAttribute("loja")!=null && !request.getRequestURI().startsWith(request.getContextPath()+"/global"))) {
                 long loja=acesso.loja(session);
                 model.addAttribute("tenant",lojas.contexto(loja));model.addAttribute("permissions",acesso.permissoes(loja));
             }

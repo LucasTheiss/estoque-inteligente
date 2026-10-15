@@ -62,7 +62,7 @@ Reiniciar preserva registros e senhas. A seed não apaga nem repõe automaticame
 docker compose --env-file .env.demo restart app
 ~~~
 
-O banco populado permite demonstrar todas as funcionalidades existentes sem cadastro preparatório. Ele não implementa os três CRUDs e exemplos de padrões ainda faltantes na avaliação acadêmica: consulte PARECER_ATIVIDADE_MVP.md para essa distinção.
+O banco populado permite iniciar a demonstração sem cadastro preparatório. Em 14/10/2026, foram concluídos os CRUDs de Modelos, Vínculos e Lojas e os exemplos da Opção 01. Consulte [OPCAO_01.md](OPCAO_01.md) para arquivos, permissões e roteiro dos padrões. Demonstre exclusão/desativação com registros descartáveis; o provisionamento não reativa lojas existentes.
 
 ## Conferir banco e testes
 

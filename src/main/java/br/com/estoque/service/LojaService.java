@@ -24,6 +24,12 @@ public class LojaService {
     public List<Loja> listar() { acesso.global();return lojas.listar(); }
     public Loja contexto(long id) { acesso.permissoes(id);return lojas.buscar(id); }
     public Loja editar(long id) { acesso.global();return lojas.buscar(id); }
+    @Transactional public void excluir(long id) {
+        acesso.global();
+        var loja=lojas.bloquear(id);
+        lojas.desativar(id);
+        auditoria.registrar(id,acesso.usuario().id(),"loja.excluir",loja.name());
+    }
     public long selecionar(long id) {
         acesso.global();lojas.buscar(id);
         auditoria.registrar(id,acesso.usuario().id(),"loja.selecionar","Acesso global à loja");
