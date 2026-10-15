@@ -1,30 +1,42 @@
-# Correções e ambiguidades da especificação
+# Ambiguidades da especificação e limites ainda abertos
 
-Fonte vigente: `especificacao.pdf`, 19 páginas, revisada em 08/10/2026; o original
-recebido em 07/10/2026 foi preservado. O usuário revogou as limitações do README
-antigo; a arquitetura alvo é Java/Spring MVC/Thymeleaf/PostgreSQL/MQTT/NGINX.
+Revisado em 15/10/2026. Este arquivo registra decisões de produto e limites de
+validação que ainda podem ser relevantes para o escopo completo do sistema. As
+pendências abaixo **não representam itens faltantes da rubrica acadêmica**; a
+situação da atividade está em [REQUISITOS.md](REQUISITOS.md).
 
-| Referência | Problema que precisa de correção | Decisão de implementação / pendência |
+A fonte funcional é `especificacao.pdf` (19 páginas). A arquitetura atual é
+Java/Spring MVC/Thymeleaf/PostgreSQL/MQTT/NGINX; a aplicação Flask anterior e seu
+banco legado não são evidência da implementação atual.
+
+## Decisões já implementadas e verificadas
+
+| Tema | Decisão atual | Evidência/limite |
 | --- | --- | --- |
-| §3.2, p. 17 | Cita Float e simultaneamente exige precisão decimal de peso e preço. | Usar BigDecimal e PostgreSQL NUMERIC, 3 casas para kg e 2 para preço; unidades convencionais são inteiras. Precisão máxima deve ser formalizada. |
-| Tela 8, p. 14 | Texto diz “exportação em pdf para csv”. | Exportações independentes PDF e CSV, exclusivas do Enterprise. |
-| Tela 9, p. 15 | Legenda diz “exclusivo administradores”, mas matriz permite CRUD de usuários ao gerente. | Seguir matriz: gerente gerencia usuários não administradores; admin altera permissões e parâmetros IoT. Registrar esta regra explicitamente. |
-| RF003/RF004/RNF006 | Não especifica exclusão de vínculo com saldo nem concorrência. | Vínculo só é excluído vazio; alteração de saldo é uma movimentação transacional auditada. Saldo por produto/posição, nunca duplicado no cadastro do produto. |
-| RF014 | Não define estorno de ajuste, repetição de estorno ou entrada já consumida. | Estornar apenas entradas/saídas, uma vez; entrada só é estornada se houver saldo suficiente. Justificativa obrigatória; preservar original e gerar movimento inverso. |
-| RF001/RF002/RF005/RF016 | Exclusão de cadastros conflita com histórico identificável. | Exclusão lógica de produto, posição e usuário; recusar produto/posição com saldo. Preservar IDs e logs. Não reusar SKU/código/usuário excluídos sem política de restauração. Estorno de cadastro excluído exige restauração, ainda a definir. |
-| RNF001 | “Condições normais” e instante de medição não definidos. | Separar consulta, publicação MQTT e confirmação física. PUBACK não prova que o LED acendeu. Falta carga de referência e dispositivo para medir ponta a ponta. |
-| RNF005 | Disponibilidade de 99% sem janela de observação ou calendário comercial. | Healthcheck e reinício dos serviços; comprovação depende de operação monitorada durante janela definida. |
-| RNF007 / §3.3 | 300 MB sem delimitar contêineres centrais; estimativa Flask de 64 MB não é medição. | Compose limita app + PostgreSQL + MQTT + NGINX a 284 MiB (cerca de 298 MB); túnel opcional fora do grupo. Medir consumo e comportamento sob carga antes de afirmar conformidade. |
-| Tela 11 | Não define unidade/capacidade, mistura gavetas e volume físico. | Capacidade por posição em un ou kg, compatível com produto. Percentual = soma dos saldos / capacidade; sobreocupação exibida, não bloqueada. Volume geométrico exige dimensões não especificadas. |
-| RF008 | “Todas as informações” não define operadores ou paginação. | Busca por termos nos campos, características JSON, saldo, setor e posição; 100 resultados/página. Definir filtros especializados se necessários. |
-| Histórico | Não define retenção, fuso nem limite de exportação. | Datas UTC; até 5.000 movimentos por consulta/exportação e 100 logs recentes. Formalizar retenção e paginação para volumes maiores. |
-| RF009/§3.3 | Faltam skill ID, vínculo de contas, credenciais e endereço HTTPS Alexa. | Integração externa requer provisionamento da skill, conta vinculada e túnel HTTPS. Voz no navegador não substitui entrega da skill. |
-| RNF010/Tela 10 | Não define payload/ACK, TLS, pinagem nem credenciais por dispositivo. | Tópicos segregados por slug; comandos não retidos com timeout. Formalizar contrato e homologar firmware/dispositivos. |
-| §1.3 | Anuncia seis personas e mapas de empatia; só apresenta um mapa de empatia. | Completar os demais mapas se forem entregáveis acadêmicos. |
+| Precisão numérica (§3.2) | `BigDecimal` e PostgreSQL `NUMERIC`; unidades `un` inteiras, `kg` com até três casas decimais e preço com duas. | Testes de precisão na validação da Opção 01. |
+| Exportação (tela 8) | CSV e PDF são formatos independentes, disponíveis quando `enterprise` está habilitado. | Strategy de relatório e testes de conteúdo CSV/PDF. |
+| Permissão para equipe (tela 9) | Segue a matriz de permissões: gerente pode gerenciar usuários não administradores; ações administrativas elevadas são protegidas. | `UsuarioService`, `PermissaoService` e testes integrados. |
+| Vínculos e estoque (RF003/RF004/RNF006) | Vínculo só pode ser removido ou alterado vazio; alterações de saldo são movimentações transacionais auditadas. | `VinculoService`, `EstoqueService` e testes PostgreSQL. |
+| Estorno (RF014) | Estorno gera movimento inverso, não altera o registro original e impede repetição; entrada só é estornada se houver saldo disponível. | `EstoqueService` e testes integrados. |
+| Exclusão e histórico (RF001/RF002/RF005/RF016) | Produtos, posições e usuários são desativados logicamente; bloqueios por saldo ou referências preservam integridade e histórico. | CRUDs e testes PostgreSQL. |
+| Grade e saldo inicial (RF013) | Cadastro de grade aceita `tamanho=quantidade` por linha e uma posição comum; vínculos e entradas iniciais são gravados na mesma transação. | Validado na suíte integrada da Opção 01; não está pendente de compilação ou aceite PostgreSQL. |
+| Resposta por voz (RF011) | Síntese de voz no navegador tem ação explícita, opção de interrupção e alternativa textual. | Testes JavaScript passaram; isso não comprova a integração Alexa externa. |
 
-| Migração Java | Bancos antigos podem conter hashes scrypt e esquema sem superadministrador. | O volume Java é separado e não remove o legado. A migração de dados/autenticação legados deve ser validada antes de apontar Java para um banco existente. |
-| Telas 3–4 e RF013 | O saldo inicial por tamanho exige definição do vínculo de destino. | O cadastro agora recebe tamanho=quantidade por linha e uma posição de destino comum. Reutiliza vínculos e entradas auditadas na mesma transação. Regressões acrescentadas; compilação dos testes e verificação PostgreSQL ainda pendentes. |
-| RF011 | A resposta textual não comprova retorno de voz. | Síntese de voz no navegador implementada com ação explícita e interrupção; reprodução sonora e integração Alexa ainda precisam ser verificadas. |
+## Limites do escopo completo
 
-Estas decisões não reduzem o escopo do PDF. Itens dependentes de hardware,
-credenciais externas e observação operacional permanecem explicitamente pendentes.
+| Referência | O que ainda precisa de definição ou validação | Situação atual |
+| --- | --- | --- |
+| RNF001 | Carga de referência e medição de latência ponta a ponta, separando resposta da aplicação, publicação MQTT e confirmação física. | Não medida. ACK MQTT não comprova acionamento do LED. |
+| RNF005 | Janela e calendário para demonstrar disponibilidade de 99%. | Healthcheck e reinício estão configurados; não há observação operacional prolongada. |
+| RNF007 / §3.3 | Medição de memória e comportamento sob carga para confirmar o limite total de recursos. | Compose define limites; consumo real ainda não foi medido. |
+| Tela 11 | Dimensões físicas se a ocupação precisar representar volume geométrico. | Capacidade atual é por posição e unidade (`un` ou `kg`); percentual usa saldo sobre capacidade. |
+| RF008 | Operadores, combinação de filtros e paginação para volumes além do limite atual. | Busca implementada por termos e características; consulta é paginada. Requisitos adicionais precisam ser especificados. |
+| Histórico | Retenção, fuso e paginação para volumes superiores aos limites atuais. | Datas são tratadas em UTC e as consultas/exportações têm limites; política de retenção não foi definida. |
+| RF009 / §3.3 | ID da skill, vínculo de contas, credenciais e endpoint HTTPS para Alexa. | Integração externa não configurada; busca por voz no navegador é funcional separadamente. |
+| RNF010 / tela 10 | Contrato final de payload/ACK, TLS, gestão de credenciais e homologação de firmware. | MQTT e simulador foram verificados; hardware físico não foi usado. |
+| Migração de dados legados | Compatibilidade de hashes antigos e migração do esquema Flask para PostgreSQL Java. | O volume Java é separado; não apontar a aplicação nova diretamente ao banco legado sem plano de migração. |
+| §1.3 | Completar mapas de empatia caso sejam exigidos como entregável acadêmico separado. | A especificação menciona seis personas e apresenta um mapa. |
+
+As decisões e limites acima descrevem o produto além da atividade de reuso. A
+rubrica da entrega está atendida conforme o parecer atual e as evidências
+listadas em [OPCAO_01.md](OPCAO_01.md).

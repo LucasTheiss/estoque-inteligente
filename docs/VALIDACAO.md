@@ -1,5 +1,17 @@
 # Validação da refatoração Java
 
+## Estado atual — 15/10/2026
+
+A validação mais recente é a da [Opção 01 em 14/10/2026](../evidence/2026-10-14/opcao-01/README.md).
+O log registra 68 testes Java aprovados, zero falhas, zero erros e zero ignorados;
+nove testes JavaScript também passaram. Build e inicialização Docker, PostgreSQL,
+MQTT simulado e revisão de telas estão registrados nas evidências dessa data.
+Os registros anteriores neste arquivo são checkpoints históricos e não devem
+ser lidos como estado atual quando forem contraditos por essa validação posterior.
+
+Limites atuais: o MQTT foi exercitado com simulador, sem hardware físico; Alexa
+externa, carga prolongada e disponibilidade operacional não foram comprovadas.
+
 ## Evidências de 08/10/2026
 
 | Verificação | Resultado observado | Limite |
@@ -46,7 +58,7 @@ TelasTest voltou a passar os 23 casos. Cinco testes JavaScript foram adicionados
 o comando Node não iniciou por EPERM ao resolver o caminho de usuário. Não há
 evidência de reprodução sonora nem de aprovação desses cinco testes.
 
-## Próximo aceite
+## Próximo aceite registrado em 08/10/2026
 
 1. Executar mvn test e mvn package em Java 21+, sem falhas de acesso ao cache.
 2. Executar o serviço verify do Compose, incluindo PostgreSQL e MQTT reais.
@@ -155,4 +167,4 @@ A imagem atual respondeu login nas três lojas demo e administração global. Re
 
 O banco existente manteve as três lojas demo com quatro usuários, quatro produtos, oito posições e quatro vínculos em cada uma; a loja antiga de testes também foi preservada. Após reiniciar app, contagens e hashes de todos os registros de products, occupancy e movements permaneceram idênticos; /health e /login voltaram a responder 200.
 
-Evidências em evidence/2026-10-13: docker-verify-final.log (trecho final da execução), docker-build-final.log (trecho final da construção), windows-maven-test.log, http-demo-current.json e restart-preservation.log. O roteiro com contas públicas autorizadas está em DEMONSTRACAO_MVP.md. Não foram implementados os CRUDs ou exemplos de padrões ainda faltantes na atividade; execução saudável e atendimento integral da rubrica são aceites distintos.
+Evidências em evidence/2026-10-13: docker-verify-final.log (trecho final da execução), docker-build-final.log (trecho final da construção), windows-maven-test.log, http-demo-current.json e restart-preservation.log. O roteiro com contas públicas autorizadas está em DEMONSTRACAO_MVP.md. **Naquele checkpoint, os CRUDs e exemplos de padrões da atividade ainda não estavam concluídos.** Essa conclusão foi superada em 14/10/2026 pela implementação da Opção 01 e pela validação documentada acima; consulte `docs/OPCAO_01.md` e `evidence/2026-10-14/opcao-01/` para o aceite atual.

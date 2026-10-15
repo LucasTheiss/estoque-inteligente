@@ -1,53 +1,49 @@
-# Rastreabilidade e aceite
+# Rastreabilidade da atividade acadêmica
 
-Fonte: especificacao.pdf, pp. 9–19. Não considerar a meta completa somente pela
-existência de classes ou testes unitários. A implementação atual usa Java MVC;
-evidências da antiga aplicação Python não comprovam a refatoração.
+Estado conferido em 15/10/2026. A implementação atual da atividade está registrada
+na [Opção 01](OPCAO_01.md). Os registros anteriores neste repositório descrevem
+etapas históricas e não representam o estado atual.
 
-| Requisito | Implementação atual | Evidência / próximo aceite |
+## Rubrica da entrega
+
+| Requisito | Implementação atual | Evidência |
 | --- | --- | --- |
-| RF001 | Posicao, PosicaoRepository, PosicaoService, /posicoes | Templates de criação/edição renderizados; CRUD real pendente |
-| RF002 | Produto, ModeloProduto, repositórios e ProdutoService, /produtos | Templates de criação/edição renderizados; CRUD real pendente |
-| RF003–004 | OcupacaoRepository e VinculoService, /vinculos | View renderizada; vínculos e transações exigem PostgreSQL |
-| RF005–006 | UsuarioRepository, UsuarioService, PermissaoService, Spring Security | Equipe e matriz renderizadas; revalidar persistência, revogação e RBAC |
-| RF007 | HistoricoService, MovimentacaoRepository, /historico | Histórico e auditoria renderizados com dados de teste |
-| RF008 | ProdutoRepository.pesquisar | Busca por termos implementada; revalidar consultas PostgreSQL |
-| RF009 | BuscaAssistidaController, voz.html | View renderizada; Alexa externa pendente |
-| RF010 | IoTService e MqttGateway | Rotas JSON e proxy conectados; repetir teste de broker real após refatoração |
-| RF011 | Resultados textuais e botão Ouvir localização por posição | Template renderizado; reprodução sonora, testes JavaScript e Alexa pendentes |
-| RF012 | EstoqueService, /movimentar, /baixa-rapida | Views renderizadas; validar fluxo completo de baixa no navegador e banco |
-| RF013 | ModeloProduto e grade no ProdutoService | Grade e saldo inicial por tamanho implementados, com posição comum, validação e transação; testes novos ainda não compilados, aceite real pendente |
-| RF014 | EstoqueService.estornar | View renderizada; revalidar repetição, saldo e concorrência em PostgreSQL |
-| RF015 | LoginController, SegurancaConfig, AutenticacaoService | Login renderizado; acesso anônimo e CSRF verificados na camada MVC. Corrigida recuperação de sessão revogada; duas regressões novas ainda não executadas |
-| RF016 | RegistroAuditoria e AuditoriaRepository | SQL restrito ao repositório; revalidar atomicidade das mutações |
-| RF017 | LojaController e LojaService, superadmin | Painel global renderizado; revalidar fluxo real de criação/seleção |
-| RF018 | DemonstracaoService e DispositivosDemo | Provisionamento e simulador Java implementados; repetir validação Docker |
-| RNF001 | Espera MQTT limitada e índices | Carga e medição ponta a ponta pendentes |
-| RNF002 | BCrypt no Spring Security | Configuração presente; login real depende de PostgreSQL |
-| RNF003 | Templates semânticos e CSS responsivo | Renderização aprovada; revisão visual desktop/mobile pendente |
-| RNF004 | Perfis, autorização por loja e revogação por versão | Serviços implementados; repetir testes integrados |
-| RNF005 | Healthcheck e reinício | Disponibilidade de 99% não comprovada |
-| RNF006 | Locks, transações, constraints e idempotência | Testes PostgreSQL adaptados; execução atual pendente |
-| RNF007 | Limites de memória no Compose | Consumo real sob carga não medido |
-| RNF008 | Modelos, repositórios, serviços, controladores e views | Inspeção confirma SQL apenas nos repositórios da aplicação |
-| RNF009 | Configuração de recursos e posições por loja | Forms renderizados; revalidar isolamento no banco |
-| RNF010 | MQTT para LED e balança | Simulação não comprova hardware; homologação pendente |
-| RNF011 | NGINX com allowlist e restrição de métodos | /api/iot incluído; validação runtime do proxy pendente |
-| RNF012 | Java MVC, Singleton, Template Method e Strategy | Classes e participantes no README; build integral ainda exige validação |
-| RNF013 | Vidro claro, fundo perolado e movimento reduzido | CSS e templates implementados; inspeção visual pendente |
+| Ao menos 10 classes principais com atributos e métodos | Atendido. A aplicação Java contém modelos, DTOs, serviços, repositórios e controllers; exemplos de domínio incluem `Produto`, `Posicao`, `Usuario`, `Loja`, `Movimentacao`, `Ocupacao`, `ModeloProduto`, `RegistroAuditoria`, `PermissaoPerfil` e `TentativaLogin`. | `src/main/java/br/com/estoque/` |
+| Singleton: 2 exemplos | Atendido por `SistemaConfig` e `CatalogoPermissoes`, ambos com instância explícita, construtor privado e `getInstance()`. | `config/SistemaConfig.java`, `config/CatalogoPermissoes.java`, `PadroesTest.java` |
+| Template Method: 3 exemplos | Atendido por `OperacaoEstoque`, `CadastroTemplate` e `RelatorioTemplate`, em três fluxos independentes. | `service/OperacaoEstoque.java`, `service/CadastroTemplate.java`, `view/RelatorioTemplate.java` |
+| Um novo padrão: 3 exemplos | Atendido pela opção Strategy: políticas de quantidade/preço, cálculo das operações de estoque e formato de relatório. | `strategy/`, `EstoqueService.java`, `RelatorioService.java`, `PadroesTest.java` |
+| Mínimo de 2 CRUDs por integrante (3 integrantes) | Atendido com seis cadastros: Produtos, Modelos, Posições, Vínculos, Usuários e Lojas. Cada fluxo possui tela, controller, serviço e persistência no banco. | `docs/OPCAO_01.md`; templates em `src/main/resources/templates/`; controllers em `src/main/java/br/com/estoque/controller/web/` |
+| Pelo menos 3 tabelas | Atendido: a migração inicial cria dez tabelas de domínio. | `src/main/resources/db/migration/V1__estoque.sql` |
+| Exemplo de planejamento de variabilidade | Atendido com núcleo comum de estoque e recursos opcionais por loja: IoT, relatórios/ocupação e quantidades fracionadas. As flags são persistidas em `tenants` e verificadas no backend. | `docs/OPCAO_01.md`, `LojaForm.java`, `Acesso.java`, `global.html` |
 
-Checkpoint de 08/10/2026: 23 testes MVC de templates e respostas, dois testes
-unitários de estoque e dois de endereço MQTT passaram. Sete testes integrados foram ignorados
-por ausência de TEST_DATABASE_URL. Não houve comprovação atual de startup com
-banco, requisições HTTP em socket, hardware, áudio ou responsividade visual.
-Consulte VALIDACAO.md para comandos, limites e alterações posteriores aos testes.
+## Divisão sugerida dos CRUDs
 
-Atualização HTTP de 09/10/2026: a aplicação Docker respondeu health e login.
-O registro evidence/2026-10-09/http-live.json comprova fluxos de cadastro,
-vínculos, estoque, concorrência, estorno, permissões, isolamento, CSRF, busca
-JSON, logout e exportações na versão publicada. O MQTT confirmou leitura e
-ACK simulados. A grade com saldo inicial ainda não está nessa imagem; o retorno
-ao login após revogação foi reprovado nela e está corrigido apenas no fonte.
-Edição completa de todos os cadastros, reinício com persistência, testes
-Playwright e aceite das alterações novas continuam pendentes. Consulte a seção
-HTTP real em VALIDACAO.md para distinguir a versão publicada do worktree.
+| Integrante | CRUDs para demonstrar |
+| --- | --- |
+| 1 | Produtos e Modelos |
+| 2 | Posições e Vínculos |
+| 3 | Usuários e Lojas |
+
+Substituir os números pelos nomes reais dos integrantes na apresentação. A
+divisão indica cobertura da demonstração, não autoria individual já registrada.
+
+## Validação disponível
+
+O registro da Opção 01 informa 68 testes Java aprovados, sem falhas, erros ou
+testes ignorados, incluindo testes com PostgreSQL e MQTT, além de nove testes
+JavaScript. Também há evidências de build Docker, inicialização, conferência do
+banco e revisão de telas no navegador. Consulte
+[evidências da Opção 01](../evidence/2026-10-14/opcao-01/README.md) e
+[histórico e limites dos testes](VALIDACAO.md).
+
+Para a apresentação, ainda é necessário identificar a equipe e demonstrar os
+fluxos CRUD e a variabilidade. Isso é preparação da entrega, não funcionalidade
+pendente no código.
+
+## Limites que não alteram o aceite desta atividade
+
+Alexa externa, hardware IoT físico, medições de carga/disponibilidade e
+publicação na internet não foram comprovados pelas evidências da Opção 01. A
+integração IoT demonstrada usa simulador. Esses itens pertencem ao escopo maior
+do produto e não são necessários para comprovar os requisitos acadêmicos
+listados acima.
