@@ -15,6 +15,10 @@ os padrões aplicados e seus participantes.
 | Strategy — 3 aplicações | `Quantidade`; `CalculoEstoque`; `FormatoRelatorio` | Políticas de precisão; operações escolhidas pelo tipo de movimento; renderizadores escolhidos pelo formato da exportação. |
 
 Entrega pela **Opção 01**. Veja [arquivos, alterações e roteiro dos padrões](docs/OPCAO_01.md).
+Para estudar a prova de autoria e conferir cada requisito, consulte o
+[guia de autoria e empacotamento para reuso](docs/GUIA_AUTORIA_REUSO.md).
+O [componente de regras](docs/reuso/README.md) pode ser gerado e testado com
+`powershell -NoProfile -File scripts/empacotar-reuso.ps1` (JDK 21+).
 As três aplicações de cada padrão comportamental estão integradas aos fluxos reais.
 Template Method fixa etapas por herança; Strategy permite ao cliente escolher um comportamento pelo contrato.
 O fluxo de estoque e o de relatórios combinam os dois padrões, com papéis distintos.
