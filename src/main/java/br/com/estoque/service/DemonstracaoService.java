@@ -52,22 +52,23 @@ public class DemonstracaoService {
         }
         if (!demo) return;
         Campos.senha(senhaDemo);
-        seed("calcados", "Calçados Aurora", true, true, false, "un", senhaDemo);
-        seed("granel", "Mercado Raiz", true, true, true, "kg", senhaDemo);
-        seed("essencial", "Almoxarifado Base", false, false, false, "un", senhaDemo);
+        seed("calcados", "Calçados Aurora", true, true, true, false, "un", senhaDemo);
+        seed("granel", "Mercado Raiz", true, true, true, true, "kg", senhaDemo);
+        seed("essencial", "Almoxarifado Base", false, false, false, false, "un", senhaDemo);
     }
 
     private void seed(
             String slug,
             String nome,
             boolean iot,
-            boolean enterprise,
+            boolean reports,
+            boolean occupancy,
             boolean fractional,
             String unit,
             String senha) {
         if (lojas.porSlug(slug).isPresent())
             return; // Reiniciar preserva dados e senhas existentes.
-        long loja = lojas.criar(slug, nome, iot, enterprise, fractional);
+        long loja = lojas.criar(slug, nome, iot, reports, occupancy, fractional);
         permissoes.iniciais(loja);
         long ator = 0;
         for (String perfil : Acesso.PERFIS) {

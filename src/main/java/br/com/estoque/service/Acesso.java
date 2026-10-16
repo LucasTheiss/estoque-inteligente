@@ -74,7 +74,8 @@ public class Acesso {
         boolean habilitado =
                 switch (recurso) {
                     case "iot" -> tenant.iot();
-                    case "enterprise" -> tenant.enterprise();
+                    case "reports" -> tenant.reports();
+                    case "occupancy" -> tenant.occupancy();
                     case "fractional" -> tenant.fractional();
                     default -> throw new IllegalArgumentException("Recurso inválido.");
                 };

@@ -35,8 +35,11 @@
                                 <span th:if="${l.iot}" class="badge">
                                     IoT
                                 </span>
-                                <span th:if="${l.enterprise}" class="badge">
+                                <span th:if="${l.reports}" class="badge">
                                     Relatórios
+                                </span>
+                                <span th:if="${l.occupancy}" class="badge">
+                                    Ocupação
                                 </span>
                                 <span th:if="${l.fractional}" class="badge">
                                     Fracionados
@@ -86,8 +89,12 @@
                             Integração IoT
                         </label>
                         <label class="check">
-                            <input name="enterprise" type="checkbox" value="true" th:checked="${item?.enterprise}">
-                            Relatórios e ocupação
+                            <input name="reports" type="checkbox" value="true" th:checked="${item?.reports}">
+                            Relatórios (CSV/PDF)
+                        </label>
+                        <label class="check">
+                            <input name="occupancy" type="checkbox" value="true" th:checked="${item?.occupancy}">
+                            Ocupação do estoque
                         </label>
                         <label class="check">
                             <input name="fractional" type="checkbox" value="true" th:checked="${item?.fractional}">

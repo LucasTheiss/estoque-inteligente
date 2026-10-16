@@ -32,7 +32,7 @@ public class MapaController {
         long loja = acesso.loja(s);
         if (ocupacao) {
             acesso.exigir(loja, "relatorios");
-            acesso.recurso(loja, "enterprise");
+            acesso.recurso(loja, "occupancy");
         }
         m.addAttribute("title", ocupacao ? "Ocupação do estoque" : "Mapa de posições");
         m.addAttribute("ocupacao", ocupacao);

@@ -34,7 +34,7 @@
             <p>
                 Até 5.000 movimentos por consulta. Datas em UTC.
             </p>
-            <div class="actions" th:if="${tenant.enterprise and permissions.contains('relatorios')}">
+            <div class="actions" th:if="${tenant.reports and permissions.contains('relatorios')}">
                 <a th:href="@{/historico/exportar/csv(kind=${kind},from=${from},to=${to})}">
                     Exportar CSV
                 </a>

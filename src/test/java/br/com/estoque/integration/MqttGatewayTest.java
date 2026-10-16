@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MqttGatewayTest {
     private Loja loja(String host) {
-        return new Loja(1L, "teste", "Teste", true, true, true, host, 1883, 1, 10);
+        return new Loja(1L, "teste", "Teste", true, true, true, true, host, 1883, 1, 10);
     }
 
     @Test

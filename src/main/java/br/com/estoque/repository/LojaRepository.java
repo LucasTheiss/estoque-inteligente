@@ -16,7 +16,8 @@ public class LojaRepository {
                             r.getString("slug"),
                             r.getString("name"),
                             r.getBoolean("iot"),
-                            r.getBoolean("enterprise"),
+                            r.getBoolean("reports"),
+                            r.getBoolean("occupancy"),
                             r.getBoolean("fractional"),
                             r.getString("mqtt_host"),
                             r.getInt("mqtt_port"),
@@ -66,24 +67,26 @@ public class LojaRepository {
     }
 
     public long criar(
-            String slug, String nome, boolean iot, boolean enterprise, boolean fractional) {
+            String slug, String nome, boolean iot, boolean reports, boolean occupancy, boolean fractional) {
         return jdbc.queryForObject(
-                "INSERT INTO tenants(slug,name,iot,enterprise,fractional) VALUES(?,?,?,?,?) RETURNING id",
+                "INSERT INTO tenants(slug,name,iot,reports,occupancy,fractional) VALUES(?,?,?,?,?,?) RETURNING id",
                 Long.class,
                 slug,
                 nome,
                 iot,
-                enterprise,
+                reports,
+                occupancy,
                 fractional);
     }
 
     public void atualizar(
-            long id, String nome, boolean iot, boolean enterprise, boolean fractional) {
+            long id, String nome, boolean iot, boolean reports, boolean occupancy, boolean fractional) {
         jdbc.update(
-                "UPDATE tenants SET name=?,iot=?,enterprise=?,fractional=? WHERE id=?",
+                "UPDATE tenants SET name=?,iot=?,reports=?,occupancy=?,fractional=? WHERE id=?",
                 nome,
                 iot,
-                enterprise,
+                reports,
+                occupancy,
                 fractional,
                 id);
     }
