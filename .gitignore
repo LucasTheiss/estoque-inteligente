@@ -17,3 +17,10 @@ __pycache__/
 /.impeccable/review/before/
 /.impeccable/review/rendered/
 /.impeccable/review/*.log
+
+# Arquivos locais e materiais de desenvolvimento
+/.idea/
+/output/
+/tmp/
+/.agents/
+/.impeccable/

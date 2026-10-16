@@ -58,17 +58,6 @@ também verificam zerar saldo, precisão e rejeição de operações inválidas.
 
 Repositório de origem: https://github.com/LucasTheiss/estoque-inteligente
 
-Nenhuma licença de terceiros é incorporada porque o JAR não inclui dependências
-externas. O projeto não declara licença de redistribuição neste momento; este
-complemento não concede uma licença em nome dos autores. O componente é entregue
-para demonstração acadêmica; redistribuição pública deve respeitar os direitos
-dos autores. Não foi publicado em Maven Central ou outro registro de pacotes.
-
-## Relação com a disciplina
-
-`docs/conteudo/Componentes de Reuso - Parte 02.pdf`, páginas 2 a 6, descreve
-empacotamento como artefato distribuível com contrato, versão, dependências e
-documentação. A página 7 contém o item 03. O JAR e o consumidor tornam esse
-reuso demonstrável sem copiar a implementação. O projeto já tinha distribuição
-da aplicação completa via Spring Boot JAR/Docker; este complemento explicita o
-consumo de um componente por outro programa. Vídeo fora do escopo por solicitação.
+O JAR não inclui dependências externas. O projeto não declara uma licença de
+redistribuição; o uso e a distribuição devem respeitar os direitos dos autores.
+A biblioteca não foi publicada em Maven Central ou outro registro de pacotes.
