@@ -1,36 +1,93 @@
 <!doctype html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
-<section>
-<nav th:replace="~{layout :: cadastros}"></nav>
-<p class="lead">Nome, marca e categoria compartilhados pelos produtos da loja.</p>
-<div class="editor-layout">
-    <div class="table-wrap" tabindex="0" role="region" aria-label="Modelos de produto">
-        <table><caption class="sr-only">Modelos de produto cadastrados</caption>
-            <thead><tr><th>Nome</th><th>Marca</th><th>Categoria</th><th>Ação</th></tr></thead>
-            <tbody>
-                <tr th:each="modelo : ${modelos}">
-                    <td th:text="${modelo.name}"></td><td th:text="${modelo.brand}"></td><td th:text="${modelo.category}"></td>
-                    <td><a th:href="@{/modelos(id=${modelo.id})}" th:attr="aria-label=|Editar ${modelo.name}|">Editar</a></td>
-                </tr>
-                <tr th:if="${modelos.isEmpty()}"><td colspan="4" class="empty">Nenhum modelo cadastrado. Cadastre o primeiro modelo ao lado.</td></tr>
-            </tbody>
-        </table>
-    </div>
-    <aside class="editor">
-        <h2 th:text="${item == null ? 'Cadastrar modelo' : 'Editar modelo'}"></h2>
-        <form method="post" th:action="@{/modelos}" class="form-stack">
-            <input type="hidden" name="id" th:value="${item?.id}">
-            <label>Nome<input name="name" required maxlength="200" th:value="${item?.name}"></label>
-            <label>Marca<input name="brand" maxlength="200" th:value="${item?.brand}"></label>
-            <label>Categoria<input name="category" maxlength="200" th:value="${item?.category}"></label>
-            <p class="hint">Alterações aparecem em todos os produtos associados a este modelo.</p>
-            <div class="actions"><button>Salvar modelo</button><a th:if="${item != null}" th:href="@{/modelos}">Novo modelo</a></div>
-        </form>
-        <form th:if="${item != null}" method="post" th:action="@{/excluir/modelo/{id}(id=${item.id})}" data-confirm="Excluir este modelo? Modelos associados a produtos serão preservados.">
-            <p class="hint">A exclusão exige que nenhum produto, inclusive inativo, utilize o modelo.</p>
-            <button class="danger">Excluir modelo</button>
-        </form>
-    </aside>
-</div>
-</section>
+    <section>
+        <nav th:replace="~{layout :: cadastros}">
+        </nav>
+        <p class="lead">
+            Nome, marca e categoria compartilhados pelos produtos da loja.
+        </p>
+        <div class="editor-layout">
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Modelos de produto">
+                <table>
+                    <caption class="sr-only">
+                        Modelos de produto cadastrados
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Categoria
+                            </th>
+                            <th>
+                                Ação
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="modelo : ${modelos}">
+                            <td th:text="${modelo.name}">
+                            </td>
+                            <td th:text="${modelo.brand}">
+                            </td>
+                            <td th:text="${modelo.category}">
+                            </td>
+                            <td>
+                                <a th:href="@{/modelos(id=${modelo.id})}" th:attr="aria-label=|Editar ${modelo.name}|">
+                                    Editar
+                                </a>
+                            </td>
+                        </tr>
+                        <tr th:if="${modelos.isEmpty()}">
+                            <td colspan="4" class="empty">
+                                Nenhum modelo cadastrado. Cadastre o primeiro modelo ao lado.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <aside class="editor">
+                <h2 th:text="${item == null ? 'Cadastrar modelo' : 'Editar modelo'}">
+                </h2>
+                <form method="post" th:action="@{/modelos}" class="form-stack">
+                    <input type="hidden" name="id" th:value="${item?.id}">
+                    <label>
+                        Nome
+                        <input name="name" required maxlength="200" th:value="${item?.name}">
+                    </label>
+                    <label>
+                        Marca
+                        <input name="brand" maxlength="200" th:value="${item?.brand}">
+                    </label>
+                    <label>
+                        Categoria
+                        <input name="category" maxlength="200" th:value="${item?.category}">
+                    </label>
+                    <p class="hint">
+                        Alterações aparecem em todos os produtos associados a este modelo.
+                    </p>
+                    <div class="actions">
+                        <button>
+                            Salvar modelo
+                        </button>
+                        <a th:if="${item != null}" th:href="@{/modelos}">
+                            Novo modelo
+                        </a>
+                    </div>
+                </form>
+                <form th:if="${item != null}" method="post" th:action="@{/excluir/modelo/{id}(id=${item.id})}" data-confirm="Excluir este modelo? Modelos associados a produtos serão preservados.">
+                    <p class="hint">
+                        A exclusão exige que nenhum produto, inclusive inativo, utilize o modelo.
+                    </p>
+                    <button class="danger">
+                        Excluir modelo
+                    </button>
+                </form>
+            </aside>
+        </div>
+    </section>
 </html>

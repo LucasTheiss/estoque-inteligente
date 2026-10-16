@@ -1,6 +1,82 @@
-<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}"><section>
-<p class="lead">Diga ou digite o produto que procura. Confira a posição e sinalize o local.</p><form method="get" th:action="@{/busca-assistida}" class="search-bar" role="search"><label class="sr-only" for="voice-query">Produto procurado</label><input id="voice-query" name="q" type="search" th:value="${q}" placeholder="Ex.: tênis areia 38" maxlength="200"><button type="button" class="secondary" data-voice>Usar microfone</button><button>Buscar</button></form><p data-voice-status role="status" class="hint">A busca por texto funciona mesmo sem reconhecimento de voz.</p>
-<p data-speech-status role="status" class="hint">Use Ouvir localização para escutar um resultado. A reprodução começa apenas ao clicar.</p>
-<div class="table-wrap" tabindex="0" role="region" th:attr="aria-label=${title}"><table><caption class="sr-only">Resultados da busca assistida</caption><thead><tr><th>Produto</th><th>Variação</th><th>Saldo</th><th>Localizar</th></tr></thead><tbody><tr th:each="p : ${produtos}"><td><strong th:text="${p.modelo.name}"></strong><small th:text="${p.produto.sku}"></small></td><td th:text="|${p.produto.color} ${p.produto.size}|"></td><td th:text="|${p.quantidade.stripTrailingZeros().toPlainString()} ${p.produto.unit}|"></td><td><div class="actions" th:each="v : ${vinculos}" th:if="${v.ocupacao.productId == p.produto.id}"><span class="location-code" th:text="${v.code}"></span><button type="button" class="secondary" th:if="${!#strings.isEmpty(v.device)}" th:attr="data-signal=${v.ocupacao.positionId}">Sinalizar</button><button type="button" class="quiet" th:attr="data-speak=|${v.name}, cor ${v.color}, tamanho ${v.size}. Posição ${v.code}: ${#strings.replace(v.ocupacao.quantity.stripTrailingZeros().toPlainString(),'.',',')} ${v.unit == 'kg' ? 'quilogramas' : 'unidades'}.|">Ouvir localização</button></div></td></tr><tr th:if="${produtos.isEmpty()}"><td colspan="4" class="empty">Nenhum produto encontrado. Tente nome, cor, tamanho ou SKU.</td></tr></tbody></table></div>
-<script defer th:src="@{/assets/speech.js}"></script>
-</section></html>
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
+    <section>
+        <p class="lead">
+            Diga ou digite o produto que procura. Confira a posição e sinalize o local.
+        </p>
+        <form method="get" th:action="@{/busca-assistida}" class="search-bar" role="search">
+            <label class="sr-only" for="voice-query">
+                Produto procurado
+            </label>
+            <input id="voice-query" name="q" type="search" th:value="${q}" placeholder="Ex.: tênis areia 38" maxlength="200">
+            <button type="button" class="secondary" data-voice>
+                Usar microfone
+            </button>
+            <button>
+                Buscar
+            </button>
+        </form>
+        <p data-voice-status role="status" class="hint">
+            A busca por texto funciona mesmo sem reconhecimento de voz.
+        </p>
+        <p data-speech-status role="status" class="hint">
+            Use Ouvir localização para escutar um resultado. A reprodução começa apenas ao clicar.
+        </p>
+        <div class="table-wrap" tabindex="0" role="region" th:attr="aria-label=${title}">
+            <table>
+                <caption class="sr-only">
+                    Resultados da busca assistida
+                </caption>
+                <thead>
+                    <tr>
+                        <th>
+                            Produto
+                        </th>
+                        <th>
+                            Variação
+                        </th>
+                        <th>
+                            Saldo
+                        </th>
+                        <th>
+                            Localizar
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${produtos}">
+                        <td>
+                            <strong th:text="${p.modelo.name}">
+                            </strong>
+                            <small th:text="${p.produto.sku}">
+                            </small>
+                        </td>
+                        <td th:text="|${p.produto.color} ${p.produto.size}|">
+                        </td>
+                        <td th:text="|${p.quantidade.stripTrailingZeros().toPlainString()} ${p.produto.unit}|">
+                        </td>
+                        <td>
+                            <div class="actions" th:each="v : ${vinculos}" th:if="${v.ocupacao.productId == p.produto.id}">
+                                <span class="location-code" th:text="${v.code}">
+                                </span>
+                                <button type="button" class="secondary" th:if="${!#strings.isEmpty(v.device)}" th:attr="data-signal=${v.ocupacao.positionId}">
+                                    Sinalizar
+                                </button>
+                                <button type="button" class="quiet" th:attr="data-speak=|${v.name}, cor ${v.color}, tamanho ${v.size}. Posição ${v.code}: ${#strings.replace(v.ocupacao.quantity.stripTrailingZeros().toPlainString(),'.',',')} ${v.unit == 'kg' ? 'quilogramas' : 'unidades'}.|">
+                                    Ouvir localização
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${produtos.isEmpty()}">
+                        <td colspan="4" class="empty">
+                            Nenhum produto encontrado. Tente nome, cor, tamanho ou SKU.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script defer th:src="@{/assets/speech.js}">
+        </script>
+    </section>
+</html>

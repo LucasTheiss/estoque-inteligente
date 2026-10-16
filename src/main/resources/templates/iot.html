@@ -1,5 +1,53 @@
-<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}"><section>
-<p class="lead">Configure a conexão dos dispositivos desta loja.</p><div class="operation-layout"><form th:action="@{/iot/configuracao}" method="post" class="form-stack operation-form">
-<label>Servidor MQTT<input name="mqttHost" required maxlength="200" th:value="${item.mqttHost}"></label><div class="form-row"><label>Porta<input name="mqttPort" type="number" min="1" max="65535" required th:value="${item.mqttPort}"></label><label>Qualidade de entrega<select name="mqttQos"><option value="0" th:selected="${item.mqttQos == 0}">QoS 0</option><option value="1" th:selected="${item.mqttQos == 1}">QoS 1</option></select></label></div><label>Tempo do LED (segundos)<input name="ledSeconds" type="number" min="5" max="60" required th:value="${item.ledSeconds}"></label><button>Salvar configuração</button></form>
-<aside class="operation-help"><h2>Estado da conexão</h2><button type="button" class="secondary" data-iot-status>Verificar conexão</button><output data-iot-output aria-live="polite"></output><p>A confirmação de uma sinalização depende da resposta do dispositivo. Na demonstração, essa resposta é simulada e identificada como tal.</p></aside></div>
-</section></html>
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
+    <section>
+        <p class="lead">
+            Configure a conexão dos dispositivos desta loja.
+        </p>
+        <div class="operation-layout">
+            <form th:action="@{/iot/configuracao}" method="post" class="form-stack operation-form">
+                <label>
+                    Servidor MQTT
+                    <input name="mqttHost" required maxlength="200" th:value="${item.mqttHost}">
+                </label>
+                <div class="form-row">
+                    <label>
+                        Porta
+                        <input name="mqttPort" type="number" min="1" max="65535" required th:value="${item.mqttPort}">
+                    </label>
+                    <label>
+                        Qualidade de entrega
+                        <select name="mqttQos">
+                            <option value="0" th:selected="${item.mqttQos == 0}">
+                                QoS 0
+                            </option>
+                            <option value="1" th:selected="${item.mqttQos == 1}">
+                                QoS 1
+                            </option>
+                        </select>
+                    </label>
+                </div>
+                <label>
+                    Tempo do LED (segundos)
+                    <input name="ledSeconds" type="number" min="5" max="60" required th:value="${item.ledSeconds}">
+                </label>
+                <button>
+                    Salvar configuração
+                </button>
+            </form>
+            <aside class="operation-help">
+                <h2>
+                    Estado da conexão
+                </h2>
+                <button type="button" class="secondary" data-iot-status>
+                    Verificar conexão
+                </button>
+                <output data-iot-output aria-live="polite">
+                </output>
+                <p>
+                    A confirmação de uma sinalização depende da resposta do dispositivo. Na demonstração, essa resposta é simulada e identificada como tal.
+                </p>
+            </aside>
+        </div>
+    </section>
+</html>

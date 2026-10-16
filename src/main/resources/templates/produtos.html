@@ -1,23 +1,189 @@
-<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}"><section>
-<nav th:replace="~{layout :: cadastros}"></nav><div class="editor-layout">
-<div><form method="get" th:action="@{/produtos}" class="search-bar" role="search"><label class="sr-only" for="q">Pesquisar produtos</label><input id="q" type="search" name="q" th:value="${q}" placeholder="Nome ou SKU" maxlength="200"><button>Buscar</button></form>
-<div class="table-wrap" tabindex="0" role="region" th:attr="aria-label=${title}"><table><caption class="sr-only">Produtos cadastrados</caption><thead><tr><th>Produto</th><th>SKU</th><th>Variação</th><th>Preço</th><th>Ação</th></tr></thead><tbody><tr th:each="p : ${produtos}"><td th:text="${p.modelo.name}"></td><td th:text="${p.produto.sku}"></td><td th:text="|${p.produto.color} ${p.produto.size}|"></td><td class="number" th:text="|R$ ${#numbers.formatDecimal(p.produto.price,1,'POINT',2,'COMMA')}|"></td><td><a th:href="@{/produtos(id=${p.produto.id},q=${q},page=${page})}">Editar</a></td></tr><tr th:if="${produtos.isEmpty()}"><td colspan="5" class="empty">Nenhum produto cadastrado nesta pesquisa.</td></tr></tbody></table></div><nav th:replace="~{layout :: paginacao}"></nav></div>
-<aside class="editor"><h2 th:text="${item == null ? 'Novo produto' : 'Editar produto'}"></h2>
-<form th:action="@{/produtos}" method="post" class="form-stack">
-<input type="hidden" name="id" th:value="${item?.produto?.id}">
-<label>Nome<input name="name" required maxlength="200" th:value="${item?.modelo?.name}"></label>
-<div class="form-row"><label>Marca<input name="brand" maxlength="200" th:value="${item?.modelo?.brand}"></label><label>Categoria<input name="category" maxlength="200" th:value="${item?.modelo?.category}"></label></div>
-<label>SKU<input name="sku" required maxlength="200" th:value="${item?.produto?.sku}"></label>
-<label>Código de barras<input name="barcode" maxlength="200" th:value="${item?.produto?.barcode}"></label>
-<div class="form-row"><label>Cor<input name="color" maxlength="200" th:value="${item?.produto?.color}"></label><label>Tamanho<input name="size" maxlength="200" th:value="${item?.produto?.size}"></label></div>
-<div class="form-row"><label>Unidade<select name="unit"><option value="un">Unidade</option><option th:if="${tenant.fractional}" value="kg" th:selected="${item != null and item.produto.unit == 'kg'}">Quilograma</option></select></label><label>Preço (R$)<input name="price" type="number" min="0" step="0.01" required th:value="${item?.produto?.price ?: 0}"></label></div>
-<details th:if="${item == null}"><summary>Cadastrar uma grade de tamanhos</summary><label>Estrutura<select name="structure"><option value="simples">Um produto</option><option value="grade">Uma variação por tamanho</option></select></label><label>Tamanhos separados por vírgula<input name="sizes" placeholder="36, 37, 38, 39" maxlength="200"></label><p class="hint">Cada tamanho recebe um SKU próprio. Cadastre os códigos de barras ao editar cada variação.</p>
-<fieldset th:if="${permissions.contains('entrada')}"><legend>Saldo inicial por tamanho (opcional)</legend>
-<label>Posição de destino<select name="initialPositionId" aria-describedby="saldo-inicial-ajuda"><option value="">Sem saldo inicial</option><option th:each="p : ${posicoes}" th:value="${p.posicao.id}" th:text="|${p.posicao.code} — ${p.posicao.sector} (${p.posicao.unit})|"></option></select></label>
-<label>Quantidades por tamanho<textarea name="initialQuantities" rows="4" maxlength="2000" placeholder="36=5&#10;37=0&#10;38=3" aria-describedby="saldo-inicial-ajuda"></textarea></label>
-<p id="saldo-inicial-ajuda" class="hint">Escolha a estrutura de grade e uma posição com a mesma unidade. Informe um tamanho=quantidade por linha, incluindo os tamanhos com zero. Cada saldo gera uma entrada no histórico. Deixe os dois campos vazios para cadastrar sem estoque.</p></fieldset></details>
-<input type="hidden" name="attributes" th:value="${item?.produto?.attributes ?: '{}'}">
-<div class="actions"><button>Salvar produto</button><a th:if="${item != null}" th:href="@{/produtos}">Novo produto</a></div>
-</form>
-<form th:if="${item != null}" method="post" th:action="@{/excluir/produto/{id}(id=${item.produto.id})}" data-confirm="Excluir este produto? O histórico será preservado."><button class="danger" type="submit">Excluir produto</button><p class="hint">A exclusão exige estoque zerado.</p></form>
-</aside></div></section></html>
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
+    <section>
+        <nav th:replace="~{layout :: cadastros}">
+        </nav>
+        <div class="editor-layout">
+            <div>
+                <form method="get" th:action="@{/produtos}" class="search-bar" role="search">
+                    <label class="sr-only" for="q">
+                        Pesquisar produtos
+                    </label>
+                    <input id="q" type="search" name="q" th:value="${q}" placeholder="Nome ou SKU" maxlength="200">
+                    <button>
+                        Buscar
+                    </button>
+                </form>
+                <div class="table-wrap" tabindex="0" role="region" th:attr="aria-label=${title}">
+                    <table>
+                        <caption class="sr-only">
+                            Produtos cadastrados
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Produto
+                                </th>
+                                <th>
+                                    SKU
+                                </th>
+                                <th>
+                                    Variação
+                                </th>
+                                <th>
+                                    Preço
+                                </th>
+                                <th>
+                                    Ação
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="p : ${produtos}">
+                                <td th:text="${p.modelo.name}">
+                                </td>
+                                <td th:text="${p.produto.sku}">
+                                </td>
+                                <td th:text="|${p.produto.color} ${p.produto.size}|">
+                                </td>
+                                <td class="number" th:text="|R$ ${#numbers.formatDecimal(p.produto.price,1,'POINT',2,'COMMA')}|">
+                                </td>
+                                <td>
+                                    <a th:href="@{/produtos(id=${p.produto.id},q=${q},page=${page})}">
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr th:if="${produtos.isEmpty()}">
+                                <td colspan="5" class="empty">
+                                    Nenhum produto cadastrado nesta pesquisa.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav th:replace="~{layout :: paginacao}">
+                </nav>
+            </div>
+            <aside class="editor">
+                <h2 th:text="${item == null ? 'Novo produto' : 'Editar produto'}">
+                </h2>
+                <form th:action="@{/produtos}" method="post" class="form-stack">
+                    <input type="hidden" name="id" th:value="${item?.produto?.id}">
+                    <label>
+                        Nome
+                        <input name="name" required maxlength="200" th:value="${item?.modelo?.name}">
+                    </label>
+                    <div class="form-row">
+                        <label>
+                            Marca
+                            <input name="brand" maxlength="200" th:value="${item?.modelo?.brand}">
+                        </label>
+                        <label>
+                            Categoria
+                            <input name="category" maxlength="200" th:value="${item?.modelo?.category}">
+                        </label>
+                    </div>
+                    <label>
+                        SKU
+                        <input name="sku" required maxlength="200" th:value="${item?.produto?.sku}">
+                    </label>
+                    <label>
+                        Código de barras
+                        <input name="barcode" maxlength="200" th:value="${item?.produto?.barcode}">
+                    </label>
+                    <div class="form-row">
+                        <label>
+                            Cor
+                            <input name="color" maxlength="200" th:value="${item?.produto?.color}">
+                        </label>
+                        <label>
+                            Tamanho
+                            <input name="size" maxlength="200" th:value="${item?.produto?.size}">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            Unidade
+                            <select name="unit">
+                                <option value="un">
+                                    Unidade
+                                </option>
+                                <option th:if="${tenant.fractional}" value="kg" th:selected="${item != null and item.produto.unit == 'kg'}">
+                                    Quilograma
+                                </option>
+                            </select>
+                        </label>
+                        <label>
+                            Preço (R$)
+                            <input name="price" type="number" min="0" step="0.01" required th:value="${item?.produto?.price ?: 0}">
+                        </label>
+                    </div>
+                    <details th:if="${item == null}">
+                        <summary>
+                            Cadastrar uma grade de tamanhos
+                        </summary>
+                        <label>
+                            Estrutura
+                            <select name="structure">
+                                <option value="simples">
+                                    Um produto
+                                </option>
+                                <option value="grade">
+                                    Uma variação por tamanho
+                                </option>
+                            </select>
+                        </label>
+                        <label>
+                            Tamanhos separados por vírgula
+                            <input name="sizes" placeholder="36, 37, 38, 39" maxlength="200">
+                        </label>
+                        <p class="hint">
+                            Cada tamanho recebe um SKU próprio. Cadastre os códigos de barras ao editar cada variação.
+                        </p>
+                        <fieldset th:if="${permissions.contains('entrada')}">
+                            <legend>
+                                Saldo inicial por tamanho (opcional)
+                            </legend>
+                            <label>
+                                Posição de destino
+                                <select name="initialPositionId" aria-describedby="saldo-inicial-ajuda">
+                                    <option value="">
+                                        Sem saldo inicial
+                                    </option>
+                                    <option th:each="p : ${posicoes}" th:value="${p.posicao.id}" th:text="|${p.posicao.code} — ${p.posicao.sector} (${p.posicao.unit})|">
+                                    </option>
+                                </select>
+                            </label>
+                            <label>
+                                Quantidades por tamanho
+                                <textarea name="initialQuantities" rows="4" maxlength="2000" placeholder="36=5&#10;37=0&#10;38=3" aria-describedby="saldo-inicial-ajuda">
+                                </textarea>
+                            </label>
+                            <p id="saldo-inicial-ajuda" class="hint">
+                                Escolha a estrutura de grade e uma posição com a mesma unidade. Informe um tamanho=quantidade por linha, incluindo os tamanhos com zero. Cada saldo gera uma entrada no histórico. Deixe os dois campos vazios para cadastrar sem estoque.
+                            </p>
+                        </fieldset>
+                    </details>
+                    <input type="hidden" name="attributes" th:value="${item?.produto?.attributes ?: '{}'}">
+                    <div class="actions">
+                        <button>
+                            Salvar produto
+                        </button>
+                        <a th:if="${item != null}" th:href="@{/produtos}">
+                            Novo produto
+                        </a>
+                    </div>
+                </form>
+                <form th:if="${item != null}" method="post" th:action="@{/excluir/produto/{id}(id=${item.produto.id})}" data-confirm="Excluir este produto? O histórico será preservado.">
+                    <button class="danger" type="submit">
+                        Excluir produto
+                    </button>
+                    <p class="hint">
+                        A exclusão exige estoque zerado.
+                    </p>
+                </form>
+            </aside>
+        </div>
+    </section>
+</html>

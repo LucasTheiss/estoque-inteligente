@@ -1,1 +1,28 @@
-<!doctype html><html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"><head th:replace="~{layout :: documentHead}"></head><body class="error-page"><main class="error-panel"><p class="status-code" th:text="${status ?: 500}">500</p><h1>Não foi possível concluir</h1><p role="alert" th:text="${message ?: 'Ocorreu uma falha. Tente novamente em alguns instantes.'}"></p><div class="actions"><button type="button" data-back>Voltar ao formulário</button><a th:href="@{/}">Ir para o estoque</a><a th:href="@{/login}">Entrar novamente</a></div></main></body></html>
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout :: documentHead}">
+    </head>
+    <body class="error-page">
+        <main class="error-panel">
+            <p class="status-code" th:text="${status ?: 500}">
+                500
+            </p>
+            <h1>
+                Não foi possível concluir
+            </h1>
+            <p role="alert" th:text="${message ?: 'Ocorreu uma falha. Tente novamente em alguns instantes.'}">
+            </p>
+            <div class="actions">
+                <button type="button" data-back>
+                    Voltar ao formulário
+                </button>
+                <a th:href="@{/}">
+                    Ir para o estoque
+                </a>
+                <a th:href="@{/login}">
+                    Entrar novamente
+                </a>
+            </div>
+        </main>
+    </body>
+</html>
