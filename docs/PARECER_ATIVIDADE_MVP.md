@@ -33,7 +33,7 @@ material de apresentação.
 A migração V1 cria dez tabelas de domínio (`tenants`, `users`, `role_permissions`,
 `models`, `products`, `positions`, `occupancy`, `movements`, `audit` e
 `login_attempts`); Flyway mantém o histórico de migração separadamente. A
-variabilidade usa as flags `iot`, `enterprise` e `fractional` por loja. O
+variabilidade usa as flags `iot`, `reports`, `occupancy` e `fractional` por loja. O
 roteiro compara as lojas `essencial` e `granel` com o mesmo perfil para mostrar
 recursos opcionais e o núcleo comum.
 

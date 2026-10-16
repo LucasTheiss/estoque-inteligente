@@ -14,7 +14,7 @@ etapas históricas e não representam o estado atual.
 | Um novo padrão: 3 exemplos | Atendido pela opção Strategy: políticas de quantidade/preço, cálculo das operações de estoque e formato de relatório. | `strategy/`, `EstoqueService.java`, `RelatorioService.java`, `PadroesTest.java` |
 | Mínimo de 2 CRUDs por integrante (3 integrantes) | Atendido com seis cadastros: Produtos, Modelos, Posições, Vínculos, Usuários e Lojas. Cada fluxo possui tela, controller, serviço e persistência no banco. | `docs/OPCAO_01.md`; templates em `src/main/resources/templates/`; controllers em `src/main/java/br/com/estoque/controller/web/` |
 | Pelo menos 3 tabelas | Atendido: a migração inicial cria dez tabelas de domínio. | `src/main/resources/db/migration/V1__estoque.sql` |
-| Exemplo de planejamento de variabilidade | Atendido com núcleo comum de estoque e recursos opcionais por loja: IoT, relatórios/ocupação e quantidades fracionadas. As flags são persistidas em `tenants` e verificadas no backend. | `docs/OPCAO_01.md`, `LojaForm.java`, `Acesso.java`, `global.html` |
+| Exemplo de planejamento de variabilidade | Atendido com núcleo comum de estoque e recursos opcionais independentes por loja: IoT, relatórios, ocupação e quantidades fracionadas. As flags são persistidas em `tenants` e verificadas no backend. | `docs/OPCAO_01.md`, `LojaForm.java`, `Acesso.java`, `global.html` |
 
 ## Divisão sugerida dos CRUDs
 

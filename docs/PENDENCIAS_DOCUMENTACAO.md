@@ -14,7 +14,7 @@ banco legado não são evidência da implementação atual.
 | Tema | Decisão atual | Evidência/limite |
 | --- | --- | --- |
 | Precisão numérica (§3.2) | `BigDecimal` e PostgreSQL `NUMERIC`; unidades `un` inteiras, `kg` com até três casas decimais e preço com duas. | Testes de precisão na validação da Opção 01. |
-| Exportação (tela 8) | CSV e PDF são formatos independentes, disponíveis quando `enterprise` está habilitado. | Strategy de relatório e testes de conteúdo CSV/PDF. |
+| Exportação (tela 8) | CSV e PDF são formatos independentes, disponíveis quando `reports` está habilitado. A ocupação possui a flag independente `occupancy`. | Strategy de relatório e testes de conteúdo CSV/PDF. |
 | Permissão para equipe (tela 9) | Segue a matriz de permissões: gerente pode gerenciar usuários não administradores; ações administrativas elevadas são protegidas. | `UsuarioService`, `PermissaoService` e testes integrados. |
 | Vínculos e estoque (RF003/RF004/RNF006) | Vínculo só pode ser removido ou alterado vazio; alterações de saldo são movimentações transacionais auditadas. | `VinculoService`, `EstoqueService` e testes PostgreSQL. |
 | Estorno (RF014) | Estorno gera movimento inverso, não altera o registro original e impede repetição; entrada só é estornada se houver saldo disponível. | `EstoqueService` e testes integrados. |

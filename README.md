@@ -107,7 +107,7 @@ mantém sua senha PostgreSQL; mudar `.env.demo` não troca a senha daquele volum
 
 ```powershell
 docker compose --env-file .env.demo --profile check run --rm verify
-docker compose --env-file .env.demo exec db psql -U estoque -d estoque -c "SELECT slug, active, iot, enterprise, fractional FROM tenants ORDER BY slug;"
+docker compose --env-file .env.demo exec db psql -U estoque -d estoque -c "SELECT slug, active, iot, reports, occupancy, fractional FROM tenants ORDER BY slug;"
 docker compose --env-file .env.demo exec db psql -U estoque -d estoque -c "SELECT version, description, success FROM flyway_schema_history ORDER BY installed_rank;"
 ```
 

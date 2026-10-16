@@ -36,7 +36,7 @@ essa quantidade não basta. A distribuição abaixo é sugestão, não declaraç
 | 3 exemplos de outro padrão | Strategy: Quantidade, CalculoEstoque, FormatoRelatorio | Implementado em três famílias |
 | 2 CRUDs por integrante | Produtos, Modelos, Posições, Vínculos, Usuários e Lojas | Implementado para três integrantes |
 | 3 ou mais tabelas | Dez tabelas de domínio em V1; V2 acrescenta ativação de lojas | Implementado |
-| Variabilidade planejada | Núcleo comum e flags iot, enterprise, fractional por loja | Implementado; matriz abaixo |
+| Variabilidade planejada | Núcleo comum e flags iot, reports, occupancy, fractional por loja | Implementado; matriz abaixo |
 | Repositório | Git local e origin configurado para GitHub | Existência local confirmada; acesso remoto não validado nesta sessão |
 | Empacotamento para reuso | Spring Boot JAR/Docker já existiam; novo JAR de regras e consumidor isolado | Gerado e consumo verificado |
 
@@ -168,19 +168,23 @@ Em vínculo zerado, faça entrada 10, saída 3, ajuste 8 -> 10, 7, 8 e mostre hi
 ## Planejamento da variabilidade
 
 Domínio: estoque multi-loja. Núcleo obrigatório: cadastros, posições, vínculos,
-movimentações e controle de acesso. Pontos opcionais: IoT, recursos enterprise
-e quantidades fracionadas. A seleção ocorre por configuração de loja em tempo
+movimentações e controle de acesso. Pontos opcionais independentes: IoT, relatórios,
+ocupação e quantidades fracionadas. A seleção ocorre por configuração de loja em tempo
 de execução, sem criar outra implementação do sistema.
 
-| Variante demo | iot | enterprise | fractional |
-| --- | --- | --- | --- |
-| essencial | não | não | não |
-| calcados | sim | sim | não |
-| granel | sim | sim | sim |
+| Variante demo | iot | reports | occupancy | fractional |
+| --- | --- | --- | --- | --- |
+| essencial — Almoxarifado Base | não | não | não | não |
+| calcados — Calçados Aurora | sim | sim | sim | não |
+| granel — Mercado Raiz | sim | sim | sim | sim |
 
 As flags ficam em tenants; `LojaService.salvar` persiste a seleção;
 `Acesso.recurso` bloqueia funcionalidades desabilitadas; templates adaptam a
-interface. Produtos kg exigem fractional; exportação/ocupação exigem enterprise.
+interface. Produtos kg exigem fractional; exportação exige reports; ocupação exige occupancy.
+No painel global, os checkboxes Relatórios (CSV/PDF) e Ocupação do estoque são
+independentes. As quatro combinações são permitidas. A permissão de usuário
+`relatorios` continua necessária nos dois casos. V3 preserva a configuração
+antiga copiando enterprise para ambos; a seed não sobrescreve lojas existentes.
 Não é permitido desligar fractional com produtos fracionados ativos. Leitura
 de balança na tela exige IoT e fracionados. As três variantes demo não implicam
 que todos os opcionais dependam obrigatoriamente uns dos outros.

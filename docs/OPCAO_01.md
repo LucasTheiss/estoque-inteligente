@@ -60,7 +60,7 @@ Revogue `cadastros` de um perfil e demonstre a rejeição antes da persistência
 | `view/RelatorioTemplate.java` | Nova base. `gerar()` final valida loja/lista, fixa uma cópia dos registros, rejeita mistura de lojas, chama `renderizarConteudo()` e monta `RelatorioArquivo`. |
 | `view/RelatorioCsv.java` | Herda o template, informa tipo MIME/nome e implementa o hook usando o renderizador CSV existente. Preserva escape de células e proteção contra fórmulas. |
 | `view/RelatorioPdf.java` | Herda o template, informa tipo MIME/nome e implementa o hook usando o renderizador PDF existente. Preserva paginação e fechamento de recursos. |
-| `service/RelatorioService.java` | Mantém autorização `relatorios`, recurso `enterprise`, consulta e auditoria. Exporta pelo contrato de formato. |
+| `service/RelatorioService.java` | Mantém autorização `relatorios`, recurso `reports`, consulta e auditoria. Exporta pelo contrato de formato. |
 
 Apresentação: exporte o mesmo histórico em CSV e PDF. Mostre que o método final
 é o mesmo, enquanto a renderização varia. O serviço exige o recurso da loja e a
@@ -133,7 +133,7 @@ recarregar e excluir/desativar. Use registros descartáveis e códigos inéditos
 
 ## Variabilidade e execução
 
-O núcleo de estoque é comum. As flags `iot`, `enterprise` e `fractional` de
+O núcleo de estoque é comum. As flags `iot`, `reports`, `occupancy` e `fractional` de
 `tenants` determinam recursos opcionais. Compare `essencial` e `granel` com o
 mesmo perfil admin; mostre menus, exportação e movimentação fracionada. Depois,
 mostre as flags em `/global`, sua persistência e `Acesso.recurso()` no backend.

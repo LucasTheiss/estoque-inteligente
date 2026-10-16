@@ -130,7 +130,8 @@ class AplicacaoTest {
             long loja = ((Number) t.get("id")).longValue();
             String slug = (String) t.get("slug");
             assertEquals(!slug.equals("essencial"), t.get("iot"));
-            assertEquals(!slug.equals("essencial"), t.get("enterprise"));
+            assertEquals(!slug.equals("essencial"), t.get("reports"));
+            assertEquals(!slug.equals("essencial"), t.get("occupancy"));
             assertEquals(slug.equals("granel"), t.get("fractional"));
             assertEquals(
                     4,
@@ -171,13 +172,14 @@ class AplicacaoTest {
                             loja));
             autenticar(usuario(slug, "admin"));
             if (slug.equals("essencial")) {
-                for (String recurso : List.of("iot", "enterprise", "fractional"))
+                for (String recurso : List.of("iot", "reports", "occupancy", "fractional"))
                     assertThrows(
                             org.springframework.security.access.AccessDeniedException.class,
                             () -> acesso.recurso(loja, recurso));
             } else {
                 acesso.recurso(loja, "iot");
-                acesso.recurso(loja, "enterprise");
+                acesso.recurso(loja, "reports");
+                acesso.recurso(loja, "occupancy");
                 if (slug.equals("granel")) acesso.recurso(loja, "fractional");
                 else
                     assertThrows(
@@ -185,6 +187,8 @@ class AplicacaoTest {
                             () -> acesso.recurso(loja, "fractional"));
             }
         }
+        banco.executar("UPDATE tenants SET reports=true,occupancy=false WHERE slug='calcados'");
+        var recursosAntes = banco.listar("SELECT id,reports,occupancy FROM tenants ORDER BY id");
         var produtosAntes = banco.listar("SELECT id,sku,price,active FROM products ORDER BY id");
         var saldosAntes =
                 banco.listar("SELECT * FROM occupancy ORDER BY tenant_id,product_id,position_id");
@@ -192,6 +196,7 @@ class AplicacaoTest {
                 banco.listar("SELECT id,password_hash,auth_version,active FROM users ORDER BY id");
         long antes = banco.id("SELECT count(*) id FROM movements");
         demo.run(new org.springframework.boot.DefaultApplicationArguments());
+        assertEquals(recursosAntes, banco.listar("SELECT id,reports,occupancy FROM tenants ORDER BY id"));
         assertEquals(antes, banco.id("SELECT count(*) id FROM movements"));
         assertEquals(
                 produtosAntes,

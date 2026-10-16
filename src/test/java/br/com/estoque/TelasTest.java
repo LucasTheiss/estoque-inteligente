@@ -64,7 +64,7 @@ class TelasTest {
 
     final Usuario admin = new Usuario(1L, 1L, "admin", "hash", "admin", 1, true);
     final Loja loja =
-            new Loja(1L, "teste", "Loja de teste", true, true, true, "localhost", 1883, 1, 10);
+            new Loja(1L, "teste", "Loja de teste", true, true, true, true, "localhost", 1883, 1, 10);
     final Posicao posicao =
             new Posicao(
                     1L,

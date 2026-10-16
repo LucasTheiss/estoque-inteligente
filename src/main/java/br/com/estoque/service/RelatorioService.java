@@ -28,7 +28,7 @@ public class RelatorioService {
     public RelatorioArquivo exportar(
             long loja, String formato, String tipo, String inicio, String fim) throws IOException {
         acesso.exigir(loja, "relatorios");
-        acesso.recurso(loja, "enterprise");
+        acesso.recurso(loja, "reports");
         var registros = historico.filtrar(loja, tipo, inicio, fim);
         var estrategia = formatos.get(formato);
         if (estrategia == null)

@@ -82,10 +82,10 @@ public class LojaService {
             lojas.bloquear(id);
             if (!f.fractional() && produtos.temFracionados(id))
                 throw new IllegalArgumentException("Há produtos fracionados ativos nesta loja.");
-            lojas.atualizar(id, nome, f.iot(), f.enterprise(), f.fractional());
+            lojas.atualizar(id, nome, f.iot(), f.reports(), f.occupancy(), f.fractional());
         } else {
             Campos.senha(f.password());
-            id = lojas.criar(slug, nome, f.iot(), f.enterprise(), f.fractional());
+            id = lojas.criar(slug, nome, f.iot(), f.reports(), f.occupancy(), f.fractional());
             permissoes.iniciais(id);
             usuarios.criar(
                     id,

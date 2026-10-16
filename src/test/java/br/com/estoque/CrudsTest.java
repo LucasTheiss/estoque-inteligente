@@ -11,6 +11,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -377,6 +378,52 @@ class CrudsTest {
         assertEquals(
                 1,
                 id("SELECT count(*) FROM audit WHERE tenant_id=? AND action='loja.excluir'", loja));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"false,false", "true,false", "false,true", "true,true"})
+    void relatoriosEOcupacaoSaoIndependentesNaCriacaoEEdicao(boolean reports, boolean occupancy)
+            throws Exception {
+        var global = new UsuarioAutenticado(usuario("global", "superadmin"));
+        String slug = "recursos-" + UUID.randomUUID().toString().substring(0, 8);
+        var criar = post("/global/lojas").with(user(global)).with(csrf())
+                .param("slug", slug).param("name", "Recursos independentes")
+                .param("username", "admin").param("password", "Teste-local-2026!");
+        if (reports) criar.param("reports", "true");
+        if (occupancy) criar.param("occupancy", "true");
+        mvc.perform(criar).andExpect(redirectedUrl("/global"));
+        long loja = id("SELECT id FROM tenants WHERE slug=?", slug);
+        var local = new UsuarioAutenticado(usuario(slug, "admin"));
+        for (int passo = 0; passo < 2; passo++) {
+            assertEquals(reports, jdbc.queryForObject("SELECT reports FROM tenants WHERE id=?", Boolean.class, loja));
+            assertEquals(occupancy, jdbc.queryForObject("SELECT occupancy FROM tenants WHERE id=?", Boolean.class, loja));
+            String edicao = mvc.perform(get("/global?id=" + loja).with(user(global))).andExpect(status().isOk())
+                    .andReturn().getResponse().getContentAsString();
+            assertEquals(reports, edicao.matches("(?s).*<input[^>]*name=\"reports\"[^>]*checked[^>]*>.*"));
+            assertEquals(occupancy, edicao.matches("(?s).*<input[^>]*name=\"occupancy\"[^>]*checked[^>]*>.*"));
+            String pagina = mvc.perform(get("/historico").with(user(local))).andExpect(status().isOk())
+                    .andReturn().getResponse().getContentAsString();
+            assertEquals(reports, pagina.contains("/historico/exportar/csv"));
+            assertEquals(reports, pagina.contains("/historico/exportar/pdf"));
+            assertEquals(occupancy, pagina.contains("href=\"/ocupacao\""));
+            for (String formato : new String[] {"csv", "pdf"})
+                mvc.perform(get("/historico/exportar/" + formato).with(user(local)))
+                        .andExpect(status().is(reports ? 200 : 403));
+            mvc.perform(get("/ocupacao").with(user(local))).andExpect(status().is(occupancy ? 200 : 403));
+            mvc.perform(get("/mapa").with(user(local))).andExpect(status().isOk());
+            if (passo == 0) {
+                reports = !reports;
+                occupancy = !occupancy;
+                var editar = post("/global/lojas").with(user(global)).with(csrf())
+                        .param("id", "" + loja).param("slug", slug).param("name", "Recursos editados");
+                if (reports) editar.param("reports", "true");
+                if (occupancy) editar.param("occupancy", "true");
+                mvc.perform(editar).andExpect(redirectedUrl("/global"));
+            }
+        }
+        jdbc.update("DELETE FROM role_permissions WHERE tenant_id=? AND role='admin' AND permission='relatorios'", loja);
+        mvc.perform(get("/ocupacao").with(user(local))).andExpect(status().isForbidden());
+        mvc.perform(get("/historico/exportar/csv").with(user(local))).andExpect(status().isForbidden());
     }
 
     @Test

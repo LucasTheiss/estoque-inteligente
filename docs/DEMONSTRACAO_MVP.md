@@ -52,7 +52,7 @@ Reiniciar preserva registros e senhas. A seed não apaga nem repõe automaticame
 2. Entrar em calcados como admin. Mostrar tamanhos, mapa, posições, histórico e exportação CSV/PDF.
 3. Usar CALCADOS-1 em A1 para demonstrar entrada, saída e ajuste. O saldo inicial é 6 em um banco novo; informar quantidades válidas considerando o saldo visível. Demonstrar estorno de uma entrada/saída recente.
 4. Entrar em granel como admin. Usar GRANEL-1 em A1 para saída de 0.125 kg, mostrando precisão fracionada. Na tela Movimentar, demonstrar a leitura de peso da balanca-demo; na busca assistida/mapa, demonstrar sinalização.
-5. Comparar menus e cadastro de unidade entre essencial e granel, com o mesmo perfil. Explicar núcleo comum e opcionais iot, enterprise e fractional persistidos em tenants.
+5. Comparar menus e cadastro de unidade entre essencial e granel, com o mesmo perfil. Explicar núcleo comum e opcionais iot, reports, occupancy e fractional persistidos em tenants. No painel global, Relatórios (CSV/PDF) e Ocupação do estoque podem ser habilitados separadamente, sem alterar os saldos.
 6. Entrar como vendedor para mostrar consulta/saída e restrições de cadastro. Voltar a admin para usuários e permissões.
 7. Administração global: mostrar as três lojas e suas configurações.
 8. Para demonstrar criação/edição/exclusão, cadastrar durante o vídeo registros descartáveis de código inédito; isso é a operação CRUD demonstrada, não preparação obrigatória. Produtos/posições com saldo não podem ser excluídos. Não desativar o próprio usuário nem o último admin.
@@ -73,7 +73,7 @@ docker compose --env-file .env.demo exec db psql -U estoque -d estoque
 No psql:
 
 ~~~sql
-SELECT slug, iot, enterprise, fractional FROM tenants ORDER BY slug;
+SELECT slug, iot, reports, occupancy, fractional FROM tenants ORDER BY slug;
 SELECT t.slug,
   (SELECT count(*) FROM users u WHERE u.tenant_id=t.id AND u.active) AS usuarios,
   (SELECT count(*) FROM products p WHERE p.tenant_id=t.id AND p.active) AS produtos,
