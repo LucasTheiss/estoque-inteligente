@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
+<section>
+    <form method="get" th:action="@{/relatorios}" class="panel">
+        <label>Relatório <select name="tipo">
+            <option value="valor" th:selected="${tipo == 'valor'}">Valor do estoque</option>
+            <option value="fluxo" th:selected="${tipo == 'fluxo'}">Movimentações no período</option>
+        </select></label>
+        <fieldset><legend>Período — usado apenas no relatório de movimentações</legend>
+            <label>Início <input type="date" name="inicio" th:value="${inicio}" required></label>
+            <label>Fim <input type="date" name="fim" th:value="${fim}" required></label>
+        </fieldset>
+        <button type="submit">Gerar relatório</button>
+    </form>
+    <p th:if="${tipo == 'valor'}">Valores em reais, calculados com o preço cadastrado atual. Não representam custo de aquisição ou receita realizada.</p>
+    <p th:if="${tipo == 'fluxo'}">Período inclusivo no horário de Brasília. Ajustes e estornos aparecem em linhas próprias, com seu sinal. Quantidades de produtos diferentes não são somadas.</p>
+    <div th:replace="~{tabela-consulta :: resultado}"></div>
+</section>
+</html>

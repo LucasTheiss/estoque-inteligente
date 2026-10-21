@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
+<section>
+    <form method="get" th:action="@{/fornecedores}" class="panel">
+        <label>Filtro <input name="q" maxlength="100" th:value="${q}" placeholder="Código, nome ou documento"></label>
+        <button type="submit">Consultar</button>
+    </form>
+    <p>Cadastro demonstrativo mantido pelo provedor externo. Alterações são feitas no sistema de origem.</p>
+    <div th:replace="~{tabela-consulta :: resultado}"></div>
+</section>
+</html>

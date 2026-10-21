@@ -1,0 +1,8 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="resultado" class="panel">
+    <h2 th:text="${tabela.titulo}"></h2>
+    <p role="status" th:if="${tabela.linhas.isEmpty()}">Nenhum registro encontrado.</p>
+    <div class="table-wrap" th:unless="${tabela.linhas.isEmpty()}">
+        <table><thead><tr><th scope="col" th:each="coluna : ${tabela.colunas}" th:text="${coluna}"></th></tr></thead>
+        <tbody><tr th:each="linha : ${tabela.linhas}"><td th:each="valor : ${linha}" th:text="${valor}"></td></tr></tbody></table>
+    </div>
+</div>

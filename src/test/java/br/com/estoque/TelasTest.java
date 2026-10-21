@@ -61,6 +61,7 @@ class TelasTest {
     @MockitoBean ConfiguracaoIoTService configuracao;
     @MockitoBean IoTService iot;
     @MockitoBean SaudeService saude;
+    @MockitoBean AnaliseService analises;
 
     final Usuario admin = new Usuario(1L, 1L, "admin", "hash", "admin", 1, true);
     final Loja loja =
@@ -115,6 +116,9 @@ class TelasTest {
 
     @BeforeEach
     void preparar() {
+        var tabela = new TabelaConsulta("Resultado de teste", List.of("SKU", "Nome"), List.of(List.of("A", "<script>")));
+        when(analises.consultar(anyLong(), anyString())).thenReturn(tabela);
+        when(analises.relatorio(anyLong(), anyString(), any(), any())).thenReturn(tabela);
         when(acesso.usuario()).thenReturn(admin);
         when(acesso.loja(any())).thenReturn(1L);
         when(acesso.permissoes(1L)).thenReturn(Acesso.PERMISSOES.keySet());
@@ -178,6 +182,15 @@ class TelasTest {
                 .andExpect(content().string(containsString("Entre na sua loja")))
                 .andExpect(content().string(containsString("name=\"_csrf\"")))
                 .andDo(this::capture);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings={"/fornecedores", "/relatorios?tipo=valor", "/relatorios?tipo=fluxo"})
+    void novasTelasRenderizamComEscape(String url) throws Exception {
+        mvc.perform(get(url).with(user(new UsuarioAutenticado(admin))))
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("&lt;script&gt;")))
+            .andDo(this::capture);
     }
 
     @ParameterizedTest

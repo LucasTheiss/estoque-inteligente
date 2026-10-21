@@ -125,6 +125,11 @@ Veja o [contrato e as instruções da biblioteca](docs/reuso/README.md).
 
 ## Estrutura
 
+A [entrega de Análise de Pontos de Função](docs/apf/README.md) contém o inventário
+de ALIs/AIE, EEs, SEs e CEs, memória de cálculo, NI e estimativas para três integrantes.
+A entrega de APF reutiliza as funcionalidades existentes e acrescenta apenas a consulta `/fornecedores` (AIE) e dois relatórios em `/relatorios`: valor do estoque e movimentações no período.
+O Compose também inicia um [provedor externo demonstrativo de fornecedores](external/fornecedores/README.md).
+
 - `src/main/java/br/com/estoque/`: modelos, controllers, serviços, repositórios,
   estratégias e integração MQTT.
 - `src/main/resources/templates/`: páginas Thymeleaf.

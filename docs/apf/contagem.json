@@ -1,0 +1,1335 @@
+{
+  "dados": [
+    {
+      "id": "A01",
+      "tipo": "ALI",
+      "nome": "Modelos de produto",
+      "origem": "models",
+      "registrosLogicos": [
+        "Registro de modelos de produto"
+      ],
+      "campos": [
+        "loja",
+        "código",
+        "nome",
+        "marca",
+        "categoria"
+      ]
+    },
+    {
+      "id": "A02",
+      "tipo": "ALI",
+      "nome": "Produtos",
+      "origem": "products",
+      "registrosLogicos": [
+        "Registro de produtos"
+      ],
+      "campos": [
+        "loja",
+        "código",
+        "modelo",
+        "SKU",
+        "código de barras",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A03",
+      "tipo": "ALI",
+      "nome": "Posições",
+      "origem": "positions",
+      "registrosLogicos": [
+        "Registro de posições"
+      ],
+      "campos": [
+        "loja",
+        "identificador",
+        "código",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "dispositivo",
+        "pino",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A04",
+      "tipo": "ALI",
+      "nome": "Estoque por posição / vínculos",
+      "origem": "occupancy",
+      "registrosLogicos": [
+        "Registro de estoque por posição / vínculos"
+      ],
+      "campos": [
+        "loja",
+        "produto",
+        "posição",
+        "quantidade"
+      ]
+    },
+    {
+      "id": "A05",
+      "tipo": "ALI",
+      "nome": "Movimentações",
+      "origem": "movements",
+      "registrosLogicos": [
+        "Registro de movimentações"
+      ],
+      "campos": [
+        "loja",
+        "número",
+        "produto",
+        "posição",
+        "responsável",
+        "tipo",
+        "variação",
+        "saldo anterior",
+        "saldo posterior",
+        "motivo",
+        "data",
+        "movimento original"
+      ]
+    },
+    {
+      "id": "A06",
+      "tipo": "ALI",
+      "nome": "Usuários",
+      "origem": "users",
+      "registrosLogicos": [
+        "Registro de usuários"
+      ],
+      "campos": [
+        "loja",
+        "código",
+        "nome de usuário",
+        "senha",
+        "perfil",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A07",
+      "tipo": "ALI",
+      "nome": "Permissões por perfil",
+      "origem": "role_permissions",
+      "registrosLogicos": [
+        "Registro de permissões por perfil"
+      ],
+      "campos": [
+        "loja",
+        "perfil",
+        "permissão"
+      ]
+    },
+    {
+      "id": "A08",
+      "tipo": "ALI",
+      "nome": "Lojas e configuração",
+      "origem": "tenants",
+      "registrosLogicos": [
+        "Registro de lojas e configuração"
+      ],
+      "campos": [
+        "código",
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados",
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A09",
+      "tipo": "ALI",
+      "nome": "Auditoria consultável",
+      "origem": "audit",
+      "registrosLogicos": [
+        "Registro de auditoria consultável"
+      ],
+      "campos": [
+        "loja",
+        "número",
+        "responsável",
+        "ação",
+        "detalhe",
+        "data"
+      ]
+    },
+    {
+      "id": "X01",
+      "tipo": "AIE",
+      "nome": "Fornecedores externos",
+      "origem": "external/fornecedores",
+      "registrosLogicos": [
+        "Registro de fornecedores externos"
+      ],
+      "campos": [
+        "código",
+        "nome",
+        "documento",
+        "e-mail",
+        "telefone"
+      ]
+    }
+  ],
+  "funcoes": [
+    {
+      "id": "EE01",
+      "tipo": "EE",
+      "nome": "Incluir produto, inclusive grade e saldo inicial",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "nome",
+        "marca",
+        "categoria",
+        "SKU",
+        "código de barras",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características",
+        "estrutura",
+        "tamanhos da grade",
+        "posição inicial",
+        "quantidades iniciais"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ProdutoService.salvar",
+      "leitura": "A01: nome/marca/categoria; A02: SKU e código de barras; A03: unidade; A04: quantidade; A05: saldo inicial e movimento; A09: responsável/ação/detalhe/data."
+    },
+    {
+      "id": "EE02",
+      "tipo": "EE",
+      "nome": "Alterar produto",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "nome",
+        "marca",
+        "categoria",
+        "SKU",
+        "código de barras",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ProdutoService.salvar",
+      "leitura": "A01: modelo; A02: unidade anterior; A04: vínculos para validar mudança de unidade; A09: registro da alteração."
+    },
+    {
+      "id": "EE03",
+      "tipo": "EE",
+      "nome": "Excluir produto logicamente",
+      "arquivos": [
+        "A02",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ProdutoService.excluir",
+      "leitura": "A02: ativo; A04: quantidade e vínculos removidos se vazios; A09: registro da exclusão."
+    },
+    {
+      "id": "EE04",
+      "tipo": "EE",
+      "nome": "Incluir modelo",
+      "arquivos": [
+        "A01",
+        "A09"
+      ],
+      "entrada": [
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ModeloProdutoService.salvar",
+      "leitura": "A01: identidade nome/marca/categoria; A09: registro de criação."
+    },
+    {
+      "id": "EE05",
+      "tipo": "EE",
+      "nome": "Alterar modelo",
+      "arquivos": [
+        "A01",
+        "A09"
+      ],
+      "entrada": [
+        "modelo",
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ModeloProdutoService.salvar",
+      "leitura": "A01: código e cadastro anterior; A09: registro de alteração."
+    },
+    {
+      "id": "EE06",
+      "tipo": "EE",
+      "nome": "Excluir modelo",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A09"
+      ],
+      "entrada": [
+        "modelo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ModeloProdutoService.excluir",
+      "leitura": "A02: referência ao modelo bloqueia exclusão; A01: código; A09: registro da exclusão."
+    },
+    {
+      "id": "EE07",
+      "tipo": "EE",
+      "nome": "Incluir posição",
+      "arquivos": [
+        "A03",
+        "A09"
+      ],
+      "entrada": [
+        "código",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "dispositivo",
+        "pino"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PosicaoService.salvar",
+      "leitura": "A03: código e unidade; A09: registro de criação."
+    },
+    {
+      "id": "EE08",
+      "tipo": "EE",
+      "nome": "Alterar posição",
+      "arquivos": [
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "posição",
+        "código",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "dispositivo",
+        "pino"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PosicaoService.salvar",
+      "leitura": "A03: unidade anterior; A04: vínculos existentes; A09: registro da alteração."
+    },
+    {
+      "id": "EE09",
+      "tipo": "EE",
+      "nome": "Excluir posição logicamente",
+      "arquivos": [
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PosicaoService.excluir",
+      "leitura": "A03: ativo; A04: quantidade e vínculos vazios; A09: registro da exclusão."
+    },
+    {
+      "id": "EE10",
+      "tipo": "EE",
+      "nome": "Incluir vínculo",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "VinculoService.salvar",
+      "leitura": "A02/A03: unidades; A04: produto/posição/quantidade; A09: registro."
+    },
+    {
+      "id": "EE11",
+      "tipo": "EE",
+      "nome": "Alterar vínculo vazio",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto original",
+        "posição original",
+        "produto destino",
+        "posição destino"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "VinculoService.editar",
+      "leitura": "A02/A03: unidades do destino; A04: saldo original e chave do destino; A09: registro."
+    },
+    {
+      "id": "EE12",
+      "tipo": "EE",
+      "nome": "Excluir vínculo vazio",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "VinculoService.salvar",
+      "leitura": "A02/A03: identificação; A04: saldo; A09: registro."
+    },
+    {
+      "id": "EE13",
+      "tipo": "EE",
+      "nome": "Incluir usuário",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "nome de usuário",
+        "perfil",
+        "senha"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "UsuarioService.salvar",
+      "leitura": "A08: loja ativa; A06: nome/perfil; A09: registro."
+    },
+    {
+      "id": "EE14",
+      "tipo": "EE",
+      "nome": "Alterar usuário",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "usuário",
+        "nome de usuário",
+        "perfil",
+        "senha"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "UsuarioService.salvar",
+      "leitura": "A06: perfil, senha anterior e administradores ativos; A08: loja; A09: registro."
+    },
+    {
+      "id": "EE15",
+      "tipo": "EE",
+      "nome": "Excluir usuário logicamente",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "usuário",
+        "nome de usuário",
+        "perfil"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "UsuarioService.salvar(action=delete)",
+      "leitura": "O formulário envia nome/perfil para validação; A06: ativo/perfil/administradores; A08: loja; A09: registro."
+    },
+    {
+      "id": "EE16",
+      "tipo": "EE",
+      "nome": "Incluir loja e administrador",
+      "arquivos": [
+        "A08",
+        "A06",
+        "A07",
+        "A09"
+      ],
+      "entrada": [
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados",
+        "usuário administrador",
+        "senha administrador"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.salvar",
+      "leitura": "Mantém A08, cria A06, inicializa A07, registra A09."
+    },
+    {
+      "id": "EE17",
+      "tipo": "EE",
+      "nome": "Alterar loja e recursos",
+      "arquivos": [
+        "A08",
+        "A02",
+        "A09"
+      ],
+      "entrada": [
+        "loja",
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.salvar",
+      "leitura": "A08: configuração; A02: unidade/ativo para impedir desabilitar fracionados em uso; A09: registro."
+    },
+    {
+      "id": "EE18",
+      "tipo": "EE",
+      "nome": "Excluir loja logicamente",
+      "arquivos": [
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "loja"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.excluir",
+      "leitura": "A08: nome/ativo; A09: registro."
+    },
+    {
+      "id": "EE19",
+      "tipo": "EE",
+      "nome": "Alterar matriz de permissões",
+      "arquivos": [
+        "A07",
+        "A09"
+      ],
+      "entrada": [
+        "perfil",
+        "permissão",
+        "concedida"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PermissaoService.atualizar",
+      "leitura": "A07: perfil/permissão; cada par repetido é ocorrência, não novo tipo de dado; A09: registro."
+    },
+    {
+      "id": "EE20",
+      "tipo": "EE",
+      "nome": "Alterar configuração IoT",
+      "arquivos": [
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ConfiguracaoIoTService.salvar",
+      "leitura": "A08: configuração da loja; A09: registro."
+    },
+    {
+      "id": "EE21",
+      "tipo": "EE",
+      "nome": "Registrar entrada",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição",
+        "tipo",
+        "quantidade",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.movimentar",
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída."
+    },
+    {
+      "id": "EE22",
+      "tipo": "EE",
+      "nome": "Registrar saída",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição",
+        "tipo",
+        "quantidade",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.movimentar",
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída."
+    },
+    {
+      "id": "EE23",
+      "tipo": "EE",
+      "nome": "Ajustar saldo",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição",
+        "tipo",
+        "quantidade",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.movimentar",
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída."
+    },
+    {
+      "id": "EE24",
+      "tipo": "EE",
+      "nome": "Estornar movimentação",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "movimento original",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.estornar",
+      "leitura": "A05: tipo/produto/posição/variação/original; A04: saldo; A02/A03: unidades; A09: registro."
+    },
+    {
+      "id": "EE25",
+      "tipo": "EE",
+      "nome": "Autenticar usuário",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "loja",
+        "nome de usuário",
+        "senha"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "AutenticacaoService.autenticar",
+      "leitura": "A06: credencial/perfil/ativo; A08: identificador público/ativo via consulta de autenticação; A09: login. Tentativas temporárias excluídas."
+    },
+    {
+      "id": "EE26",
+      "tipo": "EE",
+      "nome": "Selecionar loja de trabalho",
+      "arquivos": [
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "loja"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.selecionar",
+      "leitura": "A08: loja selecionada; A09: registro do acesso global."
+    },
+    {
+      "id": "EE27",
+      "tipo": "EE",
+      "nome": "Sinalizar posição por LED",
+      "arquivos": [
+        "A03",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "IoTService.sinalizar",
+      "leitura": "A03: dispositivo/pino; A08: host/porta/QoS/tempo LED; A09: registro. Intenção primária: enviar controle para ligar LED."
+    },
+    {
+      "id": "EE28",
+      "tipo": "EE",
+      "nome": "Encerrar sessão",
+      "arquivos": [],
+      "entrada": [],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "SegurancaConfig /logout",
+      "leitura": "Altera o comportamento de acesso; sessão temporária não é ALI."
+    },
+    {
+      "id": "SE02",
+      "tipo": "SE",
+      "nome": "Valor potencial do estoque",
+      "arquivos": [
+        "A02",
+        "A04"
+      ],
+      "entrada": [],
+      "saida": [
+        "SKU",
+        "unidade",
+        "saldo",
+        "preço",
+        "valor por produto",
+        "total da loja"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "AnaliseService.relatorio(valor)",
+      "derivacao": "Saldo × preço atual, arredondado em centavos por produto; total = soma dos valores. Não é custo nem receita realizada."
+    },
+    {
+      "id": "SE04",
+      "tipo": "SE",
+      "nome": "Fluxo de movimentações",
+      "arquivos": [
+        "A02",
+        "A05"
+      ],
+      "entrada": [
+        "início",
+        "fim"
+      ],
+      "saida": [
+        "SKU",
+        "unidade",
+        "tipo",
+        "número de operações",
+        "variação líquida"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "AnaliseService.relatorio(fluxo)",
+      "derivacao": "COUNT(*) e SUM(delta) por produto/tipo. Período inclusivo em America/Sao_Paulo; estornos em categoria própria."
+    },
+    {
+      "id": "SE06",
+      "tipo": "SE",
+      "nome": "Pesquisar estoque e localizar produto",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "entrada": [
+        "busca",
+        "produto selecionado"
+      ],
+      "saida": [
+        "SKU",
+        "código de barras",
+        "nome",
+        "marca",
+        "categoria",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características",
+        "saldo total",
+        "posição",
+        "setor",
+        "quantidade na posição"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "ProdutoService.pesquisar/buscar; DashboardController; BuscaAssistidaController",
+      "derivacao": "Soma das posições para obter saldo. Dashboard, busca digitada/voz e lista de produtos reutilizam a mesma intenção; não contar canais novamente."
+    },
+    {
+      "id": "SE07",
+      "tipo": "SE",
+      "nome": "Mapa operacional de posições",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "entrada": [],
+      "saida": [
+        "posição",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "ocupado",
+        "nome do produto",
+        "SKU",
+        "quantidade do vínculo",
+        "alerta de excesso"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "MapaController /mapa e /ocupacao",
+      "derivacao": "Soma as quantidades dos vínculos por posição e compara com a capacidade para apresentar alerta de excesso. Mapa e lista de ocupação são canais do mesmo processo."
+    },
+    {
+      "id": "SE08",
+      "tipo": "SE",
+      "nome": "Ler peso líquido e subtotal",
+      "arquivos": [
+        "A02",
+        "A08"
+      ],
+      "entrada": [
+        "produto",
+        "dispositivo"
+      ],
+      "saida": [
+        "peso bruto",
+        "tara",
+        "peso líquido",
+        "subtotal",
+        "indicador de simulação"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "IoTService.peso",
+      "derivacao": "Peso líquido=bruto−tara; subtotal=peso líquido×preço. Telemetria transitória não é AIE."
+    },
+    {
+      "id": "SE09",
+      "tipo": "SE",
+      "nome": "Exportar histórico",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A06",
+        "A09"
+      ],
+      "entrada": [
+        "tipo",
+        "início",
+        "fim",
+        "formato"
+      ],
+      "saida": [
+        "número",
+        "data",
+        "SKU",
+        "posição",
+        "variação",
+        "responsável",
+        "motivo"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "RelatorioService.exportar; RelatorioCsv; RelatorioPdf",
+      "derivacao": "SE por atualizar A09 com a exportação; CSV/PDF são formatos do mesmo processo. Função preexistente, fora das cinco saídas escolhidas para demonstrar dados calculados."
+    },
+    {
+      "id": "CE04",
+      "tipo": "CE",
+      "nome": "Consultar fornecedores externos",
+      "arquivos": [
+        "X01"
+      ],
+      "entrada": [
+        "filtro código, nome ou documento"
+      ],
+      "saida": [
+        "código",
+        "nome",
+        "documento",
+        "e-mail",
+        "telefone"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "GET /fornecedores?q=; AnaliseService.consultar; FornecedorGateway"
+    },
+    {
+      "id": "CE05",
+      "tipo": "CE",
+      "nome": "Consultar modelos",
+      "arquivos": [
+        "A01"
+      ],
+      "entrada": [
+        "modelo"
+      ],
+      "saida": [
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "ModeloProdutoService.listar/buscar"
+    },
+    {
+      "id": "CE06",
+      "tipo": "CE",
+      "nome": "Consultar vínculos",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "entrada": [
+        "produto",
+        "posição"
+      ],
+      "saida": [
+        "SKU",
+        "código de barras",
+        "nome",
+        "tamanho",
+        "cor",
+        "setor",
+        "unidade",
+        "dispositivo",
+        "pino",
+        "quantidade"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "VinculoService.listar/buscar"
+    },
+    {
+      "id": "CE07",
+      "tipo": "CE",
+      "nome": "Consultar equipe e permissões",
+      "arquivos": [
+        "A06",
+        "A07"
+      ],
+      "entrada": [
+        "usuário"
+      ],
+      "saida": [
+        "nome de usuário",
+        "perfil",
+        "permissão"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "UsuarioController.listar"
+    },
+    {
+      "id": "CE08",
+      "tipo": "CE",
+      "nome": "Consultar lojas",
+      "arquivos": [
+        "A08"
+      ],
+      "entrada": [
+        "loja"
+      ],
+      "saida": [
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "LojaController /global; LojaService.listar/editar"
+    },
+    {
+      "id": "CE09",
+      "tipo": "CE",
+      "nome": "Consultar configuração IoT",
+      "arquivos": [
+        "A08"
+      ],
+      "entrada": [],
+      "saida": [
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "ConfiguracaoIoTService.buscar"
+    },
+    {
+      "id": "CE10",
+      "tipo": "CE",
+      "nome": "Consultar histórico operacional",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A06"
+      ],
+      "entrada": [
+        "tipo",
+        "início",
+        "fim"
+      ],
+      "saida": [
+        "data",
+        "SKU",
+        "nome",
+        "posição",
+        "variação",
+        "saldo posterior",
+        "responsável",
+        "motivo"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "HistoricoService.consultar"
+    },
+    {
+      "id": "CE11",
+      "tipo": "CE",
+      "nome": "Consultar auditoria",
+      "arquivos": [
+        "A06",
+        "A09"
+      ],
+      "entrada": [],
+      "saida": [
+        "data",
+        "responsável",
+        "ação",
+        "detalhe"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "HistoricoService.auditoria"
+    }
+  ],
+  "caracteristicas": [
+    {
+      "caracteristica": "Comunicação de dados",
+      "nota": 5,
+      "justificativa": "Aplicação on-line com HTTP e MQTT; novo cliente HTTP de fornecedores. Mais de um protocolo.",
+      "evidencia": "MqttGateway, controllers e FornecedorGateway"
+    },
+    {
+      "caracteristica": "Processamento distribuído",
+      "nota": 3,
+      "justificativa": "Envia comandos para processamento no controlador IoT. Retorno de telemetria não demonstra transferência de processamento nas duas direções nem escolha dinâmica de CPU.",
+      "evidencia": "IoTService.sinalizar"
+    },
+    {
+      "caracteristica": "Desempenho",
+      "nota": 1,
+      "justificativa": "Há limites de conexão, paginação e timeouts, mas não foi fornecido SLA crítico nem evidência de análise de desempenho rigorosa.",
+      "evidencia": "application.properties, ProdutoRepository"
+    },
+    {
+      "caracteristica": "Utilização de equipamento",
+      "nota": 2,
+      "justificativa": "Compose define limites de memória e pools; há considerações de recursos e segurança. Não exige CPU exclusiva.",
+      "evidencia": "compose.yaml"
+    },
+    {
+      "caracteristica": "Volume de transações",
+      "nota": 1,
+      "justificativa": "Premissa acadêmica: picos mensais de inventário. Volume real não medido; revisar se houver histórico operacional.",
+      "evidencia": "Premissa de estimativa"
+    },
+    {
+      "caracteristica": "Entrada on-line",
+      "nota": 5,
+      "justificativa": "Mais de 30% dos processos de entrada são interativos: cadastros, movimentos e configurações.",
+      "evidencia": "Controllers web"
+    },
+    {
+      "caracteristica": "Eficiência do usuário final",
+      "nota": 4,
+      "justificativa": "Menus, mouse, paginação, navegação, ajuda contextual e poucas telas; redução de digitação por código de barras, voz e balança. Sem medição formal de eficiência.",
+      "evidencia": "templates, speech.js, baixa rápida"
+    },
+    {
+      "caracteristica": "Atualização on-line",
+      "nota": 4,
+      "justificativa": "Maioria dos ALIs atualizada on-line, com transações, bloqueios e idempotência contra perda/duplicação. Não se assume recuperação de volumes extremos.",
+      "evidencia": "EstoqueService, repositories"
+    },
+    {
+      "caracteristica": "Processamento complexo",
+      "nota": 2,
+      "justificativa": "Dois critérios: auditoria/segurança específica e lógica de negócio de estorno, saldo e permissões. Não se considera matemática extensiva nem reprocessamento batch complexo.",
+      "evidencia": "Acesso, EstoqueService, AuditoriaRepository"
+    },
+    {
+      "caracteristica": "Reutilização de código",
+      "nota": 4,
+      "justificativa": "Biblioteca de regras empacotável, documentada e com consumidor externo. Extensões exigem código; não se atribui customização geral por parâmetros.",
+      "evidencia": "docs/reuso/README.md, scripts/empacotar-reuso.ps1"
+    },
+    {
+      "caracteristica": "Facilidade de implantação",
+      "nota": 2,
+      "justificativa": "Roteiros de execução e migrações preparados. Não há evidência de conversão automatizada de dados legados para justificar 4/5.",
+      "evidencia": "README, Flyway, Compose"
+    },
+    {
+      "caracteristica": "Facilidade operacional",
+      "nota": 2,
+      "justificativa": "Inicialização por scripts com intervenção (1); consultas e relatórios minimizam papel (1). Não se presume backup/recuperação automática.",
+      "evidencia": "scripts/demo.ps1, relatórios"
+    },
+    {
+      "caracteristica": "Múltiplos locais",
+      "nota": 2,
+      "justificativa": "Premissa: lojas com navegadores e equipamentos similares. Multi-loja implementado; não há evidência de parque heterogêneo e plano de manutenção por local.",
+      "evidencia": "Loja, acesso por tenant"
+    },
+    {
+      "caracteristica": "Facilidade de mudanças",
+      "nota": 4,
+      "justificativa": "Consulta flexível sobre vários ALIs (2) e controles em tabelas alteráveis on-line com efeito imediato, como permissões/recursos (2).",
+      "evidencia": "ProdutoRepository.pesquisar, PermissaoService, LojaService"
+    }
+  ],
+  "premissas": {
+    "integrantes": 3,
+    "horasPorPF": 10,
+    "horasPorDia": 6,
+    "valorHora": 25
+  }
+}
