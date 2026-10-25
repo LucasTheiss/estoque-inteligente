@@ -1,0 +1,2687 @@
+{
+  "dados": [
+    {
+      "id": "X02",
+      "tipo": "AIE",
+      "nome": "Ofertas externas",
+      "origem": "external/ofertas",
+      "registrosLogicos": [
+        "Oferta comercial externa"
+      ],
+      "campos": [
+        "GTIN",
+        "código do fornecedor",
+        "SKU externo",
+        "descrição",
+        "marca",
+        "unidade",
+        "preço cotado",
+        "disponibilidade",
+        "data de atualização"
+      ]
+    },
+    {
+      "id": "A01",
+      "tipo": "ALI",
+      "nome": "Modelos de produto",
+      "origem": "models",
+      "registrosLogicos": [
+        "Registro de modelos de produto"
+      ],
+      "campos": [
+        "loja",
+        "código",
+        "nome",
+        "marca",
+        "categoria"
+      ]
+    },
+    {
+      "id": "A02",
+      "tipo": "ALI",
+      "nome": "Produtos",
+      "origem": "products",
+      "registrosLogicos": [
+        "Registro de produtos"
+      ],
+      "campos": [
+        "loja",
+        "código",
+        "modelo",
+        "SKU",
+        "código de barras",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A03",
+      "tipo": "ALI",
+      "nome": "Posições",
+      "origem": "positions",
+      "registrosLogicos": [
+        "Registro de posições"
+      ],
+      "campos": [
+        "loja",
+        "identificador",
+        "código",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "dispositivo",
+        "pino",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A04",
+      "tipo": "ALI",
+      "nome": "Estoque por posição / vínculos",
+      "origem": "occupancy",
+      "registrosLogicos": [
+        "Registro de estoque por posição / vínculos"
+      ],
+      "campos": [
+        "loja",
+        "produto",
+        "posição",
+        "quantidade"
+      ]
+    },
+    {
+      "id": "A05",
+      "tipo": "ALI",
+      "nome": "Movimentações",
+      "origem": "movements",
+      "registrosLogicos": [
+        "Registro de movimentações"
+      ],
+      "campos": [
+        "loja",
+        "número",
+        "produto",
+        "posição",
+        "responsável",
+        "tipo",
+        "variação",
+        "saldo anterior",
+        "saldo posterior",
+        "motivo",
+        "data",
+        "movimento original"
+      ]
+    },
+    {
+      "id": "A06",
+      "tipo": "ALI",
+      "nome": "Usuários",
+      "origem": "users",
+      "registrosLogicos": [
+        "Registro de usuários"
+      ],
+      "campos": [
+        "loja",
+        "código",
+        "nome de usuário",
+        "senha",
+        "perfil",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A07",
+      "tipo": "ALI",
+      "nome": "Permissões por perfil",
+      "origem": "role_permissions",
+      "registrosLogicos": [
+        "Registro de permissões por perfil"
+      ],
+      "campos": [
+        "loja",
+        "perfil",
+        "permissão"
+      ]
+    },
+    {
+      "id": "A08",
+      "tipo": "ALI",
+      "nome": "Lojas e configuração",
+      "origem": "tenants",
+      "registrosLogicos": [
+        "Registro de lojas e configuração"
+      ],
+      "campos": [
+        "código",
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados",
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED",
+        "ativo"
+      ]
+    },
+    {
+      "id": "A09",
+      "tipo": "ALI",
+      "nome": "Auditoria consultável",
+      "origem": "audit",
+      "registrosLogicos": [
+        "Registro de auditoria consultável"
+      ],
+      "campos": [
+        "loja",
+        "número",
+        "responsável",
+        "ação",
+        "detalhe",
+        "data"
+      ]
+    },
+    {
+      "id": "X01",
+      "tipo": "AIE",
+      "nome": "Fornecedores externos",
+      "origem": "external/fornecedores",
+      "registrosLogicos": [
+        "Registro de fornecedores externos"
+      ],
+      "campos": [
+        "código",
+        "nome",
+        "documento",
+        "e-mail",
+        "telefone"
+      ]
+    }
+  ],
+  "funcoes": [
+    {
+      "id": "CE12",
+      "tipo": "CE",
+      "nome": "Consultar ofertas externas",
+      "arquivos": [
+        "X02"
+      ],
+      "entrada": [
+        "GTIN",
+        "código do fornecedor"
+      ],
+      "saida": [
+        "GTIN",
+        "código do fornecedor",
+        "SKU externo",
+        "descrição",
+        "marca",
+        "unidade",
+        "preço cotado",
+        "disponibilidade",
+        "data de atualização"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "GET /ofertas; OfertaService.consultar; OfertaGateway; external/ofertas/Provedor.java",
+      "leitura": "X02: nove campos da oferta. Filtros exatos opcionais combinados por GTIN e código do fornecedor. Não mantém arquivos nem deriva dados.",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "SKU externo",
+        "descrição",
+        "marca",
+        "unidade",
+        "preço cotado",
+        "disponibilidade",
+        "data de atualização"
+      ]
+    },
+    {
+      "id": "SE13",
+      "tipo": "SE",
+      "nome": "Comparar preços internos e ofertas externas",
+      "arquivos": [
+        "A02",
+        "X02"
+      ],
+      "entrada": [
+        "GTIN",
+        "código do fornecedor"
+      ],
+      "saida": [
+        "GTIN",
+        "SKU interno",
+        "código do fornecedor",
+        "SKU externo",
+        "unidade",
+        "preço interno",
+        "preço cotado",
+        "diferença monetária",
+        "diferença percentual",
+        "data de atualização"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "GET /comparacao-precos; OfertaService.comparar",
+      "leitura": "A02: loja, ativo, código de barras, SKU, unidade e preço. X02: GTIN, fornecedor, SKU externo, unidade, preço cotado e atualização; demais campos recebidos são validados pelo cliente.",
+      "derivacao": "Diferença = cotação - preço interno. Percentual = diferença / preço interno x 100, arredondado a duas casas. Preço interno zero: percentual não aplicável. Cruza GTIN e unidade dos produtos ativos da loja, sem gravar dados.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "SKU interno",
+        "SKU externo",
+        "unidade",
+        "preço interno",
+        "preço cotado",
+        "diferença monetária",
+        "diferença percentual",
+        "data de atualização"
+      ]
+    },
+    {
+      "id": "EE01",
+      "tipo": "EE",
+      "nome": "Incluir produto, inclusive grade e saldo inicial",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "nome",
+        "marca",
+        "categoria",
+        "SKU",
+        "código de barras",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características",
+        "estrutura",
+        "tamanhos da grade",
+        "posição inicial",
+        "quantidades iniciais"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ProdutoService.salvar",
+      "leitura": "A01: nome, marca e categoria do modelo. A02: modelo, SKU, código de barras, cor, tamanho, unidade, preço, características e ativo. A03: posição e unidade, na entrada inicial. A04: produto, posição e quantidade inicial. A05: produto, posição, responsável, tipo, variação, saldos anterior/posterior, motivo e data, quando há saldo inicial. A09: loja, responsável, ação, detalhe e data (gerada). Identificações dos registros são geradas pelo banco; leituras/manutenções internas não são TD adicionais da interface.",
+      "arEntrada": 6,
+      "arSaida": 6,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE02",
+      "tipo": "EE",
+      "nome": "Alterar produto",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "nome",
+        "marca",
+        "categoria",
+        "SKU",
+        "código de barras",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ProdutoService.salvar",
+      "leitura": "A01: modelo; A02: unidade anterior; A04: vínculos para validar mudança de unidade; A09: registro da alteração.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE03",
+      "tipo": "EE",
+      "nome": "Excluir produto logicamente",
+      "arquivos": [
+        "A02",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ProdutoService.excluir",
+      "leitura": "A02: ativo; A04: quantidade e vínculos removidos se vazios; A09: registro da exclusão.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE04",
+      "tipo": "EE",
+      "nome": "Incluir modelo",
+      "arquivos": [
+        "A01",
+        "A09"
+      ],
+      "entrada": [
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ModeloProdutoService.salvar",
+      "leitura": "A01: loja, nome, marca e categoria; identificação do modelo gerada no cadastro. A09: loja, responsável, ação modelo.salvar, detalhe com a identificação do modelo e data gerada. Esses dados de auditoria são mantidos internamente e não são campos extras recebidos pela interface.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE05",
+      "tipo": "EE",
+      "nome": "Alterar modelo",
+      "arquivos": [
+        "A01",
+        "A09"
+      ],
+      "entrada": [
+        "modelo",
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ModeloProdutoService.salvar",
+      "leitura": "A01: código e cadastro anterior; A09: registro de alteração.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE06",
+      "tipo": "EE",
+      "nome": "Excluir modelo",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A09"
+      ],
+      "entrada": [
+        "modelo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ModeloProdutoService.excluir",
+      "leitura": "A02: referência ao modelo bloqueia exclusão; A01: código; A09: registro da exclusão.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE07",
+      "tipo": "EE",
+      "nome": "Incluir posição",
+      "arquivos": [
+        "A03",
+        "A09"
+      ],
+      "entrada": [
+        "código",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "dispositivo",
+        "pino"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PosicaoService.salvar",
+      "leitura": "A03: loja, código, setor, linha, coluna, capacidade, unidade, dispositivo, pino e ativo; identificação gerada no cadastro. A09: loja, responsável, ação posicao.salvar, detalhe com a identificação da posição e data gerada. Auditoria é manutenção interna, sem TD extras na interface.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE08",
+      "tipo": "EE",
+      "nome": "Alterar posição",
+      "arquivos": [
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "posição",
+        "código",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "dispositivo",
+        "pino"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PosicaoService.salvar",
+      "leitura": "A03: unidade anterior; A04: vínculos existentes; A09: registro da alteração.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE09",
+      "tipo": "EE",
+      "nome": "Excluir posição logicamente",
+      "arquivos": [
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PosicaoService.excluir",
+      "leitura": "A03: ativo; A04: quantidade e vínculos vazios; A09: registro da exclusão.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE10",
+      "tipo": "EE",
+      "nome": "Incluir vínculo",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "VinculoService.salvar",
+      "leitura": "A02: identificação do produto, unidade e ativo. A03: identificação da posição, unidade e ativo. A04: loja, produto, posição e quantidade inicial zero. A09: loja, responsável, ação vinculo.criar, detalhe produto:posição e data gerada. O usuário informa somente produto/posição; quantidade não é entrada desta EE.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE11",
+      "tipo": "EE",
+      "nome": "Alterar vínculo vazio",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto original",
+        "posição original",
+        "produto destino",
+        "posição destino"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "VinculoService.editar",
+      "leitura": "A02/A03: unidades do destino; A04: saldo original e chave do destino; A09: registro.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE12",
+      "tipo": "EE",
+      "nome": "Excluir vínculo vazio",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "VinculoService.salvar",
+      "leitura": "A02/A03: identificação; A04: saldo; A09: registro.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE13",
+      "tipo": "EE",
+      "nome": "Incluir usuário",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "nome de usuário",
+        "perfil",
+        "senha"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "UsuarioService.salvar",
+      "leitura": "A08: identificação da loja e ativo. A06: loja, nome de usuário, senha (persistida como hash), perfil e ativo; identificação gerada. A09: loja, responsável, ação usuario.salvar, detalhe nome/perfil e data gerada. Hash é representação técnica da senha, não um segundo TD.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE14",
+      "tipo": "EE",
+      "nome": "Alterar usuário",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "usuário",
+        "nome de usuário",
+        "perfil",
+        "senha"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "UsuarioService.salvar",
+      "leitura": "A06: perfil, senha anterior e administradores ativos; A08: loja; A09: registro.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE15",
+      "tipo": "EE",
+      "nome": "Excluir usuário logicamente",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "usuário",
+        "nome de usuário",
+        "perfil"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "UsuarioService.salvar(action=delete)",
+      "leitura": "O formulário envia nome/perfil para validação; A06: ativo/perfil/administradores; A08: loja; A09: registro.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE16",
+      "tipo": "EE",
+      "nome": "Incluir loja e administrador",
+      "arquivos": [
+        "A08",
+        "A06",
+        "A07",
+        "A09"
+      ],
+      "entrada": [
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados",
+        "usuário administrador",
+        "senha administrador"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.salvar",
+      "leitura": "Mantém A08, cria A06, inicializa A07, registra A09.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE17",
+      "tipo": "EE",
+      "nome": "Alterar loja e recursos",
+      "arquivos": [
+        "A08",
+        "A02",
+        "A09"
+      ],
+      "entrada": [
+        "loja",
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.salvar",
+      "leitura": "A08: configuração; A02: unidade/ativo para impedir desabilitar fracionados em uso; A09: registro.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE18",
+      "tipo": "EE",
+      "nome": "Excluir loja logicamente",
+      "arquivos": [
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "loja"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.excluir",
+      "leitura": "A08: nome/ativo; A09: registro.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE19",
+      "tipo": "EE",
+      "nome": "Alterar matriz de permissões",
+      "arquivos": [
+        "A07",
+        "A09"
+      ],
+      "entrada": [
+        "perfil",
+        "permissão",
+        "concedida"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "PermissaoService.atualizar",
+      "leitura": "A07: perfil/permissão; cada par repetido é ocorrência, não novo tipo de dado; A09: registro.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE20",
+      "tipo": "EE",
+      "nome": "Alterar configuração IoT",
+      "arquivos": [
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "ConfiguracaoIoTService.salvar",
+      "leitura": "A08: configuração da loja; A09: registro.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE21",
+      "tipo": "EE",
+      "nome": "Registrar entrada",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição",
+        "tipo",
+        "quantidade",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.movimentar",
+      "leitura": "A02: identificação, unidade e ativo do produto. A03: identificação, unidade e ativo da posição. A04: loja, produto, posição e quantidade anterior/posterior. A05: produto, posição, responsável, tipo, variação, saldo anterior, saldo posterior, motivo e data; número gerado e movimento original vazio na entrada normal. A09: loja, responsável, ação, detalhe e data. Chave técnica de idempotência excluída dos TD.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE22",
+      "tipo": "EE",
+      "nome": "Registrar saída",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição",
+        "tipo",
+        "quantidade",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.movimentar",
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE23",
+      "tipo": "EE",
+      "nome": "Ajustar saldo",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "produto",
+        "posição",
+        "tipo",
+        "quantidade",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.movimentar",
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE24",
+      "tipo": "EE",
+      "nome": "Estornar movimentação",
+      "arquivos": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "entrada": [
+        "movimento original",
+        "motivo"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "EstoqueService.estornar",
+      "leitura": "A05: tipo/produto/posição/variação/original; A04: saldo; A02/A03: unidades; A09: registro.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE25",
+      "tipo": "EE",
+      "nome": "Autenticar usuário",
+      "arquivos": [
+        "A06",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "loja",
+        "nome de usuário",
+        "senha"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "AutenticacaoService.autenticar",
+      "leitura": "A06: credencial/perfil/ativo; A08: identificador público/ativo via consulta de autenticação; A09: login. Tentativas temporárias excluídas.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE26",
+      "tipo": "EE",
+      "nome": "Selecionar loja de trabalho",
+      "arquivos": [
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "loja"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "LojaService.selecionar",
+      "leitura": "A08: loja selecionada; A09: registro do acesso global.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE27",
+      "tipo": "EE",
+      "nome": "Sinalizar posição por LED",
+      "arquivos": [
+        "A03",
+        "A08",
+        "A09"
+      ],
+      "entrada": [
+        "posição"
+      ],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "IoTService.sinalizar",
+      "leitura": "A03: dispositivo/pino; A08: host/porta/QoS/tempo LED; A09: registro. Intenção primária: enviar controle para ligar LED.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "EE28",
+      "tipo": "EE",
+      "nome": "Encerrar sessão",
+      "arquivos": [],
+      "entrada": [],
+      "saida": [
+        "mensagem de resultado"
+      ],
+      "controle": [
+        "acionamento"
+      ],
+      "evidencia": "SegurancaConfig /logout",
+      "leitura": "Altera o comportamento de acesso; sessão temporária não é ALI.",
+      "arEntrada": 0,
+      "arSaida": 0,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
+    },
+    {
+      "id": "SE02",
+      "tipo": "SE",
+      "nome": "Valor potencial do estoque",
+      "arquivos": [
+        "A02",
+        "A04"
+      ],
+      "entrada": [],
+      "saida": [
+        "SKU",
+        "unidade",
+        "saldo",
+        "preço",
+        "valor por produto",
+        "total da loja"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "AnaliseService.relatorio(valor)",
+      "derivacao": "Saldo × preço atual, arredondado em centavos por produto; total = soma dos valores. Não é custo nem receita realizada.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "SKU",
+        "unidade",
+        "saldo",
+        "preço",
+        "valor por produto",
+        "total da loja"
+      ]
+    },
+    {
+      "id": "SE04",
+      "tipo": "SE",
+      "nome": "Fluxo de movimentações",
+      "arquivos": [
+        "A02",
+        "A05"
+      ],
+      "entrada": [
+        "início",
+        "fim"
+      ],
+      "saida": [
+        "SKU",
+        "unidade",
+        "tipo",
+        "número de operações",
+        "variação líquida"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "AnaliseService.relatorio(fluxo)",
+      "derivacao": "COUNT(*) e SUM(delta) por produto/tipo. Período inclusivo em America/Sao_Paulo; estornos em categoria própria.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "SKU",
+        "unidade",
+        "tipo",
+        "número de operações",
+        "variação líquida"
+      ]
+    },
+    {
+      "id": "SE06",
+      "tipo": "SE",
+      "nome": "Pesquisar estoque e localizar produto",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "entrada": [
+        "busca",
+        "produto selecionado"
+      ],
+      "saida": [
+        "SKU",
+        "nome",
+        "marca",
+        "categoria",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "saldo total",
+        "posição",
+        "quantidade na posição",
+        "quantidade de produtos exibidos"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "ProdutoService.pesquisar/buscar; DashboardController; BuscaAssistidaController",
+      "derivacao": "Soma das posições para obter saldo. Dashboard, busca digitada/voz e lista de produtos reutilizam a mesma intenção; não contar canais novamente.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "SKU",
+        "nome",
+        "marca",
+        "categoria",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "saldo total",
+        "posição",
+        "quantidade na posição",
+        "quantidade de produtos exibidos"
+      ]
+    },
+    {
+      "id": "SE07",
+      "tipo": "SE",
+      "nome": "Mapa operacional de posições",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "entrada": [],
+      "saida": [
+        "posição",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "ocupado",
+        "nome do produto",
+        "SKU",
+        "quantidade do vínculo",
+        "alerta de excesso"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "MapaController /mapa e /ocupacao",
+      "derivacao": "Soma as quantidades dos vínculos por posição e compara com a capacidade para apresentar alerta de excesso. Mapa e lista de ocupação são canais do mesmo processo.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "posição",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "ocupado",
+        "nome do produto",
+        "SKU",
+        "quantidade do vínculo",
+        "alerta de excesso"
+      ]
+    },
+    {
+      "id": "SE08",
+      "tipo": "SE",
+      "nome": "Ler peso líquido e subtotal",
+      "arquivos": [
+        "A02",
+        "A08"
+      ],
+      "entrada": [
+        "produto",
+        "dispositivo"
+      ],
+      "saida": [
+        "peso bruto",
+        "tara",
+        "peso líquido",
+        "subtotal",
+        "indicador de simulação"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "IoTService.peso",
+      "derivacao": "Peso líquido=bruto−tara; subtotal=peso líquido×preço. Telemetria transitória não é AIE.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "peso bruto",
+        "tara",
+        "peso líquido",
+        "subtotal",
+        "indicador de simulação"
+      ]
+    },
+    {
+      "id": "SE09",
+      "tipo": "SE",
+      "nome": "Exportar histórico",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A06",
+        "A09"
+      ],
+      "entrada": [
+        "tipo",
+        "início",
+        "fim",
+        "formato"
+      ],
+      "saida": [
+        "número",
+        "data",
+        "SKU",
+        "tipo",
+        "posição",
+        "variação",
+        "responsável",
+        "motivo"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "RelatorioService.exportar; RelatorioCsv; RelatorioPdf",
+      "derivacao": "SE por atualizar A09 com a exportação; CSV/PDF são formatos do mesmo processo. Função preexistente, fora das cinco saídas escolhidas para demonstrar dados calculados.",
+      "arEntrada": 6,
+      "arSaida": 6,
+      "saidaExclusiva": [
+        "número",
+        "data",
+        "SKU",
+        "posição",
+        "variação",
+        "responsável",
+        "motivo"
+      ]
+    },
+    {
+      "id": "CE04",
+      "tipo": "CE",
+      "nome": "Consultar fornecedores externos",
+      "arquivos": [
+        "X01"
+      ],
+      "entrada": [
+        "filtro código, nome ou documento"
+      ],
+      "saida": [
+        "código",
+        "nome",
+        "documento",
+        "e-mail",
+        "telefone"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "GET /fornecedores?q=; AnaliseService.consultar; FornecedorGateway",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "código",
+        "nome",
+        "documento",
+        "e-mail",
+        "telefone"
+      ]
+    },
+    {
+      "id": "CE05",
+      "tipo": "CE",
+      "nome": "Consultar modelos",
+      "arquivos": [
+        "A01"
+      ],
+      "entrada": [
+        "modelo"
+      ],
+      "saida": [
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "ModeloProdutoService.listar/buscar",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "nome",
+        "marca",
+        "categoria"
+      ]
+    },
+    {
+      "id": "CE06",
+      "tipo": "CE",
+      "nome": "Consultar vínculos",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "entrada": [
+        "produto",
+        "posição"
+      ],
+      "saida": [
+        "SKU",
+        "nome",
+        "código da posição",
+        "setor",
+        "unidade",
+        "quantidade"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "VinculoService.listar/buscar",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "SKU",
+        "nome",
+        "código da posição",
+        "setor",
+        "unidade",
+        "quantidade"
+      ]
+    },
+    {
+      "id": "CE07",
+      "tipo": "CE",
+      "nome": "Consultar equipe e permissões",
+      "arquivos": [
+        "A06",
+        "A07"
+      ],
+      "entrada": [
+        "usuário"
+      ],
+      "saida": [
+        "nome de usuário",
+        "perfil",
+        "permissão"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "UsuarioController.listar",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "nome de usuário",
+        "perfil",
+        "permissão"
+      ]
+    },
+    {
+      "id": "CE08",
+      "tipo": "CE",
+      "nome": "Consultar lojas",
+      "arquivos": [
+        "A08"
+      ],
+      "entrada": [
+        "loja"
+      ],
+      "saida": [
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "LojaController /global; LojaService.listar/editar",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados"
+      ]
+    },
+    {
+      "id": "CE09",
+      "tipo": "CE",
+      "nome": "Consultar configuração IoT",
+      "arquivos": [
+        "A08"
+      ],
+      "entrada": [],
+      "saida": [
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "ConfiguracaoIoTService.buscar",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED"
+      ]
+    },
+    {
+      "id": "SE10",
+      "tipo": "SE",
+      "nome": "Consultar histórico operacional",
+      "arquivos": [
+        "A01",
+        "A02",
+        "A03",
+        "A05",
+        "A06"
+      ],
+      "entrada": [
+        "tipo",
+        "início",
+        "fim"
+      ],
+      "saida": [
+        "data",
+        "SKU",
+        "posição",
+        "tipo",
+        "variação",
+        "saldo posterior",
+        "responsável",
+        "motivo",
+        "indicador de estorno"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "HistoricoService.consultar",
+      "derivacao": "EXISTS de movimento reversor gera indicador Estornado. Exemplo didático: movimento 10 sem reversor = falso; movimento 11 com reverse_of=10 torna o indicador do 10 verdadeiro. Não altera arquivos.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "data",
+        "SKU",
+        "posição",
+        "variação",
+        "saldo posterior",
+        "responsável",
+        "motivo",
+        "indicador de estorno"
+      ]
+    },
+    {
+      "id": "CE11",
+      "tipo": "CE",
+      "nome": "Consultar auditoria",
+      "arquivos": [
+        "A06",
+        "A09"
+      ],
+      "entrada": [],
+      "saida": [
+        "data",
+        "responsável",
+        "ação",
+        "detalhe"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
+      "evidencia": "HistoricoService.auditoria",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "saidaExclusiva": [
+        "data",
+        "responsável",
+        "ação",
+        "detalhe"
+      ]
+    }
+  ],
+  "caracteristicas": [
+    {
+      "caracteristica": "Comunicação de dados",
+      "nota": 5,
+      "justificativa": "Aplicação on-line com HTTP e MQTT; novo cliente HTTP de fornecedores. Mais de um protocolo.",
+      "evidencia": "MqttGateway, controllers e FornecedorGateway"
+    },
+    {
+      "caracteristica": "Processamento distribuído",
+      "nota": 3,
+      "justificativa": "Envia comandos para processamento no controlador IoT. Retorno de telemetria não demonstra transferência de processamento nas duas direções nem escolha dinâmica de CPU.",
+      "evidencia": "IoTService.sinalizar"
+    },
+    {
+      "caracteristica": "Desempenho",
+      "nota": 0,
+      "justificativa": "Timeout e paginação não comprovam requisitos de desempenho solicitados e revistos pelo usuário. Sem essa evidência, aplica-se nota 0 da tabela.",
+      "evidencia": "application.properties, ProdutoRepository"
+    },
+    {
+      "caracteristica": "Utilização de equipamento",
+      "nota": 2,
+      "justificativa": "Compose define limites de memória e pools; há considerações de recursos e segurança. Não exige CPU exclusiva.",
+      "evidencia": "compose.yaml"
+    },
+    {
+      "caracteristica": "Volume de transações",
+      "nota": 1,
+      "justificativa": "Premissa acadêmica: picos mensais de inventário. Volume real não medido; revisar se houver histórico operacional.",
+      "evidencia": "Premissa de estimativa"
+    },
+    {
+      "caracteristica": "Entrada on-line",
+      "nota": 5,
+      "justificativa": "Mais de 30% dos processos de entrada são interativos: cadastros, movimentos e configurações.",
+      "evidencia": "Controllers web"
+    },
+    {
+      "caracteristica": "Eficiência do usuário final",
+      "nota": 4,
+      "justificativa": "Menus, mouse, paginação, navegação, ajuda contextual e poucas telas; redução de digitação por código de barras, voz e balança. Sem medição formal de eficiência.",
+      "evidencia": "templates, speech.js, baixa rápida"
+    },
+    {
+      "caracteristica": "Atualização on-line",
+      "nota": 4,
+      "justificativa": "Maioria dos ALIs atualizada on-line, com transações, bloqueios e idempotência contra perda/duplicação. Não se assume recuperação de volumes extremos.",
+      "evidencia": "EstoqueService, repositories"
+    },
+    {
+      "caracteristica": "Processamento complexo",
+      "nota": 2,
+      "justificativa": "Dois critérios: auditoria/segurança específica e lógica de negócio de estorno, saldo e permissões. Não se considera matemática extensiva nem reprocessamento batch complexo.",
+      "evidencia": "Acesso, EstoqueService, AuditoriaRepository"
+    },
+    {
+      "caracteristica": "Reutilização de código",
+      "nota": 4,
+      "justificativa": "Biblioteca de regras empacotável, documentada e com consumidor externo. Extensões exigem código; não se atribui customização geral por parâmetros.",
+      "evidencia": "docs/reuso/README.md, scripts/empacotar-reuso.ps1"
+    },
+    {
+      "caracteristica": "Facilidade de implantação",
+      "nota": 1,
+      "justificativa": "Há procedimento de implantação; migrações Flyway criam/evoluem esquema, mas não comprovam requisitos e roteiros testados de conversão de dados legados.",
+      "evidencia": "README, Flyway, Compose"
+    },
+    {
+      "caracteristica": "Facilidade operacional",
+      "nota": 1,
+      "justificativa": "Relatórios minimizam papel. Scripts de inicialização, sem procedimento demonstrado de backup e recuperação, não comprovam o critério composto adicional.",
+      "evidencia": "scripts/demo.ps1, relatórios"
+    },
+    {
+      "caracteristica": "Múltiplos locais",
+      "nota": 2,
+      "justificativa": "Premissa: lojas com navegadores e equipamentos similares. Multi-loja implementado; não há evidência de parque heterogêneo e plano de manutenção por local.",
+      "evidencia": "Loja, acesso por tenant"
+    },
+    {
+      "caracteristica": "Facilidade de mudanças",
+      "nota": 4,
+      "justificativa": "Consulta flexível sobre vários ALIs (2) e controles em tabelas alteráveis on-line com efeito imediato, como permissões/recursos (2).",
+      "evidencia": "ProdutoRepository.pesquisar, PermissaoService, LojaService"
+    }
+  ],
+  "premissas": {
+    "integrantes": 3,
+    "horasPorPF": 10,
+    "horasPorDia": 6,
+    "valorHora": 25
+  },
+  "revisao": [
+    {
+      "id": "CE10",
+      "campo": "tipo",
+      "antes": "CE",
+      "depois": "SE",
+      "motivo": "MovimentacaoRepository.historico calcula EXISTS(reverse_of=id), exibido como Estornado em historico.html. Informação derivada, ausente como atributo persistido do movimento original."
+    },
+    {
+      "id": "CE10",
+      "campo": "saida",
+      "antes": [
+        "data",
+        "SKU",
+        "nome",
+        "posição",
+        "variação",
+        "saldo posterior",
+        "responsável",
+        "motivo"
+      ],
+      "depois": [
+        "data",
+        "SKU",
+        "posição",
+        "tipo",
+        "variação",
+        "saldo posterior",
+        "responsável",
+        "motivo",
+        "indicador de estorno"
+      ],
+      "motivo": "Nome do modelo é lido internamente, mas não exibido. Tipo e indicador de estorno são exibidos."
+    },
+    {
+      "id": "CE10",
+      "campo": "derivacao",
+      "antes": null,
+      "depois": "EXISTS de movimento reversor gera indicador Estornado. Exemplo didático: movimento 10 sem reversor = falso; movimento 11 com reverse_of=10 torna o indicador do 10 verdadeiro. Não altera arquivos.",
+      "motivo": "Classificação pela saída observável."
+    },
+    {
+      "id": "CE10",
+      "campo": "id",
+      "antes": "CE10",
+      "depois": "SE10",
+      "motivo": "ID alterado para refletir SE; a função permanece única, não se soma uma nova função."
+    },
+    {
+      "id": "CE06",
+      "campo": "saida",
+      "antes": [
+        "SKU",
+        "código de barras",
+        "nome",
+        "tamanho",
+        "cor",
+        "setor",
+        "unidade",
+        "dispositivo",
+        "pino",
+        "quantidade"
+      ],
+      "depois": [
+        "SKU",
+        "nome",
+        "código da posição",
+        "setor",
+        "unidade",
+        "quantidade"
+      ],
+      "motivo": "vinculos.html não exibe código de barras, tamanho, cor, dispositivo nem pino. Código da posição é rótulo distinto do identificador informado."
+    },
+    {
+      "id": "SE06",
+      "campo": "saida",
+      "antes": [
+        "SKU",
+        "código de barras",
+        "nome",
+        "marca",
+        "categoria",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "características",
+        "saldo total",
+        "posição",
+        "setor",
+        "quantidade na posição"
+      ],
+      "depois": [
+        "SKU",
+        "nome",
+        "marca",
+        "categoria",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "saldo total",
+        "posição",
+        "quantidade na posição",
+        "quantidade de produtos exibidos"
+      ],
+      "motivo": "dashboard.html não exibe código de barras, atributos nem setor. Contagem de produtos exibidos cruza a fronteira e é derivada."
+    },
+    {
+      "id": "SE09",
+      "campo": "saida",
+      "antes": [
+        "número",
+        "data",
+        "SKU",
+        "posição",
+        "variação",
+        "responsável",
+        "motivo"
+      ],
+      "depois": [
+        "número",
+        "data",
+        "SKU",
+        "tipo",
+        "posição",
+        "variação",
+        "responsável",
+        "motivo"
+      ],
+      "motivo": "Tipo consta no CSV e PDF; repete a entrada e conta uma única vez."
+    },
+    {
+      "id": "NI03",
+      "campo": "nota",
+      "antes": 1,
+      "depois": 0,
+      "motivo": "Timeout e paginação não comprovam requisitos de desempenho solicitados e revistos pelo usuário. Sem essa evidência, aplica-se nota 0 da tabela."
+    },
+    {
+      "id": "NI11",
+      "campo": "nota",
+      "antes": 2,
+      "depois": 1,
+      "motivo": "Há procedimento de implantação; migrações Flyway criam/evoluem esquema, mas não comprovam requisitos e roteiros testados de conversão de dados legados."
+    },
+    {
+      "id": "NI12",
+      "campo": "nota",
+      "antes": 2,
+      "depois": 1,
+      "motivo": "Relatórios minimizam papel. Scripts de inicialização, sem procedimento demonstrado de backup e recuperação, não comprovam o critério composto adicional."
+    }
+  ],
+  "resultadosIndependentes": {
+    "funcoes": [
+      {
+        "id": "X02",
+        "tipo": "AIE",
+        "td": 9,
+        "ar": 1,
+        "pf": 5,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A01",
+        "tipo": "ALI",
+        "td": 5,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A02",
+        "tipo": "ALI",
+        "td": 11,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A03",
+        "tipo": "ALI",
+        "td": 11,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A04",
+        "tipo": "ALI",
+        "td": 4,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A05",
+        "tipo": "ALI",
+        "td": 12,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A06",
+        "tipo": "ALI",
+        "td": 6,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A07",
+        "tipo": "ALI",
+        "td": 3,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A08",
+        "tipo": "ALI",
+        "td": 12,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "A09",
+        "tipo": "ALI",
+        "td": 6,
+        "ar": 1,
+        "pf": 7,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "X01",
+        "tipo": "AIE",
+        "td": 5,
+        "ar": 1,
+        "pf": 5,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "CE12",
+        "tipo": "CE",
+        "td": 11,
+        "ar": 1,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "SE13",
+        "tipo": "SE",
+        "td": 12,
+        "ar": 2,
+        "pf": 5,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE01",
+        "tipo": "EE",
+        "td": 16,
+        "ar": 6,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE02",
+        "tipo": "EE",
+        "td": 13,
+        "ar": 4,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE03",
+        "tipo": "EE",
+        "td": 3,
+        "ar": 3,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE04",
+        "tipo": "EE",
+        "td": 5,
+        "ar": 2,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE05",
+        "tipo": "EE",
+        "td": 6,
+        "ar": 2,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE06",
+        "tipo": "EE",
+        "td": 3,
+        "ar": 3,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE07",
+        "tipo": "EE",
+        "td": 10,
+        "ar": 2,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE08",
+        "tipo": "EE",
+        "td": 11,
+        "ar": 3,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE09",
+        "tipo": "EE",
+        "td": 3,
+        "ar": 3,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE10",
+        "tipo": "EE",
+        "td": 4,
+        "ar": 4,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE11",
+        "tipo": "EE",
+        "td": 6,
+        "ar": 4,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE12",
+        "tipo": "EE",
+        "td": 4,
+        "ar": 4,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE13",
+        "tipo": "EE",
+        "td": 5,
+        "ar": 3,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE14",
+        "tipo": "EE",
+        "td": 6,
+        "ar": 3,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE15",
+        "tipo": "EE",
+        "td": 5,
+        "ar": 3,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE16",
+        "tipo": "EE",
+        "td": 10,
+        "ar": 4,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE17",
+        "tipo": "EE",
+        "td": 9,
+        "ar": 3,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE18",
+        "tipo": "EE",
+        "td": 3,
+        "ar": 2,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "EE19",
+        "tipo": "EE",
+        "td": 5,
+        "ar": 2,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE20",
+        "tipo": "EE",
+        "td": 6,
+        "ar": 2,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE21",
+        "tipo": "EE",
+        "td": 7,
+        "ar": 5,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE22",
+        "tipo": "EE",
+        "td": 7,
+        "ar": 5,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE23",
+        "tipo": "EE",
+        "td": 7,
+        "ar": 5,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE24",
+        "tipo": "EE",
+        "td": 4,
+        "ar": 5,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE25",
+        "tipo": "EE",
+        "td": 5,
+        "ar": 3,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "EE26",
+        "tipo": "EE",
+        "td": 3,
+        "ar": 2,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "EE27",
+        "tipo": "EE",
+        "td": 3,
+        "ar": 3,
+        "pf": 4,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "EE28",
+        "tipo": "EE",
+        "td": 2,
+        "ar": 0,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "SE02",
+        "tipo": "SE",
+        "td": 8,
+        "ar": 2,
+        "pf": 5,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "SE04",
+        "tipo": "SE",
+        "td": 9,
+        "ar": 2,
+        "pf": 5,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "SE06",
+        "tipo": "SE",
+        "td": 16,
+        "ar": 4,
+        "pf": 7,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "SE07",
+        "tipo": "SE",
+        "td": 13,
+        "ar": 4,
+        "pf": 7,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "SE08",
+        "tipo": "SE",
+        "td": 9,
+        "ar": 2,
+        "pf": 5,
+        "complexidade": "Moderada"
+      },
+      {
+        "id": "SE09",
+        "tipo": "SE",
+        "td": 13,
+        "ar": 6,
+        "pf": 7,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "CE04",
+        "tipo": "CE",
+        "td": 8,
+        "ar": 1,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "CE05",
+        "tipo": "CE",
+        "td": 6,
+        "ar": 1,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "CE06",
+        "tipo": "CE",
+        "td": 10,
+        "ar": 4,
+        "pf": 6,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "CE07",
+        "tipo": "CE",
+        "td": 6,
+        "ar": 2,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "CE08",
+        "tipo": "CE",
+        "td": 9,
+        "ar": 1,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "CE09",
+        "tipo": "CE",
+        "td": 6,
+        "ar": 1,
+        "pf": 3,
+        "complexidade": "Simples"
+      },
+      {
+        "id": "SE10",
+        "tipo": "SE",
+        "td": 13,
+        "ar": 5,
+        "pf": 7,
+        "complexidade": "Complexa"
+      },
+      {
+        "id": "CE11",
+        "tipo": "CE",
+        "td": 6,
+        "ar": 2,
+        "pf": 3,
+        "complexidade": "Simples"
+      }
+    ],
+    "PFB": 283,
+    "NI": 38,
+    "FA": 1.03,
+    "PFA": 291.49
+  },
+  "capturasHistoricas": [
+    {
+      "arquivo": "A01.jpg",
+      "funcao": "A01",
+      "url": "http://localhost:8080/modelos",
+      "capturado_em": "2026-10-25T18:35:37.542771+00:00",
+      "descricao": "Cadastro e lista real de modelos de produto.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+    },
+    {
+      "arquivo": "A02.jpg",
+      "funcao": "A02",
+      "url": "http://localhost:8080/produtos",
+      "capturado_em": "2026-10-25T18:35:38.190285+00:00",
+      "descricao": "Cadastro e lista real de produtos; visão inicial.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "7808955ef3a9d074331a90c90cc6f5ac8ca7833bce451d2b7ec16cfaaf1288bd"
+    },
+    {
+      "arquivo": "A03.jpg",
+      "funcao": "A03",
+      "url": "http://localhost:8080/posicoes",
+      "capturado_em": "2026-10-25T18:35:38.860396+00:00",
+      "descricao": "Cadastro e lista real de posições.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+    },
+    {
+      "arquivo": "A04.jpg",
+      "funcao": "A04",
+      "url": "http://localhost:8080/vinculos",
+      "capturado_em": "2026-10-25T18:35:39.577656+00:00",
+      "descricao": "Vínculos existentes e formulário para criar vínculo vazio.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "8bb1caddf540d56d4dadcc30b2c31d5bba62aff96cbcd4d1dd62b6787913a2fc"
+    },
+    {
+      "arquivo": "A05.jpg",
+      "funcao": "A05",
+      "url": "http://localhost:8080/historico",
+      "capturado_em": "2026-10-25T18:35:40.288185+00:00",
+      "descricao": "Histórico real de movimentações já existentes.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "d37abd3bbbe8d3871eac81340805285d0f68676b1fdc17991a150b7670cc14ec"
+    },
+    {
+      "arquivo": "A06.jpg",
+      "funcao": "A06",
+      "url": "http://localhost:8080/usuarios",
+      "capturado_em": "2026-10-25T18:35:40.986953+00:00",
+      "descricao": "Cadastro real de usuários e perfis.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+    },
+    {
+      "arquivo": "X01.jpg",
+      "funcao": "X01",
+      "url": "http://localhost:8080/fornecedores",
+      "capturado_em": "2026-10-25T18:35:41.648456+00:00",
+      "descricao": "Consulta real ao provedor externo de fornecedores.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "123a22a409e77f0b726b962c295a3d60f5eb2c49a8e2b4af5cc6c7867ba13a55"
+    },
+    {
+      "arquivo": "X02.jpg",
+      "funcao": "X02",
+      "url": "http://localhost:8080/ofertas",
+      "capturado_em": "2026-10-25T18:35:42.283871+00:00",
+      "descricao": "Consulta real ao provedor externo de ofertas.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "8c3608a5513522f72a9e26360d07ce9285a46fda711a0247e149133c27577857"
+    },
+    {
+      "arquivo": "EE04-entrada.jpg",
+      "funcao": "EE04",
+      "url": "http://localhost:8080/modelos",
+      "capturado_em": "2026-10-25T18:35:42.915114+00:00",
+      "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+    },
+    {
+      "arquivo": "EE04-detalhe.jpg",
+      "funcao": "EE04",
+      "url": "http://localhost:8080/modelos",
+      "capturado_em": "2026-10-25T18:35:43.064114+00:00",
+      "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+    },
+    {
+      "arquivo": "EE01-entrada.jpg",
+      "funcao": "EE01",
+      "url": "http://localhost:8080/produtos",
+      "capturado_em": "2026-10-25T18:35:43.720452+00:00",
+      "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "7808955ef3a9d074331a90c90cc6f5ac8ca7833bce451d2b7ec16cfaaf1288bd"
+    },
+    {
+      "arquivo": "EE01-detalhe.jpg",
+      "funcao": "EE01",
+      "url": "http://localhost:8080/produtos",
+      "capturado_em": "2026-10-25T18:35:43.881742+00:00",
+      "descricao": "Formulário real com a grade de tamanhos e saldo inicial expandidos; nenhum cadastro enviado.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "8f0faa891254b6ec07062adf1c28e5abd524fbc49ff6f48b11fa4a5903a4823b"
+    },
+    {
+      "arquivo": "EE07-entrada.jpg",
+      "funcao": "EE07",
+      "url": "http://localhost:8080/posicoes",
+      "capturado_em": "2026-10-25T18:35:44.514000+00:00",
+      "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+    },
+    {
+      "arquivo": "EE07-detalhe.jpg",
+      "funcao": "EE07",
+      "url": "http://localhost:8080/posicoes",
+      "capturado_em": "2026-10-25T18:35:44.666445+00:00",
+      "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+    },
+    {
+      "arquivo": "EE10-entrada.jpg",
+      "funcao": "EE10",
+      "url": "http://localhost:8080/vinculos",
+      "capturado_em": "2026-10-25T18:35:45.302565+00:00",
+      "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "8bb1caddf540d56d4dadcc30b2c31d5bba62aff96cbcd4d1dd62b6787913a2fc"
+    },
+    {
+      "arquivo": "EE10-detalhe.jpg",
+      "funcao": "EE10",
+      "url": "http://localhost:8080/vinculos",
+      "capturado_em": "2026-10-25T18:35:45.488398+00:00",
+      "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "873513300ef85d0bb14042101109a8a993a29aabd0abc1223fadfc5f7b4dd3f1"
+    },
+    {
+      "arquivo": "EE13-entrada.jpg",
+      "funcao": "EE13",
+      "url": "http://localhost:8080/usuarios",
+      "capturado_em": "2026-10-25T18:35:46.156006+00:00",
+      "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+    },
+    {
+      "arquivo": "EE13-detalhe.jpg",
+      "funcao": "EE13",
+      "url": "http://localhost:8080/usuarios",
+      "capturado_em": "2026-10-25T18:35:46.328383+00:00",
+      "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+    },
+    {
+      "arquivo": "EE21-entrada.jpg",
+      "funcao": "EE21",
+      "url": "http://localhost:8080/movimentar",
+      "capturado_em": "2026-10-25T18:35:47.018574+00:00",
+      "descricao": "Formulário real com a operação Entrada selecionada; nenhuma movimentação enviada.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "082f960020c8d07d2dc7133e11b1b94c0370e327ccaf9815d560ab9eef86b113"
+    },
+    {
+      "arquivo": "EE21-detalhe.jpg",
+      "funcao": "EE21",
+      "url": "http://localhost:8080/historico",
+      "capturado_em": "2026-10-25T18:35:47.661363+00:00",
+      "descricao": "Histórico de movimentos existentes; não é resultado de uma nova entrada efetuada para a captura.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "d37abd3bbbe8d3871eac81340805285d0f68676b1fdc17991a150b7670cc14ec"
+    },
+    {
+      "arquivo": "SE06.jpg",
+      "funcao": "SE06",
+      "url": "http://localhost:8080/?q=&page=0&produto=3",
+      "capturado_em": "2026-10-25T18:35:48.899627+00:00",
+      "descricao": "Pesquisa real com produto selecionado, saldo calculado e posições.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "88da6a1247ededd6ed2d25efcb57c61ceda2f0b823fcc8bb59b96df1877a186b"
+    },
+    {
+      "arquivo": "SE07.jpg",
+      "funcao": "SE07",
+      "url": "http://localhost:8080/mapa",
+      "capturado_em": "2026-10-25T18:35:49.598919+00:00",
+      "descricao": "Mapa real de posições com ocupação calculada.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "6074a2cbf49c1e60a9a7f556b283aa3082901a480fb635dccabc05e6575888d8"
+    },
+    {
+      "arquivo": "SE02.jpg",
+      "funcao": "SE02",
+      "url": "http://localhost:8080/relatorios?tipo=valor",
+      "capturado_em": "2026-10-25T18:35:50.249318+00:00",
+      "descricao": "Relatório real de valor potencial do estoque.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "b1e233d54777e6e60898457c2bf0c7c77f87254190b4b6f6b69e26a265f463f8"
+    },
+    {
+      "arquivo": "SE04.jpg",
+      "funcao": "SE04",
+      "url": "http://localhost:8080/relatorios?tipo=fluxo&inicio=2020-01-01&fim=2030-12-31",
+      "capturado_em": "2026-10-25T18:35:50.881156+00:00",
+      "descricao": "Relatório real de fluxo no período informado, com registros existentes.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "c8aa1b4b3de79b09899e55c030dee88f6260418d7c8d54ce90f834992b08dab3"
+    },
+    {
+      "arquivo": "SE13.jpg",
+      "funcao": "SE13",
+      "url": "http://localhost:8080/comparacao-precos",
+      "capturado_em": "2026-10-25T18:35:51.540017+00:00",
+      "descricao": "Comparação real entre preço interno e cotação externa, com diferenças calculadas.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "a4344f8b0febafa7079040ddca95ec034559baa1a3ed292596d161d0d611aa41"
+    },
+    {
+      "arquivo": "CE04-entrada.jpg",
+      "funcao": "CE04",
+      "url": "http://localhost:8080/fornecedores",
+      "capturado_em": "2026-10-25T18:35:52.214033+00:00",
+      "descricao": "Filtro F001 preenchido na tela real antes de consultar; a tabela abaixo ainda é a consulta anterior.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "866080fb2452c90028c81b76caf681821d492750bbdcd8719f7d0c8c650dc9ae"
+    },
+    {
+      "arquivo": "CE04-saida.jpg",
+      "funcao": "CE04",
+      "url": "http://localhost:8080/fornecedores?q=F001",
+      "capturado_em": "2026-10-25T18:35:52.895336+00:00",
+      "descricao": "Resultado real após submeter a consulta por F001.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "c26526fe861e2d9b989117506a33b9e01d74614c779aef1f0d35177439c92025"
+    },
+    {
+      "arquivo": "CE12-entrada.jpg",
+      "funcao": "CE12",
+      "url": "http://localhost:8080/ofertas",
+      "capturado_em": "2026-10-25T18:35:53.562740+00:00",
+      "descricao": "Filtros preenchidos na tela real antes de consultar; a tabela abaixo ainda é a consulta anterior.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "271a66e6402fcf703e9faabe81e1a06be295793c64839774c93e3dfb202ab47f"
+    },
+    {
+      "arquivo": "CE12-saida.jpg",
+      "funcao": "CE12",
+      "url": "http://localhost:8080/ofertas?gtin=789000000001&fornecedor=F001",
+      "capturado_em": "2026-10-25T18:35:54.260939+00:00",
+      "descricao": "Resultado real após consultar GTIN 789000000001 e fornecedor F001.",
+      "dimensoes": [
+        1920,
+        1080
+      ],
+      "sha256": "f38d52f849696cc8f8b7bf009f1e98ad6d5e6028ea3831359dadd23aee88128f"
+    }
+  ],
+  "modelo": {
+    "larguras": [
+      28.7109375,
+      38.7109375,
+      20.7109375,
+      56.7109375
+    ],
+    "fonte": "Arial",
+    "tamanho": 11.0
+  }
+}
