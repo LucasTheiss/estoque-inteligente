@@ -36,6 +36,8 @@
                         Menu de navegação
                     </summary>
                     <nav aria-label="Navegação principal">
+                        <a th:if="${tenant != null and permissions.contains('consultar')}" th:href="@{/ofertas}" th:classappend="${route == '/ofertas'} ? 'active'">Ofertas externas</a>
+                        <a th:if="${tenant != null and tenant.reports and permissions.contains('relatorios')}" th:href="@{/comparacao-precos}" th:classappend="${route == '/comparacao-precos'} ? 'active'">Comparação de preços</a>
                         <a th:if="${tenant != null and permissions.contains('consultar')}" th:href="@{/fornecedores}" th:classappend="${route == '/fornecedores'} ? 'active'">Fornecedores externos</a>
                         <a th:if="${tenant != null and tenant.reports and permissions.contains('relatorios')}" th:href="@{/relatorios}" th:classappend="${route == '/relatorios'} ? 'active'">Relatórios gerenciais</a>
                         <a th:if="${permissions.contains('consultar')}" th:href="@{/}" th:classappend="${route == '/'} ? 'active'" th:attr="aria-current=${route == '/' ? 'page' : null}">

@@ -21,7 +21,9 @@ Avaliação técnica proposta para a aplicação entregue. Equipe: três integra
 
 **NI = 5 + 3 + 1 + 2 + 1 + 5 + 4 + 4 + 2 + 4 + 2 + 2 + 2 + 4 = 41.**
 
-Referência: [tabela das características fornecida pelo professor](../../pdfs/Características%20Gerais%20do%20Software.pdf). Notas altas não foram atribuídas apenas porque uma tecnologia está presente: por exemplo, Docker não comprova distribuição dinâmica de processamento, e índices não comprovam SLA de desempenho.
+Referência: [tabela das características fornecida pelo professor](../pdfs/Características%20Gerais%20do%20Software.pdf). Notas altas não foram atribuídas apenas porque uma tecnologia está presente: por exemplo, Docker não comprova distribuição dinâmica de processamento, e índices não comprovam SLA de desempenho.
+
+Em 24/10/2026, a inclusão do cliente HTTP de ofertas mantém as mesmas características e notas. A presença de um segundo AIE não soma automaticamente pontos ao NI.
 
 As notas de volume e múltiplos locais são premissas declaradas. Caso não se espere pico mensal, a nota de volume deve passar a zero; sem utilização em múltiplos locais, a nota correspondente também deve ser revista. O script recalcula automaticamente o impacto ao editar contagem.json.
 

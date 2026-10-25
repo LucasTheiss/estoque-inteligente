@@ -2,6 +2,7 @@ package br.com.estoque;
 
 import br.com.estoque.service.*;
 import br.com.estoque.integration.FornecedorGateway;
+import br.com.estoque.integration.OfertaGateway;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
@@ -69,5 +70,38 @@ class AnaliseTest {
     @Test void autorizacaoInterrompeAntesDaConsulta() {
         doThrow(new org.springframework.security.access.AccessDeniedException("negado")).when(acesso).exigir(1,"relatorios");
         assertThrows(org.springframework.security.access.AccessDeniedException.class,()->service.relatorio(1,"valor",dia,dia));
+    }
+    @Test void comparaOfertasPorLojaGtinUnidadeECalculaPercentual() {
+        jdbc.update("UPDATE products SET barcode='789000000001' WHERE id IN (1,4)");
+        jdbc.update("UPDATE products SET barcode='789000000002' WHERE id=2");
+        jdbc.update("UPDATE products SET barcode='789000000003' WHERE id=3");
+        var gateway=mock(OfertaGateway.class);
+        var ofertas=new OfertaService(gateway,jdbc,acesso);
+        when(gateway.consultar("","")).thenReturn(List.of(
+            oferta("789000000001","un","8"), oferta("789000000002","un","10"),
+            oferta("789000000003","un","5"), oferta("789000000099","un","7")));
+        var tabela=ofertas.comparar(1,"","");
+        assertEquals(2,tabela.linhas().size());
+        assertEquals("-2.00",tabela.linhas().get(0).get(7));
+        assertEquals("-20.00",tabela.linhas().get(0).get(8));
+        assertEquals("5.00",tabela.linhas().get(1).get(7));
+        assertTrue(tabela.linhas().get(1).get(8).contains("zero"));
+        assertTrue(ofertas.comparar(99,"","").linhas().isEmpty());
+        jdbc.update("UPDATE products SET active=false WHERE id=1");
+        assertEquals(1,ofertas.comparar(1,"","").linhas().size());
+        assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM audit",Integer.class));
+        verify(acesso,atLeastOnce()).recurso(1,"reports");
+    }
+    @Test void ofertasExigemPermissaoAntesDeAcessarOrigem() {
+        var gateway=mock(OfertaGateway.class);
+        var ofertas=new OfertaService(gateway,jdbc,acesso);
+        doThrow(new org.springframework.security.access.AccessDeniedException("negado")).when(acesso).exigir(1,"consultar");
+        doThrow(new org.springframework.security.access.AccessDeniedException("negado")).when(acesso).recurso(1,"reports");
+        assertThrows(org.springframework.security.access.AccessDeniedException.class,()->ofertas.consultar(1,"",""));
+        assertThrows(org.springframework.security.access.AccessDeniedException.class,()->ofertas.comparar(1,"",""));
+        verifyNoInteractions(gateway);
+    }
+    private OfertaGateway.Oferta oferta(String gtin,String unidade,String preco) {
+        return new OfertaGateway.Oferta(gtin,"F1",gtin,"Produto","Marca",unidade,new BigDecimal(preco),BigDecimal.TEN,"2026-10-24");
     }
 }

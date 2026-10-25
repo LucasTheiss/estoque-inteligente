@@ -1,4 +1,16 @@
-# Verificação da entrega reduzida
+# Verificação da APF
+
+## Ampliação de 24/10/2026
+
+- Docker operacional; suíte Java com PostgreSQL e MQTT: **90 testes, zero falhas, zero erros e zero ignorados**. Inclui contrato HTTP de ofertas, erros/limites, filtros, comparação por loja/GTIN/unidade, percentual, preço zero, produto inativo, autorização e renderização/escape das telas novas.
+- Build Docker concluído; aplicação e os dois provedores iniciados. Nginx passou na verificação de configuração e encaminha `/ofertas` e `/comparacao-precos`.
+- Verificação HTTP autenticada pela porta 8080: 13 respostas 200, incluindo todas as telas dos recortes, ofertas filtradas e comparação de preços. Com preço interno 249,90 e oferta 89,90, foram conferidos diferença −160,00 e percentual −64,03.
+- Provedor X02: GET retorna três ofertas; POST retorna 405. Manutenção CLI testada em cópia temporária: inclusão/exclusão e rejeição de preço negativo, sem alterar o catálogo original.
+- Contagem completa recalculada: NI 41, PFB 282, FA 1,06, PFA 298,92. Recortes individuais: 52/50/52 PFB, com as mesmas premissas didáticas.
+- Três Excel com capa e nomes, 12 protótipos incorporados em cada documento. As 80 fórmulas de cada arquivo foram recalculadas em LibreOffice e comparadas com os valores esperados: 240 resultados coincidentes, sem erro de fórmula.
+- Modelo original preservado. Correção da lógica CE autorizada pelo usuário; demais regras de cálculo preservadas com referências adaptadas. A confirmação da contribuição pessoal continua pendente, explicitamente indicada nos documentos.
+
+## Histórico — entrega reduzida
 
 Data: 21/10/2026. Ambiente: JDK 21, Maven, PostgreSQL e MQTT locais por Docker Compose.
 
@@ -13,3 +25,11 @@ Data: 21/10/2026. Ambiente: JDK 21, Maven, PostgreSQL e MQTT locais por Docker C
 - O PDF explicativo foi regenerado com seis páginas. Todas foram renderizadas e inspecionadas visualmente, e os totais foram conferidos no texto extraído.
 
 As integrações de teste usam esquemas temporários isolados. Os testes relacionados às funcionalidades adicionais removidas também foram retirados; as verificações das funções originais foram preservadas. Não foi realizado commit nem publicação remota.
+
+## Conferência final de 25/10/2026
+
+Corrigidas as quebras de página herdadas do modelo. Cada Excel final foi renderizado em 28 páginas, com 12 protótipos completos dentro dos limites de impressão. Os textos longos foram conferidos no conteúdo extraído dos PDFs. As 80 fórmulas por arquivo (240 no total) coincidem com o recálculo independente no LibreOffice.
+
+Detalhados os campos internos por ALI nas seis EEs selecionadas, sem alteração das contagens. As 13 verificações HTTP autenticadas foram repetidas e aprovadas; POST no provedor retorna 405. O código da aplicação não mudou nesta revisão: os 90 testes Java registrados anteriormente pertencem à validação anterior.
+
+A única pendência de conteúdo pessoal é a confirmação da contribuição efetiva de cada integrante na identificação das EEs, sinalizada nas planilhas. Os documentos finais estão em docs/entregas-individuais. Não houve commit nem publicação remota.

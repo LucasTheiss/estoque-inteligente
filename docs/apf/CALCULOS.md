@@ -4,6 +4,7 @@ Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos 
 
 | ID | Tipo | Funcao | AR/RL | TD | TD entrada CE | TD saida CE | Complexidade | PF |
 |---|---|---|---:|---:|---:|---:|---|---:|
+| X02 | AIE | Ofertas externas | 1 | 9 | 0 | 0 | Simples | 5 |
 | A01 | ALI | Modelos de produto | 1 | 5 | 0 | 0 | Simples | 7 |
 | A02 | ALI | Produtos | 1 | 11 | 0 | 0 | Simples | 7 |
 | A03 | ALI | Posições | 1 | 11 | 0 | 0 | Simples | 7 |
@@ -14,6 +15,8 @@ Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos 
 | A08 | ALI | Lojas e configuração | 1 | 12 | 0 | 0 | Simples | 7 |
 | A09 | ALI | Auditoria consultável | 1 | 6 | 0 | 0 | Simples | 7 |
 | X01 | AIE | Fornecedores externos | 1 | 5 | 0 | 0 | Simples | 5 |
+| CE12 | CE | Consultar ofertas externas | 1 | 11 | 4 | 7 | Simples | 3 |
+| SE13 | SE | Comparar preços internos e ofertas externas | 2 | 12 | 4 | 8 | Moderada | 5 |
 | EE01 | EE | Incluir produto, inclusive grade e saldo inicial | 6 | 16 | 15 | 1 | Complexa | 6 |
 | EE02 | EE | Alterar produto | 4 | 13 | 12 | 1 | Complexa | 6 |
 | EE03 | EE | Excluir produto logicamente | 3 | 3 | 2 | 1 | Moderada | 4 |
@@ -59,19 +62,19 @@ Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos 
 
 ## Totais por tipo
 
+- AIE: 2 funcoes; 10 PF.
 - ALI: 9 funcoes; 63 PF.
-- AIE: 1 funcoes; 5 PF.
+- CE: 9 funcoes; 33 PF.
+- SE: 7 funcoes; 41 PF.
 - EE: 28 funcoes; 135 PF.
-- SE: 6 funcoes; 36 PF.
-- CE: 8 funcoes; 30 PF.
 
 ## Resultado
 
 - NI: 41
-- PFB: 269
+- PFB: 282
 - FA: 1.06
-- PFA: 285.14
-- esforcoHoras: 2851.40
-- prazoDias: 158.41
-- prazoDiasUteisInteiros: 159
-- custoReais: 71285.00
+- PFA: 298.92
+- esforcoHoras: 2989.20
+- prazoDias: 166.07
+- prazoDiasUteisInteiros: 167
+- custoReais: 74730.00

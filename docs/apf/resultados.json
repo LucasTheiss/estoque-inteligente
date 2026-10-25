@@ -1,15 +1,26 @@
 {
     "resumo":  {
                    "NI":  41,
-                   "PFB":  269,
+                   "PFB":  282,
                    "FA":  1.06,
-                   "PFA":  285.14,
-                   "esforcoHoras":  2851.40,
-                   "prazoDias":  158.41,
-                   "prazoDiasUteisInteiros":  159,
-                   "custoReais":  71285.00
+                   "PFA":  298.92,
+                   "esforcoHoras":  2989.20,
+                   "prazoDias":  166.07,
+                   "prazoDiasUteisInteiros":  167,
+                   "custoReais":  74730.00
                },
     "funcoes":  [
+                    {
+                        "id":  "X02",
+                        "tipo":  "AIE",
+                        "nome":  "Ofertas externas",
+                        "ar_rl":  1,
+                        "td":  9,
+                        "tdEntrada":  0,
+                        "tdSaida":  0,
+                        "complexidade":  "Simples",
+                        "pf":  5
+                    },
                     {
                         "id":  "A01",
                         "tipo":  "ALI",
@@ -118,6 +129,28 @@
                         "tdEntrada":  0,
                         "tdSaida":  0,
                         "complexidade":  "Simples",
+                        "pf":  5
+                    },
+                    {
+                        "id":  "CE12",
+                        "tipo":  "CE",
+                        "nome":  "Consultar ofertas externas",
+                        "ar_rl":  1,
+                        "td":  11,
+                        "tdEntrada":  4,
+                        "tdSaida":  7,
+                        "complexidade":  "Simples",
+                        "pf":  3
+                    },
+                    {
+                        "id":  "SE13",
+                        "tipo":  "SE",
+                        "nome":  "Comparar preços internos e ofertas externas",
+                        "ar_rl":  2,
+                        "td":  12,
+                        "tdEntrada":  4,
+                        "tdSaida":  8,
+                        "complexidade":  "Moderada",
                         "pf":  5
                     },
                     {

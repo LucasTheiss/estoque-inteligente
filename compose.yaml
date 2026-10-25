@@ -33,12 +33,15 @@ services:
       MQTT_USER: ${MQTT_USER:?configure .env}
       MQTT_PASSWORD: ${MQTT_PASSWORD:?configure .env}
       FORNECEDORES_URL: http://fornecedores:8092/fornecedores
+      OFERTAS_URL: http://ofertas:8093/ofertas
     depends_on:
       db:
         condition: service_healthy
       mqtt:
         condition: service_started
       fornecedores:
+        condition: service_started
+      ofertas:
         condition: service_started
     mem_limit: 172m
     restart: unless-stopped
@@ -59,6 +62,19 @@ services:
       - ./external/fornecedores:/catalogo:ro
     ports:
       - "127.0.0.1:8092:8092"
+    mem_limit: 192m
+    restart: unless-stopped
+
+  ofertas:
+    image: eclipse-temurin:21-jdk-alpine
+    working_dir: /catalogo
+    command: [java, Provedor.java]
+    environment:
+      BIND_HOST: 0.0.0.0
+    volumes:
+      - ./external/ofertas:/catalogo:ro
+    ports:
+      - "127.0.0.1:8093:8093"
     mem_limit: 192m
     restart: unless-stopped
 

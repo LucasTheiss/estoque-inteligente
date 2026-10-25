@@ -1,10 +1,37 @@
 # Fichas de contagem funcional
 
-Escopo reduzido: somente SE02, SE04 e CE04 são transações novas. As demais já existiam. IDs preservados para rastreabilidade; lacunas correspondem aos acréscimos removidos.
+Escopo atualizado em 24/10/2026: além de SE02, SE04 e CE04, foram implementados X02, CE12 e SE13 para os três recortes individuais. IDs preservados para rastreabilidade.
 
 Fonte editável: [contagem.json](contagem.json). Pontuações e complexidades: [CALCULOS.md](CALCULOS.md).
 
-Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A01–A09 e X01 são resolvidas no dicionário. As fichas identificam dados que cruzam a fronteira; leituras internas para validação são descritas separadamente e não duplicam esses itens.
+Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A01–A09, X01 e X02 são resolvidas no dicionário. As fichas identificam dados que cruzam a fronteira; leituras internas para validação são descritas separadamente e não duplicam esses itens.
+
+## Acréscimos para os recortes individuais
+
+### X02 — Ofertas externas (AIE)
+
+- Origem: `external/ofertas`, provedor independente com manutenção CLI e consulta HTTP.
+- Um registro lógico: oferta comercial externa.
+- Nove TD: GTIN, código do fornecedor, SKU externo, descrição, marca, unidade, preço cotado, disponibilidade e data de atualização.
+- Não se confunde com X01: este identifica o fornecedor; X02 registra suas ofertas. O estoque não mantém nenhum dos dois grupos.
+- 1 RL e 9 TD: simples, 5 PF. Protótipo: `/ofertas`, incorporado nas três planilhas.
+
+### CE12 — Consultar ofertas externas
+
+- Referência: X02. Entrada: GTIN e código do fornecedor opcionais, com correspondência exata; ambos preenchidos são combinados por E.
+- Saída: os nove TD de X02. Mensagem de ausência/validação e conjunto de comandos são controles.
+- Entrada: 4 TD e 1 AR; saída sem repetir GTIN/fornecedor: 7 TD e 1 AR. Ambas simples; maior complexidade simples, 3 PF.
+- Recupera dados sem derivação, sem alterar ALIs/AIEs. Falhas do provedor geram erro, não lista fictícia ou vazia.
+- Evidência: `OfertaController`, `OfertaService.consultar`, `OfertaGateway`, template `ofertas.html`.
+
+### SE13 — Comparar preços internos e ofertas externas
+
+- Referências: A02 e X02. A02 fornece loja/ativo, código de barras, SKU, unidade e preço. X02 fornece GTIN, fornecedor, SKU externo, unidade, cotação e atualização; os demais campos recebidos são validados pelo cliente.
+- Entrada: GTIN e código do fornecedor. Saída: GTIN, SKU interno, código do fornecedor, SKU externo, unidade, preço interno, preço cotado, diferença monetária, diferença percentual e data de atualização.
+- Dois controles: acionamento e mensagem de resultado. Dados de entrada repetidos na saída contam uma vez: 12 TD distintos, 2 AR, moderada, 5 PF.
+- Diferença = cotação − preço interno; percentual = diferença / preço interno × 100. Duas casas decimais. Preço interno zero: percentual não aplicável.
+- Apenas produtos ativos da loja autenticada, com mesmo GTIN e unidade. Ofertas sem correspondência ou unidade compatível não entram. Cotação não é custo histórico; diferença não é margem de lucro.
+- Evidência: `/comparacao-precos`, `OfertaService.comparar`, template `ofertas.html`. Protótipo incorporado à entrega de Lucas.
 
 ## Dicionário de ALIs e AIE
 
@@ -87,7 +114,7 @@ Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A0
 - Saída: mensagem de resultado.
 - Controles contados: acionamento.
 - Evidência: `ProdutoService.salvar`.
-- Dados internos lidos/mantidos: A01: nome/marca/categoria; A02: SKU e código de barras; A03: unidade; A04: quantidade; A05: saldo inicial e movimento; A09: responsável/ação/detalhe/data.
+- Dados internos lidos/mantidos: A01: nome, marca e categoria do modelo. A02: modelo, SKU, código de barras, cor, tamanho, unidade, preço, características e ativo. A03: posição e unidade, na entrada inicial. A04: produto, posição e quantidade inicial. A05: produto, posição, responsável, tipo, variação, saldos anterior/posterior, motivo e data, quando há saldo inicial. A09: loja, responsável, ação, detalhe e data (gerada). Identificações dos registros são geradas pelo banco; leituras/manutenções internas não são TD adicionais da interface.
 
 ### EE02 — Alterar produto
 
@@ -114,7 +141,7 @@ Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A0
 - Saída: mensagem de resultado.
 - Controles contados: acionamento.
 - Evidência: `ModeloProdutoService.salvar`.
-- Dados internos lidos/mantidos: A01: identidade nome/marca/categoria; A09: registro de criação.
+- Dados internos lidos/mantidos: A01: loja, nome, marca e categoria; identificação do modelo gerada no cadastro. A09: loja, responsável, ação modelo.salvar, detalhe com a identificação do modelo e data gerada. Esses dados de auditoria são mantidos internamente e não são campos extras recebidos pela interface.
 
 ### EE05 — Alterar modelo
 
@@ -141,7 +168,7 @@ Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A0
 - Saída: mensagem de resultado.
 - Controles contados: acionamento.
 - Evidência: `PosicaoService.salvar`.
-- Dados internos lidos/mantidos: A03: código e unidade; A09: registro de criação.
+- Dados internos lidos/mantidos: A03: loja, código, setor, linha, coluna, capacidade, unidade, dispositivo, pino e ativo; identificação gerada no cadastro. A09: loja, responsável, ação posicao.salvar, detalhe com a identificação da posição e data gerada. Auditoria é manutenção interna, sem TD extras na interface.
 
 ### EE08 — Alterar posição
 
@@ -168,7 +195,7 @@ Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A0
 - Saída: mensagem de resultado.
 - Controles contados: acionamento.
 - Evidência: `VinculoService.salvar`.
-- Dados internos lidos/mantidos: A02/A03: unidades; A04: produto/posição/quantidade; A09: registro.
+- Dados internos lidos/mantidos: A02: identificação do produto, unidade e ativo. A03: identificação da posição, unidade e ativo. A04: loja, produto, posição e quantidade inicial zero. A09: loja, responsável, ação vinculo.criar, detalhe produto:posição e data gerada. O usuário informa somente produto/posição; quantidade não é entrada desta EE.
 
 ### EE11 — Alterar vínculo vazio
 
@@ -195,7 +222,7 @@ Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A0
 - Saída: mensagem de resultado.
 - Controles contados: acionamento.
 - Evidência: `UsuarioService.salvar`.
-- Dados internos lidos/mantidos: A08: loja ativa; A06: nome/perfil; A09: registro.
+- Dados internos lidos/mantidos: A08: identificação da loja e ativo. A06: loja, nome de usuário, senha (persistida como hash), perfil e ativo; identificação gerada. A09: loja, responsável, ação usuario.salvar, detalhe nome/perfil e data gerada. Hash é representação técnica da senha, não um segundo TD.
 
 ### EE14 — Alterar usuário
 
@@ -267,7 +294,7 @@ Os itens abaixo são tipos de dados, não quantidades de linhas. Referências A0
 - Saída: mensagem de resultado.
 - Controles contados: acionamento.
 - Evidência: `EstoqueService.movimentar`.
-- Dados internos lidos/mantidos: A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída.
+- Dados internos lidos/mantidos: A02: identificação, unidade e ativo do produto. A03: identificação, unidade e ativo da posição. A04: loja, produto, posição e quantidade anterior/posterior. A05: produto, posição, responsável, tipo, variação, saldo anterior, saldo posterior, motivo e data; número gerado e movimento original vazio na entrada normal. A09: loja, responsável, ação, detalhe e data. Chave técnica de idempotência excluída dos TD.
 
 ### EE22 — Registrar saída
 

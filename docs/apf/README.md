@@ -1,14 +1,15 @@
-# Entrega de APF - escopo mínimo
+# Entrega de APF — sistema e recortes individuais
 
-Equipe de três integrantes. As quantidades do enunciado são da equipe, sem multiplicá-las por integrante.
-O projeto existente foi aproveitado. Foram mantidas somente **duas SEs novas e uma CE nova**, além do cadastro externo necessário ao AIE.
+Atualização de 24/10/2026: a base coletiva foi ampliada para atender aos três recortes individuais de `divisao_entregas_individuais.pdf`. Cada integrante apresenta dois ALIs, os dois AIEs compartilhados, duas EEs identificadas, duas SEs e duas CEs. O código acrescenta X02 (ofertas externas), CE12 (consulta de ofertas) e SE13 (comparação de preços).
+
+As [três planilhas individuais](../entregas-individuais/README.md) contêm capa, nomes, protótipos incorporados, contagens e estimativas. O PDF de divisão é o plano anterior e ainda chama X02/CE12/SE13 de propostas; consulte as planilhas e a contagem atual para o estado implementado. A declaração de contribuição real ainda deve ser confirmada por cada integrante.
 
 ## O que foi aproveitado e acrescentado
 
 | Exigência | Atendimento |
 |---|---|
 | ALI, itens de dados e registros lógicos | 9 ALIs existentes, descritos em FICHAS.md |
-| AIE | 1 cadastro externo demonstrativo de fornecedores; 5 itens, 1 registro lógico, 5 PF |
+| AIE | 2 grupos externos demonstrativos: fornecedores (5 TD, 1 RL, 5 PF) e ofertas (9 TD, 1 RL, 5 PF) |
 | EE: incluir, alterar e excluir | Cadastros existentes; exemplo para apresentação: modelos (EE04, EE05, EE06) |
 | Pelo menos 5 SEs com dados derivados | 3 existentes + 2 novas, detalhadas abaixo |
 | 4 CEs, cada uma com entrada e saída | 3 existentes + consulta de fornecedores, detalhadas abaixo |
@@ -20,7 +21,7 @@ O projeto existente foi aproveitado. Foram mantidas somente **duas SEs novas e u
 Foram retirados os acréscimos de saldo consolidado, relatório adicional de ocupação, curva ABC e consultas adicionais de produtos, posições e movimentos.
 Não foram removidas funcionalidades originais. Não foram criados novos ALIs nem EEs: já existiam.
 
-## As cinco SEs para apresentar
+## Saídas derivadas disponíveis
 
 | ID / função | Origem e acesso | ALIs | Por que é dado derivado? | PF |
 |---|---|---|---|---:|
@@ -29,14 +30,15 @@ Não foram removidas funcionalidades originais. Não foram criados novos ALIs ne
 | SE08 - Peso líquido e subtotal | Existente: baixa rápida de produto em kg, integração com balança | A02, A08 | Peso líquido = bruto - tara; subtotal = líquido × preço | 5 |
 | SE02 - Valor do estoque | Nova: `/relatorios?tipo=valor` | A02, A04 | Saldo × preço atual por produto e soma monetária da loja | 5 |
 | SE04 - Movimentações no período | Nova: `/relatorios?tipo=fluxo` | A02, A05 | Conta operações e soma variações por produto e tipo | 5 |
+| SE13 - Comparação de preços | Nova: `/comparacao-precos` | A02 e AIE X02 | Diferença monetária e percentual entre cotação e preço interno | 5 |
 
-As cinco somam 29 PF. A exportação preexistente do histórico (SE09, 7 PF) permanece na contagem completa: **6 SEs, 36 PF**. Sua atualização de auditoria justifica SE, mas ela não é usada para completar as cinco saídas calculadas.
+As seis saídas calculadas somam 34 PF. A exportação preexistente do histórico (SE09, 7 PF) permanece na contagem completa: **7 SEs, 41 PF**. Sua atualização de auditoria justifica SE, mas ela não é usada para completar as saídas calculadas dos recortes individuais.
 
 Itens utilizados: pesquisa e mapa leem identificação de modelo/produto/posição, quantidade e capacidade; peso usa produto, preço, configuração e telemetria; valor usa SKU, unidade, preço e quantidade; fluxo usa SKU, unidade, tipo, data e variação. Entradas, saídas e referências completas estão nas fichas individuais.
 Para demonstrar a balança, use a loja `granel`, um produto em kg e a leitura recente do simulador MQTT. Não se exige comprar hardware. A telemetria transitória não é contada como AIE.
 O valor do estoque usa preço de venda cadastrado, não custo histórico. O fluxo inclui os dias inteiros no horário de Brasília e separa estornos, respeitando seus sinais. Quantidades em kg e unidades não são somadas entre produtos.
 
-## As quatro CEs para apresentar
+## Consultas disponíveis para apresentação
 
 | ID / função | Origem e entrada | Saída (itens recuperados) | Arquivos | PF |
 |---|---|---|---|---:|
@@ -44,9 +46,10 @@ O valor do estoque usa preço de venda cadastrado, não custo histórico. O flux
 | CE07 - Equipe e permissões | Existente: `/usuarios?id=...`; seleção do usuário | Nome de usuário, perfil e permissões | A06, A07 | 3 |
 | CE08 - Lojas | Existente: `/global?id=...`; seleção da loja, com acesso global | Identificador público, nome e recursos habilitados | A08 | 3 |
 | CE04 - Fornecedores | Nova: `/fornecedores?q=...`; filtro de código, nome ou documento | Código, nome, documento, e-mail e telefone | X01 (AIE) | 3 |
+| CE12 - Ofertas | Nova: `/ofertas?gtin=...&fornecedor=...`; filtros exatos | Nove campos da oferta, incluindo cotação e disponibilidade | X02 (AIE) | 3 |
 
 Cada linha é uma função com entrada e saída; não são oito funções. A consulta por GET apenas recupera dados. Salvar ou excluir pelo formulário é uma EE separada. Use uma conta autorizada para cada tela; a consulta global exige administração global.
-Essas quatro somam 12 PF. As demais consultas já existentes continuam catalogadas porque a medição abrange a aplicação atual: **8 CEs, 30 PF**. Não foi necessário criar quatro telas novas.
+Essas cinco somam 15 PF. As demais consultas já existentes continuam catalogadas porque a medição abrange a aplicação atual: **9 CEs, 33 PF**. Os recortes individuais usam CE04 e CE12.
 
 ## ALI, AIE e EE
 
@@ -88,21 +91,21 @@ SE e saída de CE: colunas TD 1–5 / 6–19 / 20+; linhas AR 1 / 2–3 / 4+:
 | Tipo | Quantidade | PF |
 |---|---:|---:|
 | ALI | 9 | 63 |
-| AIE | 1 | 5 |
+| AIE | 2 | 10 |
 | EE | 28 | 135 |
-| SE | 6 | 36 |
-| CE | 8 | 30 |
-| **Total** | **52** | **269** |
+| SE | 7 | 41 |
+| CE | 9 | 33 |
+| **Total** | **55** | **282** |
 
 ```text
-PFB = 63 + 5 + 135 + 36 + 30 = 269
+PFB = 63 + 10 + 135 + 41 + 33 = 282
 NI = soma das 14 notas justificadas em NI.md = 41
 FA = 0,65 + 0,01 × 41 = 1,06
-PFA = 269 × 1,06 = 285,14
-Esforço = 285,14 × 10 horas/PF = 2.851,40 horas-pessoa
+PFA = 282 × 1,06 = 298,92
+Esforço = 298,92 × 10 horas/PF = 2.989,20 horas-pessoa
 Capacidade = 3 integrantes × 6 horas produtivas/dia = 18 horas-pessoa/dia
-Prazo = 2.851,40 / 18 = 158,41 dias úteis; arredondado: 159 dias úteis
-Custo = 2.851,40 × R$ 25,00/hora = R$ 71.285,00
+Prazo = 2.989,20 / 18 = 166,07 dias úteis; arredondado: 167 dias úteis
+Custo = 2.989,20 × R$ 25,00/hora = R$ 74.730,00
 ```
 
 As notas de NI foram reavaliadas e mantidas: a remoção das consultas e relatórios excedentes não altera os protocolos, a distribuição IoT nem os demais fatores justificados em NI.md.
@@ -116,7 +119,7 @@ docker compose --env-file .env.demo up -d --build --wait
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/calcular-apf.ps1
 ```
 
-Use `http://localhost:8080` e as credenciais documentadas no README principal. Os menus novos são **Fornecedores externos** e **Relatórios gerenciais**, este com apenas duas opções.
+Use `http://localhost:8080` e as credenciais documentadas no README principal. Menus: **Fornecedores externos**, **Ofertas externas**, **Comparação de preços** e **Relatórios gerenciais** (valor/fluxo). A comparação exige permissão de relatórios e recurso `reports` habilitado.
 Apresente o CRUD de modelos, as cinco SEs e as quatro CEs indicadas nas tabelas. Mostre o dicionário de dados, as fichas e os cálculos. As permissões e os recursos habilitados de cada loja continuam sendo respeitados.
 O [provedor](../../external/fornecedores/README.md) documenta como manter os fornecedores fora do estoque.
 

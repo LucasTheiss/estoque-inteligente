@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: page(~{::section})}">
+<section>
+    <form method="get" th:action="${comparar} ? @{/comparacao-precos} : @{/ofertas}" class="panel">
+        <label>GTIN exato <input name="gtin" maxlength="100" th:value="${gtin}" placeholder="Todos os produtos"></label>
+        <label>Código do fornecedor <input name="fornecedor" maxlength="100" th:value="${fornecedor}" placeholder="Todos os fornecedores"></label>
+        <button type="submit" th:text="${comparar} ? 'Comparar preços' : 'Consultar ofertas'"></button>
+        <a th:href="${comparar} ? @{/comparacao-precos} : @{/ofertas}">Limpar filtros</a>
+    </form>
+    <p th:unless="${comparar}">Ofertas mantidas pelo fornecedor externo, disponíveis somente para consulta.</p>
+    <p th:if="${comparar}">Comparação por GTIN e mesma unidade. Diferença = cotação externa − preço interno;
+        percentual = diferença ÷ preço interno × 100. Com preço interno zero, o percentual não se aplica.
+        Produtos sem correspondência não aparecem. Valores em reais, sem frete; a comparação não representa margem ou lucro.</p>
+    <div th:replace="~{tabela-consulta :: resultado}"></div>
+</section>
+</html>

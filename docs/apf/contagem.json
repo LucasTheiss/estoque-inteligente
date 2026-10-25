@@ -1,6 +1,14 @@
 {
   "dados": [
     {
+      "id": "X02",
+      "tipo": "AIE",
+      "nome": "Ofertas externas",
+      "origem": "external/ofertas",
+      "registrosLogicos": ["Oferta comercial externa"],
+      "campos": ["GTIN", "código do fornecedor", "SKU externo", "descrição", "marca", "unidade", "preço cotado", "disponibilidade", "data de atualização"]
+    },
+    {
       "id": "A01",
       "tipo": "ALI",
       "nome": "Modelos de produto",
@@ -188,6 +196,29 @@
   ],
   "funcoes": [
     {
+      "id": "CE12",
+      "tipo": "CE",
+      "nome": "Consultar ofertas externas",
+      "arquivos": ["X02"],
+      "entrada": ["GTIN", "código do fornecedor"],
+      "saida": ["GTIN", "código do fornecedor", "SKU externo", "descrição", "marca", "unidade", "preço cotado", "disponibilidade", "data de atualização"],
+      "controle": ["acionamento", "mensagem de resultado"],
+      "evidencia": "GET /ofertas; OfertaService.consultar; OfertaGateway; external/ofertas/Provedor.java",
+      "leitura": "X02: nove campos da oferta. Filtros exatos opcionais combinados por GTIN e código do fornecedor. Não mantém arquivos nem deriva dados."
+    },
+    {
+      "id": "SE13",
+      "tipo": "SE",
+      "nome": "Comparar preços internos e ofertas externas",
+      "arquivos": ["A02", "X02"],
+      "entrada": ["GTIN", "código do fornecedor"],
+      "saida": ["GTIN", "SKU interno", "código do fornecedor", "SKU externo", "unidade", "preço interno", "preço cotado", "diferença monetária", "diferença percentual", "data de atualização"],
+      "controle": ["acionamento", "mensagem de resultado"],
+      "evidencia": "GET /comparacao-precos; OfertaService.comparar",
+      "leitura": "A02: loja, ativo, código de barras, SKU, unidade e preço. X02: GTIN, fornecedor, SKU externo, unidade, preço cotado e atualização; demais campos recebidos são validados pelo cliente.",
+      "derivacao": "Diferença = cotação - preço interno. Percentual = diferença / preço interno x 100, arredondado a duas casas. Preço interno zero: percentual não aplicável. Cruza GTIN e unidade dos produtos ativos da loja, sem gravar dados."
+    },
+    {
       "id": "EE01",
       "tipo": "EE",
       "nome": "Incluir produto, inclusive grade e saldo inicial",
@@ -222,7 +253,7 @@
         "acionamento"
       ],
       "evidencia": "ProdutoService.salvar",
-      "leitura": "A01: nome/marca/categoria; A02: SKU e código de barras; A03: unidade; A04: quantidade; A05: saldo inicial e movimento; A09: responsável/ação/detalhe/data."
+      "leitura": "A01: nome, marca e categoria do modelo. A02: modelo, SKU, código de barras, cor, tamanho, unidade, preço, características e ativo. A03: posição e unidade, na entrada inicial. A04: produto, posição e quantidade inicial. A05: produto, posição, responsável, tipo, variação, saldos anterior/posterior, motivo e data, quando há saldo inicial. A09: loja, responsável, ação, detalhe e data (gerada). Identificações dos registros são geradas pelo banco; leituras/manutenções internas não são TD adicionais da interface."
     },
     {
       "id": "EE02",
@@ -297,7 +328,7 @@
         "acionamento"
       ],
       "evidencia": "ModeloProdutoService.salvar",
-      "leitura": "A01: identidade nome/marca/categoria; A09: registro de criação."
+      "leitura": "A01: loja, nome, marca e categoria; identificação do modelo gerada no cadastro. A09: loja, responsável, ação modelo.salvar, detalhe com a identificação do modelo e data gerada. Esses dados de auditoria são mantidos internamente e não são campos extras recebidos pela interface."
     },
     {
       "id": "EE05",
@@ -368,7 +399,7 @@
         "acionamento"
       ],
       "evidencia": "PosicaoService.salvar",
-      "leitura": "A03: código e unidade; A09: registro de criação."
+      "leitura": "A03: loja, código, setor, linha, coluna, capacidade, unidade, dispositivo, pino e ativo; identificação gerada no cadastro. A09: loja, responsável, ação posicao.salvar, detalhe com a identificação da posição e data gerada. Auditoria é manutenção interna, sem TD extras na interface."
     },
     {
       "id": "EE08",
@@ -441,7 +472,7 @@
         "acionamento"
       ],
       "evidencia": "VinculoService.salvar",
-      "leitura": "A02/A03: unidades; A04: produto/posição/quantidade; A09: registro."
+      "leitura": "A02: identificação do produto, unidade e ativo. A03: identificação da posição, unidade e ativo. A04: loja, produto, posição e quantidade inicial zero. A09: loja, responsável, ação vinculo.criar, detalhe produto:posição e data gerada. O usuário informa somente produto/posição; quantidade não é entrada desta EE."
     },
     {
       "id": "EE11",
@@ -512,7 +543,7 @@
         "acionamento"
       ],
       "evidencia": "UsuarioService.salvar",
-      "leitura": "A08: loja ativa; A06: nome/perfil; A09: registro."
+      "leitura": "A08: identificação da loja e ativo. A06: loja, nome de usuário, senha (persistida como hash), perfil e ativo; identificação gerada. A09: loja, responsável, ação usuario.salvar, detalhe nome/perfil e data gerada. Hash é representação técnica da senha, não um segundo TD."
     },
     {
       "id": "EE14",
@@ -707,7 +738,7 @@
         "acionamento"
       ],
       "evidencia": "EstoqueService.movimentar",
-      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída."
+      "leitura": "A02: identificação, unidade e ativo do produto. A03: identificação, unidade e ativo da posição. A04: loja, produto, posição e quantidade anterior/posterior. A05: produto, posição, responsável, tipo, variação, saldo anterior, saldo posterior, motivo e data; número gerado e movimento original vazio na entrada normal. A09: loja, responsável, ação, detalhe e data. Chave técnica de idempotência excluída dos TD."
     },
     {
       "id": "EE22",

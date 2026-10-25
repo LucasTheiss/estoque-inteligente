@@ -62,6 +62,7 @@ class TelasTest {
     @MockitoBean IoTService iot;
     @MockitoBean SaudeService saude;
     @MockitoBean AnaliseService analises;
+    @MockitoBean OfertaService ofertas;
 
     final Usuario admin = new Usuario(1L, 1L, "admin", "hash", "admin", 1, true);
     final Loja loja =
@@ -191,6 +192,23 @@ class TelasTest {
             .andExpect(status().isOk())
             .andExpect(content().string(containsString("&lt;script&gt;")))
             .andDo(this::capture);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings={"/ofertas", "/comparacao-precos"})
+    void ofertasRenderizamFiltrosResultadosEEstadoVazio(String url) throws Exception {
+        var tabela = new TabelaConsulta("Ofertas",List.of("Descrição"),List.of(List.of("<script>")));
+        when(ofertas.consultar(1L,"789000000001","F1")).thenReturn(tabela);
+        when(ofertas.comparar(1L,"789000000001","F1")).thenReturn(tabela);
+        mvc.perform(get(url).param("gtin","789000000001").param("fornecedor","F1").with(user(new UsuarioAutenticado(admin))))
+            .andExpect(status().isOk()).andExpect(content().string(containsString("&lt;script&gt;")))
+            .andExpect(content().string(containsString("name=\"gtin\"")))
+            .andDo(this::capture);
+        var vazia=new TabelaConsulta("Ofertas",List.of("Descrição"),List.of());
+        when(ofertas.consultar(1L,"","")).thenReturn(vazia);
+        when(ofertas.comparar(1L,"","")).thenReturn(vazia);
+        mvc.perform(get(url).with(user(new UsuarioAutenticado(admin))))
+            .andExpect(status().isOk()).andExpect(content().string(containsString("Nenhum registro encontrado.")));
     }
 
     @ParameterizedTest

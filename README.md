@@ -19,6 +19,8 @@ Na raiz do projeto:
 docker compose --env-file .env.demo up -d --build --wait
 ```
 
+As entregas individuais de APF e suas fórmulas estão em [docs/entregas-individuais](docs/entregas-individuais/README.md). A aplicação inclui consulta de ofertas externas e comparação de preços; o Compose inicia os provedores demonstrativos de fornecedores e ofertas.
+
 Abra http://localhost:8080/login. O comando compila o JAR, inicia PostgreSQL,
 MQTT e NGINX e aplica as migrações do banco automaticamente. Java e Maven
 locais não são necessários para essa execução.
