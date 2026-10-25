@@ -33,3 +33,12 @@ Corrigidas as quebras de página herdadas do modelo. Cada Excel final foi render
 Detalhados os campos internos por ALI nas seis EEs selecionadas, sem alteração das contagens. As 13 verificações HTTP autenticadas foram repetidas e aprovadas; POST no provedor retorna 405. O código da aplicação não mudou nesta revisão: os 90 testes Java registrados anteriormente pertencem à validação anterior.
 
 A única pendência de conteúdo pessoal é a confirmação da contribuição efetiva de cada integrante na identificação das EEs, sinalizada nas planilhas. Os documentos finais estão em docs/entregas-individuais. Não houve commit nem publicação remota.
+
+## Atualização posterior — modelo original solicitado pelo usuário
+
+As três planilhas foram refeitas diretamente de docs/exemploEntregaPf.xlsx, preservando seus estilos, dimensões, mesclagens, âncoras de imagens e configurações de impressão. São 12 abas e 14 espaços de imagens; a primeira aba identifica o integrante e os blocos extras de EE detalham as duas funções já contadas. A renderização mantém as 19 páginas do modelo, incluindo suas continuações entre páginas. Esta versão substitui o layout anterior de 28 páginas. Os 240 resultados recalculados no LibreOffice foram conferidos; PFB, NI, FA, PFA e estimativas permanecem iguais. O modelo original segue intacto. Detalhes atuais em docs/entregas-individuais/README.md.
+
+
+## Atualização — capturas reais do sistema
+
+Substituídas todas as 42 imagens das três planilhas por capturas reais do navegador autenticado na aplicação local, com os dados de demonstração existentes. Foram registradas 29 capturas distintas; os arquivos originais, URLs e hashes estão em docs/entregas-individuais/capturas-reais. EEs mostram os formulários e seus detalhes, sem enviar cadastros ou movimentos; as CEs mostram entrada e resultado de consultas executadas. Não foram simuladas confirmações de operações. Estilos, dimensões, âncoras e 240 fórmulas/resultados foram preservados. Nome corrigido para Artur Ribeiro de Souza nas planilhas e nos textos; PDFs conferidos sem ocorrência do nome antigo.

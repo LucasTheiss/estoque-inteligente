@@ -1,0 +1,350 @@
+[
+  {
+    "arquivo": "A01.jpg",
+    "funcao": "A01",
+    "url": "http://localhost:8080/modelos",
+    "capturado_em": "2026-10-25T18:35:37.542771+00:00",
+    "descricao": "Cadastro e lista real de modelos de produto.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+  },
+  {
+    "arquivo": "A02.jpg",
+    "funcao": "A02",
+    "url": "http://localhost:8080/produtos",
+    "capturado_em": "2026-10-25T18:35:38.190285+00:00",
+    "descricao": "Cadastro e lista real de produtos; visão inicial.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "7808955ef3a9d074331a90c90cc6f5ac8ca7833bce451d2b7ec16cfaaf1288bd"
+  },
+  {
+    "arquivo": "A03.jpg",
+    "funcao": "A03",
+    "url": "http://localhost:8080/posicoes",
+    "capturado_em": "2026-10-25T18:35:38.860396+00:00",
+    "descricao": "Cadastro e lista real de posições.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+  },
+  {
+    "arquivo": "A04.jpg",
+    "funcao": "A04",
+    "url": "http://localhost:8080/vinculos",
+    "capturado_em": "2026-10-25T18:35:39.577656+00:00",
+    "descricao": "Vínculos existentes e formulário para criar vínculo vazio.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "8bb1caddf540d56d4dadcc30b2c31d5bba62aff96cbcd4d1dd62b6787913a2fc"
+  },
+  {
+    "arquivo": "A05.jpg",
+    "funcao": "A05",
+    "url": "http://localhost:8080/historico",
+    "capturado_em": "2026-10-25T18:35:40.288185+00:00",
+    "descricao": "Histórico real de movimentações já existentes.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "d37abd3bbbe8d3871eac81340805285d0f68676b1fdc17991a150b7670cc14ec"
+  },
+  {
+    "arquivo": "A06.jpg",
+    "funcao": "A06",
+    "url": "http://localhost:8080/usuarios",
+    "capturado_em": "2026-10-25T18:35:40.986953+00:00",
+    "descricao": "Cadastro real de usuários e perfis.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+  },
+  {
+    "arquivo": "X01.jpg",
+    "funcao": "X01",
+    "url": "http://localhost:8080/fornecedores",
+    "capturado_em": "2026-10-25T18:35:41.648456+00:00",
+    "descricao": "Consulta real ao provedor externo de fornecedores.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "123a22a409e77f0b726b962c295a3d60f5eb2c49a8e2b4af5cc6c7867ba13a55"
+  },
+  {
+    "arquivo": "X02.jpg",
+    "funcao": "X02",
+    "url": "http://localhost:8080/ofertas",
+    "capturado_em": "2026-10-25T18:35:42.283871+00:00",
+    "descricao": "Consulta real ao provedor externo de ofertas.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "8c3608a5513522f72a9e26360d07ce9285a46fda711a0247e149133c27577857"
+  },
+  {
+    "arquivo": "EE04-entrada.jpg",
+    "funcao": "EE04",
+    "url": "http://localhost:8080/modelos",
+    "capturado_em": "2026-10-25T18:35:42.915114+00:00",
+    "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+  },
+  {
+    "arquivo": "EE04-detalhe.jpg",
+    "funcao": "EE04",
+    "url": "http://localhost:8080/modelos",
+    "capturado_em": "2026-10-25T18:35:43.064114+00:00",
+    "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+  },
+  {
+    "arquivo": "EE01-entrada.jpg",
+    "funcao": "EE01",
+    "url": "http://localhost:8080/produtos",
+    "capturado_em": "2026-10-25T18:35:43.720452+00:00",
+    "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "7808955ef3a9d074331a90c90cc6f5ac8ca7833bce451d2b7ec16cfaaf1288bd"
+  },
+  {
+    "arquivo": "EE01-detalhe.jpg",
+    "funcao": "EE01",
+    "url": "http://localhost:8080/produtos",
+    "capturado_em": "2026-10-25T18:35:43.881742+00:00",
+    "descricao": "Formulário real com a grade de tamanhos e saldo inicial expandidos; nenhum cadastro enviado.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "8f0faa891254b6ec07062adf1c28e5abd524fbc49ff6f48b11fa4a5903a4823b"
+  },
+  {
+    "arquivo": "EE07-entrada.jpg",
+    "funcao": "EE07",
+    "url": "http://localhost:8080/posicoes",
+    "capturado_em": "2026-10-25T18:35:44.514000+00:00",
+    "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+  },
+  {
+    "arquivo": "EE07-detalhe.jpg",
+    "funcao": "EE07",
+    "url": "http://localhost:8080/posicoes",
+    "capturado_em": "2026-10-25T18:35:44.666445+00:00",
+    "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+  },
+  {
+    "arquivo": "EE10-entrada.jpg",
+    "funcao": "EE10",
+    "url": "http://localhost:8080/vinculos",
+    "capturado_em": "2026-10-25T18:35:45.302565+00:00",
+    "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "8bb1caddf540d56d4dadcc30b2c31d5bba62aff96cbcd4d1dd62b6787913a2fc"
+  },
+  {
+    "arquivo": "EE10-detalhe.jpg",
+    "funcao": "EE10",
+    "url": "http://localhost:8080/vinculos",
+    "capturado_em": "2026-10-25T18:35:45.488398+00:00",
+    "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "873513300ef85d0bb14042101109a8a993a29aabd0abc1223fadfc5f7b4dd3f1"
+  },
+  {
+    "arquivo": "EE13-entrada.jpg",
+    "funcao": "EE13",
+    "url": "http://localhost:8080/usuarios",
+    "capturado_em": "2026-10-25T18:35:46.156006+00:00",
+    "descricao": "Formulário real de inclusão, antes do envio. Nenhum cadastro foi criado para a captura.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+  },
+  {
+    "arquivo": "EE13-detalhe.jpg",
+    "funcao": "EE13",
+    "url": "http://localhost:8080/usuarios",
+    "capturado_em": "2026-10-25T18:35:46.328383+00:00",
+    "descricao": "Detalhe da mesma tela real: formulário e registros existentes; não representa confirmação de um novo cadastro.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+  },
+  {
+    "arquivo": "EE21-entrada.jpg",
+    "funcao": "EE21",
+    "url": "http://localhost:8080/movimentar",
+    "capturado_em": "2026-10-25T18:35:47.018574+00:00",
+    "descricao": "Formulário real com a operação Entrada selecionada; nenhuma movimentação enviada.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "082f960020c8d07d2dc7133e11b1b94c0370e327ccaf9815d560ab9eef86b113"
+  },
+  {
+    "arquivo": "EE21-detalhe.jpg",
+    "funcao": "EE21",
+    "url": "http://localhost:8080/historico",
+    "capturado_em": "2026-10-25T18:35:47.661363+00:00",
+    "descricao": "Histórico de movimentos existentes; não é resultado de uma nova entrada efetuada para a captura.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "d37abd3bbbe8d3871eac81340805285d0f68676b1fdc17991a150b7670cc14ec"
+  },
+  {
+    "arquivo": "SE06.jpg",
+    "funcao": "SE06",
+    "url": "http://localhost:8080/?q=&page=0&produto=3",
+    "capturado_em": "2026-10-25T18:35:48.899627+00:00",
+    "descricao": "Pesquisa real com produto selecionado, saldo calculado e posições.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "88da6a1247ededd6ed2d25efcb57c61ceda2f0b823fcc8bb59b96df1877a186b"
+  },
+  {
+    "arquivo": "SE07.jpg",
+    "funcao": "SE07",
+    "url": "http://localhost:8080/mapa",
+    "capturado_em": "2026-10-25T18:35:49.598919+00:00",
+    "descricao": "Mapa real de posições com ocupação calculada.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "6074a2cbf49c1e60a9a7f556b283aa3082901a480fb635dccabc05e6575888d8"
+  },
+  {
+    "arquivo": "SE02.jpg",
+    "funcao": "SE02",
+    "url": "http://localhost:8080/relatorios?tipo=valor",
+    "capturado_em": "2026-10-25T18:35:50.249318+00:00",
+    "descricao": "Relatório real de valor potencial do estoque.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "b1e233d54777e6e60898457c2bf0c7c77f87254190b4b6f6b69e26a265f463f8"
+  },
+  {
+    "arquivo": "SE04.jpg",
+    "funcao": "SE04",
+    "url": "http://localhost:8080/relatorios?tipo=fluxo&inicio=2020-01-01&fim=2030-12-31",
+    "capturado_em": "2026-10-25T18:35:50.881156+00:00",
+    "descricao": "Relatório real de fluxo no período informado, com registros existentes.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "c8aa1b4b3de79b09899e55c030dee88f6260418d7c8d54ce90f834992b08dab3"
+  },
+  {
+    "arquivo": "SE13.jpg",
+    "funcao": "SE13",
+    "url": "http://localhost:8080/comparacao-precos",
+    "capturado_em": "2026-10-25T18:35:51.540017+00:00",
+    "descricao": "Comparação real entre preço interno e cotação externa, com diferenças calculadas.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "a4344f8b0febafa7079040ddca95ec034559baa1a3ed292596d161d0d611aa41"
+  },
+  {
+    "arquivo": "CE04-entrada.jpg",
+    "funcao": "CE04",
+    "url": "http://localhost:8080/fornecedores",
+    "capturado_em": "2026-10-25T18:35:52.214033+00:00",
+    "descricao": "Filtro F001 preenchido na tela real antes de consultar; a tabela abaixo ainda é a consulta anterior.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "866080fb2452c90028c81b76caf681821d492750bbdcd8719f7d0c8c650dc9ae"
+  },
+  {
+    "arquivo": "CE04-saida.jpg",
+    "funcao": "CE04",
+    "url": "http://localhost:8080/fornecedores?q=F001",
+    "capturado_em": "2026-10-25T18:35:52.895336+00:00",
+    "descricao": "Resultado real após submeter a consulta por F001.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "c26526fe861e2d9b989117506a33b9e01d74614c779aef1f0d35177439c92025"
+  },
+  {
+    "arquivo": "CE12-entrada.jpg",
+    "funcao": "CE12",
+    "url": "http://localhost:8080/ofertas",
+    "capturado_em": "2026-10-25T18:35:53.562740+00:00",
+    "descricao": "Filtros preenchidos na tela real antes de consultar; a tabela abaixo ainda é a consulta anterior.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "271a66e6402fcf703e9faabe81e1a06be295793c64839774c93e3dfb202ab47f"
+  },
+  {
+    "arquivo": "CE12-saida.jpg",
+    "funcao": "CE12",
+    "url": "http://localhost:8080/ofertas?gtin=789000000001&fornecedor=F001",
+    "capturado_em": "2026-10-25T18:35:54.260939+00:00",
+    "descricao": "Resultado real após consultar GTIN 789000000001 e fornecedor F001.",
+    "dimensoes": [
+      1920,
+      1080
+    ],
+    "sha256": "f38d52f849696cc8f8b7bf009f1e98ad6d5e6028ea3831359dadd23aee88128f"
+  }
+]

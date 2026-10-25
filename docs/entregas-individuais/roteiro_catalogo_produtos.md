@@ -1,4 +1,4 @@
-# Roteiro de apresentação — Arthur Ribeiro
+# Roteiro de apresentação — Artur Ribeiro de Souza
 
 Documento explicado: [catalogo_produtos.xlsx](catalogo_produtos.xlsx). Recorte: catálogo e produtos.
 
@@ -214,13 +214,13 @@ As taxas são hipóteses didáticas de planejamento, não resultados medidos nem
 
 **Filtrar ou ordenar uma lista cria dado derivado?** Isso, sozinho, não cria um novo valor de negócio. Somar saldos, multiplicar saldo por preço ou calcular diferenças produz dado derivado nas SEs deste trabalho.
 
-**Os protótipos são capturas reais?** Não. São imagens ilustrativas de baixa fidelidade baseadas nas funções implementadas. Mostram campos, interação e resultados esperados; os valores ilustrativos não devem ser apresentados como dados de produção.
+**Os protótipos são capturas reais?** Sim. As imagens incorporadas foram capturadas no navegador, com o sistema local em execução e dados de demonstração. Nas EEs, mostram formulários e detalhes de tela, sem enviar novos cadastros ou movimentos. Nas CEs, mostram os filtros antes do envio e os resultados após a consulta. Os exemplos numéricos ilustrativos deste roteiro continuam sendo exemplos didáticos, não necessariamente os valores dos prints.
 
-**Como os cálculos foram conferidos?** Os três Excel têm 80 fórmulas cada, cujos 240 resultados coincidiram com recálculo independente no LibreOffice. Cada documento foi inspecionado em 28 páginas, com 12 protótipos completos. A validação da aplicação registrou 90 testes Java aprovados e 13 verificações HTTP aprovadas.
+**Como os cálculos foram conferidos?** Os três Excel têm 80 fórmulas cada, cujos 240 resultados coincidiram com recálculo independente no LibreOffice. Na versão atual, a formatação original foi preservada: 12 abas e 14 espaços de imagens, com 19 páginas na renderização. Os dois blocos adicionais de EE detalham resultados das funções já contadas, sem acrescentar PF. A validação da aplicação registrou 90 testes Java aprovados e 13 verificações HTTP aprovadas.
 
 ## 12. Ordem sugerida para apresentar
 
-1. Abra a capa, diga seu nome e delimite o recorte.
+1. Abra a primeira aba (Contribuição), diga seu nome e delimite o recorte.
 2. Explique os dois ALIs e seus RLs/campos, mostrando os protótipos.
 3. Explique os dois AIEs e quem mantém os dados.
 4. Apresente as EEs, suas referências e sua contribuição real.
@@ -230,3 +230,281 @@ As taxas são hipóteses didáticas de planejamento, não resultados medidos nem
 8. Explique as premissas de esforço, prazo e custo.
 
 Fontes locais deste roteiro: planilha individual, docs/apf/contagem.json, docs/apf/resultados.json, docs/apf/NI.md e registro de validação. Os exemplos ilustrativos não alteram a contagem nem os arquivos Excel.
+
+## 13. Leitura detalhada do meu Excel, aba por aba
+
+Esta seção complementa o roteiro anterior e acompanha o arquivo final com prints reais. Aba é a guia dentro do Excel; página é uma folha na impressão. As 12 abas geraram 19 páginas na renderização de conferência. Outro programa ou configuração de impressão pode mudar a paginação.
+
+Um grupo lógico descreve dados persistentes do negócio; uma transação descreve uma operação. Exemplo: Produtos é o que se mantém; Incluir produto é o que se faz. O mesmo arquivo pode participar de várias operações sem se tornar um arquivo diferente.
+
+| Aba | Nome no meu Excel | Páginas de referência |
+| --- | --- | --- |
+| 1 | Contribuição | 1–2 |
+| 2 | A01 ALI | 3 |
+| 3 | A02 ALI | 4 |
+| 4 | X01 AIE | 5 |
+| 5 | X02 AIE | 6 |
+| 6 | Entradas externas | 7–10 |
+| 7 | SE06 SE | 11 |
+| 8 | SE02 SE | 12 |
+| 9 | CE04 Consulta | 13 |
+| 10 | CE12 Consulta | 14 |
+| 11 | Critérios e fontes | 15–16 |
+| 12 | NI e estimativas | 17–19 |
+
+### 1. Contribuição
+
+Identifica o integrante e resume as funções atribuídas. A lista distingue tipo e peso; o total bruto está em D17. As duas linhas de continuação das EEs valem zero para não contar a mesma operação novamente. Na parte inferior, B20:B25 apenas trazem os resultados da aba NI e estimativas.
+
+### 2. A01 ALI
+
+Descreve o primeiro grupo lógico interno: responsabilidade de manutenção, registro lógico, campos, complexidade e peso. A imagem real mostra uma tela relacionada ao grupo, mas não substitui o dicionário de campos.
+
+**O que os dados representam:** Modelos de produto. O registro lógico é “Registro de modelos de produto”.
+
+**Todos os campos desta ficha:** loja, código, nome, marca, categoria.
+
+Leia A como o subgrupo lógico, B como o nome dos campos, C como o tipo e D como quantos TD estão naquela linha. String é texto, Decimal é número com casas decimais, Date é data e Boolean representa sim/não. O tipo não multiplica os pontos.
+
+**Exemplo de leitura de uma linha:** “loja; código; modelo” representa três campos diferentes. O ponto e vírgula só economiza espaço visual. A quantidade de linhas preenchidas não substitui a contagem de campos.
+
+Campos gerados pelo sistema, como identificações ou contexto da loja, podem fazer parte do dicionário sem aparecer como uma caixa editável no print. Um registro lógico também não é a quantidade de produtos ou usuários cadastrados.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C27 | RL | 1 |
+| C28 | TD/DER | 5 |
+| B29 | Complexidade | Simples |
+| B30 | PF | 7 |
+
+### 3. A02 ALI
+
+Descreve o segundo grupo lógico interno. Como o modelo tem menos linhas, alguns campos aparecem juntos separados por ponto e vírgula. A coluna D indica a quantidade de TD representados na linha.
+
+**O que os dados representam:** Produtos. O registro lógico é “Registro de produtos”.
+
+**Todos os campos desta ficha:** loja, código, modelo, SKU, código de barras, cor, tamanho, unidade, preço, características, ativo.
+
+Leia A como o subgrupo lógico, B como o nome dos campos, C como o tipo e D como quantos TD estão naquela linha. String é texto, Decimal é número com casas decimais, Date é data e Boolean representa sim/não. O tipo não multiplica os pontos.
+
+**Exemplo de leitura de uma linha:** “loja; código; modelo” representa três campos diferentes. O ponto e vírgula só economiza espaço visual. A quantidade de linhas preenchidas não substitui a contagem de campos.
+
+Campos gerados pelo sistema, como identificações ou contexto da loja, podem fazer parte do dicionário sem aparecer como uma caixa editável no print. Um registro lógico também não é a quantidade de produtos ou usuários cadastrados.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C15 | RL | 1 |
+| C16 | TD/DER | 11 |
+| B17 | Complexidade | Simples |
+| B18 | PF | 7 |
+
+### 4. X01 AIE
+
+Descreve fornecedores mantidos fora do Estoque Inteligente. Um cadastro externo é um AIE aqui; a operação que o consulta é outra função, a CE04.
+
+**O que os dados representam:** Fornecedores externos. O registro lógico é “Registro de fornecedores externos”.
+
+**Todos os campos desta ficha:** código, nome, documento, e-mail, telefone.
+
+Leia A como o subgrupo lógico, B como o nome dos campos, C como o tipo e D como quantos TD estão naquela linha. String é texto, Decimal é número com casas decimais, Date é data e Boolean representa sim/não. O tipo não multiplica os pontos.
+
+**Exemplo de leitura de uma linha:** “loja; código; modelo” representa três campos diferentes. O ponto e vírgula só economiza espaço visual. A quantidade de linhas preenchidas não substitui a contagem de campos.
+
+Campos gerados pelo sistema, como identificações ou contexto da loja, podem fazer parte do dicionário sem aparecer como uma caixa editável no print. Um registro lógico também não é a quantidade de produtos ou usuários cadastrados.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C16 | RL | 1 |
+| C17 | TD/DER | 5 |
+| B18 | Complexidade | Simples |
+| B19 | PF | 5 |
+
+### 5. X02 AIE
+
+Descreve ofertas mantidas pelo provedor externo. O arquivo possui preço cotado e disponibilidade armazenados. A CE12 recupera esses valores; a SE13 usa a cotação para calcular diferenças.
+
+**O que os dados representam:** Ofertas externas. O registro lógico é “Oferta comercial externa”.
+
+**Todos os campos desta ficha:** GTIN, código do fornecedor, SKU externo, descrição, marca, unidade, preço cotado, disponibilidade, data de atualização.
+
+Leia A como o subgrupo lógico, B como o nome dos campos, C como o tipo e D como quantos TD estão naquela linha. String é texto, Decimal é número com casas decimais, Date é data e Boolean representa sim/não. O tipo não multiplica os pontos.
+
+**Exemplo de leitura de uma linha:** “loja; código; modelo” representa três campos diferentes. O ponto e vírgula só economiza espaço visual. A quantidade de linhas preenchidas não substitui a contagem de campos.
+
+Campos gerados pelo sistema, como identificações ou contexto da loja, podem fazer parte do dicionário sem aparecer como uma caixa editável no print. Um registro lógico também não é a quantidade de produtos ou usuários cadastrados.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C16 | RL | 1 |
+| C17 | TD/DER | 9 |
+| B18 | Complexidade | Simples |
+| B19 | PF | 5 |
+
+### 6. Entradas externas
+
+Contém duas EEs contadas e dois blocos de detalhamento. Primeiro leia finalidade, arquivos e campos; depois a tabela de TD, a lista de AR e a complexidade. Os blocos inferiores mostram detalhes das mesmas operações e acrescentam zero PF.
+
+**EE04: Incluir modelo.** Para apresentar, diga quais informações o usuário fornece, quais grupos são lidos ou mantidos e qual é a resposta. A intenção principal é manter informação interna.
+
+**Referências internas:** A01: loja, nome, marca e categoria; identificação do modelo gerada no cadastro. A09: loja, responsável, ação modelo.salvar, detalhe com a identificação do modelo e data gerada. Esses dados de auditoria são mantidos internamente e não são campos extras recebidos pela interface.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C36 | Arquivos referenciados (AR) | 2 |
+| C37 | TD/DER da interface | 5 |
+| B38 | Complexidade | Moderado |
+| B39 | PF | 4 |
+
+**EE01: Incluir produto, inclusive grade e saldo inicial.** Para apresentar, diga quais informações o usuário fornece, quais grupos são lidos ou mantidos e qual é a resposta. A intenção principal é manter informação interna.
+
+**Referências internas:** A01: nome, marca e categoria do modelo. A02: modelo, SKU, código de barras, cor, tamanho, unidade, preço, características e ativo. A03: posição e unidade, na entrada inicial. A04: produto, posição e quantidade inicial. A05: produto, posição, responsável, tipo, variação, saldos anterior/posterior, motivo e data, quando há saldo inicial. A09: loja, responsável, ação, detalhe e data (gerada). Identificações dos registros são geradas pelo banco; leituras/manutenções internas não são TD adicionais da interface.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C78 | Arquivos referenciados (AR) | 6 |
+| C79 | TD/DER da interface | 16 |
+| B80 | Complexidade | Complexo |
+| B81 | PF | 6 |
+
+**Por que aparecem A07, A08 ou A09 em algumas referências?** São outros grupos do sistema: permissões, lojas/configuração e auditoria. Eles podem apoiar uma transação mesmo sem serem um dos dois ALIs detalhados no recorte. Conte os arquivos efetivamente listados na EE, não todos os ALIs existentes no sistema.
+
+**Como ler as continuações:** B106 e B135 valem zero. Não são EEs novas e não representam erro. As imagens mostram detalhes do formulário ou registros existentes; não se deve dizer que documentam uma inclusão efetuada durante a captura.
+
+**Contribuição pessoal:** explique o que você realmente conferiu, identificou ou documentou. Estar responsável pelo tema não comprova autoria da programação.
+
+### 7. SE06 SE
+
+Explica a primeira saída externa: entradas, arquivos utilizados, resultados e regra que produz o dado derivado. A palavra saída não significa apenas mostrar uma tela; é necessário explicar o processamento descrito.
+
+**Entrada:** busca, produto selecionado.
+
+**Saída:** SKU, código de barras, nome, marca, categoria, cor, tamanho, unidade, preço, características, saldo total, posição, setor, quantidade na posição.
+
+**Arquivos:** A01 = Modelos de produto, A02 = Produtos, A03 = Posições, A04 = Estoque por posição / vínculos.
+
+**Transformação que deve ser explicada:** Soma das posições para obter saldo. Dashboard, busca digitada/voz e lista de produtos reutilizam a mesma intenção; não contar canais novamente.
+
+Cada campo de saída é um tipo de informação, não um ponto por linha do relatório. Um relatório com cem produtos continua com os mesmos tipos de dados que teria com dois produtos.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C29 | AR | 4 |
+| C30 | TD/DER | 18 |
+| B31 | Complexidade | Complexo |
+| B32 | PF | 7 |
+
+### 8. SE02 SE
+
+Explica a segunda saída externa e sua própria regra de cálculo. A classificação e o peso são da função inteira, e não de cada linha que aparece no relatório.
+
+**Entrada:** não há filtro de negócio listado; existe acionamento da função.
+
+**Saída:** SKU, unidade, saldo, preço, valor por produto, total da loja.
+
+**Arquivos:** A02 = Produtos, A04 = Estoque por posição / vínculos.
+
+**Transformação que deve ser explicada:** Saldo × preço atual, arredondado em centavos por produto; total = soma dos valores. Não é custo nem receita realizada.
+
+Cada campo de saída é um tipo de informação, não um ponto por linha do relatório. Um relatório com cem produtos continua com os mesmos tipos de dados que teria com dois produtos.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C23 | AR | 2 |
+| C24 | TD/DER | 8 |
+| B25 | Complexidade | Moderado |
+| B26 | PF | 5 |
+
+### 9. CE04 Consulta
+
+Documenta a consulta aos fornecedores: filtro de entrada e dados recuperados na saída. Os dois prints são etapas de uma única CE. A classificação separa entrada e saída conforme a convenção adotada nos slides.
+
+**Entrada:** filtro código, nome ou documento.
+
+**Saída:** código, nome, documento, e-mail, telefone.
+
+**Arquivos:** X01 = Fornecedores externos.
+
+**Por que continua sendo CE:** selecionar registros por um filtro não produz um novo valor calculado de negócio. A consulta não grava o cadastro e não calcula totais, diferenças ou percentuais.
+
+Na ficha, a célula de TD mostra o total distinto documentado. A explicação de entrada/saída informa a divisão usada para classificar separadamente as duas partes. Na CE12, GTIN e fornecedor já aparecem na entrada; os demais sete campos compõem a saída sem repetição.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C23 | AR | 1 |
+| C24 | TD/DER | 8 |
+| B25 | Complexidade | Simples |
+| B26 | PF | 3 |
+
+### 10. CE12 Consulta
+
+Documenta a consulta às ofertas: filtros por GTIN e fornecedor e resultado com os dados externos. GTIN e fornecedor aparecem nos dois lados, mas não são contados duas vezes no total documentado.
+
+**Entrada:** GTIN, código do fornecedor.
+
+**Saída:** GTIN, código do fornecedor, SKU externo, descrição, marca, unidade, preço cotado, disponibilidade, data de atualização.
+
+**Arquivos:** X02 = Ofertas externas.
+
+**Por que continua sendo CE:** selecionar registros por um filtro não produz um novo valor calculado de negócio. A consulta não grava o cadastro e não calcula totais, diferenças ou percentuais.
+
+Na ficha, a célula de TD mostra o total distinto documentado. A explicação de entrada/saída informa a divisão usada para classificar separadamente as duas partes. Na CE12, GTIN e fornecedor já aparecem na entrada; os demais sete campos compõem a saída sem repetição.
+
+| Célula | Significado | Valor |
+| --- | --- | --- |
+| C22 | AR | 1 |
+| C23 | TD/DER | 11 |
+| B24 | Complexidade | Simples |
+| B25 | PF | 3 |
+
+### 11. Critérios e fontes
+
+Apresenta a fronteira, as convenções e as matrizes de complexidade. A matriz cruza a quantidade de campos com a quantidade de RL ou AR; depois o tipo da função determina o peso. Não é a tabela do NI.
+
+**Exemplo de uso da matriz:** um ALI com 1 RL e 11 TD cai na faixa de 1 a 19 TD e é simples: 7 PF. Uma EE com 2 AR e 5 TD cai na faixa de 5 a 15 TD e é moderada: 4 PF. Não use a matriz de ALI para classificar uma EE.
+
+As palavras simples, moderada e complexa indicam o enquadramento funcional da contagem, não uma avaliação do talento do programador ou da aparência da tela.
+
+### 12. NI e estimativas
+
+Concentra o ajuste e o planejamento: PFB, soma das 14 notas, FA, PFA, premissas de capacidade/produtividade e cálculos de horas, dias e reais. Taxas como 10 h/PFA e R$ 25/h são hipóteses de planejamento.
+
+| Célula | Como interpretar | Valor |
+| --- | --- | --- |
+| B2 | PFB: soma dos pesos do recorte | 52 |
+| B3 | NI: soma de B9:B22 | 41 |
+| B4 | FA: 0,65 + 0,01 × NI | 1,06 |
+| B5 | PFA: PFB × FA | 55,12 |
+| B28 | Horas por ponto ajustado | 10 |
+| B29 | Pessoas equivalentes | 1 |
+| B30 | Jornada de referência, h/dia | 8 |
+| B31 | Alocação produtiva: 0,75 equivale a 75% | 0,75 |
+| B32 | Dias úteis por semana | 5 |
+| B33 | Valor da hora, R$ | 25 |
+| B34 | Reserva de esforço: zero nesta estimativa | 0 |
+| B35 | Custos adicionais, R$ | 0 |
+| B39 | Horas produtivas por pessoa/dia | 6 |
+| B40 | Esforço base, horas-pessoa | 551,20 |
+| B41 | Reserva em horas | 0 |
+| B42 | Esforço total, horas-pessoa | 551,20 |
+| B43 | Capacidade diária, h/dia | 6 |
+| B44 | Prazo calculado, antes do arredondamento | 91,87 |
+| B45 | Prazo planejado, dias úteis inteiros | 92 |
+| B46 | Prazo em semanas úteis | 18,40 |
+| B47 | Custo base de mão de obra, R$ | 13780 |
+| B48 | Custo da reserva, R$ | 0 |
+| B49 | Custo total, R$ | 13780 |
+
+Nas linhas 9 a 22, leia a característica em A, a nota em B, a justificativa em C e a evidência em D. Nota alta significa maior influência segundo o critério adotado; não significa “software melhor”. Não aumente a nota só para aumentar o tamanho.
+
+Esforço é trabalho total; prazo é tempo de calendário de trabalho; custo é valor monetário estimado. Não são a mesma coisa. A conta utiliza uma pessoa neste recorte, seis horas produtivas por dia e arredondamento do prazo para cima.
+
+## 14. Exercício rápido para fixar
+
+1. Localize um código Axx na tabela de uma EE e diga qual grupo ele representa.
+2. Localize um TD e explique se vem da interface ou se é apenas um dado interno lido.
+3. Mostre o resultado derivado de uma SE e refaça um exemplo do cálculo.
+4. Mostre uma CE e explique por que o filtro não transforma a função em SE.
+5. Aponte o PFB, explique por que o NI é 41 e calcule o FA.
+6. Mostre onde as horas viram dias e onde as horas viram reais.
+
+Ao apresentar, você pode consultar as tabelas: o objetivo é entender e defender as decisões, não decorar cada endereço de célula.

@@ -1,0 +1,236 @@
+[
+  {
+    "arquivo": "catalogo_produtos.xlsx",
+    "integrante": "Artur Ribeiro de Souza",
+    "imagens_reais": [
+      {
+        "parte_excel": "xl/media/image1.jpeg",
+        "captura": "A01.jpg",
+        "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+      },
+      {
+        "parte_excel": "xl/media/image2.jpeg",
+        "captura": "A02.jpg",
+        "sha256": "7808955ef3a9d074331a90c90cc6f5ac8ca7833bce451d2b7ec16cfaaf1288bd"
+      },
+      {
+        "parte_excel": "xl/media/image3.jpeg",
+        "captura": "X01.jpg",
+        "sha256": "123a22a409e77f0b726b962c295a3d60f5eb2c49a8e2b4af5cc6c7867ba13a55"
+      },
+      {
+        "parte_excel": "xl/media/image4.jpeg",
+        "captura": "X02.jpg",
+        "sha256": "8c3608a5513522f72a9e26360d07ce9285a46fda711a0247e149133c27577857"
+      },
+      {
+        "parte_excel": "xl/media/image5.jpeg",
+        "captura": "EE04-entrada.jpg",
+        "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+      },
+      {
+        "parte_excel": "xl/media/image6.jpeg",
+        "captura": "EE01-entrada.jpg",
+        "sha256": "7808955ef3a9d074331a90c90cc6f5ac8ca7833bce451d2b7ec16cfaaf1288bd"
+      },
+      {
+        "parte_excel": "xl/media/image7.jpeg",
+        "captura": "EE04-detalhe.jpg",
+        "sha256": "85791cd81d40e8d1f8e1f383be05e0edeb7aa4b6c94530d3add30d8393e86b43"
+      },
+      {
+        "parte_excel": "xl/media/image8.jpeg",
+        "captura": "EE01-detalhe.jpg",
+        "sha256": "8f0faa891254b6ec07062adf1c28e5abd524fbc49ff6f48b11fa4a5903a4823b"
+      },
+      {
+        "parte_excel": "xl/media/image9.jpeg",
+        "captura": "SE06.jpg",
+        "sha256": "88da6a1247ededd6ed2d25efcb57c61ceda2f0b823fcc8bb59b96df1877a186b"
+      },
+      {
+        "parte_excel": "xl/media/image10.jpeg",
+        "captura": "SE02.jpg",
+        "sha256": "b1e233d54777e6e60898457c2bf0c7c77f87254190b4b6f6b69e26a265f463f8"
+      },
+      {
+        "parte_excel": "xl/media/image11.jpeg",
+        "captura": "CE04-entrada.jpg",
+        "sha256": "866080fb2452c90028c81b76caf681821d492750bbdcd8719f7d0c8c650dc9ae"
+      },
+      {
+        "parte_excel": "xl/media/image12.jpeg",
+        "captura": "CE04-saida.jpg",
+        "sha256": "c26526fe861e2d9b989117506a33b9e01d74614c779aef1f0d35177439c92025"
+      },
+      {
+        "parte_excel": "xl/media/image13.jpeg",
+        "captura": "CE12-entrada.jpg",
+        "sha256": "271a66e6402fcf703e9faabe81e1a06be295793c64839774c93e3dfb202ab47f"
+      },
+      {
+        "parte_excel": "xl/media/image14.jpeg",
+        "captura": "CE12-saida.jpg",
+        "sha256": "f38d52f849696cc8f8b7bf009f1e98ad6d5e6028ea3831359dadd23aee88128f"
+      }
+    ],
+    "formulas_preservadas": 80,
+    "estilos_preservados": true
+  },
+  {
+    "arquivo": "posicoes_ocupacao.xlsx",
+    "integrante": "Cristhian Ruan de Rezende",
+    "imagens_reais": [
+      {
+        "parte_excel": "xl/media/image1.jpeg",
+        "captura": "A03.jpg",
+        "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+      },
+      {
+        "parte_excel": "xl/media/image2.jpeg",
+        "captura": "A04.jpg",
+        "sha256": "8bb1caddf540d56d4dadcc30b2c31d5bba62aff96cbcd4d1dd62b6787913a2fc"
+      },
+      {
+        "parte_excel": "xl/media/image3.jpeg",
+        "captura": "X01.jpg",
+        "sha256": "123a22a409e77f0b726b962c295a3d60f5eb2c49a8e2b4af5cc6c7867ba13a55"
+      },
+      {
+        "parte_excel": "xl/media/image4.jpeg",
+        "captura": "X02.jpg",
+        "sha256": "8c3608a5513522f72a9e26360d07ce9285a46fda711a0247e149133c27577857"
+      },
+      {
+        "parte_excel": "xl/media/image5.jpeg",
+        "captura": "EE07-entrada.jpg",
+        "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+      },
+      {
+        "parte_excel": "xl/media/image6.jpeg",
+        "captura": "EE10-entrada.jpg",
+        "sha256": "8bb1caddf540d56d4dadcc30b2c31d5bba62aff96cbcd4d1dd62b6787913a2fc"
+      },
+      {
+        "parte_excel": "xl/media/image7.jpeg",
+        "captura": "EE07-detalhe.jpg",
+        "sha256": "61be2278135358e7cf9c8f039d2056de4b88c16634466b7446d990486f90abac"
+      },
+      {
+        "parte_excel": "xl/media/image8.jpeg",
+        "captura": "EE10-detalhe.jpg",
+        "sha256": "873513300ef85d0bb14042101109a8a993a29aabd0abc1223fadfc5f7b4dd3f1"
+      },
+      {
+        "parte_excel": "xl/media/image9.jpeg",
+        "captura": "SE07.jpg",
+        "sha256": "6074a2cbf49c1e60a9a7f556b283aa3082901a480fb635dccabc05e6575888d8"
+      },
+      {
+        "parte_excel": "xl/media/image10.jpeg",
+        "captura": "SE04.jpg",
+        "sha256": "c8aa1b4b3de79b09899e55c030dee88f6260418d7c8d54ce90f834992b08dab3"
+      },
+      {
+        "parte_excel": "xl/media/image11.jpeg",
+        "captura": "CE04-entrada.jpg",
+        "sha256": "866080fb2452c90028c81b76caf681821d492750bbdcd8719f7d0c8c650dc9ae"
+      },
+      {
+        "parte_excel": "xl/media/image12.jpeg",
+        "captura": "CE04-saida.jpg",
+        "sha256": "c26526fe861e2d9b989117506a33b9e01d74614c779aef1f0d35177439c92025"
+      },
+      {
+        "parte_excel": "xl/media/image13.jpeg",
+        "captura": "CE12-entrada.jpg",
+        "sha256": "271a66e6402fcf703e9faabe81e1a06be295793c64839774c93e3dfb202ab47f"
+      },
+      {
+        "parte_excel": "xl/media/image14.jpeg",
+        "captura": "CE12-saida.jpg",
+        "sha256": "f38d52f849696cc8f8b7bf009f1e98ad6d5e6028ea3831359dadd23aee88128f"
+      }
+    ],
+    "formulas_preservadas": 80,
+    "estilos_preservados": true
+  },
+  {
+    "arquivo": "movimentacoes_usuarios.xlsx",
+    "integrante": "Lucas Andriani Theiss",
+    "imagens_reais": [
+      {
+        "parte_excel": "xl/media/image1.jpeg",
+        "captura": "A05.jpg",
+        "sha256": "d37abd3bbbe8d3871eac81340805285d0f68676b1fdc17991a150b7670cc14ec"
+      },
+      {
+        "parte_excel": "xl/media/image2.jpeg",
+        "captura": "A06.jpg",
+        "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+      },
+      {
+        "parte_excel": "xl/media/image3.jpeg",
+        "captura": "X01.jpg",
+        "sha256": "123a22a409e77f0b726b962c295a3d60f5eb2c49a8e2b4af5cc6c7867ba13a55"
+      },
+      {
+        "parte_excel": "xl/media/image4.jpeg",
+        "captura": "X02.jpg",
+        "sha256": "8c3608a5513522f72a9e26360d07ce9285a46fda711a0247e149133c27577857"
+      },
+      {
+        "parte_excel": "xl/media/image5.jpeg",
+        "captura": "EE21-entrada.jpg",
+        "sha256": "082f960020c8d07d2dc7133e11b1b94c0370e327ccaf9815d560ab9eef86b113"
+      },
+      {
+        "parte_excel": "xl/media/image6.jpeg",
+        "captura": "EE13-entrada.jpg",
+        "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+      },
+      {
+        "parte_excel": "xl/media/image7.jpeg",
+        "captura": "EE21-detalhe.jpg",
+        "sha256": "d37abd3bbbe8d3871eac81340805285d0f68676b1fdc17991a150b7670cc14ec"
+      },
+      {
+        "parte_excel": "xl/media/image8.jpeg",
+        "captura": "EE13-detalhe.jpg",
+        "sha256": "5350ac7438887e13cb7f3b02d45e94ec7ed8ee6c4ac3dd2cdd8584590a20feff"
+      },
+      {
+        "parte_excel": "xl/media/image9.jpeg",
+        "captura": "SE04.jpg",
+        "sha256": "c8aa1b4b3de79b09899e55c030dee88f6260418d7c8d54ce90f834992b08dab3"
+      },
+      {
+        "parte_excel": "xl/media/image10.jpeg",
+        "captura": "SE13.jpg",
+        "sha256": "a4344f8b0febafa7079040ddca95ec034559baa1a3ed292596d161d0d611aa41"
+      },
+      {
+        "parte_excel": "xl/media/image11.jpeg",
+        "captura": "CE04-entrada.jpg",
+        "sha256": "866080fb2452c90028c81b76caf681821d492750bbdcd8719f7d0c8c650dc9ae"
+      },
+      {
+        "parte_excel": "xl/media/image12.jpeg",
+        "captura": "CE04-saida.jpg",
+        "sha256": "c26526fe861e2d9b989117506a33b9e01d74614c779aef1f0d35177439c92025"
+      },
+      {
+        "parte_excel": "xl/media/image13.jpeg",
+        "captura": "CE12-entrada.jpg",
+        "sha256": "271a66e6402fcf703e9faabe81e1a06be295793c64839774c93e3dfb202ab47f"
+      },
+      {
+        "parte_excel": "xl/media/image14.jpeg",
+        "captura": "CE12-saida.jpg",
+        "sha256": "f38d52f849696cc8f8b7bf009f1e98ad6d5e6028ea3831359dadd23aee88128f"
+      }
+    ],
+    "formulas_preservadas": 80,
+    "estilos_preservados": true
+  }
+]

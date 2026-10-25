@@ -1,0 +1,26 @@
+[
+  {
+    "arquivo": "catalogo_produtos.xlsx",
+    "formulas_conferidas": 80,
+    "paginas_no_layout_original": 19,
+    "imagens_reais": 14,
+    "PFB": 52,
+    "PFA": 55.12
+  },
+  {
+    "arquivo": "movimentacoes_usuarios.xlsx",
+    "formulas_conferidas": 80,
+    "paginas_no_layout_original": 19,
+    "imagens_reais": 14,
+    "PFB": 52,
+    "PFA": 55.12
+  },
+  {
+    "arquivo": "posicoes_ocupacao.xlsx",
+    "formulas_conferidas": 80,
+    "paginas_no_layout_original": 19,
+    "imagens_reais": 14,
+    "PFB": 50,
+    "PFA": 53
+  }
+]
