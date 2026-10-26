@@ -1,0 +1,38 @@
+[
+  {
+    "origem": "docs/entregas-individuais/catalogo_produtos.xlsx",
+    "arquivo": "outputs/apf-formatados/catalogo_produtos_formatado.xlsx",
+    "abas": 12,
+    "celulasDados": 1117,
+    "formulas": 80,
+    "imagens": 14,
+    "sha256": "0b7c1d9c88949d8c7a07beb3d786d670ae6633f03d2228eeaece8a9d0e87389c"
+  },
+  {
+    "origem": "docs/entregas-individuais/movimentacoes_usuarios.xlsx",
+    "arquivo": "outputs/apf-formatados/movimentacoes_usuarios_formatado.xlsx",
+    "abas": 12,
+    "celulasDados": 1099,
+    "formulas": 80,
+    "imagens": 14,
+    "sha256": "339f25f5669f123c8559f3d9fb0d4b53064053cba1fee6ea0b603951fcd3a03a"
+  },
+  {
+    "origem": "docs/entregas-individuais/posicoes_ocupacao.xlsx",
+    "arquivo": "outputs/apf-formatados/posicoes_ocupacao_formatado.xlsx",
+    "abas": 12,
+    "celulasDados": 1108,
+    "formulas": 80,
+    "imagens": 14,
+    "sha256": "32272a47a99010fe1508a73ef451e12187c2e70b6925b64e945894052ea8c614"
+  },
+  {
+    "origem": "docs/apf/coletiva/entrega-coletiva-apf.xlsx",
+    "arquivo": "outputs/apf-formatados/entrega-coletiva-apf_formatado.xlsx",
+    "abas": 63,
+    "celulasDados": 9403,
+    "formulas": 4494,
+    "imagens": 93,
+    "sha256": "bf51fcc467a265dc99c398ee49beafdb04874a35f9c9f8d202372cf8913bd68a"
+  }
+]
