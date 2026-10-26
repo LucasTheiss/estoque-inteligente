@@ -40,7 +40,11 @@ foreach ($f in $dados.funcoes) {
     switch($f.tipo){
         'EE' {$i=Indice-Entrada $ar $td; $pesos=@(3,4,6)}
         'SE' {$i=Indice-Saida $ar $td; $pesos=@(4,5,7)}
-        'CE' {$i=[Math]::Max((Indice-Entrada $ar $entrada),(Indice-Saida $ar $saida)); $pesos=@(3,4,6)}
+        'CE' {
+            $arEntrada=if($null -ne $f.arEntrada){[int]$f.arEntrada}else{$ar}
+            $arSaida=if($null -ne $f.arSaida){[int]$f.arSaida}else{$ar}
+            $i=[Math]::Max((Indice-Entrada $arEntrada $entrada),(Indice-Saida $arSaida $saida)); $pesos=@(3,4,6)
+        }
         default {throw 'Tipo desconhecido'}
     }
     $linhas.Add([pscustomobject]@{id=$f.id;tipo=$f.tipo;nome=$f.nome;ar_rl=$ar;td=$td;tdEntrada=$entrada;tdSaida=$saida;complexidade=$nomes[$i];pf=$pesos[$i]})
@@ -62,7 +66,7 @@ $utf8=[System.Text.UTF8Encoding]::new($false)
 $md=[System.Collections.Generic.List[string]]::new()
 $md.Add('# Memoria de calculo gerada')
 $md.Add('')
-$md.Add('Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos referenciados ou registros logicos. Em CE, a complexidade e o maior resultado entre entrada e saida.')
+$md.Add('Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos referenciados ou registros logicos. Em CE, a complexidade e o maior resultado entre entrada e saida, usando os AR especificos de cada lado declarados no catalogo.')
 $md.Add('')
 $md.Add('| ID | Tipo | Funcao | AR/RL | TD | TD entrada CE | TD saida CE | Complexidade | PF |')
 $md.Add('|---|---|---|---:|---:|---:|---:|---|---:|')

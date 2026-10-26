@@ -1,6 +1,6 @@
 # Memoria de calculo gerada
 
-Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos referenciados ou registros logicos. Em CE, a complexidade e o maior resultado entre entrada e saida.
+Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos referenciados ou registros logicos. Em CE, a complexidade e o maior resultado entre entrada e saida, usando os AR especificos de cada lado declarados no catalogo.
 
 | ID | Tipo | Funcao | AR/RL | TD | TD entrada CE | TD saida CE | Complexidade | PF |
 |---|---|---|---:|---:|---:|---:|---|---:|
@@ -47,34 +47,34 @@ Fonte: contagem.json. Recalcular com scripts/calcular-apf.ps1. AR/RL = arquivos 
 | EE28 | EE | Encerrar sessão | 0 | 2 | 1 | 1 | Simples | 3 |
 | SE02 | SE | Valor potencial do estoque | 2 | 8 | 2 | 6 | Moderada | 5 |
 | SE04 | SE | Fluxo de movimentações | 2 | 9 | 4 | 5 | Moderada | 5 |
-| SE06 | SE | Pesquisar estoque e localizar produto | 4 | 18 | 4 | 14 | Complexa | 7 |
+| SE06 | SE | Pesquisar estoque e localizar produto | 4 | 16 | 4 | 12 | Complexa | 7 |
 | SE07 | SE | Mapa operacional de posições | 4 | 13 | 2 | 11 | Complexa | 7 |
 | SE08 | SE | Ler peso líquido e subtotal | 2 | 9 | 4 | 5 | Moderada | 5 |
 | SE09 | SE | Exportar histórico | 6 | 13 | 6 | 7 | Complexa | 7 |
 | CE04 | CE | Consultar fornecedores externos | 1 | 8 | 3 | 5 | Simples | 3 |
 | CE05 | CE | Consultar modelos | 1 | 6 | 3 | 3 | Simples | 3 |
-| CE06 | CE | Consultar vínculos | 4 | 14 | 4 | 10 | Complexa | 6 |
+| CE06 | CE | Consultar vínculos | 4 | 10 | 4 | 6 | Complexa | 6 |
 | CE07 | CE | Consultar equipe e permissões | 2 | 6 | 3 | 3 | Simples | 3 |
 | CE08 | CE | Consultar lojas | 1 | 9 | 3 | 6 | Simples | 3 |
 | CE09 | CE | Consultar configuração IoT | 1 | 6 | 2 | 4 | Simples | 3 |
-| CE10 | CE | Consultar histórico operacional | 5 | 13 | 5 | 8 | Complexa | 6 |
+| SE10 | SE | Consultar histórico operacional | 5 | 13 | 5 | 8 | Complexa | 7 |
 | CE11 | CE | Consultar auditoria | 2 | 6 | 2 | 4 | Simples | 3 |
 
 ## Totais por tipo
 
 - AIE: 2 funcoes; 10 PF.
 - ALI: 9 funcoes; 63 PF.
-- CE: 9 funcoes; 33 PF.
-- SE: 7 funcoes; 41 PF.
+- CE: 8 funcoes; 27 PF.
+- SE: 8 funcoes; 48 PF.
 - EE: 28 funcoes; 135 PF.
 
 ## Resultado
 
-- NI: 41
-- PFB: 282
-- FA: 1.06
-- PFA: 298.92
-- esforcoHoras: 2989.20
-- prazoDias: 166.07
-- prazoDiasUteisInteiros: 167
-- custoReais: 74730.00
+- NI: 38
+- PFB: 283
+- FA: 1.03
+- PFA: 291.49
+- esforcoHoras: 2914.90
+- prazoDias: 161.94
+- prazoDiasUteisInteiros: 162
+- custoReais: 72872.50

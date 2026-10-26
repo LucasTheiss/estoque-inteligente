@@ -1,5 +1,18 @@
 # Verificação da APF
 
+## Conclusão coletiva de 25/10/2026
+
+- Entrega coletiva: 63 abas, 55 funções, 4494 fórmulas e 93 imagens reais incorporadas.
+- 322 verificações no LibreOffice: totais, pesos/complexidades, fronteiras das matrizes, TD repetidos e sensibilidade de NI/produtividade/capacidade/equipe/valor-hora. Entradas restauradas; recálculo automático e caches salvos sem erros.
+- 217 páginas de impressão A3; 93 imagens inteiras, dentro das páginas, e conteúdo textual das células localizado na extração. Modelo e três planilhas individuais preservados por SHA-256.
+- Nova evidência da CE05 e das consultas complementares; SE08 mostra peso/subtotal reais do simulador; EE27 mostra confirmação real do simulador LED; SE09 inclui PDF exportado pelo sistema.
+- Totais atuais: PFB 283, NI 38, FA 1,03, PFA 291,49, esforço 2.914,90 horas-pessoa, 162 dias úteis, R$ 72.872,50, sob premissas documentadas.
+- Microsoft Excel não instalado nesta máquina: abertura nativa não verificada. O pacote foi regravado e validado no LibreOffice.
+- Sem alteração no código da aplicação nesta conclusão; logs anteriores de 90 testes Java e 13 JavaScript preservados, sem alegar nova execução.
+- Registros completos: `coletiva/validacao-final.json`, `coletiva/validacao-impressao.json` e `coletiva/capturas/manifesto-incorporado.json`.
+
+## Registros históricos — números e estados das respectivas revisões
+
 ## Ampliação de 24/10/2026
 
 - Docker operacional; suíte Java com PostgreSQL e MQTT: **90 testes, zero falhas, zero erros e zero ignorados**. Inclui contrato HTTP de ofertas, erros/limites, filtros, comparação por loja/GTIN/unidade, percentual, preço zero, produto inativo, autorização e renderização/escape das telas novas.

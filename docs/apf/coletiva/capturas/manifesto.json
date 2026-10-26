@@ -1,7 +1,7 @@
 [
   {
     "id": "EE25-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE25-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE25-entrada.png",
     "url": "http://localhost:8080/login",
     "descricao": "Tela real de autenticação, sem expor senha.",
     "data": "2026-10-25T22:02:44.245Z",
@@ -9,7 +9,7 @@
   },
   {
     "id": "EE25-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE25-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE25-saida.png",
     "url": "http://localhost:8080/",
     "descricao": "Autenticação realizada na loja de demonstração.",
     "data": "2026-10-25T22:02:45.281Z",
@@ -17,7 +17,7 @@
   },
   {
     "id": "A01",
-    "arquivo": "tmp/apf-coletiva/capturas/A01.png",
+    "arquivo": "docs/apf/coletiva/capturas/A01.png",
     "url": "http://localhost:8080/modelos",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:45.447Z",
@@ -25,7 +25,7 @@
   },
   {
     "id": "A02",
-    "arquivo": "tmp/apf-coletiva/capturas/A02.png",
+    "arquivo": "docs/apf/coletiva/capturas/A02.png",
     "url": "http://localhost:8080/produtos",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:45.673Z",
@@ -33,7 +33,7 @@
   },
   {
     "id": "A03",
-    "arquivo": "tmp/apf-coletiva/capturas/A03.png",
+    "arquivo": "docs/apf/coletiva/capturas/A03.png",
     "url": "http://localhost:8080/posicoes",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:45.805Z",
@@ -41,7 +41,7 @@
   },
   {
     "id": "A04",
-    "arquivo": "tmp/apf-coletiva/capturas/A04.png",
+    "arquivo": "docs/apf/coletiva/capturas/A04.png",
     "url": "http://localhost:8080/vinculos",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.015Z",
@@ -49,7 +49,7 @@
   },
   {
     "id": "A05",
-    "arquivo": "tmp/apf-coletiva/capturas/A05.png",
+    "arquivo": "docs/apf/coletiva/capturas/A05.png",
     "url": "http://localhost:8080/historico",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.171Z",
@@ -57,7 +57,7 @@
   },
   {
     "id": "A06",
-    "arquivo": "tmp/apf-coletiva/capturas/A06.png",
+    "arquivo": "docs/apf/coletiva/capturas/A06.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.381Z",
@@ -65,7 +65,7 @@
   },
   {
     "id": "A07",
-    "arquivo": "tmp/apf-coletiva/capturas/A07.png",
+    "arquivo": "docs/apf/coletiva/capturas/A07.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.577Z",
@@ -73,7 +73,7 @@
   },
   {
     "id": "A08",
-    "arquivo": "tmp/apf-coletiva/capturas/A08.png",
+    "arquivo": "docs/apf/coletiva/capturas/A08.png",
     "url": "http://localhost:8080/iot/configuracao",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.703Z",
@@ -81,7 +81,7 @@
   },
   {
     "id": "SE02",
-    "arquivo": "tmp/apf-coletiva/capturas/SE02.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE02.png",
     "url": "http://localhost:8080/relatorios?tipo=valor",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.842Z",
@@ -89,7 +89,7 @@
   },
   {
     "id": "SE04",
-    "arquivo": "tmp/apf-coletiva/capturas/SE04.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE04.png",
     "url": "http://localhost:8080/relatorios?tipo=fluxo",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:46.976Z",
@@ -97,7 +97,7 @@
   },
   {
     "id": "SE06",
-    "arquivo": "tmp/apf-coletiva/capturas/SE06.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE06.png",
     "url": "http://localhost:8080/",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:47.110Z",
@@ -105,7 +105,7 @@
   },
   {
     "id": "SE07",
-    "arquivo": "tmp/apf-coletiva/capturas/SE07.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE07.png",
     "url": "http://localhost:8080/ocupacao",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:47.256Z",
@@ -113,7 +113,7 @@
   },
   {
     "id": "CE04-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/CE04-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/CE04-entrada.png",
     "url": "http://localhost:8080/fornecedores",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:47.534Z",
@@ -121,7 +121,7 @@
   },
   {
     "id": "CE04-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/CE04-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/CE04-saida.png",
     "url": "http://localhost:8080/fornecedores?q=F001",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:47.652Z",
@@ -129,7 +129,7 @@
   },
   {
     "id": "CE12-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/CE12-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/CE12-entrada.png",
     "url": "http://localhost:8080/ofertas",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:47.935Z",
@@ -137,7 +137,7 @@
   },
   {
     "id": "CE12-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/CE12-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/CE12-saida.png",
     "url": "http://localhost:8080/ofertas?fornecedor=F001",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:48.056Z",
@@ -145,7 +145,7 @@
   },
   {
     "id": "SE13",
-    "arquivo": "tmp/apf-coletiva/capturas/SE13.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE13.png",
     "url": "http://localhost:8080/comparacao-precos",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:48.183Z",
@@ -153,7 +153,7 @@
   },
   {
     "id": "EE21",
-    "arquivo": "tmp/apf-coletiva/capturas/EE21.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE21.png",
     "url": "http://localhost:8080/movimentar",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:48.392Z",
@@ -161,7 +161,7 @@
   },
   {
     "id": "EE24",
-    "arquivo": "tmp/apf-coletiva/capturas/EE24.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE24.png",
     "url": "http://localhost:8080/estorno",
     "descricao": "Captura real da aplicação atual; dados de demonstração.",
     "data": "2026-10-25T22:02:48.516Z",
@@ -169,7 +169,7 @@
   },
   {
     "id": "A09",
-    "arquivo": "tmp/apf-coletiva/capturas/A09.png",
+    "arquivo": "docs/apf/coletiva/capturas/A09.png",
     "url": "http://localhost:8080/historico",
     "descricao": "Auditoria consultável real; dados de demonstração.",
     "data": "2026-10-25T22:02:48.686Z",
@@ -177,7 +177,7 @@
   },
   {
     "id": "EE04-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE04-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE04-entrada.png",
     "url": "http://localhost:8080/modelos",
     "descricao": "Inclusão de modelo temporário de demonstração, antes de enviar.",
     "data": "2026-10-25T22:02:48.817Z",
@@ -185,7 +185,7 @@
   },
   {
     "id": "EE04-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE04-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE04-saida.png",
     "url": "http://localhost:8080/modelos",
     "descricao": "Modelo salvo pela aplicação; operação realmente executada.",
     "data": "2026-10-25T22:02:49.041Z",
@@ -193,7 +193,7 @@
   },
   {
     "id": "EE05-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE05-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE05-entrada.png",
     "url": "http://localhost:8080/modelos?id=16",
     "descricao": "Alteração real do modelo temporário.",
     "data": "2026-10-25T22:02:49.204Z",
@@ -201,7 +201,7 @@
   },
   {
     "id": "EE05-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE05-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE05-saida.png",
     "url": "http://localhost:8080/modelos",
     "descricao": "Alteração enviada e concluída.",
     "data": "2026-10-25T22:02:49.737Z",
@@ -209,7 +209,7 @@
   },
   {
     "id": "EE06-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE06-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE06-entrada.png",
     "url": "http://localhost:8080/modelos?id=16",
     "descricao": "Modelo temporário selecionado para exclusão física; sem produtos vinculados.",
     "data": "2026-10-25T22:02:49.885Z",
@@ -217,7 +217,7 @@
   },
   {
     "id": "EE06-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE06-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE06-saida.png",
     "url": "http://localhost:8080/modelos",
     "descricao": "Exclusão física realmente executada; registro temporário removido.",
     "data": "2026-10-25T22:02:50.066Z",
@@ -225,15 +225,15 @@
   },
   {
     "id": "EE28-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE28-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE28-saida.png",
     "url": "http://localhost:8080/login?logout",
-    "descricao": "Sessão encerrada pela aplicação.",
-    "data": "2026-10-25T22:02:50.230Z",
-    "sha256": "fa6071278110a5cf5caeb9b7ab4b2174456bb40ae0c131e46ed1d487ac730ef9"
+    "descricao": "Sessão encerrada, com mensagem real de saída da conta.",
+    "data": "2026-10-25T23:50:56.921738+00:00",
+    "sha256": "3e152e13cf874921308d8db67b799d91719148c6e823f80508849db4161ecc2d"
   },
   {
     "id": "CE08-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/CE08-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/CE08-entrada.png",
     "url": "http://localhost:8080/global",
     "descricao": "Consulta global, entrada e lista.",
     "data": "2026-10-25T22:02:50.760Z",
@@ -241,7 +241,7 @@
   },
   {
     "id": "CE08-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/CE08-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/CE08-saida.png",
     "url": "http://localhost:8080/global?id=3",
     "descricao": "Loja selecionada e atributos recuperados.",
     "data": "2026-10-25T22:02:50.905Z",
@@ -249,7 +249,7 @@
   },
   {
     "id": "SE08",
-    "arquivo": "tmp/apf-coletiva/capturas/SE08.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE08.png",
     "url": "http://localhost:8080/baixa-rapida",
     "descricao": "Formulário real de baixa por peso; captura não comprova leitura de telemetria.",
     "data": "2026-10-25T22:02:51.480Z",
@@ -257,7 +257,7 @@
   },
   {
     "id": "EE16-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE16-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE16-entrada.png",
     "url": "http://localhost:8080/global",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:09:18.181Z",
@@ -265,7 +265,7 @@
   },
   {
     "id": "EE16-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE16-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE16-saida.png",
     "url": "http://localhost:8080/global",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:09:19.061Z",
@@ -273,7 +273,7 @@
   },
   {
     "id": "EE17-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE17-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE17-entrada.png",
     "url": "http://localhost:8080/global?id=5",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:50.073Z",
@@ -281,7 +281,7 @@
   },
   {
     "id": "EE17-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE17-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE17-saida.png",
     "url": "http://localhost:8080/global",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:51.183Z",
@@ -289,7 +289,7 @@
   },
   {
     "id": "EE26-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE26-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE26-entrada.png",
     "url": "http://localhost:8080/global",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:51.275Z",
@@ -297,7 +297,7 @@
   },
   {
     "id": "EE26-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE26-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE26-saida.png",
     "url": "http://localhost:8080/",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:51.449Z",
@@ -305,7 +305,7 @@
   },
   {
     "id": "EE13-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE13-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE13-entrada.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:51.651Z",
@@ -313,7 +313,7 @@
   },
   {
     "id": "EE13-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE13-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE13-saida.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:52.144Z",
@@ -321,7 +321,7 @@
   },
   {
     "id": "EE14-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE14-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE14-entrada.png",
     "url": "http://localhost:8080/usuarios?id=66",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:52.363Z",
@@ -329,7 +329,7 @@
   },
   {
     "id": "EE14-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE14-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE14-saida.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:52.588Z",
@@ -337,7 +337,7 @@
   },
   {
     "id": "EE15-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE15-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE15-entrada.png",
     "url": "http://localhost:8080/usuarios?id=66",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:52.791Z",
@@ -345,7 +345,7 @@
   },
   {
     "id": "EE15-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE15-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE15-saida.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:52.989Z",
@@ -353,7 +353,7 @@
   },
   {
     "id": "EE19-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE19-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE19-entrada.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:53.601Z",
@@ -361,7 +361,7 @@
   },
   {
     "id": "EE19-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE19-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE19-saida.png",
     "url": "http://localhost:8080/usuarios",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:53.857Z",
@@ -369,7 +369,7 @@
   },
   {
     "id": "EE20-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE20-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE20-entrada.png",
     "url": "http://localhost:8080/iot/configuracao",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:54.076Z",
@@ -377,7 +377,7 @@
   },
   {
     "id": "EE20-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE20-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE20-saida.png",
     "url": "http://localhost:8080/iot/configuracao",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:54.276Z",
@@ -385,7 +385,7 @@
   },
   {
     "id": "EE07-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE07-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE07-entrada.png",
     "url": "http://localhost:8080/posicoes",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:54.583Z",
@@ -393,7 +393,7 @@
   },
   {
     "id": "EE07-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE07-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE07-saida.png",
     "url": "http://localhost:8080/posicoes",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:55.207Z",
@@ -401,7 +401,7 @@
   },
   {
     "id": "EE08-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE08-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE08-entrada.png",
     "url": "http://localhost:8080/posicoes?id=27",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:56.137Z",
@@ -409,7 +409,7 @@
   },
   {
     "id": "EE08-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE08-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE08-saida.png",
     "url": "http://localhost:8080/posicoes",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:56.342Z",
@@ -417,7 +417,7 @@
   },
   {
     "id": "EE01-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE01-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE01-entrada.png",
     "url": "http://localhost:8080/produtos",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:56.689Z",
@@ -425,7 +425,7 @@
   },
   {
     "id": "EE01-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE01-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE01-saida.png",
     "url": "http://localhost:8080/produtos",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:56.854Z",
@@ -433,7 +433,7 @@
   },
   {
     "id": "EE02-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE02-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE02-entrada.png",
     "url": "http://localhost:8080/produtos?id=18&q=&page=0",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:57.142Z",
@@ -441,7 +441,7 @@
   },
   {
     "id": "EE02-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE02-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE02-saida.png",
     "url": "http://localhost:8080/produtos",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:57.320Z",
@@ -449,7 +449,7 @@
   },
   {
     "id": "EE10-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE10-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE10-entrada.png",
     "url": "http://localhost:8080/vinculos",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:57.471Z",
@@ -457,7 +457,7 @@
   },
   {
     "id": "EE10-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE10-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE10-saida.png",
     "url": "http://localhost:8080/vinculos",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:57.618Z",
@@ -465,7 +465,7 @@
   },
   {
     "id": "EE11-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE11-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE11-entrada.png",
     "url": "http://localhost:8080/vinculos?productId=18&positionId=27",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:10:58.318Z",
@@ -473,7 +473,7 @@
   },
   {
     "id": "EE11-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE11-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE11-saida.png",
     "url": "http://localhost:8080/vinculos",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:10:58.486Z",
@@ -481,7 +481,7 @@
   },
   {
     "id": "EE21-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE21-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE21-entrada.png",
     "url": "http://localhost:8080/movimentar",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:55.993Z",
@@ -489,7 +489,7 @@
   },
   {
     "id": "EE21-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE21-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE21-saida.png",
     "url": "http://localhost:8080/",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:56.192Z",
@@ -497,7 +497,7 @@
   },
   {
     "id": "EE22-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE22-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE22-entrada.png",
     "url": "http://localhost:8080/movimentar",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:56.465Z",
@@ -505,7 +505,7 @@
   },
   {
     "id": "EE22-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE22-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE22-saida.png",
     "url": "http://localhost:8080/",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:56.606Z",
@@ -513,7 +513,7 @@
   },
   {
     "id": "EE23-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE23-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE23-entrada.png",
     "url": "http://localhost:8080/movimentar",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:56.805Z",
@@ -521,7 +521,7 @@
   },
   {
     "id": "EE23-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE23-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE23-saida.png",
     "url": "http://localhost:8080/",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:56.984Z",
@@ -529,7 +529,7 @@
   },
   {
     "id": "EE24-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE24-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE24-entrada.png",
     "url": "http://localhost:8080/estorno",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:57.178Z",
@@ -537,7 +537,7 @@
   },
   {
     "id": "EE24-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE24-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE24-saida.png",
     "url": "http://localhost:8080/historico",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:57.371Z",
@@ -545,7 +545,7 @@
   },
   {
     "id": "SE10",
-    "arquivo": "tmp/apf-coletiva/capturas/SE10.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE10.png",
     "url": "http://localhost:8080/historico",
     "descricao": "Histórico real exibindo movimento estornado e compensação.",
     "data": "2026-10-25T22:12:57.423Z",
@@ -553,15 +553,15 @@
   },
   {
     "id": "EE27-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE27-entrada.png",
-    "url": "http://localhost:8080/",
-    "descricao": "Posição real da loja APF; comando enviado via requisição autenticada.",
-    "data": "2026-10-25T22:12:57.893Z",
-    "sha256": "0a70fccf851b9a2288cb97b7c3b4c86809078b9a60262164b1864fa8951f3a6b"
+    "arquivo": "docs/apf/coletiva/capturas/EE27-entrada.png",
+    "url": "http://localhost:8080/?q=&page=0&produto=3",
+    "descricao": "Botão de sinalização da posição do produto selecionado.",
+    "data": "2026-10-25T23:50:54.601472+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
   },
   {
     "id": "SE09",
-    "arquivo": "tmp/apf-coletiva/capturas/SE09.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE09.png",
     "url": "http://localhost:8080/historico",
     "descricao": "Auditoria real de exportação CSV concluída; arquivo conferido separadamente.",
     "data": "2026-10-25T22:12:58.177Z",
@@ -569,7 +569,7 @@
   },
   {
     "id": "EE12-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE12-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE12-entrada.png",
     "url": "http://localhost:8080/vinculos?productId=18&positionId=28",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:58.931Z",
@@ -577,7 +577,7 @@
   },
   {
     "id": "EE12-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE12-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE12-saida.png",
     "url": "http://localhost:8080/vinculos",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.091Z",
@@ -585,7 +585,7 @@
   },
   {
     "id": "EE03-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE03-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE03-entrada.png",
     "url": "http://localhost:8080/produtos?id=18&q=&page=0",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.225Z",
@@ -593,7 +593,7 @@
   },
   {
     "id": "EE03-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE03-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE03-saida.png",
     "url": "http://localhost:8080/produtos",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.404Z",
@@ -601,7 +601,7 @@
   },
   {
     "id": "EE09-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE09-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE09-entrada.png",
     "url": "http://localhost:8080/posicoes?id=27",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.520Z",
@@ -609,7 +609,7 @@
   },
   {
     "id": "EE09-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE09-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE09-saida.png",
     "url": "http://localhost:8080/posicoes",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.666Z",
@@ -617,7 +617,7 @@
   },
   {
     "id": "EE18-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/EE18-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE18-entrada.png",
     "url": "http://localhost:8080/global?id=5",
     "descricao": "Formulário real antes da requisição autenticada; registros próprios da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.796Z",
@@ -625,7 +625,7 @@
   },
   {
     "id": "EE18-saida",
-    "arquivo": "tmp/apf-coletiva/capturas/EE18-saida.png",
+    "arquivo": "docs/apf/coletiva/capturas/EE18-saida.png",
     "url": "http://localhost:8080/global",
     "descricao": "Operação realmente enviada e confirmada; dados da loja APF de demonstração.",
     "data": "2026-10-25T22:12:59.970Z",
@@ -633,10 +633,146 @@
   },
   {
     "id": "SE08-entrada",
-    "arquivo": "tmp/apf-coletiva/capturas/SE08-entrada.png",
+    "arquivo": "docs/apf/coletiva/capturas/SE08-entrada.png",
     "url": "http://localhost:8080/movimentar",
-    "descricao": "Produto em kg e dispositivo balanca-demo selecionados em Movimentar.",
-    "data": "2026-10-25T22:13:52.330Z",
-    "sha256": "c7963e07b3bdf505961f100714ecf6e7a8dd69d3166d160a55b7cc7823dbc6a9"
+    "descricao": "Produto em kg e dispositivo balanca-demo selecionados; consulta de peso sem registrar movimentação.",
+    "data": "2026-10-25T23:50:58.743856+00:00",
+    "sha256": "b38d8d732124a718eab0e7d0a06f896fe300b50c2d5dfbe971a00c1ec689bb32"
+  },
+  {
+    "id": "CE05-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE05-entrada.png",
+    "url": "http://localhost:8080/modelos",
+    "descricao": "Seleção do modelo na lista pelo link Editar; consulta GET anterior a qualquer manutenção.",
+    "data": "2026-10-25T23:50:44.961692+00:00",
+    "sha256": "90884279f39dfe312cbddfb0805d5c55ba12a4903df035b3ee764cbb890cbe47"
+  },
+  {
+    "id": "CE05-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE05-saida.png",
+    "url": "http://localhost:8080/modelos?id=3",
+    "descricao": "Nome, marca e categoria recuperados pelo ID; nenhum formulário de alteração foi enviado.",
+    "data": "2026-10-25T23:50:45.718741+00:00",
+    "sha256": "68cc804d5aa3bef7d6abcd59774a3fe5125a940eb2b01f884564661d3f554783"
+  },
+  {
+    "id": "X01",
+    "arquivo": "docs/apf/coletiva/capturas/X01.png",
+    "url": "http://localhost:8080/fornecedores",
+    "descricao": "Dados mantidos no provedor externo de fornecedores, consultados pela aplicação.",
+    "data": "2026-10-25T23:50:46.440373+00:00",
+    "sha256": "7f88d606657efdcfc51b239ef620362a8efff4b7acf00fa4cd913c69962e7c9e"
+  },
+  {
+    "id": "X02",
+    "arquivo": "docs/apf/coletiva/capturas/X02.png",
+    "url": "http://localhost:8080/ofertas",
+    "descricao": "Dados mantidos no provedor externo de ofertas, consultados pela aplicação.",
+    "data": "2026-10-25T23:50:47.142290+00:00",
+    "sha256": "c6544c092cf6ca8bd3d6cdabf6132bd2ed49eed5db75b3b246808857a34f8b67"
+  },
+  {
+    "id": "CE06-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE06-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta pela navegação autenticada; não há filtro obrigatório para a listagem.",
+    "data": "2026-10-25T23:50:47.843515+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "CE06-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE06-saida.png",
+    "url": "http://localhost:8080/vinculos",
+    "descricao": "Resultado real da consulta na loja ativa. Os formulários visíveis não foram submetidos.",
+    "data": "2026-10-25T23:50:48.569602+00:00",
+    "sha256": "4255169ab0053b7f17b87eb6aac3c96e92b8abeaf6e3d6633234337cf431f2af"
+  },
+  {
+    "id": "CE07-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE07-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta pela navegação autenticada; não há filtro obrigatório para a listagem.",
+    "data": "2026-10-25T23:50:49.384829+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "CE07-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE07-saida.png",
+    "url": "http://localhost:8080/usuarios",
+    "descricao": "Resultado real da consulta na loja ativa. Os formulários visíveis não foram submetidos.",
+    "data": "2026-10-25T23:50:50.105227+00:00",
+    "sha256": "863c681f301f73a5ede118581dc99580c1a8802bbaa59a350dec22fe8da43cd5"
+  },
+  {
+    "id": "CE09-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE09-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta pela navegação autenticada; não há filtro obrigatório para a listagem.",
+    "data": "2026-10-25T23:50:50.820940+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "CE09-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE09-saida.png",
+    "url": "http://localhost:8080/iot/configuracao",
+    "descricao": "Resultado real da consulta na loja ativa. Os formulários visíveis não foram submetidos.",
+    "data": "2026-10-25T23:50:51.537994+00:00",
+    "sha256": "0e3c40a735e62ea62c1c89dc94eb2ea27b15a2178060ce1114373b21ed81b1b7"
+  },
+  {
+    "id": "CE11-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE11-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta de auditoria pelo menu Histórico; escopo definido pela loja da sessão.",
+    "data": "2026-10-25T23:50:52.227404+00:00",
+    "sha256": "f7455dd3747f9a8d1a0d139ef3faf56c6268fa785fc59054479fc651db42a5ac"
+  },
+  {
+    "id": "CE11-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE11-saida.png",
+    "url": "http://localhost:8080/historico",
+    "descricao": "Registros reais de auditoria consultável, armazenados pela aplicação.",
+    "data": "2026-10-25T23:50:53.026254+00:00",
+    "sha256": "1bd2be477fae6046929169f08c7f5200ab639230b07905b54c15e5dd1a839ad1"
+  },
+  {
+    "id": "EE27-saida",
+    "arquivo": "docs/apf/coletiva/capturas/EE27-saida.png",
+    "url": "http://localhost:8080/?q=&page=0&produto=3",
+    "descricao": "Comando enviado ao broker MQTT real e confirmado pelo simulador; não comprova acionamento de hardware físico.",
+    "data": "2026-10-25T23:50:55.599477+00:00",
+    "sha256": "97fc07b9a50dfd1cfb853edb381d0ccbca9b2602ec07d5de019608543e5a276d"
+  },
+  {
+    "id": "EE28-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/EE28-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Comando Sair disponível na sessão autenticada, antes de encerrar.",
+    "data": "2026-10-25T23:50:56.607962+00:00",
+    "sha256": "f7455dd3747f9a8d1a0d139ef3faf56c6268fa785fc59054479fc651db42a5ac"
+  },
+  {
+    "id": "SE08-saida",
+    "arquivo": "docs/apf/coletiva/capturas/SE08-saida.png",
+    "url": "http://localhost:8080/movimentar",
+    "descricao": "Leitura real do simulador MQTT: peso líquido e subtotal calculados pela aplicação. Não foi registrada movimentação.",
+    "data": "2026-10-25T23:51:03.374463+00:00",
+    "sha256": "e05f8021b9d1bd909b8d0feee14a4d9d010c4e0775f5ef9492db4b49d3e5ea90"
+  },
+  {
+    "id": "SE09-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/SE09-entrada.png",
+    "url": "http://localhost:8080/historico",
+    "descricao": "Filtros e comandos reais de exportação do histórico antes de solicitar o arquivo PDF.",
+    "data": "2026-10-25T23:56:56.217388+00:00",
+    "sha256": "1bd2be477fae6046929169f08c7f5200ab639230b07905b54c15e5dd1a839ad1"
+  },
+  {
+    "id": "SE09-saida",
+    "arquivo": "docs/apf/coletiva/capturas/SE09-saida.png",
+    "url": "http://localhost:8080/historico/exportar/pdf",
+    "descricao": "Primeira página do PDF realmente exportado pelo sistema; renderização fiel do arquivo preservado SE09-exportacao-real.pdf. Dados de demonstração; a exportação também grava a auditoria.",
+    "data": "2026-10-25T23:56:57.619627+00:00",
+    "sha256": "e44fd873a402f53f1a27656c374811b642f982bc4ee4c0b19b81f3c11c72b0d0"
   }
 ]

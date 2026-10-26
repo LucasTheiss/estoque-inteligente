@@ -1,0 +1,1955 @@
+{
+  "data": "2026-10-26T00:09:13.196814+00:00",
+  "motor": "LibreOffice Calc (UNO)",
+  "abertura": true,
+  "recalculoAutomatico": true,
+  "formulas": 4494,
+  "erros": [],
+  "abas": 63,
+  "verificacoes": 322,
+  "resultados": {
+    "NI": 38,
+    "PFB": 283,
+    "FA": 1.03,
+    "PFA": 291.49,
+    "esforcoHoras": 2914.9,
+    "prazoDias": 161.94,
+    "prazoDiasUteisInteiros": 162,
+    "custoReais": 72872.5
+  },
+  "testes": [
+    {
+      "verificacao": "PF X02",
+      "celula": "X02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "TD X02",
+      "celula": "X02!B60",
+      "obtido": 9.0,
+      "esperado": 9
+    },
+    {
+      "verificacao": "AR/RL X02",
+      "celula": "X02!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade X02",
+      "celula": "X02!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A01",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A01",
+      "celula": "A01!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL A01",
+      "celula": "A01!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A01",
+      "celula": "A01!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A02",
+      "celula": "A02!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A02",
+      "celula": "A02!B60",
+      "obtido": 11.0,
+      "esperado": 11
+    },
+    {
+      "verificacao": "AR/RL A02",
+      "celula": "A02!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A02",
+      "celula": "A02!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A03",
+      "celula": "A03!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A03",
+      "celula": "A03!B60",
+      "obtido": 11.0,
+      "esperado": 11
+    },
+    {
+      "verificacao": "AR/RL A03",
+      "celula": "A03!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A03",
+      "celula": "A03!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A04",
+      "celula": "A04!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A04",
+      "celula": "A04!B60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "AR/RL A04",
+      "celula": "A04!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A04",
+      "celula": "A04!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A05",
+      "celula": "A05!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A05",
+      "celula": "A05!B60",
+      "obtido": 12.0,
+      "esperado": 12
+    },
+    {
+      "verificacao": "AR/RL A05",
+      "celula": "A05!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A05",
+      "celula": "A05!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A06",
+      "celula": "A06!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A06",
+      "celula": "A06!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL A06",
+      "celula": "A06!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A06",
+      "celula": "A06!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A07",
+      "celula": "A07!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A07",
+      "celula": "A07!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL A07",
+      "celula": "A07!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A07",
+      "celula": "A07!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A08",
+      "celula": "A08!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A08",
+      "celula": "A08!B60",
+      "obtido": 12.0,
+      "esperado": 12
+    },
+    {
+      "verificacao": "AR/RL A08",
+      "celula": "A08!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A08",
+      "celula": "A08!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF A09",
+      "celula": "A09!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD A09",
+      "celula": "A09!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL A09",
+      "celula": "A09!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade A09",
+      "celula": "A09!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF X01",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "TD X01",
+      "celula": "X01!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL X01",
+      "celula": "X01!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade X01",
+      "celula": "X01!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF CE12",
+      "celula": "CE12!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE12",
+      "celula": "CE12!B60",
+      "obtido": 11.0,
+      "esperado": 11
+    },
+    {
+      "verificacao": "AR/RL CE12",
+      "celula": "CE12!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade CE12",
+      "celula": "CE12!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF SE13",
+      "celula": "SE13!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "TD SE13",
+      "celula": "SE13!B60",
+      "obtido": 12.0,
+      "esperado": 12
+    },
+    {
+      "verificacao": "AR/RL SE13",
+      "celula": "SE13!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade SE13",
+      "celula": "SE13!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE01",
+      "celula": "EE01!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE01",
+      "celula": "EE01!B60",
+      "obtido": 16.0,
+      "esperado": 16
+    },
+    {
+      "verificacao": "AR/RL EE01",
+      "celula": "EE01!D60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "Complexidade EE01",
+      "celula": "EE01!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE02",
+      "celula": "EE02!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE02",
+      "celula": "EE02!B60",
+      "obtido": 13.0,
+      "esperado": 13
+    },
+    {
+      "verificacao": "AR/RL EE02",
+      "celula": "EE02!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade EE02",
+      "celula": "EE02!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE03",
+      "celula": "EE03!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE03",
+      "celula": "EE03!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL EE03",
+      "celula": "EE03!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE03",
+      "celula": "EE03!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE04",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE04",
+      "celula": "EE04!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL EE04",
+      "celula": "EE04!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE04",
+      "celula": "EE04!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE05",
+      "celula": "EE05!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE05",
+      "celula": "EE05!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL EE05",
+      "celula": "EE05!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE05",
+      "celula": "EE05!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE06",
+      "celula": "EE06!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE06",
+      "celula": "EE06!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL EE06",
+      "celula": "EE06!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE06",
+      "celula": "EE06!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE07",
+      "celula": "EE07!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE07",
+      "celula": "EE07!B60",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "AR/RL EE07",
+      "celula": "EE07!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE07",
+      "celula": "EE07!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE08",
+      "celula": "EE08!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE08",
+      "celula": "EE08!B60",
+      "obtido": 11.0,
+      "esperado": 11
+    },
+    {
+      "verificacao": "AR/RL EE08",
+      "celula": "EE08!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE08",
+      "celula": "EE08!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE09",
+      "celula": "EE09!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE09",
+      "celula": "EE09!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL EE09",
+      "celula": "EE09!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE09",
+      "celula": "EE09!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE10",
+      "celula": "EE10!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE10",
+      "celula": "EE10!B60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "AR/RL EE10",
+      "celula": "EE10!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade EE10",
+      "celula": "EE10!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE11",
+      "celula": "EE11!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE11",
+      "celula": "EE11!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL EE11",
+      "celula": "EE11!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade EE11",
+      "celula": "EE11!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE12",
+      "celula": "EE12!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE12",
+      "celula": "EE12!B60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "AR/RL EE12",
+      "celula": "EE12!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade EE12",
+      "celula": "EE12!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE13",
+      "celula": "EE13!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE13",
+      "celula": "EE13!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL EE13",
+      "celula": "EE13!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE13",
+      "celula": "EE13!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE14",
+      "celula": "EE14!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE14",
+      "celula": "EE14!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL EE14",
+      "celula": "EE14!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE14",
+      "celula": "EE14!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE15",
+      "celula": "EE15!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE15",
+      "celula": "EE15!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL EE15",
+      "celula": "EE15!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE15",
+      "celula": "EE15!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE16",
+      "celula": "EE16!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE16",
+      "celula": "EE16!B60",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "AR/RL EE16",
+      "celula": "EE16!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade EE16",
+      "celula": "EE16!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE17",
+      "celula": "EE17!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE17",
+      "celula": "EE17!B60",
+      "obtido": 9.0,
+      "esperado": 9
+    },
+    {
+      "verificacao": "AR/RL EE17",
+      "celula": "EE17!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE17",
+      "celula": "EE17!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE18",
+      "celula": "EE18!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD EE18",
+      "celula": "EE18!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL EE18",
+      "celula": "EE18!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE18",
+      "celula": "EE18!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF EE19",
+      "celula": "EE19!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE19",
+      "celula": "EE19!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL EE19",
+      "celula": "EE19!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE19",
+      "celula": "EE19!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE20",
+      "celula": "EE20!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE20",
+      "celula": "EE20!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL EE20",
+      "celula": "EE20!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE20",
+      "celula": "EE20!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE21",
+      "celula": "EE21!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE21",
+      "celula": "EE21!B60",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "AR/RL EE21",
+      "celula": "EE21!D60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Complexidade EE21",
+      "celula": "EE21!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE22",
+      "celula": "EE22!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE22",
+      "celula": "EE22!B60",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "AR/RL EE22",
+      "celula": "EE22!D60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Complexidade EE22",
+      "celula": "EE22!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE23",
+      "celula": "EE23!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE23",
+      "celula": "EE23!B60",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "AR/RL EE23",
+      "celula": "EE23!D60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Complexidade EE23",
+      "celula": "EE23!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE24",
+      "celula": "EE24!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE24",
+      "celula": "EE24!B60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "AR/RL EE24",
+      "celula": "EE24!D60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Complexidade EE24",
+      "celula": "EE24!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE25",
+      "celula": "EE25!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD EE25",
+      "celula": "EE25!B60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "AR/RL EE25",
+      "celula": "EE25!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE25",
+      "celula": "EE25!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF EE26",
+      "celula": "EE26!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD EE26",
+      "celula": "EE26!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL EE26",
+      "celula": "EE26!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade EE26",
+      "celula": "EE26!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF EE27",
+      "celula": "EE27!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "TD EE27",
+      "celula": "EE27!B60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "AR/RL EE27",
+      "celula": "EE27!D60",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Complexidade EE27",
+      "celula": "EE27!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF EE28",
+      "celula": "EE28!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD EE28",
+      "celula": "EE28!B60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "AR/RL EE28",
+      "celula": "EE28!D60",
+      "obtido": 0.0,
+      "esperado": 0
+    },
+    {
+      "verificacao": "Complexidade EE28",
+      "celula": "EE28!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF SE02",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "TD SE02",
+      "celula": "SE02!B60",
+      "obtido": 8.0,
+      "esperado": 8
+    },
+    {
+      "verificacao": "AR/RL SE02",
+      "celula": "SE02!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade SE02",
+      "celula": "SE02!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF SE04",
+      "celula": "SE04!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "TD SE04",
+      "celula": "SE04!B60",
+      "obtido": 9.0,
+      "esperado": 9
+    },
+    {
+      "verificacao": "AR/RL SE04",
+      "celula": "SE04!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade SE04",
+      "celula": "SE04!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF SE06",
+      "celula": "SE06!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD SE06",
+      "celula": "SE06!B60",
+      "obtido": 16.0,
+      "esperado": 16
+    },
+    {
+      "verificacao": "AR/RL SE06",
+      "celula": "SE06!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade SE06",
+      "celula": "SE06!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF SE07",
+      "celula": "SE07!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD SE07",
+      "celula": "SE07!B60",
+      "obtido": 13.0,
+      "esperado": 13
+    },
+    {
+      "verificacao": "AR/RL SE07",
+      "celula": "SE07!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade SE07",
+      "celula": "SE07!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF SE08",
+      "celula": "SE08!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "TD SE08",
+      "celula": "SE08!B60",
+      "obtido": 9.0,
+      "esperado": 9
+    },
+    {
+      "verificacao": "AR/RL SE08",
+      "celula": "SE08!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade SE08",
+      "celula": "SE08!D64",
+      "obtido": "Moderada",
+      "esperado": "Moderada"
+    },
+    {
+      "verificacao": "PF SE09",
+      "celula": "SE09!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD SE09",
+      "celula": "SE09!B60",
+      "obtido": 13.0,
+      "esperado": 13
+    },
+    {
+      "verificacao": "AR/RL SE09",
+      "celula": "SE09!D60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "Complexidade SE09",
+      "celula": "SE09!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF CE04",
+      "celula": "CE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE04",
+      "celula": "CE04!B60",
+      "obtido": 8.0,
+      "esperado": 8
+    },
+    {
+      "verificacao": "AR/RL CE04",
+      "celula": "CE04!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade CE04",
+      "celula": "CE04!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF CE05",
+      "celula": "CE05!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE05",
+      "celula": "CE05!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL CE05",
+      "celula": "CE05!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade CE05",
+      "celula": "CE05!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF CE06",
+      "celula": "CE06!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "TD CE06",
+      "celula": "CE06!B60",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "AR/RL CE06",
+      "celula": "CE06!D60",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Complexidade CE06",
+      "celula": "CE06!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF CE07",
+      "celula": "CE07!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE07",
+      "celula": "CE07!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL CE07",
+      "celula": "CE07!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade CE07",
+      "celula": "CE07!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF CE08",
+      "celula": "CE08!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE08",
+      "celula": "CE08!B60",
+      "obtido": 9.0,
+      "esperado": 9
+    },
+    {
+      "verificacao": "AR/RL CE08",
+      "celula": "CE08!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade CE08",
+      "celula": "CE08!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF CE09",
+      "celula": "CE09!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE09",
+      "celula": "CE09!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL CE09",
+      "celula": "CE09!D60",
+      "obtido": 1.0,
+      "esperado": 1
+    },
+    {
+      "verificacao": "Complexidade CE09",
+      "celula": "CE09!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PF SE10",
+      "celula": "SE10!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "TD SE10",
+      "celula": "SE10!B60",
+      "obtido": 13.0,
+      "esperado": 13
+    },
+    {
+      "verificacao": "AR/RL SE10",
+      "celula": "SE10!D60",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Complexidade SE10",
+      "celula": "SE10!D64",
+      "obtido": "Complexa",
+      "esperado": "Complexa"
+    },
+    {
+      "verificacao": "PF CE11",
+      "celula": "CE11!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD CE11",
+      "celula": "CE11!B60",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "AR/RL CE11",
+      "celula": "CE11!D60",
+      "obtido": 2.0,
+      "esperado": 2
+    },
+    {
+      "verificacao": "Complexidade CE11",
+      "celula": "CE11!D64",
+      "obtido": "Simples",
+      "esperado": "Simples"
+    },
+    {
+      "verificacao": "PFB",
+      "celula": "Resumo!B10",
+      "obtido": 283.0,
+      "esperado": 283
+    },
+    {
+      "verificacao": "NI",
+      "celula": "Resumo!B11",
+      "obtido": 38.0,
+      "esperado": 38
+    },
+    {
+      "verificacao": "FA",
+      "celula": "Resumo!B12",
+      "obtido": 1.03,
+      "esperado": 1.03
+    },
+    {
+      "verificacao": "PFA",
+      "celula": "Resumo!B13",
+      "obtido": 291.49,
+      "esperado": 291.49
+    },
+    {
+      "verificacao": "esforcoHoras",
+      "celula": "NI e estimativas!B39",
+      "obtido": 2914.9,
+      "esperado": 2914.9
+    },
+    {
+      "verificacao": "prazoDiasUteisInteiros",
+      "celula": "NI e estimativas!B42",
+      "obtido": 162.0,
+      "esperado": 162
+    },
+    {
+      "verificacao": "custoReais",
+      "celula": "NI e estimativas!B44",
+      "obtido": 72872.5,
+      "esperado": 72872.5
+    },
+    {
+      "verificacao": "Sensibilidade NI",
+      "celula": "Resumo!B11",
+      "obtido": 39.0,
+      "esperado": 39
+    },
+    {
+      "verificacao": "Sensibilidade PFA",
+      "celula": "Resumo!B13",
+      "obtido": 294.32,
+      "esperado": 294.32
+    },
+    {
+      "verificacao": "Sensibilidade produtividade",
+      "celula": "NI e estimativas!B39",
+      "obtido": 3497.88,
+      "esperado": 3497.88
+    },
+    {
+      "verificacao": "Sensibilidade tamanho da equipe",
+      "celula": "NI e estimativas!B41",
+      "obtido": 121.45416666666667,
+      "esperado": 121.45416666666667
+    },
+    {
+      "verificacao": "Sensibilidade capacidade produtiva",
+      "celula": "NI e estimativas!B41",
+      "obtido": 242.90833333333333,
+      "esperado": 242.90833333333333
+    },
+    {
+      "verificacao": "Sensibilidade valor-hora",
+      "celula": "NI e estimativas!B44",
+      "obtido": 87447.0,
+      "esperado": 87447.0
+    },
+    {
+      "verificacao": "Limite A01: TD 1, AR/RL 1",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 19, AR/RL 1",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 20, AR/RL 1",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 50, AR/RL 1",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 51, AR/RL 1",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 1, AR/RL 2",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 19, AR/RL 2",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 20, AR/RL 2",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 50, AR/RL 2",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 51, AR/RL 2",
+      "celula": "A01!D65",
+      "obtido": 15.0,
+      "esperado": 15
+    },
+    {
+      "verificacao": "Limite A01: TD 1, AR/RL 5",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 19, AR/RL 5",
+      "celula": "A01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite A01: TD 20, AR/RL 5",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 50, AR/RL 5",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 51, AR/RL 5",
+      "celula": "A01!D65",
+      "obtido": 15.0,
+      "esperado": 15
+    },
+    {
+      "verificacao": "Limite A01: TD 1, AR/RL 6",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 19, AR/RL 6",
+      "celula": "A01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite A01: TD 20, AR/RL 6",
+      "celula": "A01!D65",
+      "obtido": 15.0,
+      "esperado": 15
+    },
+    {
+      "verificacao": "Limite A01: TD 50, AR/RL 6",
+      "celula": "A01!D65",
+      "obtido": 15.0,
+      "esperado": 15
+    },
+    {
+      "verificacao": "Limite A01: TD 51, AR/RL 6",
+      "celula": "A01!D65",
+      "obtido": 15.0,
+      "esperado": 15
+    },
+    {
+      "verificacao": "Limite X01: TD 1, AR/RL 1",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 19, AR/RL 1",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 20, AR/RL 1",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 50, AR/RL 1",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 51, AR/RL 1",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 1, AR/RL 2",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 19, AR/RL 2",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 20, AR/RL 2",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 50, AR/RL 2",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 51, AR/RL 2",
+      "celula": "X01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite X01: TD 1, AR/RL 5",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 19, AR/RL 5",
+      "celula": "X01!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite X01: TD 20, AR/RL 5",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 50, AR/RL 5",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 51, AR/RL 5",
+      "celula": "X01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite X01: TD 1, AR/RL 6",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 19, AR/RL 6",
+      "celula": "X01!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite X01: TD 20, AR/RL 6",
+      "celula": "X01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite X01: TD 50, AR/RL 6",
+      "celula": "X01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite X01: TD 51, AR/RL 6",
+      "celula": "X01!D65",
+      "obtido": 10.0,
+      "esperado": 10
+    },
+    {
+      "verificacao": "Limite EE04: TD 1, AR/RL 0",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 4, AR/RL 0",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 5, AR/RL 0",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 15, AR/RL 0",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 16, AR/RL 0",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite EE04: TD 1, AR/RL 1",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 4, AR/RL 1",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 5, AR/RL 1",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 15, AR/RL 1",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 16, AR/RL 1",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite EE04: TD 1, AR/RL 2",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 4, AR/RL 2",
+      "celula": "EE04!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Limite EE04: TD 5, AR/RL 2",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite EE04: TD 15, AR/RL 2",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite EE04: TD 16, AR/RL 2",
+      "celula": "EE04!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "Limite EE04: TD 1, AR/RL 3",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite EE04: TD 4, AR/RL 3",
+      "celula": "EE04!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite EE04: TD 5, AR/RL 3",
+      "celula": "EE04!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "Limite EE04: TD 15, AR/RL 3",
+      "celula": "EE04!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "Limite EE04: TD 16, AR/RL 3",
+      "celula": "EE04!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "Limite SE02: TD 1, AR/RL 1",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 5, AR/RL 1",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 6, AR/RL 1",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 19, AR/RL 1",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 20, AR/RL 1",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 1, AR/RL 2",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 5, AR/RL 2",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 6, AR/RL 2",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 19, AR/RL 2",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 20, AR/RL 2",
+      "celula": "SE02!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite SE02: TD 1, AR/RL 3",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 5, AR/RL 3",
+      "celula": "SE02!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "Limite SE02: TD 6, AR/RL 3",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 19, AR/RL 3",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 20, AR/RL 3",
+      "celula": "SE02!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite SE02: TD 1, AR/RL 4",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 5, AR/RL 4",
+      "celula": "SE02!D65",
+      "obtido": 5.0,
+      "esperado": 5
+    },
+    {
+      "verificacao": "Limite SE02: TD 6, AR/RL 4",
+      "celula": "SE02!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite SE02: TD 19, AR/RL 4",
+      "celula": "SE02!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "Limite SE02: TD 20, AR/RL 4",
+      "celula": "SE02!D65",
+      "obtido": 7.0,
+      "esperado": 7
+    },
+    {
+      "verificacao": "CE maior complexidade: 3/1 e 6/2",
+      "celula": "CE05!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "CE maior complexidade: 16/3 e 1/1",
+      "celula": "CE05!D65",
+      "obtido": 6.0,
+      "esperado": 6
+    },
+    {
+      "verificacao": "CE maior complexidade: 4/2 e 5/1",
+      "celula": "CE05!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "CE maior complexidade: 5/2 e 19/3",
+      "celula": "CE05!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "CE maior complexidade: 15/1 e 20/1",
+      "celula": "CE05!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "CE maior complexidade: 16/1 e 5/4",
+      "celula": "CE05!D65",
+      "obtido": 4.0,
+      "esperado": 4
+    },
+    {
+      "verificacao": "CE maior complexidade: 1/0 e 1/1",
+      "celula": "CE05!D65",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "TD repetido não duplica saída",
+      "celula": "CE05!D61",
+      "obtido": 3.0,
+      "esperado": 3
+    },
+    {
+      "verificacao": "Novo TD altera contagem",
+      "celula": "CE05!D61",
+      "obtido": 4.0,
+      "esperado": 4
+    }
+  ],
+  "limite": "Microsoft Excel não instalado nesta máquina; não foi verificada abertura nativa nele."
+}

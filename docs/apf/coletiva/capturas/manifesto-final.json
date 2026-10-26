@@ -1,0 +1,162 @@
+[
+  {
+    "id": "CE05-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE05-entrada.png",
+    "url": "http://localhost:8080/modelos",
+    "descricao": "Seleção do modelo na lista pelo link Editar; consulta GET anterior a qualquer manutenção.",
+    "data": "2026-10-25T23:50:44.961692+00:00",
+    "sha256": "90884279f39dfe312cbddfb0805d5c55ba12a4903df035b3ee764cbb890cbe47"
+  },
+  {
+    "id": "CE05-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE05-saida.png",
+    "url": "http://localhost:8080/modelos?id=3",
+    "descricao": "Nome, marca e categoria recuperados pelo ID; nenhum formulário de alteração foi enviado.",
+    "data": "2026-10-25T23:50:45.718741+00:00",
+    "sha256": "68cc804d5aa3bef7d6abcd59774a3fe5125a940eb2b01f884564661d3f554783"
+  },
+  {
+    "id": "X01",
+    "arquivo": "docs/apf/coletiva/capturas/X01.png",
+    "url": "http://localhost:8080/fornecedores",
+    "descricao": "Dados mantidos no provedor externo de fornecedores, consultados pela aplicação.",
+    "data": "2026-10-25T23:50:46.440373+00:00",
+    "sha256": "7f88d606657efdcfc51b239ef620362a8efff4b7acf00fa4cd913c69962e7c9e"
+  },
+  {
+    "id": "X02",
+    "arquivo": "docs/apf/coletiva/capturas/X02.png",
+    "url": "http://localhost:8080/ofertas",
+    "descricao": "Dados mantidos no provedor externo de ofertas, consultados pela aplicação.",
+    "data": "2026-10-25T23:50:47.142290+00:00",
+    "sha256": "c6544c092cf6ca8bd3d6cdabf6132bd2ed49eed5db75b3b246808857a34f8b67"
+  },
+  {
+    "id": "CE06-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE06-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta pela navegação autenticada; não há filtro obrigatório para a listagem.",
+    "data": "2026-10-25T23:50:47.843515+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "CE06-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE06-saida.png",
+    "url": "http://localhost:8080/vinculos",
+    "descricao": "Resultado real da consulta na loja ativa. Os formulários visíveis não foram submetidos.",
+    "data": "2026-10-25T23:50:48.569602+00:00",
+    "sha256": "4255169ab0053b7f17b87eb6aac3c96e92b8abeaf6e3d6633234337cf431f2af"
+  },
+  {
+    "id": "CE07-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE07-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta pela navegação autenticada; não há filtro obrigatório para a listagem.",
+    "data": "2026-10-25T23:50:49.384829+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "CE07-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE07-saida.png",
+    "url": "http://localhost:8080/usuarios",
+    "descricao": "Resultado real da consulta na loja ativa. Os formulários visíveis não foram submetidos.",
+    "data": "2026-10-25T23:50:50.105227+00:00",
+    "sha256": "863c681f301f73a5ede118581dc99580c1a8802bbaa59a350dec22fe8da43cd5"
+  },
+  {
+    "id": "CE09-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE09-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta pela navegação autenticada; não há filtro obrigatório para a listagem.",
+    "data": "2026-10-25T23:50:50.820940+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "CE09-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE09-saida.png",
+    "url": "http://localhost:8080/iot/configuracao",
+    "descricao": "Resultado real da consulta na loja ativa. Os formulários visíveis não foram submetidos.",
+    "data": "2026-10-25T23:50:51.537994+00:00",
+    "sha256": "0e3c40a735e62ea62c1c89dc94eb2ea27b15a2178060ce1114373b21ed81b1b7"
+  },
+  {
+    "id": "CE11-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/CE11-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Acionamento da consulta de auditoria pelo menu Histórico; escopo definido pela loja da sessão.",
+    "data": "2026-10-25T23:50:52.227404+00:00",
+    "sha256": "f7455dd3747f9a8d1a0d139ef3faf56c6268fa785fc59054479fc651db42a5ac"
+  },
+  {
+    "id": "CE11-saida",
+    "arquivo": "docs/apf/coletiva/capturas/CE11-saida.png",
+    "url": "http://localhost:8080/historico",
+    "descricao": "Registros reais de auditoria consultável, armazenados pela aplicação.",
+    "data": "2026-10-25T23:50:53.026254+00:00",
+    "sha256": "1bd2be477fae6046929169f08c7f5200ab639230b07905b54c15e5dd1a839ad1"
+  },
+  {
+    "id": "EE27-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/EE27-entrada.png",
+    "url": "http://localhost:8080/?q=&page=0&produto=3",
+    "descricao": "Botão de sinalização da posição do produto selecionado.",
+    "data": "2026-10-25T23:50:54.601472+00:00",
+    "sha256": "6e1c9e47ca71d4421794668441844a3c2c07da4c9c64544a3b1b769fffa4aa1c"
+  },
+  {
+    "id": "EE27-saida",
+    "arquivo": "docs/apf/coletiva/capturas/EE27-saida.png",
+    "url": "http://localhost:8080/?q=&page=0&produto=3",
+    "descricao": "Comando enviado ao broker MQTT real e confirmado pelo simulador; não comprova acionamento de hardware físico.",
+    "data": "2026-10-25T23:50:55.599477+00:00",
+    "sha256": "97fc07b9a50dfd1cfb853edb381d0ccbca9b2602ec07d5de019608543e5a276d"
+  },
+  {
+    "id": "EE28-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/EE28-entrada.png",
+    "url": "http://localhost:8080/",
+    "descricao": "Comando Sair disponível na sessão autenticada, antes de encerrar.",
+    "data": "2026-10-25T23:50:56.607962+00:00",
+    "sha256": "f7455dd3747f9a8d1a0d139ef3faf56c6268fa785fc59054479fc651db42a5ac"
+  },
+  {
+    "id": "EE28-saida",
+    "arquivo": "docs/apf/coletiva/capturas/EE28-saida.png",
+    "url": "http://localhost:8080/login?logout",
+    "descricao": "Sessão encerrada, com mensagem real de saída da conta.",
+    "data": "2026-10-25T23:50:56.921738+00:00",
+    "sha256": "3e152e13cf874921308d8db67b799d91719148c6e823f80508849db4161ecc2d"
+  },
+  {
+    "id": "SE08-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/SE08-entrada.png",
+    "url": "http://localhost:8080/movimentar",
+    "descricao": "Produto em kg e dispositivo balanca-demo selecionados; consulta de peso sem registrar movimentação.",
+    "data": "2026-10-25T23:50:58.743856+00:00",
+    "sha256": "b38d8d732124a718eab0e7d0a06f896fe300b50c2d5dfbe971a00c1ec689bb32"
+  },
+  {
+    "id": "SE08-saida",
+    "arquivo": "docs/apf/coletiva/capturas/SE08-saida.png",
+    "url": "http://localhost:8080/movimentar",
+    "descricao": "Leitura real do simulador MQTT: peso líquido e subtotal calculados pela aplicação. Não foi registrada movimentação.",
+    "data": "2026-10-25T23:51:03.374463+00:00",
+    "sha256": "e05f8021b9d1bd909b8d0feee14a4d9d010c4e0775f5ef9492db4b49d3e5ea90"
+  },
+  {
+    "id": "SE09-entrada",
+    "arquivo": "docs/apf/coletiva/capturas/SE09-entrada.png",
+    "url": "http://localhost:8080/historico",
+    "descricao": "Filtros e comandos reais de exportação do histórico antes de solicitar o arquivo PDF.",
+    "data": "2026-10-25T23:56:56.217388+00:00",
+    "sha256": "1bd2be477fae6046929169f08c7f5200ab639230b07905b54c15e5dd1a839ad1"
+  },
+  {
+    "id": "SE09-saida",
+    "arquivo": "docs/apf/coletiva/capturas/SE09-saida.png",
+    "url": "http://localhost:8080/historico/exportar/pdf",
+    "descricao": "Primeira página do PDF realmente exportado pelo sistema; renderização fiel do arquivo preservado SE09-exportacao-real.pdf. Dados de demonstração; a exportação também grava a auditoria.",
+    "data": "2026-10-25T23:56:57.619627+00:00",
+    "sha256": "e44fd873a402f53f1a27656c374811b642f982bc4ee4c0b19b81f3c11c72b0d0"
+  }
+]

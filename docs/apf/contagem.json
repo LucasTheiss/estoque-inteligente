@@ -5,8 +5,20 @@
       "tipo": "AIE",
       "nome": "Ofertas externas",
       "origem": "external/ofertas",
-      "registrosLogicos": ["Oferta comercial externa"],
-      "campos": ["GTIN", "código do fornecedor", "SKU externo", "descrição", "marca", "unidade", "preço cotado", "disponibilidade", "data de atualização"]
+      "registrosLogicos": [
+        "Oferta comercial externa"
+      ],
+      "campos": [
+        "GTIN",
+        "código do fornecedor",
+        "SKU externo",
+        "descrição",
+        "marca",
+        "unidade",
+        "preço cotado",
+        "disponibilidade",
+        "data de atualização"
+      ]
     },
     {
       "id": "A01",
@@ -199,24 +211,92 @@
       "id": "CE12",
       "tipo": "CE",
       "nome": "Consultar ofertas externas",
-      "arquivos": ["X02"],
-      "entrada": ["GTIN", "código do fornecedor"],
-      "saida": ["GTIN", "código do fornecedor", "SKU externo", "descrição", "marca", "unidade", "preço cotado", "disponibilidade", "data de atualização"],
-      "controle": ["acionamento", "mensagem de resultado"],
+      "arquivos": [
+        "X02"
+      ],
+      "entrada": [
+        "GTIN",
+        "código do fornecedor"
+      ],
+      "saida": [
+        "GTIN",
+        "código do fornecedor",
+        "SKU externo",
+        "descrição",
+        "marca",
+        "unidade",
+        "preço cotado",
+        "disponibilidade",
+        "data de atualização"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
       "evidencia": "GET /ofertas; OfertaService.consultar; OfertaGateway; external/ofertas/Provedor.java",
-      "leitura": "X02: nove campos da oferta. Filtros exatos opcionais combinados por GTIN e código do fornecedor. Não mantém arquivos nem deriva dados."
+      "leitura": "X02: nove campos da oferta. Filtros exatos opcionais combinados por GTIN e código do fornecedor. Não mantém arquivos nem deriva dados.",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "X02 aplica GTIN/fornecedor e fornece os campos recuperados da oferta. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "SKU externo",
+        "descrição",
+        "marca",
+        "unidade",
+        "preço cotado",
+        "disponibilidade",
+        "data de atualização"
+      ],
+      "arquivosEntrada": [
+        "X02"
+      ],
+      "arquivosSaida": [
+        "X02"
+      ]
     },
     {
       "id": "SE13",
       "tipo": "SE",
       "nome": "Comparar preços internos e ofertas externas",
-      "arquivos": ["A02", "X02"],
-      "entrada": ["GTIN", "código do fornecedor"],
-      "saida": ["GTIN", "SKU interno", "código do fornecedor", "SKU externo", "unidade", "preço interno", "preço cotado", "diferença monetária", "diferença percentual", "data de atualização"],
-      "controle": ["acionamento", "mensagem de resultado"],
+      "arquivos": [
+        "A02",
+        "X02"
+      ],
+      "entrada": [
+        "GTIN",
+        "código do fornecedor"
+      ],
+      "saida": [
+        "GTIN",
+        "SKU interno",
+        "código do fornecedor",
+        "SKU externo",
+        "unidade",
+        "preço interno",
+        "preço cotado",
+        "diferença monetária",
+        "diferença percentual",
+        "data de atualização"
+      ],
+      "controle": [
+        "acionamento",
+        "mensagem de resultado"
+      ],
       "evidencia": "GET /comparacao-precos; OfertaService.comparar",
       "leitura": "A02: loja, ativo, código de barras, SKU, unidade e preço. X02: GTIN, fornecedor, SKU externo, unidade, preço cotado e atualização; demais campos recebidos são validados pelo cliente.",
-      "derivacao": "Diferença = cotação - preço interno. Percentual = diferença / preço interno x 100, arredondado a duas casas. Preço interno zero: percentual não aplicável. Cruza GTIN e unidade dos produtos ativos da loja, sem gravar dados."
+      "derivacao": "Diferença = cotação - preço interno. Percentual = diferença / preço interno x 100, arredondado a duas casas. Preço interno zero: percentual não aplicável. Cruza GTIN e unidade dos produtos ativos da loja, sem gravar dados.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "SKU interno",
+        "SKU externo",
+        "unidade",
+        "preço interno",
+        "preço cotado",
+        "diferença monetária",
+        "diferença percentual",
+        "data de atualização"
+      ]
     },
     {
       "id": "EE01",
@@ -253,7 +333,12 @@
         "acionamento"
       ],
       "evidencia": "ProdutoService.salvar",
-      "leitura": "A01: nome, marca e categoria do modelo. A02: modelo, SKU, código de barras, cor, tamanho, unidade, preço, características e ativo. A03: posição e unidade, na entrada inicial. A04: produto, posição e quantidade inicial. A05: produto, posição, responsável, tipo, variação, saldos anterior/posterior, motivo e data, quando há saldo inicial. A09: loja, responsável, ação, detalhe e data (gerada). Identificações dos registros são geradas pelo banco; leituras/manutenções internas não são TD adicionais da interface."
+      "leitura": "A01: nome, marca e categoria do modelo. A02: modelo, SKU, código de barras, cor, tamanho, unidade, preço, características e ativo. A03: posição e unidade, na entrada inicial. A04: produto, posição e quantidade inicial. A05: produto, posição, responsável, tipo, variação, saldos anterior/posterior, motivo e data, quando há saldo inicial. A09: loja, responsável, ação, detalhe e data (gerada). Identificações dos registros são geradas pelo banco; leituras/manutenções internas não são TD adicionais da interface.",
+      "arEntrada": 6,
+      "arSaida": 6,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE02",
@@ -285,7 +370,12 @@
         "acionamento"
       ],
       "evidencia": "ProdutoService.salvar",
-      "leitura": "A01: modelo; A02: unidade anterior; A04: vínculos para validar mudança de unidade; A09: registro da alteração."
+      "leitura": "A01: modelo; A02: unidade anterior; A04: vínculos para validar mudança de unidade; A09: registro da alteração.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE03",
@@ -306,7 +396,12 @@
         "acionamento"
       ],
       "evidencia": "ProdutoService.excluir",
-      "leitura": "A02: ativo; A04: quantidade e vínculos removidos se vazios; A09: registro da exclusão."
+      "leitura": "A02: ativo; A04: quantidade e vínculos removidos se vazios; A09: registro da exclusão.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE04",
@@ -328,7 +423,12 @@
         "acionamento"
       ],
       "evidencia": "ModeloProdutoService.salvar",
-      "leitura": "A01: loja, nome, marca e categoria; identificação do modelo gerada no cadastro. A09: loja, responsável, ação modelo.salvar, detalhe com a identificação do modelo e data gerada. Esses dados de auditoria são mantidos internamente e não são campos extras recebidos pela interface."
+      "leitura": "A01: loja, nome, marca e categoria; identificação do modelo gerada no cadastro. A09: loja, responsável, ação modelo.salvar, detalhe com a identificação do modelo e data gerada. Esses dados de auditoria são mantidos internamente e não são campos extras recebidos pela interface.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE05",
@@ -351,7 +451,12 @@
         "acionamento"
       ],
       "evidencia": "ModeloProdutoService.salvar",
-      "leitura": "A01: código e cadastro anterior; A09: registro de alteração."
+      "leitura": "A01: código e cadastro anterior; A09: registro de alteração.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE06",
@@ -372,7 +477,12 @@
         "acionamento"
       ],
       "evidencia": "ModeloProdutoService.excluir",
-      "leitura": "A02: referência ao modelo bloqueia exclusão; A01: código; A09: registro da exclusão."
+      "leitura": "A02: referência ao modelo bloqueia exclusão; A01: código; A09: registro da exclusão.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE07",
@@ -399,7 +509,12 @@
         "acionamento"
       ],
       "evidencia": "PosicaoService.salvar",
-      "leitura": "A03: loja, código, setor, linha, coluna, capacidade, unidade, dispositivo, pino e ativo; identificação gerada no cadastro. A09: loja, responsável, ação posicao.salvar, detalhe com a identificação da posição e data gerada. Auditoria é manutenção interna, sem TD extras na interface."
+      "leitura": "A03: loja, código, setor, linha, coluna, capacidade, unidade, dispositivo, pino e ativo; identificação gerada no cadastro. A09: loja, responsável, ação posicao.salvar, detalhe com a identificação da posição e data gerada. Auditoria é manutenção interna, sem TD extras na interface.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE08",
@@ -428,7 +543,12 @@
         "acionamento"
       ],
       "evidencia": "PosicaoService.salvar",
-      "leitura": "A03: unidade anterior; A04: vínculos existentes; A09: registro da alteração."
+      "leitura": "A03: unidade anterior; A04: vínculos existentes; A09: registro da alteração.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE09",
@@ -449,7 +569,12 @@
         "acionamento"
       ],
       "evidencia": "PosicaoService.excluir",
-      "leitura": "A03: ativo; A04: quantidade e vínculos vazios; A09: registro da exclusão."
+      "leitura": "A03: ativo; A04: quantidade e vínculos vazios; A09: registro da exclusão.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE10",
@@ -472,7 +597,12 @@
         "acionamento"
       ],
       "evidencia": "VinculoService.salvar",
-      "leitura": "A02: identificação do produto, unidade e ativo. A03: identificação da posição, unidade e ativo. A04: loja, produto, posição e quantidade inicial zero. A09: loja, responsável, ação vinculo.criar, detalhe produto:posição e data gerada. O usuário informa somente produto/posição; quantidade não é entrada desta EE."
+      "leitura": "A02: identificação do produto, unidade e ativo. A03: identificação da posição, unidade e ativo. A04: loja, produto, posição e quantidade inicial zero. A09: loja, responsável, ação vinculo.criar, detalhe produto:posição e data gerada. O usuário informa somente produto/posição; quantidade não é entrada desta EE.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE11",
@@ -497,7 +627,12 @@
         "acionamento"
       ],
       "evidencia": "VinculoService.editar",
-      "leitura": "A02/A03: unidades do destino; A04: saldo original e chave do destino; A09: registro."
+      "leitura": "A02/A03: unidades do destino; A04: saldo original e chave do destino; A09: registro.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE12",
@@ -520,7 +655,12 @@
         "acionamento"
       ],
       "evidencia": "VinculoService.salvar",
-      "leitura": "A02/A03: identificação; A04: saldo; A09: registro."
+      "leitura": "A02/A03: identificação; A04: saldo; A09: registro.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE13",
@@ -543,7 +683,12 @@
         "acionamento"
       ],
       "evidencia": "UsuarioService.salvar",
-      "leitura": "A08: identificação da loja e ativo. A06: loja, nome de usuário, senha (persistida como hash), perfil e ativo; identificação gerada. A09: loja, responsável, ação usuario.salvar, detalhe nome/perfil e data gerada. Hash é representação técnica da senha, não um segundo TD."
+      "leitura": "A08: identificação da loja e ativo. A06: loja, nome de usuário, senha (persistida como hash), perfil e ativo; identificação gerada. A09: loja, responsável, ação usuario.salvar, detalhe nome/perfil e data gerada. Hash é representação técnica da senha, não um segundo TD.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE14",
@@ -567,7 +712,12 @@
         "acionamento"
       ],
       "evidencia": "UsuarioService.salvar",
-      "leitura": "A06: perfil, senha anterior e administradores ativos; A08: loja; A09: registro."
+      "leitura": "A06: perfil, senha anterior e administradores ativos; A08: loja; A09: registro.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE15",
@@ -590,7 +740,12 @@
         "acionamento"
       ],
       "evidencia": "UsuarioService.salvar(action=delete)",
-      "leitura": "O formulário envia nome/perfil para validação; A06: ativo/perfil/administradores; A08: loja; A09: registro."
+      "leitura": "O formulário envia nome/perfil para validação; A06: ativo/perfil/administradores; A08: loja; A09: registro.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE16",
@@ -619,7 +774,12 @@
         "acionamento"
       ],
       "evidencia": "LojaService.salvar",
-      "leitura": "Mantém A08, cria A06, inicializa A07, registra A09."
+      "leitura": "Mantém A08, cria A06, inicializa A07, registra A09.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE17",
@@ -646,7 +806,12 @@
         "acionamento"
       ],
       "evidencia": "LojaService.salvar",
-      "leitura": "A08: configuração; A02: unidade/ativo para impedir desabilitar fracionados em uso; A09: registro."
+      "leitura": "A08: configuração; A02: unidade/ativo para impedir desabilitar fracionados em uso; A09: registro.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE18",
@@ -666,7 +831,12 @@
         "acionamento"
       ],
       "evidencia": "LojaService.excluir",
-      "leitura": "A08: nome/ativo; A09: registro."
+      "leitura": "A08: nome/ativo; A09: registro.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE19",
@@ -688,7 +858,12 @@
         "acionamento"
       ],
       "evidencia": "PermissaoService.atualizar",
-      "leitura": "A07: perfil/permissão; cada par repetido é ocorrência, não novo tipo de dado; A09: registro."
+      "leitura": "A07: perfil/permissão; cada par repetido é ocorrência, não novo tipo de dado; A09: registro.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE20",
@@ -711,7 +886,12 @@
         "acionamento"
       ],
       "evidencia": "ConfiguracaoIoTService.salvar",
-      "leitura": "A08: configuração da loja; A09: registro."
+      "leitura": "A08: configuração da loja; A09: registro.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE21",
@@ -738,7 +918,12 @@
         "acionamento"
       ],
       "evidencia": "EstoqueService.movimentar",
-      "leitura": "A02: identificação, unidade e ativo do produto. A03: identificação, unidade e ativo da posição. A04: loja, produto, posição e quantidade anterior/posterior. A05: produto, posição, responsável, tipo, variação, saldo anterior, saldo posterior, motivo e data; número gerado e movimento original vazio na entrada normal. A09: loja, responsável, ação, detalhe e data. Chave técnica de idempotência excluída dos TD."
+      "leitura": "A02: identificação, unidade e ativo do produto. A03: identificação, unidade e ativo da posição. A04: loja, produto, posição e quantidade anterior/posterior. A05: produto, posição, responsável, tipo, variação, saldo anterior, saldo posterior, motivo e data; número gerado e movimento original vazio na entrada normal. A09: loja, responsável, ação, detalhe e data. Chave técnica de idempotência excluída dos TD.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE22",
@@ -765,7 +950,12 @@
         "acionamento"
       ],
       "evidencia": "EstoqueService.movimentar",
-      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída."
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE23",
@@ -792,7 +982,12 @@
         "acionamento"
       ],
       "evidencia": "EstoqueService.movimentar",
-      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída."
+      "leitura": "A02/A03: unidades; A04: saldo; A05: movimento e saldos; A09: registro. Chave técnica de idempotência excluída.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE24",
@@ -816,7 +1011,12 @@
         "acionamento"
       ],
       "evidencia": "EstoqueService.estornar",
-      "leitura": "A05: tipo/produto/posição/variação/original; A04: saldo; A02/A03: unidades; A09: registro."
+      "leitura": "A05: tipo/produto/posição/variação/original; A04: saldo; A02/A03: unidades; A09: registro.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE25",
@@ -839,7 +1039,12 @@
         "acionamento"
       ],
       "evidencia": "AutenticacaoService.autenticar",
-      "leitura": "A06: credencial/perfil/ativo; A08: identificador público/ativo via consulta de autenticação; A09: login. Tentativas temporárias excluídas."
+      "leitura": "A06: credencial/perfil/ativo; A08: identificador público/ativo via consulta de autenticação; A09: login. Tentativas temporárias excluídas.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE26",
@@ -859,7 +1064,12 @@
         "acionamento"
       ],
       "evidencia": "LojaService.selecionar",
-      "leitura": "A08: loja selecionada; A09: registro do acesso global."
+      "leitura": "A08: loja selecionada; A09: registro do acesso global.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE27",
@@ -880,7 +1090,12 @@
         "acionamento"
       ],
       "evidencia": "IoTService.sinalizar",
-      "leitura": "A03: dispositivo/pino; A08: host/porta/QoS/tempo LED; A09: registro. Intenção primária: enviar controle para ligar LED."
+      "leitura": "A03: dispositivo/pino; A08: host/porta/QoS/tempo LED; A09: registro. Intenção primária: enviar controle para ligar LED.",
+      "arEntrada": 3,
+      "arSaida": 3,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "EE28",
@@ -895,7 +1110,12 @@
         "acionamento"
       ],
       "evidencia": "SegurancaConfig /logout",
-      "leitura": "Altera o comportamento de acesso; sessão temporária não é ALI."
+      "leitura": "Altera o comportamento de acesso; sessão temporária não é ALI.",
+      "arEntrada": 0,
+      "arSaida": 0,
+      "saidaExclusiva": [
+        "mensagem de resultado"
+      ]
     },
     {
       "id": "SE02",
@@ -919,7 +1139,17 @@
         "mensagem de resultado"
       ],
       "evidencia": "AnaliseService.relatorio(valor)",
-      "derivacao": "Saldo × preço atual, arredondado em centavos por produto; total = soma dos valores. Não é custo nem receita realizada."
+      "derivacao": "Saldo × preço atual, arredondado em centavos por produto; total = soma dos valores. Não é custo nem receita realizada.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "SKU",
+        "unidade",
+        "saldo",
+        "preço",
+        "valor por produto",
+        "total da loja"
+      ]
     },
     {
       "id": "SE04",
@@ -945,7 +1175,16 @@
         "mensagem de resultado"
       ],
       "evidencia": "AnaliseService.relatorio(fluxo)",
-      "derivacao": "COUNT(*) e SUM(delta) por produto/tipo. Período inclusivo em America/Sao_Paulo; estornos em categoria própria."
+      "derivacao": "COUNT(*) e SUM(delta) por produto/tipo. Período inclusivo em America/Sao_Paulo; estornos em categoria própria.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "SKU",
+        "unidade",
+        "tipo",
+        "número de operações",
+        "variação líquida"
+      ]
     },
     {
       "id": "SE06",
@@ -963,7 +1202,6 @@
       ],
       "saida": [
         "SKU",
-        "código de barras",
         "nome",
         "marca",
         "categoria",
@@ -971,18 +1209,33 @@
         "tamanho",
         "unidade",
         "preço",
-        "características",
         "saldo total",
         "posição",
-        "setor",
-        "quantidade na posição"
+        "quantidade na posição",
+        "quantidade de produtos exibidos"
       ],
       "controle": [
         "acionamento",
         "mensagem de resultado"
       ],
       "evidencia": "ProdutoService.pesquisar/buscar; DashboardController; BuscaAssistidaController",
-      "derivacao": "Soma das posições para obter saldo. Dashboard, busca digitada/voz e lista de produtos reutilizam a mesma intenção; não contar canais novamente."
+      "derivacao": "Soma das posições para obter saldo. Dashboard, busca digitada/voz e lista de produtos reutilizam a mesma intenção; não contar canais novamente.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "SKU",
+        "nome",
+        "marca",
+        "categoria",
+        "cor",
+        "tamanho",
+        "unidade",
+        "preço",
+        "saldo total",
+        "posição",
+        "quantidade na posição",
+        "quantidade de produtos exibidos"
+      ]
     },
     {
       "id": "SE07",
@@ -1013,7 +1266,22 @@
         "mensagem de resultado"
       ],
       "evidencia": "MapaController /mapa e /ocupacao",
-      "derivacao": "Soma as quantidades dos vínculos por posição e compara com a capacidade para apresentar alerta de excesso. Mapa e lista de ocupação são canais do mesmo processo."
+      "derivacao": "Soma as quantidades dos vínculos por posição e compara com a capacidade para apresentar alerta de excesso. Mapa e lista de ocupação são canais do mesmo processo.",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "saidaExclusiva": [
+        "posição",
+        "setor",
+        "linha",
+        "coluna",
+        "capacidade",
+        "unidade",
+        "ocupado",
+        "nome do produto",
+        "SKU",
+        "quantidade do vínculo",
+        "alerta de excesso"
+      ]
     },
     {
       "id": "SE08",
@@ -1038,8 +1306,17 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "IoTService.peso",
-      "derivacao": "Peso líquido=bruto−tara; subtotal=peso líquido×preço. Telemetria transitória não é AIE."
+      "evidencia": "IoTService.peso; movimento.html em /movimentar; DispositivosDemo na loja granel",
+      "derivacao": "Peso líquido=bruto−tara; subtotal=peso líquido×preço. Telemetria transitória não é AIE.",
+      "arEntrada": 2,
+      "arSaida": 2,
+      "saidaExclusiva": [
+        "peso bruto",
+        "tara",
+        "peso líquido",
+        "subtotal",
+        "indicador de simulação"
+      ]
     },
     {
       "id": "SE09",
@@ -1063,6 +1340,7 @@
         "número",
         "data",
         "SKU",
+        "tipo",
         "posição",
         "variação",
         "responsável",
@@ -1073,7 +1351,18 @@
         "mensagem de resultado"
       ],
       "evidencia": "RelatorioService.exportar; RelatorioCsv; RelatorioPdf",
-      "derivacao": "SE por atualizar A09 com a exportação; CSV/PDF são formatos do mesmo processo. Função preexistente, fora das cinco saídas escolhidas para demonstrar dados calculados."
+      "derivacao": "SE por atualizar A09 com a exportação; CSV/PDF são formatos do mesmo processo. Função preexistente, fora das cinco saídas escolhidas para demonstrar dados calculados.",
+      "arEntrada": 6,
+      "arSaida": 6,
+      "saidaExclusiva": [
+        "número",
+        "data",
+        "SKU",
+        "posição",
+        "variação",
+        "responsável",
+        "motivo"
+      ]
     },
     {
       "id": "CE04",
@@ -1096,7 +1385,23 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "GET /fornecedores?q=; AnaliseService.consultar; FornecedorGateway"
+      "evidencia": "GET /fornecedores?q=; AnaliseService.consultar; FornecedorGateway",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "X01 aplica o filtro por código/nome/documento e fornece os dados recuperados. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "código",
+        "nome",
+        "documento",
+        "e-mail",
+        "telefone"
+      ],
+      "arquivosEntrada": [
+        "X01"
+      ],
+      "arquivosSaida": [
+        "X01"
+      ]
     },
     {
       "id": "CE05",
@@ -1117,7 +1422,21 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "ModeloProdutoService.listar/buscar"
+      "evidencia": "ModeloProdutoService.listar/buscar",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "A01 localiza o modelo pelo ID e fornece nome, marca e categoria. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "nome",
+        "marca",
+        "categoria"
+      ],
+      "arquivosEntrada": [
+        "A01"
+      ],
+      "arquivosSaida": [
+        "A01"
+      ]
     },
     {
       "id": "CE06",
@@ -1135,21 +1454,40 @@
       ],
       "saida": [
         "SKU",
-        "código de barras",
         "nome",
-        "tamanho",
-        "cor",
+        "código da posição",
         "setor",
         "unidade",
-        "dispositivo",
-        "pino",
         "quantidade"
       ],
       "controle": [
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "VinculoService.listar/buscar"
+      "evidencia": "VinculoService.listar/buscar",
+      "arEntrada": 4,
+      "arSaida": 4,
+      "regraAR": "A01/A02/A03/A04 participam da busca do vínculo pela chave produto/posição e da apresentação do vínculo. A busca q do seletor de produtos reutiliza SE06 e não é nova função CE. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "SKU",
+        "nome",
+        "código da posição",
+        "setor",
+        "unidade",
+        "quantidade"
+      ],
+      "arquivosEntrada": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "arquivosSaida": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ]
     },
     {
       "id": "CE07",
@@ -1171,7 +1509,22 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "UsuarioController.listar"
+      "evidencia": "UsuarioController.listar",
+      "arEntrada": 1,
+      "arSaida": 2,
+      "regraAR": "A06 localiza o usuário selecionado. A saída consulta A06 e A07 para apresentar usuários, perfis e a matriz de permissões; A07 não valida a entrada do usuário. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "nome de usuário",
+        "perfil",
+        "permissão"
+      ],
+      "arquivosEntrada": [
+        "A06"
+      ],
+      "arquivosSaida": [
+        "A06",
+        "A07"
+      ]
     },
     {
       "id": "CE08",
@@ -1195,7 +1548,24 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "LojaController /global; LojaService.listar/editar"
+      "evidencia": "LojaController /global; LojaService.listar/editar",
+      "arEntrada": 1,
+      "arSaida": 1,
+      "regraAR": "A08 localiza a loja selecionada e fornece seus dados e recursos. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "identificador público",
+        "nome",
+        "IoT",
+        "relatórios",
+        "ocupação",
+        "fracionados"
+      ],
+      "arquivosEntrada": [
+        "A08"
+      ],
+      "arquivosSaida": [
+        "A08"
+      ]
     },
     {
       "id": "CE09",
@@ -1215,11 +1585,24 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "ConfiguracaoIoTService.buscar"
+      "evidencia": "ConfiguracaoIoTService.buscar",
+      "arEntrada": 0,
+      "arSaida": 1,
+      "regraAR": "Sem seleção de registro nem validação de dado de negócio na entrada; o acionamento usa a loja da sessão. A08 é lido para apresentar a configuração. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "host MQTT",
+        "porta MQTT",
+        "QoS",
+        "tempo LED"
+      ],
+      "arquivosEntrada": [],
+      "arquivosSaida": [
+        "A08"
+      ]
     },
     {
-      "id": "CE10",
-      "tipo": "CE",
+      "id": "SE10",
+      "tipo": "SE",
       "nome": "Consultar histórico operacional",
       "arquivos": [
         "A01",
@@ -1236,18 +1619,32 @@
       "saida": [
         "data",
         "SKU",
-        "nome",
         "posição",
+        "tipo",
         "variação",
         "saldo posterior",
         "responsável",
-        "motivo"
+        "motivo",
+        "indicador de estorno"
       ],
       "controle": [
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "HistoricoService.consultar"
+      "evidencia": "HistoricoService.consultar",
+      "derivacao": "EXISTS de movimento reversor gera indicador Estornado. Exemplo didático: movimento 10 sem reversor = falso; movimento 11 com reverse_of=10 torna o indicador do 10 verdadeiro. Não altera arquivos.",
+      "arEntrada": 5,
+      "arSaida": 5,
+      "saidaExclusiva": [
+        "data",
+        "SKU",
+        "posição",
+        "variação",
+        "saldo posterior",
+        "responsável",
+        "motivo",
+        "indicador de estorno"
+      ]
     },
     {
       "id": "CE11",
@@ -1268,7 +1665,21 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "HistoricoService.auditoria"
+      "evidencia": "HistoricoService.auditoria",
+      "arEntrada": 0,
+      "arSaida": 2,
+      "regraAR": "Sem filtro de negócio na entrada; o acionamento usa a loja da sessão. A09 e A06 são lidos na saída para listar eventos e responsáveis. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
+      "saidaExclusiva": [
+        "data",
+        "responsável",
+        "ação",
+        "detalhe"
+      ],
+      "arquivosEntrada": [],
+      "arquivosSaida": [
+        "A06",
+        "A09"
+      ]
     }
   ],
   "caracteristicas": [
@@ -1286,8 +1697,8 @@
     },
     {
       "caracteristica": "Desempenho",
-      "nota": 1,
-      "justificativa": "Há limites de conexão, paginação e timeouts, mas não foi fornecido SLA crítico nem evidência de análise de desempenho rigorosa.",
+      "nota": 0,
+      "justificativa": "Timeout e paginação não comprovam requisitos de desempenho solicitados e revistos pelo usuário. Sem essa evidência, aplica-se nota 0 da tabela.",
       "evidencia": "application.properties, ProdutoRepository"
     },
     {
@@ -1334,14 +1745,14 @@
     },
     {
       "caracteristica": "Facilidade de implantação",
-      "nota": 2,
-      "justificativa": "Roteiros de execução e migrações preparados. Não há evidência de conversão automatizada de dados legados para justificar 4/5.",
+      "nota": 1,
+      "justificativa": "Há procedimento de implantação; migrações Flyway criam/evoluem esquema, mas não comprovam requisitos e roteiros testados de conversão de dados legados.",
       "evidencia": "README, Flyway, Compose"
     },
     {
       "caracteristica": "Facilidade operacional",
-      "nota": 2,
-      "justificativa": "Inicialização por scripts com intervenção (1); consultas e relatórios minimizam papel (1). Não se presume backup/recuperação automática.",
+      "nota": 1,
+      "justificativa": "Relatórios minimizam papel. Scripts de inicialização, sem procedimento demonstrado de backup e recuperação, não comprovam o critério composto adicional.",
       "evidencia": "scripts/demo.ps1, relatórios"
     },
     {

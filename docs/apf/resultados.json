@@ -1,13 +1,13 @@
 {
     "resumo":  {
-                   "NI":  41,
-                   "PFB":  282,
-                   "FA":  1.06,
-                   "PFA":  298.92,
-                   "esforcoHoras":  2989.20,
-                   "prazoDias":  166.07,
-                   "prazoDiasUteisInteiros":  167,
-                   "custoReais":  74730.00
+                   "NI":  38,
+                   "PFB":  283,
+                   "FA":  1.03,
+                   "PFA":  291.49,
+                   "esforcoHoras":  2914.90,
+                   "prazoDias":  161.94,
+                   "prazoDiasUteisInteiros":  162,
+                   "custoReais":  72872.50
                },
     "funcoes":  [
                     {
@@ -488,9 +488,9 @@
                         "tipo":  "SE",
                         "nome":  "Pesquisar estoque e localizar produto",
                         "ar_rl":  4,
-                        "td":  18,
+                        "td":  16,
                         "tdEntrada":  4,
-                        "tdSaida":  14,
+                        "tdSaida":  12,
                         "complexidade":  "Complexa",
                         "pf":  7
                     },
@@ -554,9 +554,9 @@
                         "tipo":  "CE",
                         "nome":  "Consultar vínculos",
                         "ar_rl":  4,
-                        "td":  14,
+                        "td":  10,
                         "tdEntrada":  4,
-                        "tdSaida":  10,
+                        "tdSaida":  6,
                         "complexidade":  "Complexa",
                         "pf":  6
                     },
@@ -594,15 +594,15 @@
                         "pf":  3
                     },
                     {
-                        "id":  "CE10",
-                        "tipo":  "CE",
+                        "id":  "SE10",
+                        "tipo":  "SE",
                         "nome":  "Consultar histórico operacional",
                         "ar_rl":  5,
                         "td":  13,
                         "tdEntrada":  5,
                         "tdSaida":  8,
                         "complexidade":  "Complexa",
-                        "pf":  6
+                        "pf":  7
                     },
                     {
                         "id":  "CE11",

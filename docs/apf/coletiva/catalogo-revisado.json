@@ -237,7 +237,7 @@
       "leitura": "X02: nove campos da oferta. Filtros exatos opcionais combinados por GTIN e código do fornecedor. Não mantém arquivos nem deriva dados.",
       "arEntrada": 1,
       "arSaida": 1,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "X02 aplica GTIN/fornecedor e fornece os campos recuperados da oferta. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "SKU externo",
         "descrição",
@@ -246,6 +246,12 @@
         "preço cotado",
         "disponibilidade",
         "data de atualização"
+      ],
+      "arquivosEntrada": [
+        "X02"
+      ],
+      "arquivosSaida": [
+        "X02"
       ]
     },
     {
@@ -1300,7 +1306,7 @@
         "acionamento",
         "mensagem de resultado"
       ],
-      "evidencia": "IoTService.peso",
+      "evidencia": "IoTService.peso; movimento.html em /movimentar; DispositivosDemo na loja granel",
       "derivacao": "Peso líquido=bruto−tara; subtotal=peso líquido×preço. Telemetria transitória não é AIE.",
       "arEntrada": 2,
       "arSaida": 2,
@@ -1382,13 +1388,19 @@
       "evidencia": "GET /fornecedores?q=; AnaliseService.consultar; FornecedorGateway",
       "arEntrada": 1,
       "arSaida": 1,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "X01 aplica o filtro por código/nome/documento e fornece os dados recuperados. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "código",
         "nome",
         "documento",
         "e-mail",
         "telefone"
+      ],
+      "arquivosEntrada": [
+        "X01"
+      ],
+      "arquivosSaida": [
+        "X01"
       ]
     },
     {
@@ -1413,11 +1425,17 @@
       "evidencia": "ModeloProdutoService.listar/buscar",
       "arEntrada": 1,
       "arSaida": 1,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "A01 localiza o modelo pelo ID e fornece nome, marca e categoria. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "nome",
         "marca",
         "categoria"
+      ],
+      "arquivosEntrada": [
+        "A01"
+      ],
+      "arquivosSaida": [
+        "A01"
       ]
     },
     {
@@ -1449,7 +1467,7 @@
       "evidencia": "VinculoService.listar/buscar",
       "arEntrada": 4,
       "arSaida": 4,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "A01/A02/A03/A04 participam da busca do vínculo pela chave produto/posição e da apresentação do vínculo. A busca q do seletor de produtos reutiliza SE06 e não é nova função CE. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "SKU",
         "nome",
@@ -1457,6 +1475,18 @@
         "setor",
         "unidade",
         "quantidade"
+      ],
+      "arquivosEntrada": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ],
+      "arquivosSaida": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
       ]
     },
     {
@@ -1480,13 +1510,20 @@
         "mensagem de resultado"
       ],
       "evidencia": "UsuarioController.listar",
-      "arEntrada": 2,
+      "arEntrada": 1,
       "arSaida": 2,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "A06 localiza o usuário selecionado. A saída consulta A06 e A07 para apresentar usuários, perfis e a matriz de permissões; A07 não valida a entrada do usuário. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "nome de usuário",
         "perfil",
         "permissão"
+      ],
+      "arquivosEntrada": [
+        "A06"
+      ],
+      "arquivosSaida": [
+        "A06",
+        "A07"
       ]
     },
     {
@@ -1514,7 +1551,7 @@
       "evidencia": "LojaController /global; LojaService.listar/editar",
       "arEntrada": 1,
       "arSaida": 1,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "A08 localiza a loja selecionada e fornece seus dados e recursos. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "identificador público",
         "nome",
@@ -1522,6 +1559,12 @@
         "relatórios",
         "ocupação",
         "fracionados"
+      ],
+      "arquivosEntrada": [
+        "A08"
+      ],
+      "arquivosSaida": [
+        "A08"
       ]
     },
     {
@@ -1543,14 +1586,18 @@
         "mensagem de resultado"
       ],
       "evidencia": "ConfiguracaoIoTService.buscar",
-      "arEntrada": 1,
+      "arEntrada": 0,
       "arSaida": 1,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "Sem seleção de registro nem validação de dado de negócio na entrada; o acionamento usa a loja da sessão. A08 é lido para apresentar a configuração. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "host MQTT",
         "porta MQTT",
         "QoS",
         "tempo LED"
+      ],
+      "arquivosEntrada": [],
+      "arquivosSaida": [
+        "A08"
       ]
     },
     {
@@ -1619,14 +1666,19 @@
         "mensagem de resultado"
       ],
       "evidencia": "HistoricoService.auditoria",
-      "arEntrada": 2,
+      "arEntrada": 0,
       "arSaida": 2,
-      "regraAR": "Arquivos do processamento de seleção/recuperação. Sem validação independente de entrada: a consulta usa os mesmos arquivos. Contagem total usa união, nunca soma entrada + saída.",
+      "regraAR": "Sem filtro de negócio na entrada; o acionamento usa a loja da sessão. A09 e A06 são lidos na saída para listar eventos e responsáveis. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias.",
       "saidaExclusiva": [
         "data",
         "responsável",
         "ação",
         "detalhe"
+      ],
+      "arquivosEntrada": [],
+      "arquivosSaida": [
+        "A06",
+        "A09"
       ]
     }
   ],
@@ -1874,455 +1926,720 @@
       "antes": 2,
       "depois": 1,
       "motivo": "Relatórios minimizam papel. Scripts de inicialização, sem procedimento demonstrado de backup e recuperação, não comprovam o critério composto adicional."
+    },
+    {
+      "id": "CE07",
+      "campo": "AR entrada/saída",
+      "antes": [
+        2,
+        2
+      ],
+      "depois": [
+        1,
+        2
+      ],
+      "motivo": "A06 localiza o usuário selecionado. A saída consulta A06 e A07 para apresentar usuários, perfis e a matriz de permissões; A07 não valida a entrada do usuário. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias."
+    },
+    {
+      "id": "CE09",
+      "campo": "AR entrada/saída",
+      "antes": [
+        1,
+        1
+      ],
+      "depois": [
+        0,
+        1
+      ],
+      "motivo": "Sem seleção de registro nem validação de dado de negócio na entrada; o acionamento usa a loja da sessão. A08 é lido para apresentar a configuração. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias."
+    },
+    {
+      "id": "CE11",
+      "campo": "AR entrada/saída",
+      "antes": [
+        2,
+        2
+      ],
+      "depois": [
+        0,
+        2
+      ],
+      "motivo": "Sem filtro de negócio na entrada; o acionamento usa a loja da sessão. A09 e A06 são lidos na saída para listar eventos e responsáveis. Na função, cada arquivo conta uma vez na união; as avaliações de entrada/saída usam suas referências próprias."
     }
   ],
   "resultadosIndependentes": {
+    "resumo": {
+      "NI": 38,
+      "PFB": 283,
+      "FA": 1.03,
+      "PFA": 291.49,
+      "esforcoHoras": 2914.9,
+      "prazoDias": 161.94,
+      "prazoDiasUteisInteiros": 162,
+      "custoReais": 72872.5
+    },
     "funcoes": [
       {
         "id": "X02",
         "tipo": "AIE",
+        "nome": "Ofertas externas",
+        "ar_rl": 1,
         "td": 9,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 5,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A01",
         "tipo": "ALI",
+        "nome": "Modelos de produto",
+        "ar_rl": 1,
         "td": 5,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A02",
         "tipo": "ALI",
+        "nome": "Produtos",
+        "ar_rl": 1,
         "td": 11,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A03",
         "tipo": "ALI",
+        "nome": "Posições",
+        "ar_rl": 1,
         "td": 11,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A04",
         "tipo": "ALI",
+        "nome": "Estoque por posição / vínculos",
+        "ar_rl": 1,
         "td": 4,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A05",
         "tipo": "ALI",
+        "nome": "Movimentações",
+        "ar_rl": 1,
         "td": 12,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A06",
         "tipo": "ALI",
+        "nome": "Usuários",
+        "ar_rl": 1,
         "td": 6,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A07",
         "tipo": "ALI",
+        "nome": "Permissões por perfil",
+        "ar_rl": 1,
         "td": 3,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A08",
         "tipo": "ALI",
+        "nome": "Lojas e configuração",
+        "ar_rl": 1,
         "td": 12,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "A09",
         "tipo": "ALI",
+        "nome": "Auditoria consultável",
+        "ar_rl": 1,
         "td": 6,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 7,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "X01",
         "tipo": "AIE",
+        "nome": "Fornecedores externos",
+        "ar_rl": 1,
         "td": 5,
-        "ar": 1,
+        "tdEntrada": 0,
+        "tdSaida": 0,
+        "complexidade": "Simples",
         "pf": 5,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "CE12",
         "tipo": "CE",
+        "nome": "Consultar ofertas externas",
+        "ar_rl": 1,
         "td": 11,
-        "ar": 1,
+        "tdEntrada": 4,
+        "tdSaida": 7,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "SE13",
         "tipo": "SE",
+        "nome": "Comparar preços internos e ofertas externas",
+        "ar_rl": 2,
         "td": 12,
-        "ar": 2,
+        "tdEntrada": 4,
+        "tdSaida": 8,
+        "complexidade": "Moderada",
         "pf": 5,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "EE01",
         "tipo": "EE",
+        "nome": "Incluir produto, inclusive grade e saldo inicial",
+        "ar_rl": 6,
         "td": 16,
-        "ar": 6,
+        "tdEntrada": 15,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 6
       },
       {
         "id": "EE02",
         "tipo": "EE",
+        "nome": "Alterar produto",
+        "ar_rl": 4,
         "td": 13,
-        "ar": 4,
+        "tdEntrada": 12,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 4
       },
       {
         "id": "EE03",
         "tipo": "EE",
+        "nome": "Excluir produto logicamente",
+        "ar_rl": 3,
         "td": 3,
-        "ar": 3,
+        "tdEntrada": 2,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 3
       },
       {
         "id": "EE04",
         "tipo": "EE",
+        "nome": "Incluir modelo",
+        "ar_rl": 2,
         "td": 5,
-        "ar": 2,
+        "tdEntrada": 4,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "EE05",
         "tipo": "EE",
+        "nome": "Alterar modelo",
+        "ar_rl": 2,
         "td": 6,
-        "ar": 2,
+        "tdEntrada": 5,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "EE06",
         "tipo": "EE",
+        "nome": "Excluir modelo",
+        "ar_rl": 3,
         "td": 3,
-        "ar": 3,
+        "tdEntrada": 2,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 3
       },
       {
         "id": "EE07",
         "tipo": "EE",
+        "nome": "Incluir posição",
+        "ar_rl": 2,
         "td": 10,
-        "ar": 2,
+        "tdEntrada": 9,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "EE08",
         "tipo": "EE",
+        "nome": "Alterar posição",
+        "ar_rl": 3,
         "td": 11,
-        "ar": 3,
+        "tdEntrada": 10,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 3
       },
       {
         "id": "EE09",
         "tipo": "EE",
+        "nome": "Excluir posição logicamente",
+        "ar_rl": 3,
         "td": 3,
-        "ar": 3,
+        "tdEntrada": 2,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 3
       },
       {
         "id": "EE10",
         "tipo": "EE",
+        "nome": "Incluir vínculo",
+        "ar_rl": 4,
         "td": 4,
-        "ar": 4,
+        "tdEntrada": 3,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 4
       },
       {
         "id": "EE11",
         "tipo": "EE",
+        "nome": "Alterar vínculo vazio",
+        "ar_rl": 4,
         "td": 6,
-        "ar": 4,
+        "tdEntrada": 5,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 4
       },
       {
         "id": "EE12",
         "tipo": "EE",
+        "nome": "Excluir vínculo vazio",
+        "ar_rl": 4,
         "td": 4,
-        "ar": 4,
+        "tdEntrada": 3,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 4
       },
       {
         "id": "EE13",
         "tipo": "EE",
+        "nome": "Incluir usuário",
+        "ar_rl": 3,
         "td": 5,
-        "ar": 3,
+        "tdEntrada": 4,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 3
       },
       {
         "id": "EE14",
         "tipo": "EE",
+        "nome": "Alterar usuário",
+        "ar_rl": 3,
         "td": 6,
-        "ar": 3,
+        "tdEntrada": 5,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 3
       },
       {
         "id": "EE15",
         "tipo": "EE",
+        "nome": "Excluir usuário logicamente",
+        "ar_rl": 3,
         "td": 5,
-        "ar": 3,
+        "tdEntrada": 4,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 3
       },
       {
         "id": "EE16",
         "tipo": "EE",
+        "nome": "Incluir loja e administrador",
+        "ar_rl": 4,
         "td": 10,
-        "ar": 4,
+        "tdEntrada": 9,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 4
       },
       {
         "id": "EE17",
         "tipo": "EE",
+        "nome": "Alterar loja e recursos",
+        "ar_rl": 3,
         "td": 9,
-        "ar": 3,
+        "tdEntrada": 8,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 3
       },
       {
         "id": "EE18",
         "tipo": "EE",
+        "nome": "Excluir loja logicamente",
+        "ar_rl": 2,
         "td": 3,
-        "ar": 2,
+        "tdEntrada": 2,
+        "tdSaida": 1,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 2
       },
       {
         "id": "EE19",
         "tipo": "EE",
+        "nome": "Alterar matriz de permissões",
+        "ar_rl": 2,
         "td": 5,
-        "ar": 2,
+        "tdEntrada": 4,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "EE20",
         "tipo": "EE",
+        "nome": "Alterar configuração IoT",
+        "ar_rl": 2,
         "td": 6,
-        "ar": 2,
+        "tdEntrada": 5,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "EE21",
         "tipo": "EE",
+        "nome": "Registrar entrada",
+        "ar_rl": 5,
         "td": 7,
-        "ar": 5,
+        "tdEntrada": 6,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 5
       },
       {
         "id": "EE22",
         "tipo": "EE",
+        "nome": "Registrar saída",
+        "ar_rl": 5,
         "td": 7,
-        "ar": 5,
+        "tdEntrada": 6,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 5
       },
       {
         "id": "EE23",
         "tipo": "EE",
+        "nome": "Ajustar saldo",
+        "ar_rl": 5,
         "td": 7,
-        "ar": 5,
+        "tdEntrada": 6,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 5
       },
       {
         "id": "EE24",
         "tipo": "EE",
+        "nome": "Estornar movimentação",
+        "ar_rl": 5,
         "td": 4,
-        "ar": 5,
+        "tdEntrada": 3,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 5
       },
       {
         "id": "EE25",
         "tipo": "EE",
+        "nome": "Autenticar usuário",
+        "ar_rl": 3,
         "td": 5,
-        "ar": 3,
+        "tdEntrada": 4,
+        "tdSaida": 1,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 3
       },
       {
         "id": "EE26",
         "tipo": "EE",
+        "nome": "Selecionar loja de trabalho",
+        "ar_rl": 2,
         "td": 3,
-        "ar": 2,
+        "tdEntrada": 2,
+        "tdSaida": 1,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 2
       },
       {
         "id": "EE27",
         "tipo": "EE",
+        "nome": "Sinalizar posição por LED",
+        "ar_rl": 3,
         "td": 3,
-        "ar": 3,
+        "tdEntrada": 2,
+        "tdSaida": 1,
+        "complexidade": "Moderada",
         "pf": 4,
-        "complexidade": "Moderada"
+        "ar": 3
       },
       {
         "id": "EE28",
         "tipo": "EE",
+        "nome": "Encerrar sessão",
+        "ar_rl": 0,
         "td": 2,
-        "ar": 0,
+        "tdEntrada": 1,
+        "tdSaida": 1,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 0
       },
       {
         "id": "SE02",
         "tipo": "SE",
+        "nome": "Valor potencial do estoque",
+        "ar_rl": 2,
         "td": 8,
-        "ar": 2,
+        "tdEntrada": 2,
+        "tdSaida": 6,
+        "complexidade": "Moderada",
         "pf": 5,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "SE04",
         "tipo": "SE",
+        "nome": "Fluxo de movimentações",
+        "ar_rl": 2,
         "td": 9,
-        "ar": 2,
+        "tdEntrada": 4,
+        "tdSaida": 5,
+        "complexidade": "Moderada",
         "pf": 5,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "SE06",
         "tipo": "SE",
+        "nome": "Pesquisar estoque e localizar produto",
+        "ar_rl": 4,
         "td": 16,
-        "ar": 4,
+        "tdEntrada": 4,
+        "tdSaida": 12,
+        "complexidade": "Complexa",
         "pf": 7,
-        "complexidade": "Complexa"
+        "ar": 4
       },
       {
         "id": "SE07",
         "tipo": "SE",
+        "nome": "Mapa operacional de posições",
+        "ar_rl": 4,
         "td": 13,
-        "ar": 4,
+        "tdEntrada": 2,
+        "tdSaida": 11,
+        "complexidade": "Complexa",
         "pf": 7,
-        "complexidade": "Complexa"
+        "ar": 4
       },
       {
         "id": "SE08",
         "tipo": "SE",
+        "nome": "Ler peso líquido e subtotal",
+        "ar_rl": 2,
         "td": 9,
-        "ar": 2,
+        "tdEntrada": 4,
+        "tdSaida": 5,
+        "complexidade": "Moderada",
         "pf": 5,
-        "complexidade": "Moderada"
+        "ar": 2
       },
       {
         "id": "SE09",
         "tipo": "SE",
+        "nome": "Exportar histórico",
+        "ar_rl": 6,
         "td": 13,
-        "ar": 6,
+        "tdEntrada": 6,
+        "tdSaida": 7,
+        "complexidade": "Complexa",
         "pf": 7,
-        "complexidade": "Complexa"
+        "ar": 6
       },
       {
         "id": "CE04",
         "tipo": "CE",
+        "nome": "Consultar fornecedores externos",
+        "ar_rl": 1,
         "td": 8,
-        "ar": 1,
+        "tdEntrada": 3,
+        "tdSaida": 5,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "CE05",
         "tipo": "CE",
+        "nome": "Consultar modelos",
+        "ar_rl": 1,
         "td": 6,
-        "ar": 1,
+        "tdEntrada": 3,
+        "tdSaida": 3,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "CE06",
         "tipo": "CE",
+        "nome": "Consultar vínculos",
+        "ar_rl": 4,
         "td": 10,
-        "ar": 4,
+        "tdEntrada": 4,
+        "tdSaida": 6,
+        "complexidade": "Complexa",
         "pf": 6,
-        "complexidade": "Complexa"
+        "ar": 4
       },
       {
         "id": "CE07",
         "tipo": "CE",
+        "nome": "Consultar equipe e permissões",
+        "ar_rl": 2,
         "td": 6,
-        "ar": 2,
+        "tdEntrada": 3,
+        "tdSaida": 3,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 2
       },
       {
         "id": "CE08",
         "tipo": "CE",
+        "nome": "Consultar lojas",
+        "ar_rl": 1,
         "td": 9,
-        "ar": 1,
+        "tdEntrada": 3,
+        "tdSaida": 6,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "CE09",
         "tipo": "CE",
+        "nome": "Consultar configuração IoT",
+        "ar_rl": 1,
         "td": 6,
-        "ar": 1,
+        "tdEntrada": 2,
+        "tdSaida": 4,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 1
       },
       {
         "id": "SE10",
         "tipo": "SE",
+        "nome": "Consultar histórico operacional",
+        "ar_rl": 5,
         "td": 13,
-        "ar": 5,
+        "tdEntrada": 5,
+        "tdSaida": 8,
+        "complexidade": "Complexa",
         "pf": 7,
-        "complexidade": "Complexa"
+        "ar": 5
       },
       {
         "id": "CE11",
         "tipo": "CE",
+        "nome": "Consultar auditoria",
+        "ar_rl": 2,
         "td": 6,
-        "ar": 2,
+        "tdEntrada": 2,
+        "tdSaida": 4,
+        "complexidade": "Simples",
         "pf": 3,
-        "complexidade": "Simples"
+        "ar": 2
       }
-    ],
-    "PFB": 283,
-    "NI": 38,
-    "FA": 1.03,
-    "PFA": 291.49
+    ]
   },
   "capturasHistoricas": [
     {
