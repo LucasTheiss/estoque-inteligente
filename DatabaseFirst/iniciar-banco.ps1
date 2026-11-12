@@ -7,4 +7,4 @@ if ($LASTEXITCODE -ne 0) {
     throw "A preparacao do banco falhou (codigo $LASTEXITCODE)."
 }
 
-Write-Host 'Banco pronto. O endpoint local e 127.0.0.1:5544; a aplicacao usa a rede interna do Compose.'
+Write-Host 'Banco pronto. A porta local 127.0.0.1:5544 permite consultar o PostgreSQL isolado.'

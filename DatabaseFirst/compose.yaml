@@ -15,11 +15,6 @@ services:
       interval: 2s
       timeout: 3s
       retries: 30
-  mqtt:
-    image: eclipse-mosquitto:2
-    profiles: [verify]
-    volumes:
-      - ./scripts/mosquitto-test.conf:/mosquitto/config/mosquitto.conf:ro
   maven:
     image: maven:3.9.11-eclipse-temurin-21
     working_dir: /workspace/DatabaseFirst
@@ -30,16 +25,6 @@ services:
       DF_DB_URL: jdbc:postgresql://db:5432/estoque_databasefirst
       DF_DB_USER: ${DF_DB_USER}
       DF_DB_PASSWORD: ${DF_DB_PASSWORD}
-      DF_WEB_USER: ${DF_WEB_USER}
-      DF_WEB_PASSWORD: ${DF_WEB_PASSWORD}
-      SPRING_PROFILES_ACTIVE: databasefirst
-      TEST_DATABASE_URL: jdbc:postgresql://db:5432/estoque_databasefirst
-      DATABASE_USER: ${DF_DB_USER}
-      DATABASE_PASSWORD: ${DF_DB_PASSWORD}
-      MQTT_USER: ${DF_WEB_USER}
-      MQTT_PASSWORD: ${DF_WEB_PASSWORD}
-    ports:
-      - "127.0.0.1:8082:8082"
     depends_on:
       db:
         condition: service_healthy

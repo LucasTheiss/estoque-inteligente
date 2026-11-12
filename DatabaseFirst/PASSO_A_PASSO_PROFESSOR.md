@@ -1,90 +1,72 @@
-# Roteiro da apresentacao Database First
+# Roteiro Database First para apresentacao
 
-## Objetivo da atividade
+## O que a atividade demonstra
 
-Mostrar que um banco existente pode ser o ponto de partida para gerar código. Nesta entrega há dois exemplos complementares:
+O ponto de partida e um esquema PostgreSQL existente. O jOOQ le esse esquema e gera classes e DAOs Java. Para gerar tambem entidades, CRUD e telas, o mesmo banco e exportado para SQL e importado no Bootify. Este branch contem somente a infraestrutura, os scripts e as instrucoes para esses geradores; nao contem um CRUD MVC escrito manualmente.
 
-- O jOOQ consulta o PostgreSQL ativo e gera classes e DAOs Java. A aplicação local usa esse código gerado em um CRUD real.
-- O Bootify importa um arquivo SQL exportado do mesmo banco e pode gerar entidades, camada de CRUD e telas Thymeleaf.
+## Preparar e gerar
 
-O primeiro fluxo é executável e testado dentro do repositório. O Bootify é um gerador separado: a importação e o download do projeto são feitos no site. O CRUD gerado não é conectado diretamente ao sistema real, pois precisa receber as regras de loja e autorização.
+Pre-requisitos: Docker Desktop iniciado, internet na primeira execucao e dois terminais PowerShell abertos na raiz do repositorio.
 
-## Antes da aula
-
-Pré-requisitos: Docker Desktop iniciado, internet para baixar as imagens na primeira execução e dois terminais PowerShell na raiz do repositório.
-
-### Terminal 1: iniciar o banco
+### Terminal 1: criar o banco de demonstracao
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/iniciar-banco.ps1
 ```
 
-Esse script chama `demo.ps1 prepare`. Ele cria as credenciais locais, inicia o PostgreSQL isolado, espera o healthcheck, aplica as migrations originais com Flyway e insere os dados da loja de demonstração. O banco fica na porta `5544`; não usa o PostgreSQL do projeto principal.
+O script inicia o PostgreSQL isolado na porta local `5544`, aplica as migrations originais pelo Flyway e insere uma loja de demonstracao. O Flyway cria/atualiza o banco; ele nao gera classes Java.
 
-Deixe o terminal aberto até aparecer `Banco pronto`.
-
-### Terminal 2: gerar e iniciar o restante
+### Terminal 2: gerar os artefatos
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/gerar-e-iniciar-demo.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/gerar-codigo.ps1
 ```
 
-O script executa estas etapas em sequência:
+O script gera 45 arquivos Java jOOQ em `DatabaseFirst/target/generated-sources/jooq/` e exporta `tenants` e `models` para `DatabaseFirst/target/bootify-schema.sql`. Nao inicia uma aplicacao MVC manual.
 
-1. `demo.ps1 generate`: o jOOQ conecta ao PostgreSQL e gera tabelas, Records, POJOs, DAOs e referências a chaves em `DatabaseFirst/target/generated-sources/jooq/`.
-2. `demo.ps1 export-bootify`: exporta somente `tenants` e `models`, sem linhas de dados, para `DatabaseFirst/target/bootify-schema.sql`.
-3. `demo.ps1 test`: compila e executa os testes da demonstração contra o banco. Se os testes falharem, o script para e não inicia a aplicação.
-4. `demo.ps1 run`: empacota o projeto e inicia o site local em `http://127.0.0.1:8082/`.
-
-O processo web ocupa esse terminal. Use `Ctrl+C` para encerrá-lo.
-
-### Terminal 3: entrar na demonstração local
-
-Com a aplicação rodando, abra outro PowerShell e consulte as credenciais criadas para esta demonstração:
+Para demonstrar que uma mudanca no banco altera o codigo gerado, rode esta variante. Ela adiciona `demo_note`, regenera as classes e restaura o esquema ao final:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/demo.ps1 credentials
+powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/gerar-codigo.ps1 -DemonstrarRegeneracao
 ```
 
-Entre em `http://127.0.0.1:8082/`. Cadastre um modelo, edite-o e exclua-o. Para provar que os dados foram persistidos, em outro terminal rode:
+O arquivo SQL exportado e a prova principal para a etapa seguinte. Para conferir a estrutura atual do banco:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/demo.ps1 inspect
 ```
 
-## Demonstrar o gerador de CRUD e telas
+## Gerar CRUD e telas no Bootify
 
-O arquivo de importação produzido pelo segundo script é `DatabaseFirst/target/bootify-schema.sql`.
+1. Abra [Bootify](https://bootify.io/) e crie um projeto Java com PostgreSQL e Thymeleaf.
+2. Importe o conteudo de `DatabaseFirst/target/bootify-schema.sql`.
+3. Confira o preview. Habilite CRUD e frontend para `models`; mantenha `tenants` como entidade de apoio.
+4. Selecione **None (validate)** para o projeto validar o esquema existente em vez de tentar criá-lo.
+5. Gere e baixe o código. Mostre a entidade, o serviço/controlador CRUD e a tela Thymeleaf gerados.
 
-1. Abra [Bootify](https://bootify.io/) e escolha um projeto Spring Boot com Java, PostgreSQL e Thymeleaf.
-2. Importe o SQL e confira no preview as tabelas `tenants` e `models`.
-3. Habilite CRUD e frontend para `models`; deixe `tenants` como entidade de apoio.
-4. Use o modo de esquema **None (validate)** para validar um banco existente, em vez de tentar criá-lo.
-5. Gere e baixe a aplicação. Mostre uma entidade gerada, o controlador/serviço e a página Thymeleaf.
+O Bootify oferece importacao de esquema SQL e opcoes de CRUD/frontend por entidade ([guia de importacao](https://bootify.io/spring-data/generate-entities-from-database-sql-script.html), [guia de CRUD/frontend](https://bootify.io/frontend/spring-boot-crud-generator.html)). A selecao das opcoes e o download acontecem no site; nao existe uma chamada automatica ao Bootify nestes scripts.
 
-O Bootify documenta a importação de SQL e a geração de código CRUD e frontend por entidade. Recursos SQL não reconhecidos podem precisar de ajuste no preview; por isso, esta aplicação gerada é um scaffold separado, não uma substituição automática da demonstração segura em execução. Veja [o fluxo e os limites de integração](BOOTIFY_AUTOMATICO.md).
+## O que cada ferramenta faz
 
-## O que explicar
-
-| Peça | O que faz | Como explicar |
+| Ferramenta | Funcao | Explicacao para o professor |
 | --- | --- | --- |
-| PostgreSQL | Guarda as tabelas e os registros da demonstração. | “Começamos pelo banco que já existe.” |
-| Flyway | Aplica as migrations versionadas ao banco isolado. | “O Flyway prepara a estrutura; não gera as classes Java.” |
-| jOOQ Code Generator | Lê metadados do PostgreSQL e grava código Java. | “O jOOQ observa tabelas, colunas e chaves e gera os tipos usados pelo compilador.” |
-| Maven | Organiza a geração, compilação, testes e empacotamento. | “O perfil `codegen` liga o gerador à fase de geração de fontes.” |
-| Bootify | Importa o SQL e gera um scaffold de aplicação. | “Além das classes, esta ferramenta consegue gerar o CRUD e a interface escolhidos.” |
-| Spring Boot e Thymeleaf | Executam o site local da demonstração. | “A tela local demonstra as operações persistidas; esta tela foi implementada à mão e usa os Records do jOOQ.” |
+| PostgreSQL | Banco de origem isolado para a atividade. | “O esquema do banco e o ponto de partida.” |
+| Flyway | Aplica migrations versionadas ao PostgreSQL. | “Flyway prepara o esquema; nao cria as classes Java.” |
+| jOOQ Code Generator | Le metadados JDBC e gera tipos Java, Records, POJOs, DAOs e chaves. | “O jOOQ consulta as tabelas existentes e escreve codigo tipado automaticamente.” |
+| Maven | Executa Flyway e o perfil `codegen` no container Java 21. | “O Maven coordena os plugins e as dependencias de geracao.” |
+| Bootify | Importa SQL e gera um scaffold de aplicacao. | “Ao marcar CRUD e Thymeleaf para a entidade, gera entidades, operacoes e telas.” |
+| PowerShell | Encadeia os passos repetiveis. | “Um script prepara o banco; outro regenera os artefatos.” |
 
-Uma explicação curta:
+Uma fala curta:
 
-> “Database First começa pelo esquema do banco. O Flyway prepara um PostgreSQL isolado. O jOOQ se conecta a esse banco e gera classes e DAOs, que usamos no CRUD demonstrável. Para mostrar geração de telas também, exportamos o esquema e o importamos no Bootify, que gera o scaffold web a partir das tabelas selecionadas. O CRUD do Bootify é um projeto separado; o CRUD local aplica as regras de loja, autorização e auditoria do sistema.”
+> “Primeiro subimos um PostgreSQL isolado e aplicamos as migrations. O jOOQ consulta o esquema real e gera classes e DAOs Java. Depois exportamos as tabelas necessarias e importamos esse SQL no Bootify, que gera as entidades, o CRUD e as telas selecionadas. Assim mostramos Database First desde o banco ate o codigo de acesso e a interface.”
 
-## Encerrar depois da apresentação
+## Encerrar
 
-Pare a aplicação com `Ctrl+C`. Depois, no PowerShell:
+Depois de salvar ou mostrar os arquivos gerados, pare os containers sem apagar o volume:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/demo.ps1 stop
 ```
 
-O comando para os containers dessa demonstração e preserva o volume do banco. Não use `down -v`, pois isso apagaria o banco preparado.
+Nao use `down -v`: esse comando apagaria o banco e o cache Maven.
