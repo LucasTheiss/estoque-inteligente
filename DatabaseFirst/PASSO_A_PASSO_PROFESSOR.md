@@ -63,6 +63,55 @@ Uma fala curta:
 
 > “Primeiro subimos um PostgreSQL isolado e aplicamos as migrations. O jOOQ consulta o esquema real e gera classes e DAOs Java. Depois exportamos as tabelas necessarias e importamos esse SQL no Bootify, que gera as entidades, o CRUD e as telas selecionadas. Assim mostramos Database First desde o banco ate o codigo de acesso e a interface.”
 
+## Ensaiar, limpar e repetir na frente do professor
+
+Todos os comandos desta secao sao executados dentro de `estoque-inteligente\DatabaseFirst`.
+
+### 1. Ensaiar o fluxo completo
+
+Execute `iniciar-banco.ps1` e `gerar-codigo.ps1`, importe o SQL no Bootify com as configuracoes deste roteiro e extraia o download em `bootify\ei-front`. Depois execute:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-bootify.ps1
+```
+
+Aguarde o aplicativo iniciar e teste cadastro, consulta, edicao e exclusao em `http://localhost:8083/models`. Exclua pela tela os registros criados apenas para o ensaio, se quiser deixar a lista pronta para a apresentacao.
+
+### 2. Apagar os arquivos gerados depois do teste
+
+Pare o site com **Ctrl+C**. Saia das pastas `bootify`/`target` nos outros terminais e volte a `DatabaseFirst`. Execute:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\limpar-gerados.ps1
+```
+
+Esse comando apaga **DatabaseFirst\target inteira** (Java jOOQ, SQL exportado e evidencias) e **DatabaseFirst\bootify inteira** (projeto baixado, fontes, telas, compilacao e qualquer alteracao local nele). Ele preserva os scripts, os roteiros, `.env`, o codigo do restante do repositorio e o banco com seus dados. Nao precisa do Docker para limpar. Para apenas conferir os caminhos, acrescente `-WhatIf` ao comando.
+
+O banco permanecer e proposital: na demonstracao Database First, o esquema existente e a entrada para gerar o codigo novamente. A limpeza de arquivos nao exclui os registros cadastrados no ensaio nem reinicia as sequences dos IDs.
+
+### 3. Gerar novamente durante a apresentacao
+
+Com o Docker Desktop aberto, execute:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-banco.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\gerar-codigo.ps1
+```
+
+Mostre as classes que reapareceram em `target\generated-sources\jooq`. Em seguida:
+
+1. Importe o novo `target\bootify-schema.sql` no Bootify e use as configuracoes indicadas no roteiro.
+2. Gere e baixe novamente o projeto com CRUD e telas; extraia em `bootify\ei-front`.
+3. Execute o comando abaixo e mostre o CRUD no navegador:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-bootify.ps1
+```
+
+**O iniciador nao baixa nem gera o projeto Bootify:** ele adapta, compila e executa o download. Por isso, depois de apagar `bootify`, voce precisa gerar/baixar novamente no site. Guarde uma copia do ZIP fora de `DatabaseFirst\bootify` e `DatabaseFirst\target` como reserva para o ensaio/apresentacao; extrair esse ZIP recupera uma geracao anterior, nao demonstra uma nova geracao. O fluxo pelo site e os downloads de dependencias exigem internet.
+
+Fala sugerida: “Apaguei os artefatos gerados, mas mantive o banco de origem. Agora vou gerar novamente as classes pelo jOOQ e o CRUD com telas pelo Bootify, usando o mesmo esquema.”
+
 ## Encerrar
 
 Depois de salvar ou mostrar os arquivos gerados, pare os containers sem apagar o volume:

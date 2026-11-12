@@ -120,6 +120,18 @@ Fala sugerida: “O banco e a origem. jOOQ gera o acesso tipado e Bootify gera o
 
 Se baixar o projeto novamente, basta extrair e repetir o iniciador. A importacao/download no site continua manual. O projeto baixado fica ignorado pelo Git.
 
+## Limpar depois do ensaio e gerar novamente
+
+Depois de testar, pare o site com Ctrl+C e, dentro de `DatabaseFirst`, execute:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\limpar-gerados.ps1
+```
+
+Isso apaga `target` e `bootify` inteiras, incluindo alteracoes locais no download. Preserva os scripts, `.env` e o banco. Para repetir, execute `iniciar-banco.ps1`, `gerar-codigo.ps1`, importe o SQL no Bootify, gere/baixe e extraia o projeto novamente e execute `iniciar-bootify.ps1`. O download no site continua necessario; o iniciador nao o substitui.
+
+O [roteiro de apresentacao](PASSO_A_PASSO_PROFESSOR.md#ensaiar-limpar-e-repetir-na-frente-do-professor) detalha o ensaio, a limpeza e a demonstracao desde os arquivos gerados ausentes.
+
 ## Parar e limites de validacao
 
 Pressione Ctrl+C no terminal do site. O script retorna a pasta original. Para parar o banco, dentro de DatabaseFirst:
