@@ -38,9 +38,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 inspect
 
 ## Gerar CRUD e telas no Bootify
 
-1. Abra [Bootify](https://bootify.io/) e crie um projeto Java com PostgreSQL e Thymeleaf.
+1. Abra [Bootify](https://bootify.io/) e preencha todos os campos conforme as tabelas de [configuracao do Bootify](BOOTIFY_AUTOMATICO.md#project-settings): Maven, Java, Thymeleaf, Vite, Bootstrap e PostgreSQL.
 2. Importe o conteudo de `target\bootify-schema.sql`, relativo à pasta `DatabaseFirst` onde seu terminal está.
-3. Confira o preview. Habilite CRUD e frontend para `models`; mantenha `tenants` como entidade de apoio.
+3. Confira o preview. Habilite CRUD e frontend para Model e Tenant, para gerar as telas de modelos e lojas. Marque nomes plurais de tabelas e desmarque a adicao de dateCreated/lastUpdated.
 4. Selecione **None (validate)** para o projeto validar o esquema existente em vez de tentar criá-lo.
 5. Gere e baixe o código. Mostre a entidade, o serviço/controlador CRUD e a tela Thymeleaf gerados.
 

@@ -9,7 +9,58 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-banco.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\gerar-codigo.ps1
 ```
 
-Importe `target\bootify-schema.sql` no Bootify, escolha PostgreSQL e Thymeleaf e habilite CRUD/frontend. Baixe e extraia o projeto em `bootify\ei-front`: essa pasta deve conter `pom.xml`, `mvnw.cmd` e `src` diretamente.
+Importe `target\bootify-schema.sql` no Bootify e preencha as configuracoes abaixo. Depois habilite CRUD/frontend nas entidades e baixe o projeto.
+
+### Project settings
+
+| Campo | O que selecionar |
+| --- | --- |
+| Project group | `estoque-inteligente` |
+| Project name | `ei-front` |
+| Build type | **Maven** (o iniciador usa `mvnw.cmd`) |
+| Language | **Java** |
+| Enable Lombok | **Desmarcado** |
+| Frontend | **Thymeleaf** |
+| Build tool | **Vite** |
+| CSS framework | **Bootstrap** |
+| Include htmx | **Desmarcado** |
+| Use TypeScript | **Desmarcado** |
+
+### Database settings
+
+| Campo | O que selecionar |
+| --- | --- |
+| Database | **PostgreSQL** |
+| DB Generation | **None (validate only)**; pode aparecer abreviado como **None (validate)** |
+| Pluralize table names | **Marcado**, para usar nomes plurais como `models` e `tenants` |
+| Add dateCreated/lastUpdated to entities | **Desmarcado**; nao queremos acrescentar campos que nao existem nas tabelas importadas |
+
+Se DB Generation estiver em **Flyway**, troque para **None (validate only)**. O Flyway dos nossos scripts ja prepara o banco. O aplicativo gerado deve apenas validar esse esquema, conforme o [guia oficial de importacao SQL do Bootify](https://bootify.io/spring-data/generate-entities-from-database-sql-script.html). O iniciador tambem desativa Flyway para acomodar downloads anteriores feitos com essa opcao.
+
+### Developer preferences
+
+| Campo | O que selecionar |
+| --- | --- |
+| Appl. format | **Yaml** |
+| Packages | **Domain driven** |
+| Include coding agent instructions | **Desmarcado**; e opcional e nao faz parte da demonstracao |
+| Enable OpenAPI/Swagger UI | **Desmarcado**; vamos demonstrar pelas telas |
+| Use Docker compose for development | **Desmarcado**; vamos usar o banco do `compose.yaml` de DatabaseFirst |
+| Java version | **17**, para gerar codigo compativel com o JDK 19 encontrado anteriormente nesta maquina |
+| Deployment | **None** |
+| Further dependencies | **Deixe vazio**; use as dependencias adicionadas pelo Bootify |
+
+Estas sao as escolhas para este roteiro. Java 17 aqui e a versao alvo do codigo gerado; o iniciador detecta o JDK instalado e passa a versao dele ao Maven. Nao selecione 21 ou 25 enquanto estiver usando somente o JDK 19. Para trocar, instale o JDK correspondente e configure JAVA_HOME.
+
+### Entidades e download
+
+1. Importe o SQL de `target\bootify-schema.sql`.
+2. Confira as entidades **Model** e **Tenant** e o relacionamento do modelo com a loja. Preserve os campos e tipos importados; nao adicione campos de auditoria.
+3. Habilite a geracao de **CRUD/frontend** para Model e Tenant, para termos as telas `/models` e `/tenants`. Escolher Thymeleaf no projeto nao substitui a selecao das telas por entidade.
+4. Confira os nomes das tabelas: `models` e `tenants`. O preparador tambem aplica esses nomes e ajusta as sequences existentes automaticamente.
+5. Baixe e extraia em `bootify\ei-front`: essa pasta deve conter `pom.xml`, `mvnw.cmd` e `src` diretamente, sem uma segunda pasta `ei-front` dentro dela.
+
+O download continua fora do Git. Repita essas escolhas quando gerar outro projeto.
 
 ## 2. Configurar, compilar e abrir
 
