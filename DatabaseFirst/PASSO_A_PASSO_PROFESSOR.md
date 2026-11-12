@@ -2,6 +2,8 @@
 
 ## O que a atividade demonstra
 
+Para explicar os comandos internos e responder perguntas do professor, consulte [Como funcionam os scripts](COMO_FUNCIONAM_OS_SCRIPTS.md).
+
 O ponto de partida e um esquema PostgreSQL existente. O jOOQ le esse esquema e gera classes e DAOs Java. Para gerar tambem entidades, CRUD e telas, o mesmo banco e exportado para SQL e importado no Bootify. Este branch contem somente a infraestrutura, os scripts e as instrucoes para esses geradores; nao contem um CRUD MVC escrito manualmente.
 
 ## Preparar e gerar
