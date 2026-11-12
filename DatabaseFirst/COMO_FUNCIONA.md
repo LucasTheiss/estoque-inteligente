@@ -219,3 +219,9 @@ Esses resultados são da execução já documentada; este texto não representa 
 > “Nós usamos o banco do Estoque Inteligente como ponto de partida. Primeiro, preparamos um PostgreSQL separado com as migrations originais. Depois, o jOOQ lê as tabelas desse banco e gera classes Java, Records, POJOs e DAOs. Criamos uma tela simples que usa esses tipos gerados para cadastrar, consultar, editar e excluir modelos. Para comprovar Database First, adicionamos uma coluna no PostgreSQL e executamos o gerador novamente: o campo aparece no Java sem escrevermos esse código à mão. A tela e as regras foram implementadas por nós; a geração automática é da estrutura Java e do acesso aos dados.”
 
 Para executar a apresentação, siga o [ROTEIRO_DEMONSTRACAO.md](ROTEIRO_DEMONSTRACAO.md), que contém os comandos completos e os arquivos que devem ser mostrados.
+
+## Geracao automatica de CRUD e tela
+
+A demonstracao jOOQ gera classes e acesso ao banco; o Controller e a pagina Thymeleaf deste modulo foram escritos manualmente. Para apresentar uma ferramenta que tambem gere essas camadas, siga `BOOTIFY_AUTOMATICO.md`: o comando `demo.ps1 export-bootify` extrai o DDL ativo de `tenants` e `models`, e a importacao no Bootify permite gerar entidades, controlador, servico e frontend CRUD para `models`.
+
+O scaffold baixado e um projeto separado e precisa ser revisado antes de conectar a dados reais. O CRUD em execucao neste repositorio continua sendo o modulo jOOQ validado, com isolamento por loja, auditoria e protecao contra exclusao de modelos vinculados.

@@ -1,4 +1,4 @@
-param([ValidateSet('prepare','generate','run','test','main-test','inspect','add-column','restore','stop','credentials')][string]$Action = 'prepare')
+param([ValidateSet('prepare','generate','export-bootify','run','test','main-test','inspect','add-column','restore','stop','credentials')][string]$Action = 'prepare')
 $ErrorActionPreference = 'Stop'
 $demoRoot = $PSScriptRoot
 $envFile = Join-Path $demoRoot '.env'
@@ -21,6 +21,15 @@ function Sql([string]$Name) {
 switch ($Action) {
     prepare { Docker @('up','-d','--wait','db'); Maven @('flyway:migrate'); Sql 'seed' }
     generate { Maven @('-Pcodegen','generate-sources') }
+    export-bootify {
+        $outputDir = Join-Path $demoRoot 'target'
+        New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+        $ddl = & docker.exe @composeArgs exec -T db sh -c 'pg_dump --no-owner --no-privileges --schema-only --table=public.tenants --table=public.models -U "$POSTGRES_USER" -d estoque_databasefirst'
+        if ($LASTEXITCODE -ne 0) { throw 'Nao foi possivel exportar o esquema para o Bootify.' }
+        $output = Join-Path $outputDir 'bootify-schema.sql'
+        [System.IO.File]::WriteAllText($output, (($ddl -join "`n") + "`n"), [System.Text.UTF8Encoding]::new($false))
+        Write-Output "Esquema pronto para importar no Bootify: $output"
+    }
     run { Maven @('package','-DskipTests'); Docker @('run','--rm','--service-ports','maven','java','-jar','target/databasefirst-1.0.0.jar') }
     test { Maven @('verify') }
     main-test {

@@ -50,6 +50,8 @@ Mostre as mensagens `Generating table`, `Generating record`, `Generating POJO` e
 
 O gerador fica em `DatabaseFirst/pom.xml`, perfil `codegen`. `mvn verify` normal não gera novamente. Após `clean`, execute `generate` antes de compilar, ou `mvn -Pcodegen clean verify` com banco preparado.
 
+Para mostrar também a geração automática de CRUD e telas, siga [BOOTIFY_AUTOMATICO.md](BOOTIFY_AUTOMATICO.md). O comando `export-bootify` prepara um SQL de `tenants` e `models` extraído do PostgreSQL ativo para importar no gerador.
+
 ## 3. Código gerado
 
 Abra `DatabaseFirst/pom.xml` como projeto Maven no IntelliJ ou VS Code. Os arquivos só existem após gerar. Caminhos relativos à raiz do repositório:
