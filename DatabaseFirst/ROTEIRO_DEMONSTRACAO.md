@@ -6,6 +6,8 @@ Execute os comandos em **PowerShell, na raiz do repositório**. Requisitos: Dock
 cd C:\Users\cristhian.ruan\Documents\estoque-inteligente
 ```
 
+Para executar tudo com dois scripts e seguir a fala sugerida, use [PASSO_A_PASSO_PROFESSOR.md](PASSO_A_PASSO_PROFESSOR.md). Este roteiro abaixo detalha os comandos individuais da demonstração jOOQ.
+
 ## 1. Preparação
 
 ```powershell

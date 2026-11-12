@@ -142,4 +142,4 @@ O Compose também inicia um [provedor externo demonstrativo de fornecedores](ext
 - `src/test/`: testes Java e JavaScript.
 - `deploy/`: configuração de NGINX e Mosquitto.
 - `examples/reuso/`: consumidor independente da biblioteca de regras.
-- `DatabaseFirst/`: demonstracao e roteiro da atividade de geracao a partir do banco; consulte [o fluxo jOOQ e a opcao de CRUD/telas com Bootify](DatabaseFirst/BOOTIFY_AUTOMATICO.md).
+- `DatabaseFirst/`: atividade de geracao a partir do banco. Comece pelo [passo a passo para a apresentacao](DatabaseFirst/PASSO_A_PASSO_PROFESSOR.md); o [fluxo Bootify](DatabaseFirst/BOOTIFY_AUTOMATICO.md) detalha a geracao de CRUD e telas.

@@ -79,3 +79,15 @@ Nenhum arquivo fonte, POM, Compose ou migration original foi alterado. As exclus
 - O Word teve validação estrutural; não foi aberto visualmente no Microsoft Word.
 - A skill Cartographer referenciava caminhos de outro computador e não havia mapa/CLI local. O mapeamento foi feito diretamente nos fontes. O carregador da skill Impeccable não pôde usar seu cache; PRODUCT.md e DESIGN.md foram lidos diretamente.
 - A aplicação não aplica migrations no startup: somente `prepare` faz isso. O startup exige o perfil `databasefirst`, o banco exclusivo e a loja preparada. O Compose publica a página apenas em `127.0.0.1:8082`; credenciais aleatórias ficam no `.env` local ignorado pelo Git.
+
+## Execucao dos scripts da apresentacao em 12/11/2026
+
+O fluxo foi executado pelos novos scripts PowerShell com Docker Desktop ativo:
+
+- `iniciar-banco.ps1` subiu o PostgreSQL 17.11 isolado, aplicou as tres migrations Flyway com sucesso e criou a loja `databasefirst`.
+- `gerar-e-iniciar-demo.ps1` conectou o jOOQ ao banco e gerou 45 arquivos Java: tabelas, Records, POJOs, DAOs e chaves.
+- O comando `export-bootify` gravou o SQL de `tenants` e `models` em `DatabaseFirst/target/bootify-schema.sql`.
+- Maven compilou 49 fontes e executou 6 testes: zero falhas, erros ou ignorados.
+- A aplicacao web iniciou e `/login` respondeu HTTP 200.
+
+O PostgreSQL e a aplicacao continuaram ativos ao concluir a verificacao HTTP. O SQL exportado e as classes geradas ficam sob `target/` e nao sao versionados. A importacao e a geracao do projeto Bootify nao foram automatizadas: essa etapa acontece no site, conforme `BOOTIFY_AUTOMATICO.md`.
