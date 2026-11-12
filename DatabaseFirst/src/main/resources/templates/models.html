@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Modelos | Database First</title><link rel="stylesheet" th:href="@{/style.css}"></head>
+<body><header><strong>Estoque Inteligente · Database First</strong><form th:action="@{/logout}" method="post"><button>Sair</button></form></header>
+<main><h1>Modelos de demonstração</h1>
+<p>Banco exclusivo: <code>estoque_databasefirst</code>. Esta página foi escrita manualmente em Thymeleaf. A persistência usa os Records e tipos gerados pelo jOOQ.</p>
+<p class="notice" role="status" th:if="${notice}" th:text="${notice}"></p>
+<p class="error" role="alert" th:if="${error}" th:text="${error}"></p>
+<section><h2 th:text="${item == null ? 'Cadastrar modelo' : 'Editar modelo'}"></h2>
+<form th:action="@{/models}" method="post" class="editor">
+<input type="hidden" name="id" th:if="${item != null}" th:value="${item.id}">
+<label>Nome (obrigatório)<input name="name" maxlength="200" required th:value="${item?.name}"></label>
+<label>Marca<input name="brand" maxlength="200" th:value="${item?.brand}"></label>
+<label>Categoria<input name="category" maxlength="200" th:value="${item?.category}"></label>
+<div><button th:text="${item == null ? 'Cadastrar modelo' : 'Salvar alterações'}"></button> <a th:if="${item != null}" th:href="@{/}">Cancelar edição</a></div>
+</form></section>
+<section><h2>Registros no PostgreSQL</h2>
+<p th:if="${#lists.isEmpty(items)}">Nenhum modelo cadastrado. Use o formulário acima para iniciar o CRUD.</p>
+<div class="table-scroll" th:unless="${#lists.isEmpty(items)}"><table><caption>Modelos da loja exclusiva de demonstração</caption><thead><tr><th scope="col">ID</th><th scope="col">Nome</th><th scope="col">Marca</th><th scope="col">Categoria</th><th scope="col">Ações</th></tr></thead>
+<tbody><tr th:each="row : ${items}"><td th:text="${row.id}"></td><td th:text="${row.name}"></td><td th:text="${row.brand}"></td><td th:text="${row.category}"></td><td><a th:href="@{/(id=${row.id})}" th:aria-label="|Editar ${row.name}|">Editar</a><form th:action="@{/models/{id}/delete(id=${row.id})}" method="post"><button class="danger" th:aria-label="|Excluir ${row.name}|">Excluir</button></form></td></tr></tbody></table></div>
+<p>A exclusão é física e só é permitida para modelos sem produtos vinculados.</p></section>
+</main></body></html>

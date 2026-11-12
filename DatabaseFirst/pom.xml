@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-parent</artifactId><version>3.5.6</version><relativePath/></parent>
+  <groupId>br.com.estoque</groupId><artifactId>databasefirst</artifactId><version>1.0.0</version>
+  <properties><java.version>21</java.version><jooq.version>3.19.26</jooq.version></properties>
+  <dependencies>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-thymeleaf</artifactId></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-security</artifactId></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-jooq</artifactId></dependency>
+    <dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><scope>runtime</scope></dependency>
+    <dependency><groupId>org.flywaydb</groupId><artifactId>flyway-core</artifactId></dependency>
+    <dependency><groupId>org.flywaydb</groupId><artifactId>flyway-database-postgresql</artifactId></dependency>
+    <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-test</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>org.springframework.security</groupId><artifactId>spring-security-test</artifactId><scope>test</scope></dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource><directory>src/main/resources</directory></resource>
+      <resource><directory>../src/main/resources</directory><includes><include>db/migration/**</include></includes></resource>
+    </resources>
+    <plugins>
+      <plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin>
+      <plugin><groupId>org.codehaus.mojo</groupId><artifactId>build-helper-maven-plugin</artifactId><version>3.6.1</version>
+        <executions><execution><id>generated</id><phase>generate-sources</phase><goals><goal>add-source</goal></goals><configuration><sources><source>target/generated-sources/jooq</source></sources></configuration></execution></executions>
+      </plugin>
+      <plugin><groupId>org.flywaydb</groupId><artifactId>flyway-maven-plugin</artifactId><version>${flyway.version}</version>
+        <configuration><url>${env.DF_DB_URL}</url><user>${env.DF_DB_USER}</user><password>${env.DF_DB_PASSWORD}</password><cleanDisabled>true</cleanDisabled><locations><location>filesystem:${project.basedir}/../src/main/resources/db/migration</location></locations></configuration>
+        <dependencies><dependency><groupId>org.flywaydb</groupId><artifactId>flyway-database-postgresql</artifactId><version>${flyway.version}</version></dependency><dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><version>${postgresql.version}</version></dependency></dependencies>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles><profile><id>codegen</id><build><plugins>
+    <plugin><groupId>org.jooq</groupId><artifactId>jooq-codegen-maven</artifactId><version>${jooq.version}</version>
+      <executions><execution><id>database-first</id><phase>generate-sources</phase><goals><goal>generate</goal></goals></execution></executions>
+      <configuration>
+        <jdbc><driver>org.postgresql.Driver</driver><url>${env.DF_DB_URL}</url><user>${env.DF_DB_USER}</user><password>${env.DF_DB_PASSWORD}</password></jdbc>
+        <generator><database><name>org.jooq.meta.postgres.PostgresDatabase</name><inputSchema>public</inputSchema><includes>.*</includes><excludes>flyway_schema_history</excludes></database>
+          <generate><records>true</records><pojos>true</pojos><daos>true</daos><javaTimeTypes>true</javaTimeTypes></generate>
+          <target><packageName>br.com.estoque.databasefirst.generated</packageName><directory>${project.basedir}/target/generated-sources/jooq</directory><clean>true</clean></target>
+        </generator>
+      </configuration>
+      <dependencies><dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><version>${postgresql.version}</version></dependency></dependencies>
+    </plugin>
+  </plugins></build></profile></profiles>
+</project>

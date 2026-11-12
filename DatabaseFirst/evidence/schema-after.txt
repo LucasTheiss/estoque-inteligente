@@ -1,0 +1,27 @@
+﻿   current_database    |                                         version                                          
+-----------------------+------------------------------------------------------------------------------------------
+ estoque_databasefirst | PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+(1 row)
+
+ version |            description            | success 
+---------+-----------------------------------+---------
+ 1       | estoque                           | t
+ 2       | lojas ativas                      | t
+ 3       | relatorios ocupacao independentes | t
+(3 rows)
+
+ column_name | data_type | is_nullable 
+-------------+-----------+-------------
+ id          | bigint    | NO
+ tenant_id   | bigint    | NO
+ name        | text      | NO
+ brand       | text      | NO
+ category    | text      | NO
+ demo_note   | text      | YES
+(6 rows)
+
+ id | tenant_id |                   name                   | brand  | category | demo_note 
+----+-----------+------------------------------------------+--------+----------+-----------
+  6 |         1 | DF-HTTP-378895ceceac469c87a922564d372dc6 | Equipe | Aula     | 
+(1 row)
+

@@ -1,0 +1,373 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<featureModel>
+    <struct>
+        <and name="EstoqueInteligente" mandatory="true" abstract="true">
+            <description>Configuração de uma loja ativa e do acesso de um usuário autenticado, incluindo escolhas de ambiente e navegador. Capacidades autorizadas não garantem sucesso sem dados e dispositivos válidos.</description>
+            <and name="NucleoComum" mandatory="true" abstract="true">
+                <description>Capacidades implementadas para todas as variantes, ainda sujeitas à autorização.</description>
+                <and name="Seguranca" mandatory="true" abstract="true">
+                    <description>Proteções comuns a todas as lojas.</description>
+                    <feature name="LoginPorLoja" mandatory="true">
+                        <description>Autenticação com loja e senha; bloqueio temporário após tentativas excessivas.</description>
+                    </feature>
+                    <feature name="SenhasBCrypt" mandatory="true">
+                        <description>Hash BCrypt de custo 12; não armazena senha em texto.</description>
+                    </feature>
+                    <feature name="AutorizacaoRBAC" mandatory="true">
+                        <description>Permissões consultadas no backend, inclusive nas requisições diretas.</description>
+                    </feature>
+                    <feature name="IsolamentoEntreLojas" mandatory="true">
+                        <description>Consultas e chaves de domínio usam tenant_id; usuário local não acessa outra loja.</description>
+                    </feature>
+                    <feature name="RevogacaoDeSessao" mandatory="true">
+                        <description>Bloqueia usuário ou loja inativos e versões antigas de autenticação.</description>
+                    </feature>
+                    <feature name="ProtecaoCSRF" mandatory="true">
+                        <description>Spring Security protege os formulários de alteração.</description>
+                    </feature>
+                </and>
+                <and name="Cadastros" mandatory="true" abstract="true">
+                    <description>Seis CRUDs implementados; presença do módulo não concede acesso ao usuário.</description>
+                    <feature name="ProdutosEModelos" mandatory="true">
+                        <description>CRUDs de produtos e modelos; SKU, código de barras, cor, tamanho, preço e atributos JSON.</description>
+                    </feature>
+                    <feature name="ItemSimplesEGrade" mandatory="true">
+                        <description>Cadastro simples e grade de tamanhos coexistem na mesma loja; saldo inicial é transacional.</description>
+                    </feature>
+                    <feature name="Posicoes" mandatory="true">
+                        <description>CRUD de posições por setor, linha, coluna, capacidade e unidade.</description>
+                    </feature>
+                    <feature name="VinculosProdutoPosicao" mandatory="true">
+                        <description>CRUD de vínculos com saldo; exige unidades iguais e saldo zero para alteração/remoção.</description>
+                    </feature>
+                    <feature name="Usuarios" mandatory="true">
+                        <description>CRUD de usuários; protege o próprio usuário e o último administrador ativo.</description>
+                    </feature>
+                    <feature name="Lojas" mandatory="true">
+                        <description>CRUD global de lojas e recursos; desativação preserva dados e bloqueia acesso.</description>
+                    </feature>
+                    <feature name="PreservacaoDoHistorico" mandatory="true">
+                        <description>Exclusão lógica de produtos, posições e usuários; modelo referenciado não pode ser excluído.</description>
+                    </feature>
+                </and>
+                <and name="MotorDeEstoque" mandatory="true" abstract="true">
+                    <description>Módulo transacional compartilhado por todas as variantes.</description>
+                    <feature name="EntradaSaidaEAjuste" mandatory="true">
+                        <description>Soma, subtrai ou substitui o saldo; exige motivo e rejeita saldo negativo e operação sem efeito.</description>
+                    </feature>
+                    <feature name="SaldoPorVinculo" mandatory="true">
+                        <description>Quantidade armazenada na relação entre produto e posição.</description>
+                    </feature>
+                    <feature name="TransacoesEConcorrencia" mandatory="true">
+                        <description>Movimento, saldo e auditoria são atômicos; bloqueios protegem atualizações concorrentes.</description>
+                    </feature>
+                    <feature name="Idempotencia" mandatory="true">
+                        <description>Chave e impressão da requisição impedem duplicação e reutilização com outros dados.</description>
+                    </feature>
+                    <feature name="EstornoRastreavel" mandatory="true">
+                        <description>Movimento inverso de entrada ou saída; impede repetição e preserva o original.</description>
+                    </feature>
+                    <feature name="PrecisaoInteiraEMonetaria" mandatory="true">
+                        <description>Unidades inteiras e preços com até duas casas; BigDecimal e NUMERIC.</description>
+                    </feature>
+                    <feature name="HistoricoEAuditoria" mandatory="true">
+                        <description>Autor, data, motivo, saldo anterior e posterior; filtros por tipo e período.</description>
+                    </feature>
+                </and>
+                <and name="ConsultaEInterface" mandatory="true" abstract="true">
+                    <description>Funcionalidades básicas de consulta e apresentação.</description>
+                    <feature name="BuscaDeProdutos" mandatory="true">
+                        <description>Pesquisa por termos e características, com paginação e normalização textual.</description>
+                    </feature>
+                    <feature name="DashboardEMapa" mandatory="true">
+                        <description>Consulta de saldo e localização e mapa 2D das posições; mapa básico não exige IoT.</description>
+                    </feature>
+                    <feature name="InterfaceResponsiva" mandatory="true">
+                        <description>Thymeleaf, HTML, CSS e JavaScript para desktop e smartphone, com movimento reduzido.</description>
+                    </feature>
+                    <alt name="TemaSelecionado" mandatory="true" abstract="true">
+                        <description>Preferência de um navegador: exatamente um tema por vez.</description>
+                        <feature name="TemaClaro">
+                            <description>Preferência light.</description>
+                        </feature>
+                        <feature name="TemaEscuro">
+                            <description>Preferência dark.</description>
+                        </feature>
+                        <feature name="TemaDoSistema">
+                            <description>Preferência system acompanha o sistema operacional.</description>
+                        </feature>
+                    </alt>
+                </and>
+                <and name="Plataforma" mandatory="true" abstract="true">
+                    <description>Tecnologias e operação da implementação atual.</description>
+                    <feature name="JavaSpringMVC" mandatory="true">
+                        <description>Java 21, Spring Boot MVC, serviços transacionais, DTOs e repositórios JDBC.</description>
+                    </feature>
+                    <feature name="PostgreSQLFlyway" mandatory="true">
+                        <description>Persistência PostgreSQL e migrações versionadas Flyway.</description>
+                    </feature>
+                    <feature name="VerificacaoDeSaude" mandatory="true">
+                        <description>Endpoint /health e verificação da conexão com o banco.</description>
+                    </feature>
+                    <and name="ImplantacaoDocker">
+                        <description>Empacotamento Docker Compose; execução local Java também é documentada.</description>
+                        <feature name="ProxyNGINX" mandatory="true">
+                            <description>Proxy com filtro de rotas, limites de entrada e cabeçalhos de segurança.</description>
+                        </feature>
+                        <feature name="TunnelCloudflare">
+                            <description>Perfil tunnel opcional para publicação com domínio e token configurados.</description>
+                        </feature>
+                    </and>
+                    <feature name="DadosDeDemonstracao">
+                        <description>app.demo provisiona lojas e dados sem repovoar lojas existentes.</description>
+                    </feature>
+                    <feature name="SimuladorIoT">
+                        <description>app.demo-iot publica peso e ACK identificados como simulados; não comprova hardware.</description>
+                    </feature>
+                </and>
+            </and>
+            <or name="RecursosAdicionais" abstract="true">
+                <description>Agrupa as quatro flags independentes da loja. Pode estar ausente; quando presente exige ao menos uma flag.</description>
+                <and name="IoT">
+                    <description>Flag tenants.iot.</description>
+                    <feature name="TransporteMQTT" mandatory="true">
+                        <description>Conexão autenticada ao broker e tópicos segregados por loja.</description>
+                    </feature>
+                    <feature name="ComandosLEDComACK" mandatory="true">
+                        <description>Comando com identificador, posição, pino e duração; ACK correlacionado e recente.</description>
+                    </feature>
+                    <alt name="QoSSelecionado" mandatory="true" abstract="true">
+                        <description>Um valor MQTT por configuração da loja, validado entre 0 e 1.</description>
+                        <feature name="QoS0">
+                            <description>Publicação com QoS 0.</description>
+                        </feature>
+                        <feature name="QoS1">
+                            <description>Publicação com QoS 1.</description>
+                        </feature>
+                    </alt>
+                </and>
+                <and name="Relatorios">
+                    <description>Flag tenants.reports, independente de occupancy.</description>
+                    <feature name="FormatoCSV" mandatory="true">
+                        <description>Renderizador CSV com escape e proteção contra fórmulas.</description>
+                    </feature>
+                    <feature name="FormatoPDF" mandatory="true">
+                        <description>Renderizador PDF paginado. Ambos os formatos existem quando reports está habilitado.</description>
+                    </feature>
+                </and>
+                <feature name="Ocupacao">
+                    <description>Flag tenants.occupancy; percentual calculado a partir do saldo e da capacidade.</description>
+                </feature>
+                <and name="QuantidadesFracionadas">
+                    <description>Flag tenants.fractional; aceita produtos e posições em kg.</description>
+                    <feature name="PrecisaoDePeso" mandatory="true">
+                        <description>Até três casas decimais; peso manual independe de IoT.</description>
+                    </feature>
+                </and>
+            </or>
+            <alt name="PerfilSelecionado" mandatory="true" abstract="true">
+                <description>Perfil de um usuário no contexto modelado; não limita os perfis que coexistem na loja.</description>
+                <feature name="Vendedor">
+                    <description>Perfil vendedor, com matriz configurável.</description>
+                </feature>
+                <feature name="Estoquista">
+                    <description>Perfil estoquista, com matriz configurável.</description>
+                </feature>
+                <feature name="Gerente">
+                    <description>Perfil gerente, com matriz configurável.</description>
+                </feature>
+                <feature name="Administrador">
+                    <description>Admin local; conjunto integral de permissões preservado pela aplicação.</description>
+                </feature>
+                <feature name="Superadministrador">
+                    <description>Acesso global e todas as permissões quando seleciona uma loja ativa.</description>
+                </feature>
+            </alt>
+            <and name="PermissoesEfetivas" mandatory="true" abstract="true">
+                <description>Concessões do perfil na loja, conforme CatalogoPermissoes e Acesso. A matriz dos perfis locais não administrativos é configurável.</description>
+                <feature name="PermConsultar">
+                    <description>Permissão consultar do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermSaida">
+                    <description>Permissão saida do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermEntrada">
+                    <description>Permissão entrada do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermCadastros">
+                    <description>Permissão cadastros do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermAjuste">
+                    <description>Permissão ajuste do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermEstorno">
+                    <description>Permissão estorno do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermHistorico">
+                    <description>Permissão historico do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermUsuarios">
+                    <description>Permissão usuarios do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermIoT">
+                    <description>Permissão iot do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermRelatorios">
+                    <description>Permissão relatorios do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+                <feature name="PermRBAC">
+                    <description>Permissão rbac do catálogo real; presença significa concessão efetiva ao usuário.</description>
+                </feature>
+            </and>
+            <and name="FluxosAutorizados" mandatory="true" abstract="true">
+                <description>Fluxos selecionados para uso. As constraints expressam seus requisitos necessários; não são novas flags de implantação nem uma reprodução completa da matriz de autorização.</description>
+                <feature name="SinalizacaoAutorizada">
+                    <description>Sinalizar uma posição exige IoT e permissão de consulta, pois o serviço verifica essas duas condições antes de enviar o comando.</description>
+                </feature>
+                <feature name="BuscaAssistidaAutorizada">
+                    <description>A busca assistida exige IoT e permissão de consulta para localizar produtos e seus vínculos.</description>
+                </feature>
+                <feature name="BalancaAutorizada">
+                    <description>A captura da balança exige IoT, quantidades fracionadas e permissão de saída. O sistema usa o peso para calcular a quantidade e o subtotal.</description>
+                </feature>
+                <feature name="ConfiguracaoIoTAutorizada">
+                    <description>Sem IoT ou sem permissão de configuração, a configuração do broker não pode ser selecionada. Isso impede alterações por usuários sem acesso ao recurso.</description>
+                </feature>
+                <feature name="ExportacaoAutorizada">
+                    <description>A exportação exige o recurso de relatórios e a permissão correspondente. CSV e PDF continuam disponíveis juntos.</description>
+                </feature>
+                <feature name="OcupacaoAutorizada">
+                    <description>Consultar a ocupação exige o recurso de ocupação e as permissões de relatórios e consulta, usadas para carregar posições e vínculos.</description>
+                </feature>
+                <feature name="BaixaRapidaAutorizada">
+                    <description>A baixa rápida exige permissões de saída e consulta, pois é necessário localizar o vínculo antes de registrar a retirada.</description>
+                </feature>
+                <feature name="TelasDeCadastrosAutorizadas">
+                    <description>As telas de produtos, posições e vínculos exigem permissões de cadastro e consulta para editar e carregar as informações.</description>
+                </feature>
+                <feature name="GradeComSaldoAutorizada">
+                    <description>Gravar uma grade com saldo inicial positivo exige permissões de cadastro e entrada, porque também registra recebimento de estoque.</description>
+                </feature>
+                <feature name="MovimentacaoNaTelaAutorizada">
+                    <description>Movimentar pela tela exige consulta e ao menos uma permissão de operação: entrada, saída ou ajuste.</description>
+                </feature>
+            </and>
+        </and>
+    </struct>
+    <constraints>
+        <rule>
+            <description>C01: Sinalizar uma posição exige IoT e permissão de consulta, pois o serviço verifica essas duas condições antes de enviar o comando.</description>
+            <imp>
+                <var>SinalizacaoAutorizada</var>
+                <conj>
+                    <var>IoT</var>
+                    <var>PermConsultar</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C02: A busca assistida exige IoT e permissão de consulta para localizar produtos e seus vínculos.</description>
+            <imp>
+                <var>BuscaAssistidaAutorizada</var>
+                <conj>
+                    <var>IoT</var>
+                    <var>PermConsultar</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C03: A captura da balança exige IoT, quantidades fracionadas e permissão de saída. O sistema usa o peso para calcular a quantidade e o subtotal.</description>
+            <imp>
+                <var>BalancaAutorizada</var>
+                <conj>
+                    <var>IoT</var>
+                    <var>QuantidadesFracionadas</var>
+                    <var>PermSaida</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C04: Sem IoT ou sem permissão de configuração, a configuração do broker não pode ser selecionada. Isso impede alterações por usuários sem acesso ao recurso.</description>
+            <imp>
+                <disj>
+                    <not>
+                        <var>IoT</var>
+                    </not>
+                    <not>
+                        <var>PermIoT</var>
+                    </not>
+                </disj>
+                <not>
+                    <var>ConfiguracaoIoTAutorizada</var>
+                </not>
+            </imp>
+        </rule>
+        <rule>
+            <description>C05: A exportação exige o recurso de relatórios e a permissão correspondente. CSV e PDF continuam disponíveis juntos.</description>
+            <imp>
+                <var>ExportacaoAutorizada</var>
+                <conj>
+                    <var>Relatorios</var>
+                    <var>PermRelatorios</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C06: Consultar a ocupação exige o recurso de ocupação e as permissões de relatórios e consulta, usadas para carregar posições e vínculos.</description>
+            <imp>
+                <var>OcupacaoAutorizada</var>
+                <conj>
+                    <var>Ocupacao</var>
+                    <var>PermRelatorios</var>
+                    <var>PermConsultar</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C07: A baixa rápida exige permissões de saída e consulta, pois é necessário localizar o vínculo antes de registrar a retirada.</description>
+            <imp>
+                <var>BaixaRapidaAutorizada</var>
+                <conj>
+                    <var>PermSaida</var>
+                    <var>PermConsultar</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C08: As telas de produtos, posições e vínculos exigem permissões de cadastro e consulta para editar e carregar as informações.</description>
+            <imp>
+                <var>TelasDeCadastrosAutorizadas</var>
+                <conj>
+                    <var>PermCadastros</var>
+                    <var>PermConsultar</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C09: Gravar uma grade com saldo inicial positivo exige permissões de cadastro e entrada, porque também registra recebimento de estoque.</description>
+            <imp>
+                <var>GradeComSaldoAutorizada</var>
+                <conj>
+                    <var>PermCadastros</var>
+                    <var>PermEntrada</var>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <description>C10: Movimentar pela tela exige consulta e ao menos uma permissão de operação: entrada, saída ou ajuste.</description>
+            <imp>
+                <var>MovimentacaoNaTelaAutorizada</var>
+                <conj>
+                    <var>PermConsultar</var>
+                    <disj>
+                        <var>PermEntrada</var>
+                        <var>PermSaida</var>
+                        <var>PermAjuste</var>
+                    </disj>
+                </conj>
+            </imp>
+        </rule>
+    </constraints>
+    <comments />
+    <featureOrder userDefined="false" />
+</featureModel>

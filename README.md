@@ -1,4 +1,4 @@
-# Estoque Inteligente
+﻿# Estoque Inteligente
 
 Sistema de gestão de estoque multi-loja com Java 21, Spring Boot MVC,
 Thymeleaf, PostgreSQL e integração MQTT. Oferece cadastros de produtos,
@@ -80,6 +80,8 @@ Para executar os testes Java com PostgreSQL e MQTT do Compose:
 
 ```powershell
 docker compose --env-file .env.demo --profile check run --rm verify
+docker compose --env-file .env.demo exec db psql -U estoque -d estoque -c "SELECT slug, active, iot, reports, occupancy, fractional FROM tenants ORDER BY slug;"
+docker compose --env-file .env.demo exec db psql -U estoque -d estoque -c "SELECT version, description, success FROM flyway_schema_history ORDER BY installed_rank;"
 ```
 
 Os testes integrados dependem das variáveis de conexão fornecidas por esse
