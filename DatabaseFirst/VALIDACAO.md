@@ -16,10 +16,10 @@ O codigo gerado e o SQL ficam sob `DatabaseFirst/target/` e sao recriados pelos 
 
 ## Regeneracao apos uma alteracao
 
-O script opcional `scripts/test_regeneration.ps1`, chamado por:
+O script opcional `scripts/test_regeneration.ps1`, chamado pelo comando abaixo com o terminal dentro de `DatabaseFirst`:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/gerar-codigo.ps1 -DemonstrarRegeneracao
+powershell -NoProfile -ExecutionPolicy Bypass -File .\gerar-codigo.ps1 -DemonstrarRegeneracao
 ```
 
 adiciona `demo_note` ao banco isolado, confirma que o Java nao muda antes do jOOQ, executa a geracao, procura o novo getter/setter/campo tipado e restaura o esquema. As evidencias temporarias ficam em `DatabaseFirst/target/evidence/` e incluem os Records antes/depois, o esquema alterado e os hashes usados para confirmar a restauracao.

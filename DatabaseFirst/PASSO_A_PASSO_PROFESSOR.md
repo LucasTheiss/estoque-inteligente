@@ -6,12 +6,12 @@ O ponto de partida e um esquema PostgreSQL existente. O jOOQ le esse esquema e g
 
 ## Preparar e gerar
 
-Pre-requisitos: Docker Desktop iniciado, internet na primeira execucao e dois terminais PowerShell abertos na raiz do repositorio.
+Pre-requisitos: Docker Desktop iniciado, internet na primeira execucao e terminais PowerShell abertos dentro da pasta estoque-inteligente\DatabaseFirst. Confira com Get-Location; os comandos abaixo usam essa pasta como ponto de partida.
 
 ### Terminal 1: criar o banco de demonstracao
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/iniciar-banco.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-banco.ps1
 ```
 
 O script inicia o PostgreSQL isolado na porta local `5544`, aplica as migrations originais pelo Flyway e insere uma loja de demonstracao. O Flyway cria/atualiza o banco; ele nao gera classes Java.
@@ -19,30 +19,32 @@ O script inicia o PostgreSQL isolado na porta local `5544`, aplica as migrations
 ### Terminal 2: gerar os artefatos
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/gerar-codigo.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\gerar-codigo.ps1
 ```
 
-O script gera 45 arquivos Java jOOQ em `DatabaseFirst/target/generated-sources/jooq/` e exporta `tenants` e `models` para `DatabaseFirst/target/bootify-schema.sql`. Nao inicia uma aplicacao MVC manual.
+O script gera 45 arquivos Java jOOQ em `target/generated-sources/jooq/` e exporta `tenants` e `models` para `target/bootify-schema.sql`. Nao inicia uma aplicacao MVC manual.
 
 Para demonstrar que uma mudanca no banco altera o codigo gerado, rode esta variante. Ela adiciona `demo_note`, regenera as classes e restaura o esquema ao final:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/gerar-codigo.ps1 -DemonstrarRegeneracao
+powershell -NoProfile -ExecutionPolicy Bypass -File .\gerar-codigo.ps1 -DemonstrarRegeneracao
 ```
 
 O arquivo SQL exportado e a prova principal para a etapa seguinte. Para conferir a estrutura atual do banco:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/demo.ps1 inspect
+powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 inspect
 ```
 
 ## Gerar CRUD e telas no Bootify
 
 1. Abra [Bootify](https://bootify.io/) e crie um projeto Java com PostgreSQL e Thymeleaf.
-2. Importe o conteudo de `DatabaseFirst/target/bootify-schema.sql`.
+2. Importe o conteudo de `target\bootify-schema.sql`, relativo à pasta `DatabaseFirst` onde seu terminal está.
 3. Confira o preview. Habilite CRUD e frontend para `models`; mantenha `tenants` como entidade de apoio.
 4. Selecione **None (validate)** para o projeto validar o esquema existente em vez de tentar criá-lo.
 5. Gere e baixe o código. Mostre a entidade, o serviço/controlador CRUD e a tela Thymeleaf gerados.
+
+Para abrir o site e usar o CRUD no banco existente, siga [BOOTIFY_AUTOMATICO.md](BOOTIFY_AUTOMATICO.md). Esse roteiro mostra os ajustes de tabelas, sequências e Flyway, a leitura das credenciais e os comandos para compilar e abrir `http://localhost:8083/models`. Trocar somente o nome do projeto ou do banco não configura esses mapeamentos.
 
 O Bootify oferece importacao de esquema SQL e opcoes de CRUD/frontend por entidade ([guia de importacao](https://bootify.io/spring-data/generate-entities-from-database-sql-script.html), [guia de CRUD/frontend](https://bootify.io/frontend/spring-boot-crud-generator.html)). A selecao das opcoes e o download acontecem no site; nao existe uma chamada automatica ao Bootify nestes scripts.
 
@@ -66,7 +68,7 @@ Uma fala curta:
 Depois de salvar ou mostrar os arquivos gerados, pare os containers sem apagar o volume:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File DatabaseFirst/demo.ps1 stop
+powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 stop
 ```
 
 Nao use `down -v`: esse comando apagaria o banco e o cache Maven.
