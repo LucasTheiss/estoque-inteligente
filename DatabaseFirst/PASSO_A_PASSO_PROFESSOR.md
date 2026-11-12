@@ -1,4 +1,4 @@
-# Roteiro Database First para apresentacao
+﻿# Roteiro Database First para apresentacao
 
 ## O que a atividade demonstra
 
@@ -44,7 +44,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 inspect
 4. Selecione **None (validate)** para o projeto validar o esquema existente em vez de tentar criá-lo.
 5. Gere e baixe o código. Mostre a entidade, o serviço/controlador CRUD e a tela Thymeleaf gerados.
 
-Para abrir o site e usar o CRUD no banco existente, siga [BOOTIFY_AUTOMATICO.md](BOOTIFY_AUTOMATICO.md). Esse roteiro mostra os ajustes de tabelas, sequências e Flyway, a leitura das credenciais e os comandos para compilar e abrir `http://localhost:8083/models`. Trocar somente o nome do projeto ou do banco não configura esses mapeamentos.
+Para abrir o site e usar o CRUD no banco existente, siga [BOOTIFY_AUTOMATICO.md](BOOTIFY_AUTOMATICO.md). Execute iniciar-bootify.ps1 para automatizar os ajustes de tabelas e sequências, configurar Flyway e credenciais, compilar e abrir `http://localhost:8083/models`. Trocar somente o nome do projeto ou do banco não configura esses mapeamentos.
 
 O Bootify oferece importacao de esquema SQL e opcoes de CRUD/frontend por entidade ([guia de importacao](https://bootify.io/spring-data/generate-entities-from-database-sql-script.html), [guia de CRUD/frontend](https://bootify.io/frontend/spring-boot-crud-generator.html)). A selecao das opcoes e o download acontecem no site; nao existe uma chamada automatica ao Bootify nestes scripts.
 
@@ -72,3 +72,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 stop
 ```
 
 Nao use `down -v`: esse comando apagaria o banco e o cache Maven.
+

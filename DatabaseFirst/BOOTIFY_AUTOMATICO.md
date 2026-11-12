@@ -1,142 +1,82 @@
-# Abrir o CRUD Bootify no banco existente
+﻿# Abrir o CRUD Bootify no banco existente
 
-Comece com o PowerShell dentro de `estoque-inteligente\DatabaseFirst`. Confira com `Get-Location`. Não repita `DatabaseFirst/` no argumento `-File`.
+Todos os comandos abaixo partem de `estoque-inteligente\DatabaseFirst`.
 
-O banco é `estoque_databasefirst`, preparado pelo Docker/Flyway. O jOOQ lê esse banco e gera Java. O nome do projeto pode continuar `ei-front`: ele é independente do nome do banco.
-
-## 1. Preparar e gerar
-
-Dentro de `DatabaseFirst`:
+## 1. Preparar o banco
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-banco.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\gerar-codigo.ps1
 ```
 
-Para gerar pelo site, importe `target\bootify-schema.sql`, escolha PostgreSQL e Thymeleaf, habilite CRUD/frontend e selecione **None (validate)** em DB Generation. Extraia o download em `bootify\ei-front`. Confira os ajustes abaixo a cada nova geração.
+Importe `target\bootify-schema.sql` no Bootify, escolha PostgreSQL e Thymeleaf e habilite CRUD/frontend. Baixe e extraia o projeto em `bootify\ei-front`: essa pasta deve conter `pom.xml`, `mvnw.cmd` e `src` diretamente.
 
-## 2. Corrigir os nomes das tabelas
-
-Os caminhos desta seção são relativos a `DatabaseFirst\bootify\ei-front`.
-
-Em `src/main/java/estoque_inteligente/ei_front/model/Model.java`, acrescente o nome à anotação existente:
-
-```java
-@Entity
-@Table(
-        name = "models",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"tenant_id", "name", "brand", "category"})
-)
-public class Model {
-```
-
-Em `src/main/java/estoque_inteligente/ei_front/tenant/Tenant.java`, adicione o import:
-
-```java
-import jakarta.persistence.Table;
-```
-
-E coloque a anotação acima da classe:
-
-```java
-@Entity
-@Table(name = "tenants")
-public class Tenant {
-```
-
-## 3. Corrigir as sequências dos IDs
-
-O banco já tem `models_id_seq` e `tenants_id_seq`. Não use a `primary_sequence` do download.
-
-Em `Model.java`, substitua os blocos `@SequenceGenerator` e `@GeneratedValue` por estes. Preserve `@Id`, `@Column` e `private Long id`:
-
-```java
-@SequenceGenerator(
-        name = "models_id_generator",
-        sequenceName = "models_id_seq",
-        allocationSize = 1
-)
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "models_id_generator")
-```
-
-Em `Tenant.java`, substitua os mesmos blocos por:
-
-```java
-@SequenceGenerator(
-        name = "tenants_id_generator",
-        sequenceName = "tenants_id_seq",
-        allocationSize = 1
-)
-@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tenants_id_generator")
-```
-
-## 4. Usar o esquema já preparado
-
-Em `src/main/resources/application.yml`, acrescente `flyway` ao bloco `spring` já existente:
-
-```yaml
-spring:
-  flyway:
-    enabled: false
-```
-
-Não substitua o arquivo inteiro nem duplique o bloco `spring`. Preserve o restante e mantenha `spring.jpa.hibernate.ddl-auto: validate`. A migration Bootify `V001__CREATE_INITIAL.sql` não deve executar nesse banco: as tabelas e o histórico Flyway já foram criados pelos scripts originais.
-
-## 5. Conferir a versão Java
-
-O download pede Java 25 no `pom.xml`; o Java encontrado nesta máquina foi 19. Para compilar com o JDK 19, altere `<java.version>25</java.version>` para `<java.version>19</java.version>`. Se instalar e selecionar JDK 25, mantenha 25. Confira o JDK usado com `java -version` e, dentro de `ei-front`, `.\mvnw.cmd -v`.
-
-Estes são ajustes de configuração do projeto gerado. A compilação e execução do Bootify ainda precisam ser validadas; o teste do gerador jOOQ não comprova que o site Bootify iniciou.
-
-## 6. Conectar, compilar e iniciar
-
-Comece este bloco dentro de `DatabaseFirst`. Ele lê as credenciais locais sem exibir a senha, configura o banco existente e entra no projeto:
+## 2. Configurar, compilar e abrir
 
 ```powershell
-if (-not (Test-Path .\.env)) { throw 'Execute iniciar-banco.ps1 dentro de DatabaseFirst primeiro.' }
-$config = @{}
-Get-Content .\.env | ForEach-Object {
-    if ($_ -match '^([^#=]+)=(.*)$') { $config[$matches[1].Trim()] = $matches[2] }
-}
-$env:JDBC_DATABASE_URL = 'jdbc:postgresql://localhost:5544/estoque_databasefirst'
-$env:JDBC_DATABASE_USERNAME = $config['DF_DB_USER']
-$env:JDBC_DATABASE_PASSWORD = $config['DF_DB_PASSWORD']
-$env:SPRING_FLYWAY_ENABLED = 'false'
-Set-Location .\bootify\ei-front
+powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-bootify.ps1
 ```
 
-Agora você está em `ei-front`. No mesmo terminal, compile:
+O script ajusta automaticamente as entidades, le as credenciais de `.env`, desativa o Flyway do aplicativo, exige a validacao do esquema existente, compila com o Maven Wrapper e inicia o JAR. Ele usa o Java de `JAVA_HOME`, ou do PATH se JAVA_HOME nao estiver definido, e passa essa versao ao Maven sem editar o POM. Instale um JDK completo (com javac), compativel com o codigo baixado; o script exige pelo menos Java 17. Se o download usar recursos de Java mais recente, selecione esse JDK em JAVA_HOME.
 
-```powershell
-.\mvnw.cmd clean package
-if ($LASTEXITCODE -ne 0) { throw 'A compilacao falhou. Corrija o erro antes de iniciar o site.' }
-```
+A primeira compilacao precisa de internet para baixar dependencias e ferramentas do frontend. Aguarde `BUILD SUCCESS` e a mensagem `Started` do aplicativo. Abra:
 
-O POM inclui o plugin que baixa Node e compila a interface durante o build. Para executar o JAR pronto, não precisa iniciar Vite separadamente. A primeira compilação exige internet.
+- http://localhost:8083/models — cadastrar, consultar, editar e excluir modelos.
+- http://localhost:8083/tenants — lojas.
 
-Depois de aparecer `BUILD SUCCESS`, execute:
-
-```powershell
-java -jar .\target\ei-front-0.0.1-SNAPSHOT.jar --spring.profiles.active=production --server.port=8083
-```
-
-Abra `http://localhost:8083/models`. Cadastre um modelo selecionando a loja `Loja exclusiva Database First`, criada pelo script. Depois edite e exclua o modelo cadastrado. A tela de lojas fica em `http://localhost:8083/tenants`.
-
-Para comprovar a gravação, abra outro terminal dentro de `DatabaseFirst`:
+Para um modelo, selecione a loja `Loja exclusiva Database First`. Para conferir a gravacao, em outro terminal dentro de DatabaseFirst:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 inspect
 ```
 
-Esse comando mostra os modelos da loja `databasefirst`. O CRUD passa a usar as tabelas `models` e `tenants` do mesmo banco consultado pelo jOOQ. O CRUD gerado permite acessar outras lojas também; use o banco isolado da atividade.
-
-## 7. Parar
-
-No terminal do site, pressione `Ctrl+C`. Estando em `ei-front`, volte à pasta `DatabaseFirst`:
+Se o download tiver outro nome, informe o caminho relativo a DatabaseFirst (ou um caminho absoluto):
 
 ```powershell
-Set-Location ..\..
+powershell -NoProfile -ExecutionPolicy Bypass -File .\iniciar-bootify.ps1 -Projeto .\bootify\meu-projeto
+```
+
+Nao e preciso mudar o nome do projeto para o nome do banco. A conexao usa `estoque_databasefirst`, porta 5544. O banco e preparado por Docker/Flyway; jOOQ apenas le o esquema e gera codigo.
+
+## O que foi automatizado e por que
+
+| Ajuste | Motivo |
+| --- | --- |
+| Model usa a tabela models; Tenant usa tenants | Os nomes Java gerados nao correspondem automaticamente aos nomes plurais do banco. |
+| IDs usam models_id_seq e tenants_id_seq, com allocationSize 1 | Essas sequences ja existem e fornecem os proximos IDs. A primary_sequence do download nao e usada. |
+| Flyway do aplicativo desligado durante a execucao | O banco ja tem migrations e tabelas; a migration inicial do download conflita com esse historico. |
+| Hibernate em validate | Confere os mapeamentos sem recriar as tabelas. |
+| Credenciais lidas do .env | Reutiliza o banco da atividade sem gravar senha nos fontes Java. |
+| Maven Wrapper compila e empacota | Executa o build do backend e do frontend configurado no POM baixado. |
+
+`preparar-bootify.ps1` altera somente as duas entidades, preservando as demais propriedades e as restricoes unicas. Salva o primeiro original ao lado de cada Java com extensao `.databasefirst.bak`. Valida os dois arquivos antes de escrever e pode ser executado novamente. Para apenas aplicar esses ajustes, sem compilar:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\preparar-bootify.ps1
+```
+
+`iniciar-bootify.ps1` chama esse preparador e configura a conexao/Flyway no processo. Portanto, use esse iniciador toda vez; abrir o JAR diretamente nao reaplica essas variaveis. Nenhuma tabela ou sequence e criada por esses dois scripts.
+
+## Roteiro para explicar ao professor
+
+1. Mostre o banco preparado e as tabelas existentes.
+2. Execute gerar-codigo.ps1: o jOOQ le o banco e gera classes; o script tambem exporta SQL para Bootify.
+3. Mostre a importacao e o download do Bootify: ele gera entidades, CRUD e telas.
+4. Execute iniciar-bootify.ps1: ele adapta os nomes gerados ao esquema existente, compila e inicia.
+5. Cadastre, edite e exclua um modelo na tela. Mostre demo.ps1 inspect para conferir os dados.
+
+Fala sugerida: “O banco e a origem. jOOQ gera o acesso tipado e Bootify gera o aplicativo com CRUD e telas. Nosso script automatiza a adaptacao dos mapeamentos e a execucao; nao escreve os controladores ou as telas.”
+
+Se baixar o projeto novamente, basta extrair e repetir o iniciador. A importacao/download no site continua manual. O projeto baixado fica ignorado pelo Git.
+
+## Parar e limites de validacao
+
+Pressione Ctrl+C no terminal do site. O script retorna a pasta original. Para parar o banco, dentro de DatabaseFirst:
+
+```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\demo.ps1 stop
 ```
 
-O volume é preservado. Se fechar o terminal, repita o bloco de conexão antes de abrir o JAR. Não crie o banco `ei_front` neste fluxo: a URL usa `estoque_databasefirst`.
+Os dados permanecem no volume. Use o banco isolado da atividade: o CRUD gerado permite acessar outras lojas tambem.
+
+A automacao dos mapeamentos foi testada com exemplos do formato gerado, incluindo repeticao e rejeicao de arquivos inesperados. O download ei-front nao estava presente neste checkout durante essa validacao; a compilacao e o uso do site real ainda precisam ser testados com ele.
